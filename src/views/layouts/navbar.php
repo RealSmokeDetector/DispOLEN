@@ -7,16 +7,16 @@
 
 <nav>
 	<div class="item">
-		<a href="/"><?= Lang::translate(key: "NAVBAR_HOME") ?></a>
+		<a class="button button_secondary" href="/"><?= Lang::translate(key: "NAVBAR_HOME") ?></a>
 	</div>
 
 <?php if (!isset($_SESSION["user"])) { ?>
 
 	<div class="item">
-		<a href="/login"><?= Lang::translate(key: "NAVBAR_LOGIN") ?></a>
+		<a class="button" href="/login"><?= Lang::translate(key: "NAVBAR_LOGIN") ?></a>
 	</div>
 	<div class="item">
-		<a href="/register"><?= Lang::translate(key: "NAVBAR_REGISTER") ?></a>
+		<a class="button" href="/register"><?= Lang::translate(key: "NAVBAR_REGISTER") ?></a>
 	</div>
 
 <?php } else { ?>
@@ -24,13 +24,13 @@
 <?php if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::ADMINISTRATOR]))) { ?>
 
 	<div class="item">
-		<a href="/dashboard"><?= Lang::translate(key: "NAVBAR_DASHBOARD") ?></a>
+		<a class="button" href="/dashboard"><?= Lang::translate(key: "NAVBAR_DASHBOARD") ?></a>
 	</div>
 
 <?php } ?>
 
 	<div class="item">
-		<a href="/disconnect"><?= Lang::translate(key: "NAVBAR_DISCONNECT") ?></a>
+		<a class="button" href="/disconnect"><?= Lang::translate(key: "NAVBAR_DISCONNECT") ?></a>
 	</div>
 
 <?php } ?>

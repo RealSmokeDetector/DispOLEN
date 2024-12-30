@@ -6,8 +6,30 @@
    ============================================== */
 
 :root {
+	/* Background color */
 	--notification-background-color: #ff0000;
+	--button-background-color: #2F27CE;
+	--button-secondary-background-color: #F5F5F5;
 
+	/* Border color */
+	--button-border-color: var(--button-background-color);
+	--button-secondary-border-color: var(--button-secondary-background-color);
+
+	/* Background hover color */
+	--button-hover-background-color: var(--background-color);
+	--button-secondary-hover-background-color: var(--background-color);
+
+	/* Border hover color */
+	--button-hover-border-color: var(--button-background-color);
+	--button-secondary-hover-border-color: var(--button-secondary-background-color);
+
+	/* Text */
+	--button-secondary-text-color: #000000;
+
+	/* Text hover color */
+	--button-secondary-text-hover-color: var(--text-color);
+
+	/* System */
 	--border-radius: 9px;
 }
 
@@ -15,9 +37,11 @@
    ============================================== */
 
 [data-theme="light"] {
+	/* Background color */
 	--background-color: #ffffff;
 	--form-background-color: #8f8fca;
 
+	/* Text color */
 	--text-color: #000000;
 }
 
@@ -25,9 +49,11 @@
    ============================================== */
 
 [data-theme="dark"] {
+	/* Background color */
 	--background-color: #1d1d1d;
 	--form-background-color: #383852;
 
+	/* Text color */
 	--text-color: #ffffff;
 }
 
@@ -60,6 +86,37 @@ h1 {
 	margin-bottom: 10px;
 }
 
+/* Buttons
+   ============================================== */
+
+button:not(.theme_button),
+.button {
+	background-color: var(--button-background-color);
+	border: solid 2px var(--button-border-color);
+	padding: 5px 15px;
+	border-radius: var(--border-radius);
+	transition: 200ms;
+}
+
+button:hover:not(.theme_button),
+.button:hover {
+	background-color: var(--button-hover-background-color);
+	border: solid 2px var(--button-hover-border-color);
+	transition: 200ms;
+}
+
+.button_secondary {
+	background-color: var(--button-secondary-background-color);
+	border-color: var(--button-secondary-border-color);
+	color: var(--button-secondary-text-color);
+}
+
+.button_secondary:hover {
+	background-color: var(--button-secondary-hover-background-color);
+	border-color: var(--button-secondary-hover-border-color);
+	color: var(--button-secondary-text-hover-color);
+}
+
 /* ==============================================
    Navbar
    ============================================== */
@@ -67,6 +124,8 @@ h1 {
 nav {
 	display: flex;
 	flex-direction: row;
+	justify-content: end;
+	padding: 20px;
 	gap: 20px;
 }
 
