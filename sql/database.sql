@@ -2,7 +2,7 @@
 -- Name: triggerdate(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
-CREATE FUNCTION public.triggerdate() RETURNS trigger
+CREATE OR REPLACE FUNCTION public.triggerdate() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 begin
@@ -49,7 +49,8 @@ CREATE TABLE public.reservations (
 --
 
 CREATE TABLE public.roles (
-    id integer NOT NULL
+    id integer NOT NULL,
+	name character varying(32) NOT NULL
 );
 
 --
@@ -71,22 +72,36 @@ CREATE TABLE public.users (
 );
 
 --
--- Table structure for table 'users_groups'
+-- Table structure for table 'user_group'
 --
 
-CREATE TABLE public.users_groups (
+CREATE TABLE public.user_group (
     uid_user character varying(32) NOT NULL,
     uid_group character varying(32) NOT NULL
 );
 
 --
--- Table structure for table 'users_roles'
+-- Table structure for table 'user_role'
 --
 
-CREATE TABLE public.users_roles (
+CREATE TABLE public.user_role (
     uid_user character varying(32) NOT NULL,
-    id_role integer NOT NULL
+    id_role integer NOT NULL DEFAULT 1
 );
+
+--
+-- Data for table 'roles'
+--
+
+INSERT INTO public.roles (id, name) VALUES (1, 'student'), (2, 'teacher'), (10, 'adminstrator');
+
+--
+-- Constraint for table 'users'
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pk PRIMARY KEY (uid),
+    ADD CONSTRAINT users_unique UNIQUE (email);
 
 --
 -- Constraint for table 'disponibilities'
@@ -130,30 +145,22 @@ ALTER TABLE ONLY public.tutoring
     ADD CONSTRAINT tutoring_users_fk_1 FOREIGN KEY (uid_teacher) REFERENCES public.users(uid);
 
 --
--- Constraint for table 'users_groups'
+-- Constraint for table 'user_group'
 --
 
-ALTER TABLE ONLY public.users_groups
-    ADD CONSTRAINT users_groups_pk PRIMARY KEY (uid_user, uid_group),
-    ADD CONSTRAINT users_groups_groups_fk FOREIGN KEY (uid_group) REFERENCES public.groups(uid),
-    ADD CONSTRAINT users_groups_users_fk FOREIGN KEY (uid_user) REFERENCES public.users(uid);
+ALTER TABLE ONLY public.user_group
+    ADD CONSTRAINT user_group_pk PRIMARY KEY (uid_user, uid_group),
+    ADD CONSTRAINT user_group_groups_fk FOREIGN KEY (uid_group) REFERENCES public.groups(uid),
+    ADD CONSTRAINT user_group_users_fk FOREIGN KEY (uid_user) REFERENCES public.users(uid);
 
 --
--- Constraint for table 'users'
+-- Constraint for table 'user_role'
 --
 
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pk PRIMARY KEY (uid),
-    ADD CONSTRAINT users_unique UNIQUE (email);
-
---
--- Constraint for table 'users_roles'
---
-
-ALTER TABLE ONLY public.users_roles
-    ADD CONSTRAINT users_roles_pk PRIMARY KEY (uid_user, id_role),
-    ADD CONSTRAINT users_roles_roles_fk FOREIGN KEY (id_role) REFERENCES public.roles(id),
-    ADD CONSTRAINT users_roles_users_fk FOREIGN KEY (uid_user) REFERENCES public.users(uid);
+ALTER TABLE ONLY public.user_role
+    ADD CONSTRAINT user_role_pk PRIMARY KEY (uid_user, id_role),
+    ADD CONSTRAINT user_role_roles_fk FOREIGN KEY (id_role) REFERENCES public.roles(id),
+    ADD CONSTRAINT user_role_users_fk FOREIGN KEY (uid_user) REFERENCES public.users(uid);
 
 --
 -- Trigger for table 'disponibilities'
