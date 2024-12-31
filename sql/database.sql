@@ -167,3 +167,20 @@ ALTER TABLE ONLY public.user_role
 --
 
 CREATE TRIGGER trigger1 BEFORE INSERT ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdate();
+
+--TRIGGER  qui ajoute automatiquement l'uid d'un user dans la table user_role, l'id du role est déjà automatique
+
+create or replace function InsertUID_User_Role()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO user_role (uid_user) VALUES (NEW.uid);
+    RETURN NEW;
+END;
+$$ language PLPGSQL;
+
+
+create trigger trigg_insert_UID
+AFTER INSERT ON users
+FOR EACH ROW
+EXECUTE FUNCTION InsertUID_User_Role()
+;
