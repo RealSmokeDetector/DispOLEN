@@ -1,5 +1,5 @@
 --
--- Name: triggerdate(); Type: FUNCTION; Schema: public; Owner: postgres
+-- Trigger triggerdate()
 --
 
 CREATE OR REPLACE FUNCTION public.triggerdate() RETURNS trigger
@@ -11,6 +11,18 @@ begin
 	end if;
 	return new;
 end; $$;
+
+--
+-- Trigger triggeruser()
+--
+
+CREATE OR REPLACE FUNCTION public.triggeruser() RETURNS trigger
+	LANGUAGE PLPGSQL
+	AS $$
+BEGIN
+    INSERT INTO user_role (uid_user) VALUES (NEW.uid);
+    RETURN NEW;
+END; $$;
 
 --
 -- Table structure for table 'disponibilities'
@@ -166,4 +178,10 @@ ALTER TABLE ONLY public.user_role
 -- Trigger for table 'disponibilities'
 --
 
-CREATE TRIGGER trigger1 BEFORE INSERT ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdate();
+CREATE TRIGGER trigger_date BEFORE INSERT ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdate();
+
+--
+-- Trigger for table 'users'
+--
+
+create trigger trigger_user AFTER INSERT ON public.users FOR EACH ROW EXECUTE FUNCTION public.triggeruser();
