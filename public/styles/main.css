@@ -56,7 +56,7 @@
 	--text-color: #000000;
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #000000;
-	--input-placeholder-text-color: #000000;
+	--input-placeholder-text-color: #00000077;
 }
 
 /* Dark theme
@@ -75,7 +75,7 @@
 	--text-color: #ffffff;
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #ffffff;
-	--input-placeholder-text-color: #ffffff;
+	--input-placeholder-text-color: #ffffff77;
 }
 
 /* ==============================================
