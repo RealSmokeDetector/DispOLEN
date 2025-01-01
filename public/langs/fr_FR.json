@@ -16,12 +16,14 @@
 	"LOGIN_TITLE": "Connexion",
 	"LOGIN_SUBMIT": "Se connecter",
 	"LOGIN_WRONG_CREDENTIALS": "Identifiant ou mot de passe invalide.",
+	"LOGIN_REGISTER": "Créer un compte",
 
 	"REGISTER_TITLE": "Créer un compte",
 	"REGISTER_PASSWORD_CONFIRM": "Confirmer le mot de passe",
 	"REGISTER_SUBMIT": "Créer le compte",
 	"REGISTER_UNIDENTICAL_PASSWORD": "Les mots de passe saisis ne correspondent pas.",
 	"REGISTER_ALREADY_EXIST": "Le compte \"$[email]\" existe déjà.",
+	"REGISTER_LOGIN": "Se connecter",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 

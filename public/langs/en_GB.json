@@ -16,11 +16,13 @@
 	"LOGIN_TITLE": "Login",
 	"LOGIN_SUBMIT": "Login",
 	"LOGIN_WRONG_CREDENTIALS": "Incorrect identifiant or password.",
+	"LOGIN_REGISTER": "Create account",
 
 	"REGISTER_PASSWORD_CONFIRM": "Confirm password",
 	"REGISTER_SUBMIT": "Create account",
 	"REGISTER_UNIDENTICAL_PASSWORD": "The passwords you entered do not match.",
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
+	"REGISTER_LOGIN": "Login",
 
 	"DASHBOARD_TITLE": "Dashboard",
 
