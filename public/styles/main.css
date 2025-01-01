@@ -57,6 +57,9 @@
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #000000;
 	--input-placeholder-text-color: #00000077;
+
+	/* Text hover color */
+	--text-hover-color: #5e5e5e;
 }
 
 /* Dark theme
@@ -76,6 +79,9 @@
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #ffffff;
 	--input-placeholder-text-color: #ffffff77;
+
+	/* Text hover color */
+	--text-hover-color: #adadad;
 }
 
 /* ==============================================
@@ -156,6 +162,13 @@ button:hover:not(.theme_button),
 	font-size: 20px;
 	cursor: pointer;
 	color: var(--theme-button-text-color);
+	transition: 200ms;
+}
+
+.theme_button:hover,
+.profil_button:hover {
+	color: var(--text-hover-color);
+	transition: 200ms;
 }
 
 .profil_button {
