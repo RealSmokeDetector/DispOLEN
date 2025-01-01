@@ -22,6 +22,7 @@
 	"REGISTER_TITLE": "Create account",
 	"REGISTER_PASSWORD_CONFIRM": "Confirm password",
 	"REGISTER_SUBMIT": "Create account",
+	"REGISTER_INVALID_EMAIL": "Email address \"$[email]\" is not valid.",
 	"REGISTER_UNIDENTICAL_PASSWORD": "The passwords you entered do not match.",
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",

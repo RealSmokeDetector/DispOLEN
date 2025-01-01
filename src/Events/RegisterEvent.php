@@ -18,19 +18,23 @@ class RegisterEvent {
 				&& isset($_POST["password"])
 				&& isset($_POST["password_confirm"])
 			) {
-				if ($_POST["password"] === $_POST["password_confirm"]) {
-					$user = new User(name: $_POST["name"], surname: $_POST["surname"], email: $_POST["email"], password: $_POST["password"]);
-					$userRepo = new UserRepository(user: $user);
-					$uid = $userRepo->create();
-
-					if ($uid instanceof Exception) {
-						setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_ALREADY_EXIST", options: ["email" => htmlspecialchars(string: $_POST["email"])]), time() + 60*60*24*30);
-					} else {
-						$_SESSION["user"]["uid"] = $uid;
-						System::redirect(url: "/");
-					}
+				if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+					setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_INVALID_EMAIL", options: ["email" => htmlspecialchars(string: $_POST["email"])]), time() + 60*60*24*30);
 				} else {
-					setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_UNIDENTICAL_PASSWORD"), time() + 60*60*24*30);
+					if ($_POST["password"] === $_POST["password_confirm"]) {
+						$user = new User(name: $_POST["name"], surname: $_POST["surname"], email: $_POST["email"], password: $_POST["password"]);
+						$userRepo = new UserRepository(user: $user);
+						$uid = $userRepo->create();
+
+						if ($uid instanceof Exception) {
+							setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_ALREADY_EXIST", options: ["email" => htmlspecialchars(string: $_POST["email"])]), time() + 60*60*24*30);
+						} else {
+							$_SESSION["user"]["uid"] = $uid;
+							System::redirect(url: "/");
+						}
+					} else {
+						setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_UNIDENTICAL_PASSWORD"), time() + 60*60*24*30);
+					}
 				}
 			}
 		}

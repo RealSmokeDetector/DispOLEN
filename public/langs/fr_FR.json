@@ -22,6 +22,7 @@
 	"REGISTER_TITLE": "Créer un compte",
 	"REGISTER_PASSWORD_CONFIRM": "Confirmer le mot de passe",
 	"REGISTER_SUBMIT": "Créer le compte",
+	"REGISTER_INVALID_EMAIL": "L'adresse email \"$[email]\" n'est pas valide.",
 	"REGISTER_UNIDENTICAL_PASSWORD": "Les mots de passe saisis ne correspondent pas.",
 	"REGISTER_ALREADY_EXIST": "Le compte \"$[email]\" existe déjà.",
 	"REGISTER_LOGIN": "Se connecter",
