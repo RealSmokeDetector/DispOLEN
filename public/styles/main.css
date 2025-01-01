@@ -23,10 +23,11 @@
 	--button-hover-border-color: var(--button-background-color);
 	--button-secondary-hover-border-color: var(--button-secondary-background-color);
 
-	/* Text */
-	--button-secondary-text-color: #000000;
+	/* Text color */
+	--button-text-color: #ffffff;
 
 	/* Text hover color */
+	--button-text-hover-color: var(--text-color);
 	--button-secondary-text-hover-color: var(--text-color);
 
 	/* System */
@@ -43,6 +44,7 @@
 
 	/* Text color */
 	--text-color: #000000;
+	--button-secondary-text-color: #000000;
 }
 
 /* Dark theme
@@ -55,6 +57,7 @@
 
 	/* Text color */
 	--text-color: #ffffff;
+	--button-secondary-text-color: #000000;
 }
 
 /* ==============================================
@@ -95,6 +98,7 @@ button:not(.theme_button),
 	border: solid 2px var(--button-border-color);
 	padding: 5px 15px;
 	border-radius: var(--border-radius);
+	color: var(--button-text-color);
 	transition: 200ms;
 }
 
@@ -102,6 +106,7 @@ button:hover:not(.theme_button),
 .button:hover {
 	background-color: var(--button-hover-background-color);
 	border: solid 2px var(--button-hover-border-color);
+	color: var(--button-text-hover-color);
 	transition: 200ms;
 }
 
