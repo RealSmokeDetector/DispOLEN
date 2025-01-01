@@ -2,21 +2,21 @@
 -- Trigger triggerdate()
 --
 
-CREATE OR REPLACE FUNCTION public.triggerdate() RETURNS trigger
-    LANGUAGE plpgsql
+CREATE OR REPLACE FUNCTION public.triggerdate() RETURNS TRIGGER
+    LANGUAGE PLPGSQL
     AS $$
-begin
-	if (select (old.date_start, old.date_end) overlaps (new.date_start, new.date_end)) then
-		return old;
-	end if;
-	return new;
-end; $$;
+BEGIN
+	IF (SELECT (OLD.date_start, OLD.date_end) OVERLAPS (NEW.date_start, NEW.date_end)) THEN
+		RETURN OLD;
+	END IF;
+	RETURN NEW;
+END; $$;
 
 --
 -- Trigger triggeruser()
 --
 
-CREATE OR REPLACE FUNCTION public.triggeruser() RETURNS trigger
+CREATE OR REPLACE FUNCTION public.triggeruser() RETURNS TRIGGER
 	LANGUAGE PLPGSQL
 	AS $$
 BEGIN
@@ -25,17 +25,31 @@ BEGIN
 END; $$;
 
 --
+-- Trigger triggerdateupdate()
+--
+
+CREATE OR REPLACE FUNCTION public.triggerdateupdate() RETURNS TRIGGER
+	LANGUAGE PLPGSQL
+	AS $$
+BEGIN
+	NEW.date_update = CURRENT_TIMESTAMP;
+	RETURN NEW;
+END; $$;
+
+--
 -- Table structure for table 'disponibilities'
 --
 
 CREATE TABLE public.disponibilities (
-    uid character varying(32) NOT NULL,
-    uid_user character varying(32) NOT NULL,
-    date_start date DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    date_end date DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    type integer DEFAULT 1 NOT NULL,
-    reason integer DEFAULT 1 NOT NULL,
-    state integer NOT NULL
+    uid CHARACTER VARYING(32) NOT NULL,
+    uid_user CHARACTER VARYING(32) NOT NULL,
+    date_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_end TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    type INTEGER NOT NULL DEFAULT 1,
+    reason INTEGER NOT NULL DEFAULT 1,
+    state INTEGER NOT NULL,
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 --
@@ -43,7 +57,8 @@ CREATE TABLE public.disponibilities (
 --
 
 CREATE TABLE public.groups (
-    uid character varying(32) NOT NULL
+    uid CHARACTER VARYING(32) NOT NULL,
+	name CHARACTER VARYING(64) NOT NULL
 );
 
 --
@@ -51,9 +66,10 @@ CREATE TABLE public.groups (
 --
 
 CREATE TABLE public.reservations (
-    uid_teacher character varying(32) NOT NULL,
-    uid_student character varying(32) NOT NULL,
-    uid_disponibilities character varying(32) NOT NULL
+    uid_teacher CHARACTER VARYING(32) NOT NULL,
+    uid_student CHARACTER VARYING(32) NOT NULL,
+    uid_disponibilities CHARACTER VARYING(32) NOT NULL,
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 --
@@ -61,8 +77,8 @@ CREATE TABLE public.reservations (
 --
 
 CREATE TABLE public.roles (
-    id integer NOT NULL,
-	name character varying(32) NOT NULL
+    id INTEGER NOT NULL,
+	name CHARACTER VARYING(64) NOT NULL
 );
 
 --
@@ -70,8 +86,9 @@ CREATE TABLE public.roles (
 --
 
 CREATE TABLE public.tutoring (
-    uid_student character varying(32) NOT NULL,
-    uid_teacher character varying(32) NOT NULL
+    uid_student CHARACTER VARYING(32) NOT NULL,
+    uid_teacher CHARACTER VARYING(32) NOT NULL,
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 --
@@ -79,8 +96,13 @@ CREATE TABLE public.tutoring (
 --
 
 CREATE TABLE public.users (
-    uid character varying(32) NOT NULL,
-    email character varying(255) NOT NULL
+    uid CHARACTER VARYING(32) NOT NULL,
+    name CHARACTER VARYING(255) NOT NULL,
+    surname CHARACTER VARYING(255) NOT NULL,
+    email CHARACTER VARYING(255) NOT NULL,
+    password CHARACTER VARYING(128) NOT NULL,
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 --
@@ -88,8 +110,9 @@ CREATE TABLE public.users (
 --
 
 CREATE TABLE public.user_group (
-    uid_user character varying(32) NOT NULL,
-    uid_group character varying(32) NOT NULL
+    uid_user CHARACTER VARYING(32) NOT NULL,
+    uid_group CHARACTER VARYING(32) NOT NULL,
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 --
@@ -97,8 +120,9 @@ CREATE TABLE public.user_group (
 --
 
 CREATE TABLE public.user_role (
-    uid_user character varying(32) NOT NULL,
-    id_role integer NOT NULL DEFAULT 1
+    uid_user CHARACTER VARYING(32) NOT NULL,
+    id_role INTEGER NOT NULL DEFAULT 1,
+	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 --
@@ -179,9 +203,35 @@ ALTER TABLE ONLY public.user_role
 --
 
 CREATE TRIGGER trigger_date BEFORE INSERT ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdate();
+CREATE TRIGGER trigger_date_update_disponibilities BEFORE UPDATE ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
 
 --
 -- Trigger for table 'users'
 --
 
-create trigger trigger_user AFTER INSERT ON public.users FOR EACH ROW EXECUTE FUNCTION public.triggeruser();
+CREATE TRIGGER trigger_user AFTER INSERT ON public.users FOR EACH ROW EXECUTE FUNCTION public.triggeruser();
+CREATE TRIGGER trigger_date_update_users BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+
+--
+-- Trigger for table 'reservations'
+--
+
+CREATE TRIGGER trigger_date_update_reservations BEFORE UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+
+--
+-- Trigger for table 'tutoring'
+--
+
+CREATE TRIGGER trigger_date_update_tutoring BEFORE UPDATE ON public.tutoring FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+
+--
+-- Trigger for table 'user_group'
+--
+
+CREATE TRIGGER trigger_date_update_user_group BEFORE UPDATE ON public.user_group FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+
+--
+-- Trigger for table 'user_role'
+--
+
+CREATE TRIGGER trigger_date_update_user_role BEFORE UPDATE ON public.user_role FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
