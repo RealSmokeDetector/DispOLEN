@@ -217,6 +217,22 @@ nav a {
 }
 
 /* ==============================================
+   Responsive
+   ============================================== */
+
+@media only screen and (max-width: 700px) {
+	nav .item a {
+		font-size: 0;
+		height: min-content;
+		display: block;
+	}
+
+	nav .item a i {
+		font-size: var(--font-size);
+	}
+}
+
+/* ==============================================
    Notifications
    ============================================== */
 
@@ -284,6 +300,7 @@ nav a {
 .login input,
 .register input {
 	width: -webkit-fill-available;
+	width: -moz-available;
 }
 
 .login h1,
