@@ -148,12 +148,17 @@ button:hover:not(.theme_button),
 	color: var(--button-secondary-text-hover-color);
 }
 
-.theme_button {
+.theme_button,
+.profil_button {
 	background: 0;
 	border: 0;
 	font-size: 20px;
 	cursor: pointer;
 	color: var(--theme-button-text-color);
+}
+
+.profil_button {
+	font-size: 22px;
 }
 
 /* Inputs
@@ -274,4 +279,14 @@ nav a {
 	cursor: pointer;
 	margin-top: -5px;
 	margin-bottom: -25px;
+}
+
+.login input,
+.register input {
+	width: -webkit-fill-available;
+}
+
+.login h1,
+.register h1 {
+	padding: 0 20px;
 }

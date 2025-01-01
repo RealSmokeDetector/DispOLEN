@@ -3,7 +3,7 @@
 ?>
 
 <form class="login" method="POST">
-	<h1><?= Lang::translate("LOGIN_TITLE") ?></h1>
+	<h1><i class="ri-lock-2-line"></i> <?= Lang::translate("LOGIN_TITLE") ?></h1>
 
 	<input
 		type="text"
@@ -21,7 +21,7 @@
 		require
 	>
 
-	<button class="submit" type="submit"><?= Lang::translate(key: "LOGIN_SUBMIT") ?></button>
+	<button class="submit" type="submit"><i class="ri-key-line"></i> <?= Lang::translate(key: "LOGIN_SUBMIT") ?></button>
 
 	<a class="link" href="/register"><?= Lang::translate(key: "LOGIN_REGISTER") ?></a>
 </form>

@@ -9,6 +9,7 @@
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
+	"NAVBAR_PROFILE": "Profile",
 	"NAVBAR_LOGIN": "Login",
 	"NAVBAR_REGISTER": "Create account",
 	"NAVBAR_DISCONNECT": "Logout",

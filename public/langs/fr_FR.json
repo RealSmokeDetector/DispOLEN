@@ -9,6 +9,7 @@
 
 	"NAVBAR_HOME": "Accueil",
 	"NAVBAR_DASHBOARD": "Tableau de bord",
+	"NAVBAR_PROFILE": "Profil",
 	"NAVBAR_LOGIN": "Connexion",
 	"NAVBAR_REGISTER": "Créer un compte",
 	"NAVBAR_DISCONNECT": "Déconnexion",
