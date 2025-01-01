@@ -27,20 +27,27 @@
 		placeholder="<?= Lang::translate(key: "MAIN_EMAIL") ?>"
 		require
 	>
-	<input
-		type="password"
-		name="password"
-		value="<?= isset($_POST["password"]) ? $_POST["password"] : "" ?>"
-		placeholder="<?= Lang::translate(key: "MAIN_PASSWORD") ?>"
-		require
-	>
-	<input
-		type="password"
-		name="password_confirm"
-		value="<?= isset($_POST["password_confirm"]) ? $_POST["password_confirm"] : "" ?>"
-		placeholder="<?= Lang::translate(key: "REGISTER_PASSWORD_CONFIRM") ?>"
-		require
-	>
+
+	<div class="password" id="password">
+		<input
+			type="password"
+			name="password"
+			value="<?= isset($_POST["password"]) ? $_POST["password"] : "" ?>"
+			placeholder="<?= Lang::translate(key: "MAIN_PASSWORD") ?>"
+			require
+		>
+		<i class="ri-eye-off-line"></i>
+	</div>
+	<div class="password" id="password">
+		<input
+			type="password"
+			name="password_confirm"
+			value="<?= isset($_POST["password_confirm"]) ? $_POST["password_confirm"] : "" ?>"
+			placeholder="<?= Lang::translate(key: "REGISTER_PASSWORD_CONFIRM") ?>"
+			require
+		>
+		<i class="ri-eye-off-line"></i>
+	</div>
 
 	<button class="submit" type="submit"><i class="ri-key-line"></i> <?= Lang::translate(key: "REGISTER_SUBMIT") ?></button>
 

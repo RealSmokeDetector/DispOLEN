@@ -47,7 +47,7 @@
 	/* Background color */
 	--background-color: #ffffff;
 	--form-background-color: #ffffff75;
-	--input-background-color: #ffffff50;
+	--input-background-color: var(--background-color);
 
 	/* Border color */
 	--border-color: #d9d9d9;
@@ -66,7 +66,7 @@
 	/* Background color */
 	--background-color: #1d1d1d;
 	--form-background-color: #1d1d1d75;
-	--input-background-color: #1d1d1d50;
+	--input-background-color: var(--background-color);
 
 	/* Border color */
 	--border-color: #5c5c5c;
@@ -216,11 +216,17 @@ nav a {
 	color: var(--text-color);
 }
 
+nav .logo {
+	font-size: 20px;
+	position: fixed;
+	left: 20px;
+}
+
 /* ==============================================
    Responsive
    ============================================== */
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
 	nav .item a {
 		font-size: 0;
 		height: min-content;
@@ -229,6 +235,10 @@ nav a {
 
 	nav .item a i {
 		font-size: var(--font-size);
+	}
+
+	nav .logo {
+		display: none;
 	}
 }
 
@@ -298,7 +308,9 @@ nav a {
 }
 
 .login input,
-.register input {
+.register input,
+.login .password,
+.register .password {
 	width: -webkit-fill-available;
 	width: -moz-available;
 }
@@ -306,4 +318,16 @@ nav a {
 .login h1,
 .register h1 {
 	padding: 0 20px;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+.login_container .password i,
+.register_container .password i {
+	position: fixed;
+	transform: translate(-36px, 11px);
+	font-size: 18px;
+	background-color: var(--input-background-color);
+	cursor: pointer;
+	padding: 0px 4px;
 }

@@ -136,3 +136,18 @@ setInterval(() => {
 		)
 	}
 }, 1000);
+
+const passwordFields = document.querySelectorAll(".password i");
+
+passwordFields.forEach(passwordField => {
+	passwordField.addEventListener("click", function() {
+		const passwordField = this.previousElementSibling;
+		if (passwordField.type === "password") {
+			passwordField.type = "text";
+			this.className = "ri-eye-line";
+		} else {
+			passwordField.type = "password";
+			this.className = "ri-eye-off-line";
+		}
+	})
+})
