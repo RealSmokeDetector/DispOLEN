@@ -41,9 +41,9 @@ class Lang {
 	public static function nameFormat(string $name) : string {
 		switch ($name) {
 			case "fr_FR":
-				return "Français";
+				return "🇨🇵";
 			case "en_GB":
-				return "English";
+				return "🇬🇧";
 			default:
 				return "";
 		}

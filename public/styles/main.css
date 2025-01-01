@@ -16,8 +16,8 @@
 	--button-secondary-border-color: var(--button-secondary-background-color);
 
 	/* Background hover color */
-	--button-hover-background-color: var(--background-color);
-	--button-secondary-hover-background-color: var(--background-color);
+	--button-hover-background-color: #00000000;
+	--button-secondary-hover-background-color: #00000000;
 
 	/* Border hover color */
 	--button-hover-border-color: var(--button-background-color);
@@ -45,6 +45,7 @@
 	/* Text color */
 	--text-color: #000000;
 	--button-secondary-text-color: #000000;
+	--theme-button-text-color: #000000;
 }
 
 /* Dark theme
@@ -58,7 +59,14 @@
 	/* Text color */
 	--text-color: #ffffff;
 	--button-secondary-text-color: #000000;
+	--theme-button-text-color: #ffffff;
 }
+
+/* ==============================================
+   Imports
+   ============================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
 /* ==============================================
    Global
@@ -99,6 +107,7 @@ button:not(.theme_button),
 	padding: 5px 15px;
 	border-radius: var(--border-radius);
 	color: var(--button-text-color);
+	cursor: pointer !important;
 	transition: 200ms;
 }
 
@@ -122,6 +131,30 @@ button:hover:not(.theme_button),
 	color: var(--button-secondary-text-hover-color);
 }
 
+.theme_button {
+	background: 0;
+	border: 0;
+	font-size: 20px;
+	cursor: pointer;
+	color: var(--theme-button-text-color);
+}
+
+/* Selects
+   ============================================== */
+
+.lang_selection {
+	font-family: "Noto Color Emoji";
+	background: 0;
+	border: 0;
+	font-size: 20px;
+	cursor: pointer;
+	appearance: none;
+}
+
+.lang_selection:focus {
+	outline: none;
+}
+
 /* ==============================================
    Navbar
    ============================================== */
@@ -130,6 +163,7 @@ nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: end;
+	align-items: center;
 	padding: 20px;
 	gap: 20px;
 }
