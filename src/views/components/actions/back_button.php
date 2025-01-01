@@ -1,1 +1,1 @@
-<a class="back_button" href="<?= $backPath ?>">Retour</a>
+<a class="button button_secondary" href="<?= $backPath ?>">Retour</a>

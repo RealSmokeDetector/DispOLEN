@@ -126,6 +126,7 @@ button:not(.theme_button),
 	cursor: pointer !important;
 	transition: 200ms;
 	font-size: var(--font-size);
+	text-decoration: none;
 }
 
 button:hover:not(.theme_button),
@@ -185,7 +186,9 @@ input::placeholder {
    ============================================== */
 
 .lang_selection {
-	font-family: "Noto Color Emoji";
+	font-family: "Noto Color Emoji", serif !important;
+	font-weight: 400;
+	font-style: normal;
 	background: 0;
 	border: 0;
 	font-size: 20px;
@@ -270,6 +273,25 @@ nav .logo {
 /* ==============================================
    Pages
    ============================================== */
+
+/* Error page
+   ============================================== */
+
+.error_container {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	align-items: center;
+	margin-top: 5%;
+	border: var(--border);
+	border-radius: var(--border-radius);
+	padding: 20px 30px;
+	width: 10%;
+}
+
+.error_container a {
+	margin-top: 20px;
+}
 
 /* Login/Register page
    ============================================== */

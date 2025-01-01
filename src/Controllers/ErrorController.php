@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Configs\Path;
 use App\Utils\Lang;
+use App\Utils\System;
 
 class ErrorController {
 	public function render(int $errorCode = 500, string $message = null) : void {
@@ -16,6 +17,8 @@ class ErrorController {
 		require Path::LAYOUT . "/header.php";
 
 		require Path::LAYOUT . "/error/error.php";
+
+		System::implementScripts(scripts: ["/scripts/theme.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}
