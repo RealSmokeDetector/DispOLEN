@@ -34,7 +34,7 @@
 			name="password"
 			value="<?= isset($_POST["password"]) ? $_POST["password"] : "" ?>"
 			placeholder="<?= Lang::translate(key: "MAIN_PASSWORD") ?>"
-			require
+			required
 		>
 		<i class="ri-eye-off-line"></i>
 	</div>
@@ -44,7 +44,7 @@
 			name="password_confirm"
 			value="<?= isset($_POST["password_confirm"]) ? $_POST["password_confirm"] : "" ?>"
 			placeholder="<?= Lang::translate(key: "REGISTER_PASSWORD_CONFIRM") ?>"
-			require
+			required
 		>
 		<i class="ri-eye-off-line"></i>
 	</div>

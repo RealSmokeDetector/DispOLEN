@@ -10,7 +10,7 @@
 		name="email"
 		value="<?= isset($_POST["email"]) ? $_POST["email"] : "" ?>"
 		placeholder="<?= Lang::translate(key: "MAIN_EMAIL") ?>"
-		require
+		required
 		autofocus
 	>
 
@@ -20,7 +20,7 @@
 			name="password"
 			value="<?= isset($_POST["password"]) ? $_POST["password"] : "" ?>"
 			placeholder="<?= Lang::translate(key: "MAIN_PASSWORD") ?>"
-			require
+			required
 		>
 		<i class="ri-eye-off-line"></i>
 	</div>
