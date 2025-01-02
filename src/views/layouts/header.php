@@ -11,8 +11,9 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
 </head>
 <body>
-	<noscript>
-		<div class="no_script">
-			<?= Lang::translate(key: "MAIN_NO_SCRIPT") ?>
-		</div>
-	</noscript>
+	<main>
+		<noscript>
+			<div class="no_script">
+				<?= Lang::translate(key: "MAIN_NO_SCRIPT") ?>
+			</div>
+		</noscript>

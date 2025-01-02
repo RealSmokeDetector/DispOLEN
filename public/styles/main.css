@@ -104,6 +104,10 @@ body {
 	color: var(--text-color);
 	background-color: var(--background-color);
 	transition: 200ms;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
 }
 
 /* ==============================================
@@ -221,6 +225,10 @@ input::placeholder {
    ============================================== */
 
 nav {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background-color: var(--background-color);
 	display: flex;
 	flex-direction: row;
 	justify-content: end;
@@ -229,6 +237,7 @@ nav {
 	gap: 20px;
 	border-bottom: var(--border);
 	transition: 200ms;
+	margin-bottom: 30px;
 }
 
 nav a {
@@ -238,7 +247,7 @@ nav a {
 
 nav .logo {
 	font-size: 20px;
-	position: fixed;
+	position: absolute;
 	left: 20px;
 }
 
@@ -251,6 +260,8 @@ nav .logo {
 		font-size: 0;
 		height: min-content;
 		display: block;
+		margin-top: -5px;
+        margin-bottom: -4px;
 	}
 
 	nav .item a i {
@@ -271,6 +282,7 @@ nav .logo {
 	border-radius: var(--border-radius);
 	padding: 10px;
 	width: fit-content;
+	margin: 20px auto;
 	transition: 200ms;
 }
 
@@ -319,7 +331,6 @@ nav .logo {
 .register_container {
 	display: flex;
 	justify-content: center;
-	margin-top: 5%;
 }
 
 .login,
@@ -373,11 +384,37 @@ nav .logo {
 
 .login_container .password i,
 .register_container .password i {
-	position: fixed;
+	position: absolute;
 	transform: translate(-36px, 11px);
 	font-size: 18px;
 	background-color: var(--input-background-color);
 	cursor: pointer;
 	padding: 0px 4px;
+	transition: 200ms;
+}
+
+/* ==============================================
+   Footer
+   ============================================== */
+
+footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	border-top: var(--border);
+	gap: 10px;
+	margin-top: 30px;
+}
+
+footer a {
+	text-decoration: none;
+	color: var(--text-color);
+	transition: 200ms;
+}
+
+footer a:hover {
+	color: var(--text-hover-color);
 	transition: 200ms;
 }

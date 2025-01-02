@@ -34,7 +34,8 @@ $router->add(
 	url: "/register",
 	controller: $controllersPath . "RegisterController",
 	title: APP_NAME . " - " . Lang::translate(key: "REGISTER_TITLE"),
-	needLoginToBe: false);
+	needLoginToBe: false
+);
 $router->add(
 	url: "/disconnect",
 	controller: $controllersPath . "DisconnectController",

@@ -10,7 +10,7 @@
 		name="name"
 		value="<?= isset($_POST["name"]) ? $_POST["name"] : "" ?>"
 		placeholder="<?= Lang::translate(key: "MAIN_NAME") ?>"
-		require
+		required
 		autofocus
 	>
 	<input
@@ -18,14 +18,14 @@
 		name="surname"
 		value="<?= isset($_POST["surname"]) ? $_POST["surname"] : "" ?>"
 		placeholder="<?= Lang::translate(key: "MAIN_SURNAME") ?>"
-		require
+		required
 	>
 	<input
 		type="text"
 		name="email"
 		value="<?= isset($_POST["email"]) ? $_POST["email"] : "" ?>"
 		placeholder="<?= Lang::translate(key: "MAIN_EMAIL") ?>"
-		require
+		required
 	>
 
 	<div class="password" id="password">
