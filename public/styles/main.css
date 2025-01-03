@@ -13,7 +13,7 @@
 
 :root {
 	/* Background color */
-	--notification-background-color: #ff0000;
+	--notification-background-color: #FF496E;
 	--button-background-color: #2F27CE;
 	--button-secondary-background-color: #F5F5F5;
 
@@ -23,6 +23,7 @@
 	/* Border color */
 	--button-border-color: var(--button-background-color);
 	--button-secondary-border-color: var(--button-secondary-background-color);
+	--notification-border-color: #e63457;
 
 	/* Background hover color */
 	--button-hover-background-color: #00000000;
@@ -31,6 +32,7 @@
 	/* Border hover color */
 	--button-hover-border-color: var(--button-background-color);
 	--button-secondary-hover-border-color: var(--button-secondary-background-color);
+	--notification-hover-border-color: #e94465;
 
 	/* Text */
 	--font-size: 16px;
@@ -277,28 +279,36 @@ nav .logo {
    Notifications
    ============================================== */
 
-.no_script {
+.no_script,
+.main_notification {
 	background-color: var(--notification-background-color);
-	border-radius: var(--border-radius);
 	padding: 10px;
-	width: fit-content;
-	margin: 20px auto;
+	transition: 200ms;
+	border: solid 2px var(--notification-border-color);
+	border-radius: var(--border-radius);
+}
+
+.no_script:hover,
+.main_notification:hover {
+	border-color: var(--notification-hover-border-color);
 	transition: 200ms;
 }
 
+.no_script {
+	width: fit-content;
+	margin: 20px auto;
+}
+
 .main_notification {
-	background-color: var(--notification-background-color);
 	width: 250px;
 	max-height: 50px;
-	padding: 10px;
-	border-radius: var(--border-radius);
 	position: fixed;
 	top: 20px;
 	right: 20px;
 	text-align: center;
 	z-index: 1000;
 	overflow: hidden;
-	transition: 200ms;
+	cursor: pointer;
 }
 
 /* ==============================================

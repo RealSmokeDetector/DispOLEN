@@ -137,6 +137,13 @@ setInterval(() => {
 	}
 }, 1000);
 
+const DOMnotification = document.getElementById("main_notification");
+if (isElementExist(DOMnotification)) {
+	DOMnotification.addEventListener("click", () => {
+		DOMnotification.remove();
+	})
+}
+
 const passwordFields = document.querySelectorAll(".password i");
 
 passwordFields.forEach(passwordField => {
