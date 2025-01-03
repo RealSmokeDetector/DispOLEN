@@ -13,11 +13,11 @@ class Reservation {
 		$this->uid_disponibilities = $uid_disponibilities;
 	}
 
-	public function __set($name, $value): void {
+	public function __set($name, $value) : void {
 		$this->$name = $value;
 	}
 
-	public function __get($var): mixed {
+	public function __get($var) : mixed {
 		return $this->$var;
 	}
 }

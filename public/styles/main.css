@@ -263,7 +263,7 @@ nav .logo {
 		height: min-content;
 		display: block;
 		margin-top: -5px;
-        margin-bottom: -4px;
+		margin-bottom: -4px;
 	}
 
 	nav .item a i {
@@ -271,6 +271,15 @@ nav .logo {
 	}
 
 	nav .logo {
+		display: none;
+	}
+
+	footer {
+		flex-direction: column !important;
+		gap: 4px !important;
+	}
+
+	footer span {
 		display: none;
 	}
 }
