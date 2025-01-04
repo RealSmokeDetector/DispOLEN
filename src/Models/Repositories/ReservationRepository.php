@@ -26,11 +26,15 @@ class ReservationRepository {
 	 */
 	public function create(): void {
 		ApplicationData::request(
-			query: "INSERT INTO " . Database::RESERVATIONS . "(uid_teacher, uid_student, uid_disponibilities) VALUES (:uid_teacher, :uid_student, :uid_disponibilities)",
+			query: "INSERT INTO " . Database::RESERVATIONS . "(uid_teacher, uid_student, uid_disponibilities, id_type, id_reason, id_state, comment) VALUES (:uid_teacher, :uid_student, :uid_disponibilities, :id_type, :id_reason, :id_state, :comment)",
 			data: [
 				"uid_teacher" => $this->reservation->uid_teacher,
 				"uid_student" => $this->reservation->uid_student,
-				"uid_disponibilities" => $this->reservation->uid_disponibilities
+				"uid_disponibilities" => $this->reservation->uid_disponibilities,
+				"id_type" => $this->reservation->id_type,
+				"id_reason" => $this->reservation->id_reason,
+				"id_state" => $this->reservation->id_state,
+				"comment" => $this->reservation->comment
 			]
 		);
 	}
@@ -42,11 +46,15 @@ class ReservationRepository {
 	 */
 	public function getInformation(): array {
 		$reservationData = ApplicationData::request(
-			query: "SELECT * FROM " . Database::RESERVATIONS .  " WHERE uid_teacher = :uid_teacher AND uid_student = :uid_student AND uid_disponibilities = :uid_disponibilities",
+			query: "SELECT * FROM " . Database::RESERVATIONS .  " WHERE uid_teacher = :uid_teacher AND uid_student = :uid_student AND uid_disponibilities = :uid_disponibilities AND id_type = :id_type AND id_reason = :id_reason AND id_state = :id_state AND comment = :comment",
 			data: [
 				"uid_teacher" => $this->reservation->uid_teacher,
 				"uid_student" => $this->reservation->uid_student,
-				"uid_disponibilities" => $this->reservation->uid_disponibilities
+				"uid_disponibilities" => $this->reservation->uid_disponibilities,
+				"id_type" => $this->reservation->id_type,
+				"id_reason" => $this->reservation->id_reason,
+				"id_state" => $this->reservation->id_state,
+				"comment" => $this->reservation->comment
 			],
 			returnType : PDO::FETCH_ASSOC,
 		);
