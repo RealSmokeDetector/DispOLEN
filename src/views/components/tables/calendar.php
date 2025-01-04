@@ -28,13 +28,13 @@
 	];
 
 	$datenow = new Date();
-	$offsetDayOfWeak = $datenow->getOffsetWeek();
+	$offsetDayOfWeak = $datenow->getOffsetWeek() - 1 ;
 	$currentDate = 1;
 ?>
 
 <div class="calendar-container" >
 	<table>
-		<caption><button><</button> <?= $month[$datenow->__get(name: "month") - 1] . " " . $datenow->__get(name: "year") ?><button>></button></caption>
+		<caption><button><</button> <?= $month[$datenow->month - 1] . " " . $datenow->year ?><button>></button></caption>
 		<thead>
 			<tr>
 				<?php foreach ($days as $day) { ?>
@@ -45,19 +45,19 @@
 		<tbody>
 			<tr>
 				<?php if ( $offsetDayOfWeak > 0) { ?>
-					<td colspan="<?= $offsetDayOfWeak - 1 ?>"></td>
+					<td colspan="<?= $offsetDayOfWeak ?>"></td>
 				<?php } ?>
 				<?php do { ?>
-						<td><?= $currentDate ?></td>
-						<?php if (($currentDate + $offsetDayOfWeak-1) % 7 === 0) { ?>
-								</tr><tr>
-							<?php }
-							$currentDate++;
+					<td><?= $currentDate ?></td>
+					<?php if (($currentDate + $offsetDayOfWeak) % 7 === 0) { ?>
+			</tr>
+			<tr>
+					<?php }
+						$currentDate++;
 					} while ($currentDate <= $datenow->getNbDayMonth());
 					if (($offsetDayOfWeak + $currentDate -1) % 7 !== 0) {?>
-						<td colspan=" <?= 8 - (($offsetDayOfWeak + $currentDate - 1) % 7) ?>"></td>
-					<?php }
-				?>
+						<td colspan=" <?= 7 - (($offsetDayOfWeak + $currentDate - 1) % 7) ?>"></td>
+					<?php } ?>
 			</tr>
 		</tbody>
 	</table>

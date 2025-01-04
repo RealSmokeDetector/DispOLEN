@@ -6,6 +6,8 @@
 	"MAIN_PASSWORD": "Password",
 	"MAIN_ERROR": "Error",
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
+	"MAIN_SHOW_MORE":"Show more",
+	"MAIN_DETAIL":"detail",
 
 	"MAIN_MONDAY": "Monday",
 	"MAIN_TUESDAY": "Tuesday",
@@ -35,6 +37,9 @@
 	"NAVBAR_REGISTER": "Create account",
 	"NAVBAR_DISCONNECT": "Logout",
 
+	"INDEX_RESERVATION_TITLE":"Your Reservation",
+	"INDEX_RESERVATION_CONTENT":"Paragraph test <br> \"test\"",
+
 	"LOGIN_TITLE": "Login",
 	"LOGIN_SUBMIT": "Login",
 	"LOGIN_WRONG_CREDENTIALS": "Incorrect identifiant or password.",
@@ -47,11 +52,6 @@
 	"REGISTER_UNIDENTICAL_PASSWORD": "The passwords you entered do not match.",
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
-
-	"REGISTRY_HEADLINE":"Your registery",
-	"REGISTRY_CONTENT":"Paragraph test <br> \"test\"",
-	"REGSTERY_SHOW_MORE":"Show more",
-	"REGSTERY_DETAIL":"detail",
 
 	"DASHBOARD_TITLE": "Dashboard",
 

@@ -6,6 +6,8 @@
 	"MAIN_PASSWORD": "Mot de passe",
 	"MAIN_ERROR": "Erreur",
 	"MAIN_NO_SCRIPT": "Votre navigateur ne supporte pas JavaScript ou il est désactivé. Veuillez activer JavaScript pour utiliser ce site.",
+	"MAIN_SHOW_MORE":"Voir plus",
+	"MAIN_DETAIL":"détail",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",
@@ -35,6 +37,9 @@
 	"NAVBAR_REGISTER": "Créer un compte",
 	"NAVBAR_DISCONNECT": "Déconnexion",
 
+	"INDEX_RESERVATION_TITLE":"Vos résevation",
+	"INDEX_RESERVATION_CONTENT":"Vous trouverez ici  un extrait de la liste de vos <br>vous avec les étudiants  à votre part<br>Cliquez sur Détail pour accéder<br>à toutes les informations<br>du rendez-vous ciblé",
+
 	"LOGIN_TITLE": "Connexion",
 	"LOGIN_SUBMIT": "Se connecter",
 	"LOGIN_WRONG_CREDENTIALS": "Identifiant ou mot de passe invalide.",
@@ -49,11 +54,6 @@
 	"REGISTER_LOGIN": "Se connecter",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
-
-	"REGISTRY_HEADLINE":"Vos résevation",
-	"REGISTRY_CONTENT":"Vous trouverez ici  un extrait de la liste de vos <br>vous avec les étudiants  à votre part<br>Cliquez sur Détail pour accéder<br>à toutes les informations<br>du rendez-vous ciblé",
-	"REGSTERY_SHOW_MORE":"Voir plus",
-	"REGSTERY_DETAIL":"détail",
 
 	"ERROR_SERVER": "Erreur serveur.",
 	"ERROR_DATABASE": "Erreur de base de donnée.",

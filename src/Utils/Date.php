@@ -10,6 +10,7 @@ class Date {
 	private ?int $hour;
 	private ?int $minute;
 	private ?int $second;
+
 	public function __construct(string $date = null) {
 		$this->date = $date ?? date(format: "Y-m-d H:i:s");
 		$this->year = (int) date(format: "Y", timestamp: strtotime(datetime: $this->date));
@@ -19,14 +20,23 @@ class Date {
 		$this->minute = (int) date(format: "i", timestamp: strtotime(datetime: $this->date));
 		$this->second = (int) date(format: "s", timestamp: strtotime(datetime: $this->date));
 	}
-	public function __get($name): mixed {
+
+	public function __get($name) : mixed {
 		return $this->$name;
 	}
-	public function __set($name, $value): void {
+
+	public function __set($name, $value) : void {
 		$this->$name = $value;
 	}
-	public function convertDate(): string {
+
+	/**
+	 * Convert date format in user selected language
+	 *
+	 * @return string
+	 */
+	public function convertDate() : string {
 		$lang = $_COOKIE["LANG"];
+
 		switch ($lang) {
 			case "en_GB":
 			case "fr_FR":
@@ -36,11 +46,19 @@ class Date {
 				$result = $this->month . "-" . $this->day . "-" . $this->year;
 				break;
 		}
+
 		return $result;
 	}
-	public function convertHour(): string {
+
+	/**
+	 * Convert time format in user selected language
+	 *
+	 * @return string
+	 */
+	public function convertTime() : string {
 		$lang = $_COOKIE["LANG"];
 		$date = $this->date;
+
 		switch ($lang) {
 			case "en_GB":
 			case "fr_FR":
@@ -50,26 +68,48 @@ class Date {
 				$result = $this->hour . ":" . $this->minute . ":" . $this->second . date(format: "A", timestamp: strtotime(datetime: $date));
 				break;
 		}
+
 		return $result;
 	}
-	public function getFirstDateMonth(): string {
+
+	/**
+	 * Get First date in month
+	 *
+	 * @return string
+	 */
+	public function getFirstDateMonth() : string {
 		$lang = $_COOKIE["LANG"];
 		$date = $this->date;
+
 		switch ($lang) {
 			case "en_GB":
 			case "fr_FR":
 				$result = date(format: "d/m/Y", timestamp: strtotime(datetime: "first day of", baseTimestamp: strtotime(datetime: $date)));
 				break;
 			default:
-				$result = date(format: "Y-m-d", timestamp: strtotime(datetime: "first day of", baseTimestamp: strtotime(datetime: $date)));
+				$result = date(format: "m-d-Y", timestamp: strtotime(datetime: "first day of", baseTimestamp: strtotime(datetime: $date)));
 				break;
 		}
+
 		return $result;
 	}
-	public function getOffsetWeek(): int {
+
+	/**
+	 * Get Numeric representation of the day of the week
+	 * 0 (for Sunday) through 6 (for Saturday)
+	 *
+	 * @return int
+	 */
+	public function getOffsetWeek() : int {
 		return (int) date (format: "w", timestamp: strtotime(datetime: $this->year . "-" . $this->month . "-01"));
 	}
-	public function getNbDayMonth(): int {
+
+	/**
+	 * Get number of days in month
+	 *
+	 * @return int
+	 */
+	public function getNbDayMonth() : int {
 		return (int) date (format: "t", timestamp: strtotime(datetime: $this->year . "-" . $this->month . "-01"));
 	}
 }

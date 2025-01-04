@@ -1,10 +1,10 @@
 <?php
 	use App\Utils\Lang;
 
-	$title = 		Lang::translate(key: "REGISTRY_HEADLINE");
-	$paragraphe = 	Lang::translate(key: "REGISTRY_CONTENT");
-	$showMore = 	Lang::translate(key: "REGSTERY_SHOW_MORE");
-	$detail = 		Lang::translate(key: "REGSTERY_DETAIL");
+	$title = Lang::translate(key: "INDEX_RESERVATION_TITLE");
+	$paragraphe = Lang::translate(key: "INDEX_RESERVATION_CONTENT");
+	$showMore = Lang::translate(key: "MAIN_SHOW_MORE");
+	$detail = Lang::translate(key: "MAIN_DETAIL");
 ?>
 
 <div class="resertion-container">
