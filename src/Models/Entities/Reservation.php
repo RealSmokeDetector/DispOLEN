@@ -11,7 +11,7 @@ class Reservation {
 	private ?int $stateId;
 	private ?string $comment;
 
-	public function __construct(string $teacherUid, string $studentUid, string $disponibilitiesUid, int $typeId = null, int $reasonId = null, int $stateId = null, string $comment = null) {
+	public function __construct(string $teacherUid, string $studentUid, string $disponibilitiesUid, int $typeId = 1, int $reasonId = 1, int $stateId = 1, string $comment = null) {
 		$this->teacherUid = $teacherUid;
 		$this->studentUid = $studentUid;
 		$this->disponibilitiesUid = $disponibilitiesUid;
