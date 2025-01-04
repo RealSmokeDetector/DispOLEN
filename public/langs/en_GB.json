@@ -6,6 +6,7 @@
 	"MAIN_PASSWORD": "Password",
 	"MAIN_ERROR": "Error",
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
+	"MAIN_DATE": "Date",
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
@@ -26,6 +27,10 @@
 	"REGISTER_UNIDENTICAL_PASSWORD": "The passwords you entered do not match.",
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
+
+	"RESERVATION_TEACHER_NAME": "Teacher name",
+	"RESERVATION_STUDENT_NAME": "Student name",
+	"RESERVATION_STATE": "State",
 
 	"DASHBOARD_TITLE": "Dashboard",
 

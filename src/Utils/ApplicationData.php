@@ -49,4 +49,67 @@ class ApplicationData {
 			returnType: PDO::FETCH_COLUMN
 		);
 	}
+
+	public static function getStateName(int $id) : string {
+		return ApplicationData::request(
+			query: "SELECT name FROM " . Database::STATES . " WHERE id = :id",
+			data: [
+				"id" => $id
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	public static function getReasonName(int $id) : string {
+		return ApplicationData::request(
+			query: "SELECT name FROM " . Database::REASONS . " WHERE id = :id",
+			data: [
+				"id" => $id
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	public static function getTypeName(int $id) : string {
+		return ApplicationData::request(
+			query: "SELECT name FROM " . Database::TYPES . " WHERE id = :id",
+			data: [
+				"id" => $id
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Format names
+	 *
+	 * @param string $name
+	 * @param string $surname
+	 * @param bool $complete Name and surname complete
+	 * @param int $toChange 1 for name, 2 for surname
+	 * @param bool $reverse Reverse name and surname
+	 *
+	 * @return string
+	 */
+	public static function nameFormat(string $name, string $surname, bool $complete = true, int $toChange = null, bool $reverse = false): string {
+		if (!$complete) {
+			if ($toChange === 1) {
+				$name = mb_substr(string: $name, start: 0, length: 1) . ".";
+			} else {
+				$surname = mb_substr(string: $surname, start: 0, length: 1) . ".";
+			}
+		}
+
+		$name = ucfirst(string: mb_strtolower(string: $name));
+		$surname = ucfirst(string: mb_strtolower(string: $surname));
+
+		if ($reverse) {
+			return $surname . " " . $name;
+		}
+
+		return $name . " " . $surname;
+	}
 }

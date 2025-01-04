@@ -22,6 +22,16 @@ $router->add(
 		Role::ADMINISTRATOR
 	]
 );
+$router->add(
+	url : "/reservations",
+	controller: $controllersPath . "ReservationsController",
+	title: APP_NAME . " - " . Lang::translate(key: "RESERVATIONS_TITLE"),
+	needLoginToBe: true,
+	accessRoles: [
+		Role::TEACHER,
+		Role::STUDENT
+	]
+);
 
 // Sessions
 $router->add(

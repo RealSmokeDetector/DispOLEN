@@ -90,4 +90,20 @@ class UserRepository {
 			returnType: PDO::FETCH_COLUMN
 		);
 	}
+
+	/**
+	 * Get user's informations
+	 *
+	 * @return array
+	 */
+	public static function getInformations($uid) : array {
+		return ApplicationData::request(
+			query: "SELECT * FROM " . Database::USERS . " WHERE uid = :uid",
+			data: [
+				"uid" => $uid
+			],
+			returnType: PDO::FETCH_ASSOC,
+			singleValue: true
+		);
+	}
 }
