@@ -2,7 +2,7 @@
 	use App\Utils\Lang;
 ?>
 
-<form class="register" method="POST">
+<form class="tile register" method="POST">
 	<h1><i class="ri-user-line"></i> <?= Lang::translate("REGISTER_TITLE") ?></h1>
 
 	<input
