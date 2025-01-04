@@ -7,9 +7,12 @@
 	"MAIN_ERROR": "Erreur",
 	"MAIN_NO_SCRIPT": "Votre navigateur ne supporte pas JavaScript ou il est désactivé. Veuillez activer JavaScript pour utiliser ce site.",
 	"MAIN_DATE": "Date",
+	"MAIN_ROLE": "Rôle",
+	"MAIN_GROUP": "Groupe",
 
 	"NAVBAR_HOME": "Accueil",
 	"NAVBAR_DASHBOARD": "Tableau de bord",
+	"NAVBAR_DASHBOARD_USERS": "Utilisateurs",
 	"NAVBAR_RESERVATION": "Réservations",
 	"NAVBAR_PROFILE": "Profil",
 	"NAVBAR_LOGIN": "Connexion",
@@ -35,6 +38,7 @@
 	"RESERVATION_STATE": "État",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
+	"DASHBOARD_USERS_TITLE": "Utilisateurs",
 
 	"ERROR_SERVER": "Erreur serveur.",
 	"ERROR_DATABASE": "Erreur de base de donnée.",

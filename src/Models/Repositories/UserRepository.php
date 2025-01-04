@@ -92,6 +92,24 @@ class UserRepository {
 	}
 
 	/**
+	 * Get user's group
+	 *
+	 * @param string $uid User's UID
+	 *
+	 * @return mixed
+	 */
+	public static function getGroup($uid): mixed{
+		return ApplicationData::request(
+			query: "SELECT uid_group FROM " . Database::USER_GROUP . " WHERE uid_user = :uid",
+			data: [
+				"uid" => $uid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
 	 * Get user's informations
 	 *
 	 * @return array

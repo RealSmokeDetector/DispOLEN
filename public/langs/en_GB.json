@@ -7,9 +7,12 @@
 	"MAIN_ERROR": "Error",
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
 	"MAIN_DATE": "Date",
+	"MAIN_ROLE": "Role",
+	"MAIN_GROUP": "Group",
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
+	"NAVBAR_DASHBOARD_USERS": "Users",
 	"NAVBAR_RESERVATION": "Reservations",
 	"NAVBAR_PROFILE": "Profile",
 	"NAVBAR_LOGIN": "Login",
@@ -35,6 +38,7 @@
 	"RESERVATION_STATE": "State",
 
 	"DASHBOARD_TITLE": "Dashboard",
+	"DASHBOARD_USERS_TITLE": "Users",
 
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",
