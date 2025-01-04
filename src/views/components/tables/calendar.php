@@ -1,6 +1,8 @@
 <?php
 
-use App\Utils\Lang;
+	use App\Utils\Lang;
+	use App\Utils\Date;
+
 	$days = [
 		Lang::translate(key: "MAIN_MONDAY"),
 		Lang::translate(key: "MAIN_TUESDAY"),
@@ -24,26 +26,15 @@ use App\Utils\Lang;
 		LANG::translate(key: "MAIN_NOVEMBER"),
 		LANG::translate(key: "MAIN_DECEMBER")
 	];
-	$datenow = getdate(
-		timestamp: strtotime(
-			datetime: 'first day of',
-			baseTimestamp: mktime(
-				hour: 0,
-				minute: 0,
-				second: 0,
-				month: date(format: 'n'),
-				day: 1,
-				year: date(format: 'Y')
-			)
-		)
-	);
-	$offsetDayOfWeak = $datenow['wday'];
+
+	$datenow = new Date();
+	$offsetDayOfWeak = $datenow->getOffsetWeek();
 	$currentDate = 1;
 ?>
 
 <div class="calendar-container" >
 	<table>
-		<caption><button><</button> <?= $month[date(format: "n") - 1] . " " . date(format: "Y") ?><button>></button></caption>
+		<caption><button><</button> <?= $month[$datenow->__get(name: "month") - 1] . " " . $datenow->__get(name: "year") ?><button>></button></caption>
 		<thead>
 			<tr>
 				<?php foreach ($days as $day) { ?>
@@ -56,16 +47,16 @@ use App\Utils\Lang;
 				<?php if ( $offsetDayOfWeak > 0) { ?>
 					<td colspan="<?= $offsetDayOfWeak - 1 ?>"></td>
 				<?php } ?>
-				<?php while ($currentDate <= date(format: "t")) {
-						echo "<td> $currentDate </td>";
-						if (($currentDate + $offsetDayOfWeak-1) % 7 === 0) {
-								echo "</tr><tr>";
-							}
+				<?php do { ?>
+						<td><?= $currentDate ?></td>
+						<?php if (($currentDate + $offsetDayOfWeak-1) % 7 === 0) { ?>
+								</tr><tr>
+							<?php }
 							$currentDate++;
-					}
-					if (($offsetDayOfWeak + $currentDate - 1) % 7 !== 0) {
-						echo "<td colspan='" . (7 - (($offsetDayOfWeak + $currentDate - 1) % 7)) . "'></td>";
-					}
+					} while ($currentDate <= $datenow->getNbDayMonth());
+					if (($offsetDayOfWeak + $currentDate -1) % 7 !== 0) {?>
+						<td colspan=" <?= 8 - (($offsetDayOfWeak + $currentDate - 1) % 7) ?>"></td>
+					<?php }
 				?>
 			</tr>
 		</tbody>

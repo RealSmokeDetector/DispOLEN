@@ -48,6 +48,11 @@
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
 
+	"REGISTRY_HEADLINE":"Your registery",
+	"REGISTRY_CONTENT":"Paragraph test <br> \"test\"",
+	"REGSTERY_SHOW_MORE":"Show more",
+	"REGSTERY_DETAIL":"detail",
+
 	"DASHBOARD_TITLE": "Dashboard",
 
 	"ERROR_SERVER": "Server error.",
