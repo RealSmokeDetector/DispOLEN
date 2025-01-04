@@ -6,7 +6,7 @@
 	use App\Utils\Lang;
 ?>
 
-<div class="container">
+<div class="reservation_container">
 	<?php
 		foreach ($reservations as $reservation) {
 			if (!empty(array_intersect($roles, [Role::STUDENT]))) {

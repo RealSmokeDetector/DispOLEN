@@ -31,6 +31,13 @@
 		<a class="button button_secondary" href="/dashboard" title="<?= Lang::translate(key: "NAVBAR_DASHBOARD") ?>"><i class="ri-dashboard-3-line"></i> <?= Lang::translate(key: "NAVBAR_DASHBOARD") ?></a>
 	</div>
 
+<?php }
+	if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT, Role::TEACHER]))) { ?>
+
+<div class="item">
+	<a class="button button_secondary" href="/reservations" title="<?= Lang::translate(key: "NAVBAR_RESERVATION") ?>"><i class="ri-calendar-2-line"></i> <?= Lang::translate(key: "NAVBAR_RESERVATION") ?></a>
+</div>
+
 <?php } ?>
 
 	<div class="item">

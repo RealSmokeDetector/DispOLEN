@@ -25,7 +25,7 @@ $router->add(
 $router->add(
 	url : "/reservations",
 	controller: $controllersPath . "ReservationsController",
-	title: APP_NAME . " - " . Lang::translate(key: "RESERVATIONS_TITLE"),
+	title: APP_NAME . " - " . Lang::translate(key: "RESERVATION_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
 		Role::TEACHER,

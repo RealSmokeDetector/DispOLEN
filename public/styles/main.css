@@ -412,6 +412,20 @@ nav .logo {
 	transition: 200ms;
 }
 
+/* Reservation page
+   ============================================== */
+
+.reservation_container {
+	display: grid;
+}
+
+.reservation_container .reservation_tile {
+	border: var(--border);
+	border-radius: var(--border-radius);
+	padding: 20px;
+	width: fit-content;
+}
+
 /* ==============================================
    Footer
    ============================================== */

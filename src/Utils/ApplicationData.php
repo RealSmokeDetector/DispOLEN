@@ -50,6 +50,13 @@ class ApplicationData {
 		);
 	}
 
+	/**
+	 * Get state's name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
 	public static function getStateName(int $id) : string {
 		return ApplicationData::request(
 			query: "SELECT name FROM " . Database::STATES . " WHERE id = :id",
@@ -61,6 +68,13 @@ class ApplicationData {
 		);
 	}
 
+	/**
+	 * Get reason's name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
 	public static function getReasonName(int $id) : string {
 		return ApplicationData::request(
 			query: "SELECT name FROM " . Database::REASONS . " WHERE id = :id",
@@ -72,6 +86,13 @@ class ApplicationData {
 		);
 	}
 
+	/**
+	 * Get type's name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
 	public static function getTypeName(int $id) : string {
 		return ApplicationData::request(
 			query: "SELECT name FROM " . Database::TYPES . " WHERE id = :id",
@@ -94,7 +115,7 @@ class ApplicationData {
 	 *
 	 * @return string
 	 */
-	public static function nameFormat(string $name, string $surname, bool $complete = true, int $toChange = null, bool $reverse = false): string {
+	public static function nameFormat(string $name, string $surname, bool $complete = true, int $toChange = null, bool $reverse = false) : string {
 		if (!$complete) {
 			if ($toChange === 1) {
 				$name = mb_substr(string: $name, start: 0, length: 1) . ".";

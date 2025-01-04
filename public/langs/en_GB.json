@@ -10,6 +10,7 @@
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
+	"NAVBAR_RESERVATION": "Reservations",
 	"NAVBAR_PROFILE": "Profile",
 	"NAVBAR_LOGIN": "Login",
 	"NAVBAR_REGISTER": "Create account",
@@ -28,6 +29,7 @@
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
 
+	"RESERVATION_TITLE": "Reservations",
 	"RESERVATION_TEACHER_NAME": "Teacher name",
 	"RESERVATION_STUDENT_NAME": "Student name",
 	"RESERVATION_STATE": "State",
