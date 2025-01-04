@@ -9,6 +9,9 @@ class Database {
 	const GROUPS = "groups";
 	const USER_GROUP = "user_group";
 	const DISPONIBILITIES = "disponibilities";
-	CONST RESERVATIONS = "reservations";
+	const RESERVATIONS = "reservations";
 	const TUTORING = "tutoring";
+	const TYPES = "types";
+	const REASONS = "reasons";
+	const STATES = "states";
 }
