@@ -2,7 +2,7 @@
 	use App\Utils\Lang;
 ?>
 
-<div class="reservation_container">
+<div class="tile reservation_container">
 	<h1><?= Lang::translate(key: "INDEX_RESERVATION_TITLE") ?></h1>
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 

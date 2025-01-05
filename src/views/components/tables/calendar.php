@@ -6,7 +6,7 @@
 	$currentDate = 1;
 ?>
 
-<div class="calendar_container">
+<div class="tile calendar_container">
 	<table>
 		<caption><button><</button> <?= MONTH[$datenow->month - 1] . " " . $datenow->year ?><button>></button></caption>
 		<thead>

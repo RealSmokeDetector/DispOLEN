@@ -348,6 +348,10 @@ nav .logo {
 	flex-direction: row;
 }
 
+.calendar_container {
+	height: fit-content;
+}
+
 /* Error page
    ============================================== */
 
