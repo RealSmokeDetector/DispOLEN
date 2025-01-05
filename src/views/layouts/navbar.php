@@ -10,10 +10,6 @@
 		<a href="/" title="<?= Lang::translate(key: "NAVBAR_HOME") ?>"><i class="ri-calendar-check-line"></i> <?= APP_NAME ?></a>
 	</div>
 
-	<div class="item">
-		<a class="button button_secondary" href="/" title="<?= Lang::translate(key: "NAVBAR_HOME") ?>"><i class="ri-home-2-line"></i> <?= Lang::translate(key: "NAVBAR_HOME") ?></a>
-	</div>
-
 <?php if (!isset($_SESSION["user"])) { ?>
 
 	<div class="item">
@@ -24,6 +20,10 @@
 	</div>
 
 <?php } else { ?>
+
+	<div class="item">
+		<a class="button button_secondary" href="/" title="<?= Lang::translate(key: "NAVBAR_HOME") ?>"><i class="ri-home-2-line"></i> <?= Lang::translate(key: "NAVBAR_HOME") ?></a>
+	</div>
 
 <?php if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::ADMINISTRATOR]))) { ?>
 

@@ -11,6 +11,9 @@
 	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Role",
 	"MAIN_GROUP": "Group",
+	"MAIN_STUDENT": "Student",
+	"MAIN_TEACHER": "Teacher",
+	"MAIN_ADMINISTRATOR": "Administrator",
 
 	"MAIN_MONDAY": "Monday",
 	"MAIN_TUESDAY": "Tuesday",

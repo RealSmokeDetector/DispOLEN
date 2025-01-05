@@ -3,6 +3,7 @@
 namespace App\Utils;
 
 use App\Configs\Database;
+use App\Configs\Role;
 use PDO;
 
 class ApplicationData {
@@ -105,21 +106,23 @@ class ApplicationData {
 	}
 
 	/**
-	 * Get role's name
+	 * Format role name
 	 *
 	 * @param int $id
 	 *
 	 * @return string
 	 */
-	public static function getRoleName(int $id) : string {
-		return ApplicationData::request(
-			query: "SELECT name FROM " . Database::ROLES . " WHERE id = :id",
-			data: [
-				"id" => $id
-			],
-			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
-		);
+	public static function roleFormat(int $id) : string {
+		switch ($id) {
+			case Role::STUDENT:
+				return Lang::translate(key: "MAIN_STUDENT");
+			case Role::TEACHER:
+				return Lang::translate(key: "MAIN_TEACHER");
+			case Role::ADMINISTRATOR:
+				return Lang::translate(key: "MAIN_ADMINISTRATOR");
+			default:
+				return "";
+		}
 	}
 
 	/**

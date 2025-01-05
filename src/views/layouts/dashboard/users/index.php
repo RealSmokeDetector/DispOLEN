@@ -12,7 +12,7 @@
 
 			$rolesName = [];
 			foreach ($roles as $role) {
-				array_push($rolesName, ApplicationData::getRoleName(id: $role));
+				array_push($rolesName, ApplicationData::roleFormat(id: $role));
 			}
 
 			include Path::COMPONENTS . "/tiles/user_tile.php";

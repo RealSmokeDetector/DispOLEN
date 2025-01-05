@@ -18,7 +18,7 @@ class RegisterEvent {
 				&& isset($_POST["password"])
 				&& isset($_POST["password_confirm"])
 			) {
-				if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+				if (!filter_var(value: $_POST["email"], filter: FILTER_VALIDATE_EMAIL)) {
 					setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_INVALID_EMAIL", options: ["email" => htmlspecialchars(string: $_POST["email"])]), time() + 60*60*24*30);
 				} else {
 					if ($_POST["password"] === $_POST["password_confirm"]) {
