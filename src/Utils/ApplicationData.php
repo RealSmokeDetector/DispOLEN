@@ -45,8 +45,8 @@ class ApplicationData {
 	 */
 	public static function getUsers() : array {
 		return ApplicationData::request(
-			query: "SELECT uid FROM " . Database::USERS,
-			returnType: PDO::FETCH_COLUMN
+			query: "SELECT * FROM " . Database::USERS,
+			returnType: PDO::FETCH_ASSOC
 		);
 	}
 
@@ -98,6 +98,42 @@ class ApplicationData {
 			query: "SELECT name FROM " . Database::TYPES . " WHERE id = :id",
 			data: [
 				"id" => $id
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Get role's name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
+	public static function getRoleName(int $id) : string {
+		return ApplicationData::request(
+			query: "SELECT name FROM " . Database::ROLES . " WHERE id = :id",
+			data: [
+				"id" => $id
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Get group's name
+	 *
+	 * @param string $uid
+	 *
+	 * @return string
+	 */
+	public static function getGroupName(string $uid) : string {
+		return ApplicationData::request(
+			query: "SELECT name FROM " . Database::GROUPS . " WHERE uid = :uid",
+			data: [
+				"uid" => $uid
 			],
 			returnType: PDO::FETCH_COLUMN,
 			singleValue: true

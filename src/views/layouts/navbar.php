@@ -31,6 +31,10 @@
 		<a class="button button_secondary" href="/dashboard" title="<?= Lang::translate(key: "NAVBAR_DASHBOARD") ?>"><i class="ri-dashboard-3-line"></i> <?= Lang::translate(key: "NAVBAR_DASHBOARD") ?></a>
 	</div>
 
+	<div class="item">
+		<a class="button button_secondary" href="/dashboard/users" title="<?= Lang::translate(key: "NAVBAR_DASHBOARD_USERS") ?>"><i class="ri-group-line"></i> <?= Lang::translate(key: "NAVBAR_DASHBOARD_USERS") ?></a>
+	</div>
+
 <?php }
 	if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT, Role::TEACHER]))) { ?>
 

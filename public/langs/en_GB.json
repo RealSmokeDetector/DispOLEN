@@ -9,6 +9,8 @@
 	"MAIN_SHOW_MORE":"Show more",
 	"MAIN_DETAIL":"detail",
 	"MAIN_DATE": "Date",
+	"MAIN_ROLE": "Role",
+	"MAIN_GROUP": "Group",
 
 	"MAIN_MONDAY": "Monday",
 	"MAIN_TUESDAY": "Tuesday",
@@ -33,6 +35,7 @@
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
+	"NAVBAR_DASHBOARD_USERS": "Users",
 	"NAVBAR_RESERVATION": "Reservations",
 	"NAVBAR_PROFILE": "Profile",
 	"NAVBAR_LOGIN": "Login",
@@ -61,6 +64,7 @@
 	"RESERVATION_STATE": "State",
 
 	"DASHBOARD_TITLE": "Dashboard",
+	"DASHBOARD_USERS_TITLE": "Users",
 
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",
