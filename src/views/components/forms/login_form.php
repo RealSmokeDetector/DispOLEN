@@ -2,7 +2,7 @@
 	use App\Utils\Lang;
 ?>
 
-<form class="login" method="POST">
+<form class="tile login" method="POST">
 	<h1><i class="ri-lock-2-line"></i> <?= Lang::translate("LOGIN_TITLE") ?></h1>
 
 	<input

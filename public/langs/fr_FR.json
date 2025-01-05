@@ -8,6 +8,7 @@
 	"MAIN_NO_SCRIPT": "Votre navigateur ne supporte pas JavaScript ou il est désactivé. Veuillez activer JavaScript pour utiliser ce site.",
 	"MAIN_SHOW_MORE":"Voir plus",
 	"MAIN_DETAIL":"détail",
+	"MAIN_DATE": "Date",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",
@@ -32,6 +33,7 @@
 
 	"NAVBAR_HOME": "Accueil",
 	"NAVBAR_DASHBOARD": "Tableau de bord",
+	"NAVBAR_RESERVATION": "Réservations",
 	"NAVBAR_PROFILE": "Profil",
 	"NAVBAR_LOGIN": "Connexion",
 	"NAVBAR_REGISTER": "Créer un compte",
@@ -52,6 +54,11 @@
 	"REGISTER_UNIDENTICAL_PASSWORD": "Les mots de passe saisis ne correspondent pas.",
 	"REGISTER_ALREADY_EXIST": "Le compte \"$[email]\" existe déjà.",
 	"REGISTER_LOGIN": "Se connecter",
+
+	"RESERVATION_TITLE": "Réservations",
+	"RESERVATION_TEACHER_NAME": "Nom de l'enseignant",
+	"RESERVATION_STUDENT_NAME": "Nom de l'élève",
+	"RESERVATION_STATE": "État",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 

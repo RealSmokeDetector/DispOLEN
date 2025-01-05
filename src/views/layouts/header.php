@@ -2,7 +2,7 @@
 	use App\Utils\Lang;
 ?>
 
-<html lang="<?= Lang::translate("MAIN_LANG") ?>" data-theme="light">
+<html lang="<?= Lang::translate("MAIN_LANG") ?>" data-theme="<?= $_ENV["DEFAULT_THEME"] ?>">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
