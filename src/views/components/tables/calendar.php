@@ -18,8 +18,8 @@
 		</thead>
 		<tbody>
 			<tr>
-			<?php if ( $offsetDayOfWeak > 0) { ?>
-				<td colspan="<?= $offsetDayOfWeak ?>"></td>
+			<?php for ($i=0;  $offsetDayOfWeak > $i; $i++) { ?>
+				<td></td>
 			<?php } ?>
 
 			<?php do { ?>
@@ -30,9 +30,8 @@
 				<?php }
 					$currentDate++;
 				} while ($currentDate <= $datenow->getNbDayMonth());
-
-				if (($offsetDayOfWeak + $currentDate -1) % 7 !== 0) { ?>
-					<td colspan=" <?= 7 - (($offsetDayOfWeak + $currentDate - 1) % 7) ?>"></td>
+				for ($i = 0; (7 - ($offsetDayOfWeak + $currentDate -1) % 7) > $i; $i++) { ?>
+					<td></td>
 				<?php } ?>
 			</tr>
 		</tbody>
