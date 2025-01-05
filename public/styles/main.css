@@ -453,6 +453,11 @@ nav .logo {
 	display: grid;
 }
 
+.reservation_container a {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
 .reservation_container .reservation_tile {
 	width: fit-content;
 }
@@ -469,7 +474,7 @@ nav .logo {
 
 .user_container a {
 	text-decoration: none;
-	color: var(--text-color)
+	color: var(--text-color);
 }
 
 /* ==============================================

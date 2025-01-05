@@ -3,6 +3,7 @@
 namespace App\Models\Entities;
 
 class Reservation {
+	private ?string $uid;
 	private ?string $teacherUid;
 	private ?string $studentUid;
 	private ?string $disponibilitiesUid;
@@ -12,7 +13,8 @@ class Reservation {
 	private ?string $comment;
 	private User $user;
 
-	public function __construct(string $teacherUid = null, string $studentUid = null, string $disponibilitiesUid = null, int $typeId = 1, int $reasonId = 1, int $stateId = 1, string $comment = null, User $user = null) {
+	public function __construct(string $uid = null, string $teacherUid = null, string $studentUid = null, string $disponibilitiesUid = null, int $typeId = 1, int $reasonId = 1, int $stateId = 1, string $comment = null, User $user = null) {
+		$this->uid = $uid;
 		$this->teacherUid = $teacherUid;
 		$this->studentUid = $studentUid;
 		$this->disponibilitiesUid = $disponibilitiesUid;

@@ -6,6 +6,7 @@ use App\Configs\Database;
 use App\Configs\Role;
 use App\Models\Entities\Reservation;
 use App\Utils\ApplicationData;
+use App\Utils\System;
 use PDO;
 
 class ReservationRepository {
@@ -26,9 +27,12 @@ class ReservationRepository {
 	 * @return void
 	 */
 	public function create() : void {
+		$this->reservation->uid = System::uidGen(size: 16, table: Database::USERS);
+
 		ApplicationData::request(
-			query: "INSERT INTO " . Database::RESERVATIONS . "(uid_teacher, uid_student, uid_disponibilities, id_type, id_reason, id_state, comment) VALUES (:uid_teacher, :uid_student, :uid_disponibilities, :id_type, :id_reason, :id_state, :comment)",
+			query: "INSERT INTO " . Database::RESERVATIONS . "(uid, uid_teacher, uid_student, uid_disponibilities, id_type, id_reason, id_state, comment) VALUES (:uid, :uid_teacher, :uid_student, :uid_disponibilities, :id_type, :id_reason, :id_state, :comment)",
 			data: [
+				"uid" => $this->reservation->uid,
 				"uid_teacher" => $this->reservation->teacherUid,
 				"uid_student" => $this->reservation->studentUid,
 				"uid_disponibilities" => $this->reservation->disponibilitiesUid,

@@ -63,6 +63,7 @@ CREATE TABLE public.groups (
 --
 
 CREATE TABLE public.reservations (
+	uid CHARACTER VARYING(32) NOT NULL,
 	uid_teacher CHARACTER VARYING(32) NOT NULL,
 	uid_student CHARACTER VARYING(32) NOT NULL,
 	uid_disponibilities CHARACTER VARYING(32) NOT NULL,
@@ -226,7 +227,7 @@ ALTER TABLE ONLY public.states
 --
 
 ALTER TABLE ONLY public.reservations
-	ADD CONSTRAINT reservations_pk PRIMARY KEY (uid_teacher, uid_student, uid_disponibilities),
+	ADD CONSTRAINT reservations_pk PRIMARY KEY (uid),
 	ADD CONSTRAINT reservations_disponibilities_fk FOREIGN KEY (uid_disponibilities) REFERENCES public.disponibilities(uid),
 	ADD CONSTRAINT reservations_users_fk FOREIGN KEY (uid_teacher) REFERENCES public.users(uid),
 	ADD CONSTRAINT reservations_users_fk_1 FOREIGN KEY (uid_student) REFERENCES public.users(uid),
