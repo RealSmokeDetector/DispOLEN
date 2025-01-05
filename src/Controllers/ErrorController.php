@@ -16,9 +16,9 @@ class ErrorController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/error/error.php";
+		require Path::LAYOUT . "/error/index.php";
 
-		System::implementScripts(scripts: ["/scripts/theme.js"]);
+		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

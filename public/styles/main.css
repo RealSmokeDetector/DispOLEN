@@ -364,7 +364,7 @@ nav .logo {
 	border: var(--border);
 	border-radius: var(--border-radius);
 	padding: 20px 30px;
-	width: 10%;
+	width: fit-content;
 }
 
 .error_container a {

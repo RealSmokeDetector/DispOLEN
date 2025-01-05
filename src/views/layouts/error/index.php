@@ -2,7 +2,7 @@
 	use App\Configs\Path;
 ?>
 
-<div class="error_container">
+<div class="tile error_container">
 	<h1><?= ERROR_CODE ?></h1>
 
 	<p><?= EXCEPTION ?></p>
