@@ -43,6 +43,31 @@ if ($_ENV["DEBUG"] == 1) {
 	register_shutdown_function(callback: [ErrorRepository::class, "shutdown"]);
 }
 
+//Dates
+define(constant_name: "DAYS", value: [
+	Lang::translate(key: "MAIN_MONDAY"),
+	Lang::translate(key: "MAIN_TUESDAY"),
+	Lang::translate(key: "MAIN_WEDNESDAY"),
+	Lang::translate(key: "MAIN_THURSDAY"),
+	Lang::translate(key: "MAIN_FRIDAY"),
+	Lang::translate(key: "MAIN_SATURDAY"),
+	Lang::translate(key: "MAIN_SUNDAY")
+]);
+define(constant_name: "MONTH", value: [
+	LANG::translate(key: "MAIN_JANUARY"),
+	LANG::translate(key: "MAIN_FEBRUARY"),
+	LANG::translate(key: "MAIN_MARCH"),
+	LANG::translate(key: "MAIN_APRIL"),
+	LANG::translate(key: "MAIN_MAY"),
+	LANG::translate(key: "MAIN_JUNE"),
+	LANG::translate(key: "MAIN_JULY"),
+	LANG::translate(key: "MAIN_AUGUST"),
+	LANG::translate(key: "MAIN_SEPTEMBER"),
+	LANG::translate(key: "MAIN_OCTOBER"),
+	LANG::translate(key: "MAIN_NOVEMBER"),
+	LANG::translate(key: "MAIN_DECEMBER")
+]);
+
 //Database
 $database = new Database(
 	hostname: $_ENV["DATABASE_HOST"],
