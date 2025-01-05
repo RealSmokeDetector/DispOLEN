@@ -113,11 +113,11 @@ body {
 	margin: 0;
 	color: var(--text-color);
 	background-color: var(--background-color);
-	transition: 200ms;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	min-height: 100vh;
+	transition: 200ms;
 }
 
 .tile {
@@ -126,6 +126,7 @@ body {
 	border-radius: var(--border-radius);
 	padding: 20px;
 	box-shadow: var(--shadow);
+	transition: 200ms;
 }
 
 /* ==============================================
@@ -139,6 +140,10 @@ h1 {
 
 h1 {
 	margin-bottom: 10px;
+}
+
+table {
+	color: var(--text-color)
 }
 
 /* Buttons
@@ -346,6 +351,9 @@ nav .logo {
 .index_container {
 	display: flex;
 	flex-direction: row;
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
 }
 
 .calendar_container {
@@ -447,6 +455,21 @@ nav .logo {
 
 .reservation_container .reservation_tile {
 	width: fit-content;
+}
+
+/* Dashboard user page
+   ============================================== */
+
+.user_container {
+	display: grid;
+    align-content: space-around;
+    justify-content: space-between;
+	gap: 30px;
+}
+
+.user_container a {
+	text-decoration: none;
+	color: var(--text-color)
 }
 
 /* ==============================================

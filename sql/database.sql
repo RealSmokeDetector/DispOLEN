@@ -157,7 +157,7 @@ CREATE TABLE public.user_role (
 -- Data for table 'roles'
 --
 
-INSERT INTO public.roles (id, name) VALUES (1, 'student'), (2, 'teacher'), (10, 'adminstrator');
+INSERT INTO public.roles (id, name) VALUES (1, 'student'), (2, 'teacher'), (10, 'administrator');
 
 --
 -- Data for table 'types'
