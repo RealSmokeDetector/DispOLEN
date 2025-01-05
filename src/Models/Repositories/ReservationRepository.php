@@ -53,8 +53,27 @@ class ReservationRepository {
 				"uid_disponibilities" => $this->reservation->disponibilitiesUid
 			],
 			returnType: PDO::FETCH_ASSOC,
+			singleValue: true
 		);
 
 		return $reservationData;
+	}
+
+	/**
+	 * Get start date
+	 *
+	 * @param string $disponibilityUid
+	 *
+	 * @return string
+	 */
+	public static function getStartDate(string $disponibilityUid) : string {
+		return ApplicationData::request(
+			query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
+			data: [
+				"uid" => $disponibilityUid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
 	}
 }

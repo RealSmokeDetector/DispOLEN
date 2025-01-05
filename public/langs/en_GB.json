@@ -6,6 +6,9 @@
 	"MAIN_PASSWORD": "Password",
 	"MAIN_ERROR": "Error",
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
+	"MAIN_STATE": "State",
+	"MAIN_REASON": "Reason",
+	"MAIN_COMMENT": "Comment",
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
@@ -26,6 +29,9 @@
 	"REGISTER_UNIDENTICAL_PASSWORD": "The passwords you entered do not match.",
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
+
+	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
+	"RESERVATIONS_DETAILS_TUTOR": "Tutor",
 
 	"DASHBOARD_TITLE": "Dashboard",
 
