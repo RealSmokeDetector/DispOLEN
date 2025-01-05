@@ -23,10 +23,10 @@ date_default_timezone_set(timezoneId: $_ENV["TIMEZONE"]);
 define(constant_name: "APP_NAME", value: $_ENV["APP_NAME"]);
 
 // Languages
-setcookie("LANG", isset($_COOKIE["LANG"]) ? $_COOKIE["LANG"] : $_ENV["DEFAULT_LANG"], time() + 60*60*24*30);
+setcookie(name: "LANG", value: isset($_COOKIE["LANG"]) ? $_COOKIE["LANG"] : $_ENV["DEFAULT_LANG"], expires_or_options: time() + 60*60*24*30, path: "/");
 
 if (!in_array($_COOKIE["LANG"] . ".json", System::getFiles(Path::PUBLIC . "/langs"))) {
-	setcookie("LANG", $_ENV["DEFAULT_LANG"], time() + 60*60*24*30);
+	setcookie(name: "LANG", value: $_ENV["DEFAULT_LANG"], expires_or_options: time() + 60*60*24*30, path: "/");
 	System::redirect();
 }
 
@@ -43,7 +43,7 @@ if ($_ENV["DEBUG"] == 1) {
 	register_shutdown_function(callback: [ErrorRepository::class, "shutdown"]);
 }
 
-//Dates
+// Dates
 define(constant_name: "DAYS", value: [
 	Lang::translate(key: "MAIN_MONDAY"),
 	Lang::translate(key: "MAIN_TUESDAY"),
@@ -68,7 +68,7 @@ define(constant_name: "MONTH", value: [
 	LANG::translate(key: "MAIN_DECEMBER")
 ]);
 
-//Database
+// Database
 $database = new Database(
 	hostname: $_ENV["DATABASE_HOST"],
 	port: $_ENV["DATABASE_PORT"],
