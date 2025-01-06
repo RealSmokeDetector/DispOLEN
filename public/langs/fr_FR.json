@@ -65,6 +65,10 @@
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 	"DASHBOARD_USERS_TITLE": "Utilisateurs",
+	"DASHBOARD_USER_DETAILS_TITLE": "Détail d'un utilisateur",
+	"DASHBOARD_USER_DETAILS_TUTOR": "Tuteur",
+	"DASHBOARD_USER_DETAILS_TUTORED_STUDENT" : "Élèves tutorés",
+	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Date de création",
 
 	"ERROR_SERVER": "Erreur serveur.",
 	"ERROR_DATABASE": "Erreur de base de donnée.",

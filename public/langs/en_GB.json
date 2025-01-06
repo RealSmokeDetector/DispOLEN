@@ -65,6 +65,10 @@
 
 	"DASHBOARD_TITLE": "Dashboard",
 	"DASHBOARD_USERS_TITLE": "Users",
+	"DASHBOARD_USER_DETAILS_TITLE": "User details",
+	"DASHBOARD_USER_DETAILS_TUTOR": "Tutor",
+	"DASHBOARD_USER_DETAILS_TUTORED_STUDENT" : "Tutored student",
+	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Creation date",
 
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",

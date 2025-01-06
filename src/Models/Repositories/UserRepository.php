@@ -75,6 +75,37 @@ class UserRepository {
 	}
 
 	/**
+	 * Get student's tutor
+	 *
+	 * @return string
+	 */
+	public function getTutor() : mixed {
+		return ApplicationData::request(
+			query: "SELECT uid_teacher FROM " . Database::TUTORING . " WHERE uid_student = :uid_student",
+			data: [
+				"uid_student" => $this->user->uid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Get teacher's student
+	 *
+	 * @return array
+	 */
+	public function getTutoredStudent() : mixed {
+		return ApplicationData::request(
+			query: "SELECT uid_student FROM " . Database::TUTORING . " WHERE uid_teacher = :uid_teacher",
+			data: [
+				"uid_teacher" => $this->user->uid
+			],
+			returnType: PDO::FETCH_ASSOC
+		);
+	}
+
+	/**
 	 * Get user's role(s)
 	 *
 	 * @param string $uid User's UID
