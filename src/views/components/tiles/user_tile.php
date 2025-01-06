@@ -4,7 +4,7 @@
 	use App\Utils\Lang;
 ?>
 
-<a href="/dashboard/user/details">
+<a href="/dashboard/user/details?user=<?= $user["uid"] ?>">
 	<div class="tile user_tile">
 		<p><?= Lang::translate(key: "MAIN_NAME")?> : <?= $user["surname"] ?></p>
 		<p><?= Lang::translate(key: "MAIN_SURNAME")?> : <?= $user["name"] ?></p>
