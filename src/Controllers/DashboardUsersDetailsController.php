@@ -20,7 +20,7 @@ class DashboardUsersDetailsController {
 
 		$rolesName = [];
 		foreach ($roles as $role) {
-			array_push($rolesName, ApplicationData::getRoleName(id: $role));
+			array_push($rolesName, ApplicationData::roleFormat(id: $role));
 		}
 
 		$tutoredStudents = [];
