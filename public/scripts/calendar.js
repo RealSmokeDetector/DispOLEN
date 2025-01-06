@@ -1,76 +1,73 @@
 const days = [
-	'Monday',
-	'Tuesday',
-	'Wednesday',
-	'Thursday',
-	'Friday',
-	'Saturday',
-	'Sunday'
+	"Monday",
+	"Tuesday",
+	"Wednesday",
+	"Thursday",
+	"Friday",
+	"Saturday",
+	"Sunday"
 ];
 const months = [
-	'January',
-	'February',
-	'March',
-	'April',
-	'May',
-	'June',
-	'July',
-	'August',
-	'September',
-	'October',
-	'November',
-	'December'
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
 ];
 
 let buttons = [];
 const date = new Date();
 let offSetSet = 0;
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.querySelectorAll('.calendar_container button').forEach((element) => {
+document.addEventListener("DOMContentLoaded", function() {
+	document.querySelectorAll("#calendar button").forEach((element) => {
 		buttons.push(element);
 	});
 
 	buttons.forEach((element) => {
-		element.addEventListener('click', function(event) {
-			console.log(event.target.id);
+		element.addEventListener("click", function(event) {
 			switch (event.target.id) {
-				case 'calendar_up':
-					modifMounth(1);
-					changeDateNb();
+				case "calendar_up":
+					changeCalendar(1);
 					break;
-				case 'calendar_down':
-					modifMounth(-1);
+				case "calendar_down":
+					changeCalendar(-1);
 					break;
 			}
 		});
 	});
 });
 
-function modifMounth(scale) {
+/**
+ * Change calendar mounth
+ *
+ * @param {int} scale
+ *
+ * @return {void}
+ */
+
+function changeCalendar(scale) {
 	date.setMonth(date.getMonth() + scale);
 	offSetSet += scale;
-	changeDate();
-}
 
-function changeDate() {
-	captionCalendar = document.querySelector('.calendar_container caption');
-	console.log("attribute",captionCalendar.getAttribute('data-content'));
-	changeDateNb();
-	console.log(date);
-}
+	captionCalendar = document.querySelector("#calendar caption");
 
-function changeDateNb() {
-	document.querySelector( '.calendar_container caption p' ).textContent = months[ date.getMonth() ] + ' ' + date.getFullYear();
+	document.querySelector("#calendar caption p" ).textContent = months[date.getMonth()] + " " + date.getFullYear();
 
 	let iteration = 1;
 	let NbDateMounth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-	document.querySelectorAll('.calendar_container tbody td').forEach((element, index) => {
-		if ( index >= date.getDay() + 1 && iteration <= NbDateMounth ) {
-			element.textContent = iteration;
-			iteration++;
+	document.querySelectorAll("#calendar tbody td").forEach((element, index) => {
+		if (index >= ((date.getDay() + 1) % 7) && iteration <= NbDateMounth) {
+			element.textContent = iteration++;
 		} else {
-			element.textContent = '';
+			element.textContent = "";
 		}
 	});
 }
