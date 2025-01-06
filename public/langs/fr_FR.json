@@ -45,7 +45,8 @@
 	"NAVBAR_REGISTER": "Créer un compte",
 	"NAVBAR_DISCONNECT": "Déconnexion",
 
-	"INDEX_RESERVATION_TITLE": "Vos réservations",
+	"INDEX_RESERVATION_TITLE_STUDENT": "Vos réservations",
+	"INDEX_RESERVATION_TITLE_TEACHER": "Vos rendez-vous",
 	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici  un extrait de la liste de vos <br>vous avec les étudiants  à votre part<br>Cliquez sur Détail pour accéder<br>à toutes les informations<br>du rendez-vous ciblé",
 
 	"LOGIN_TITLE": "Connexion",

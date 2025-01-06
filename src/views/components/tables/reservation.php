@@ -1,9 +1,11 @@
 <?php
 	use App\Utils\Lang;
+	use App\Configs\Role;
+	use App\Models\Repositories\UserRepository;
 ?>
 
 <div class="tile reservation_container">
-	<h1><?= Lang::translate(key: "INDEX_RESERVATION_TITLE") ?></h1>
+	<h1><?= (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT])))? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT"): Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>
