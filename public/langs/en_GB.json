@@ -45,7 +45,8 @@
 	"NAVBAR_REGISTER": "Create account",
 	"NAVBAR_DISCONNECT": "Logout",
 
-	"INDEX_RESERVATION_TITLE": "Your reservations",
+	"INDEX_RESERVATION_TITLE_STUDENT": "Your reservations",
+	"INDEX_RESERVATION_TITLE_TEACHER": "Your meeting(s)",
 	"INDEX_RESERVATION_CONTENT": "Paragraph test <br> \"test\"",
 
 	"LOGIN_TITLE": "Login",
