@@ -23,6 +23,16 @@ $router->add(
 	]
 );
 $router->add(
+	url: "/reservation/details",
+	controller: $controllersPath . "ReservationDetailsController",
+	title: APP_NAME . " - " . Lang::translate(key: "RESERVATIONS_DETAILS_TITLE"),
+	needLoginToBe: true,
+	accessRoles: [
+		Role::TEACHER,
+		Role::STUDENT
+	]
+);
+$router->add(
 	url: "/dashboard/users",
 	controller: $controllersPath . "DashboardUsersController",
 	title: APP_NAME . " - " . Lang::translate(key: "DASHBOARD_USERS_TITLE"),

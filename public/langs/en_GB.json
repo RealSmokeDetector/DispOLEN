@@ -67,6 +67,9 @@
 	"RESERVATION_STUDENT_NAME": "Student name",
 	"RESERVATION_STATE": "State",
 
+	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
+	"RESERVATIONS_DETAILS_TUTOR": "Tutor",
+
 	"DASHBOARD_TITLE": "Dashboard",
 	"DASHBOARD_USERS_TITLE": "Users",
 	"DASHBOARD_USER_DETAILS_TITLE": "User details",
