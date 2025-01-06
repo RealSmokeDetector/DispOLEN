@@ -40,6 +40,7 @@
 	"NAVBAR_DASHBOARD": "Dashboard",
 	"NAVBAR_DASHBOARD_USERS": "Users",
 	"NAVBAR_RESERVATION": "Reservations",
+	"NAVBAR_GROUPS": "Groups",
 	"NAVBAR_PROFILE": "Profile",
 	"NAVBAR_LOGIN": "Login",
 	"NAVBAR_REGISTER": "Create account",
@@ -65,6 +66,9 @@
 	"RESERVATION_TEACHER_NAME": "Teacher name",
 	"RESERVATION_STUDENT_NAME": "Student name",
 	"RESERVATION_STATE": "State",
+
+	"GROUPS_TITLE": "Groups",
+	"GROUPS_REMOVE_STUDENT": "Remove student",
 
 	"DASHBOARD_TITLE": "Dashboard",
 	"DASHBOARD_USERS_TITLE": "Users",

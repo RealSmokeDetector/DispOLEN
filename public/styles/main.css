@@ -15,7 +15,7 @@
 	/* Background color */
 	--notification-background-color: #FF496E;
 	--button-background-color: #2F27CE;
-	--button-secondary-background-color: #F5F5F5;
+	--button-secondary-background-color: #ebebeb;
 
 	/* Border */
 	--border: solid 2px var(--border-color);
@@ -149,7 +149,6 @@ table {
 /* Buttons
    ============================================== */
 
-button:not(.theme_button),
 .button {
 	background-color: var(--button-background-color);
 	border: solid 2px var(--button-border-color);
@@ -162,7 +161,6 @@ button:not(.theme_button),
 	text-decoration: none;
 }
 
-button:hover:not(.theme_button),
 .button:hover {
 	background-color: var(--button-hover-background-color);
 	border: solid 2px var(--button-hover-border-color);
@@ -293,6 +291,10 @@ nav .logo {
 
 	nav .logo {
 		display: none;
+	}
+
+	.groups_content {
+		flex-direction: column;
 	}
 
 	footer {
@@ -446,7 +448,7 @@ nav .logo {
 	transition: 200ms;
 }
 
-/* Reservation page
+/* Reservations page
    ============================================== */
 
 .reservation_container {
@@ -462,7 +464,64 @@ nav .logo {
 	width: fit-content;
 }
 
-/* Dashboard user page
+/* Groups page
+   ============================================== */
+
+.groups_container {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-direction: column;
+	width: fit-content;
+	margin: auto;
+}
+
+.groups_content {
+	display: flex;
+	gap: 30px;
+}
+
+.groups_container .group_container {
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.groups_container .student_container {
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.groups_container .student_container .item {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: space-between;
+}
+
+.groups_container .student_container .item button:hover {
+	border-color: red;
+}
+
+.group_control {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.group_control .action {
+	display: flex;
+	gap: 20px;
+}
+
+/* Dashboard users page
    ============================================== */
 
 .user_container {

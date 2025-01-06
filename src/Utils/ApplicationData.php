@@ -125,6 +125,13 @@ class ApplicationData {
 		}
 	}
 
+	public static function getGroups() : array {
+		return ApplicationData::request(
+			query: "SELECT uid FROM " . Database::GROUPS,
+			returnType: PDO::FETCH_COLUMN
+		);
+	}
+
 	/**
 	 * Get group's name
 	 *
