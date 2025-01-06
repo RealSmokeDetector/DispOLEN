@@ -14,6 +14,9 @@
 	"MAIN_STUDENT": "Etudiant",
 	"MAIN_TEACHER": "Enseignant",
 	"MAIN_ADMINISTRATOR": "Administrateur",
+	"MAIN_STATE": "État",
+	"MAIN_REASON": "Raison",
+	"MAIN_COMMENT": "Commentaire",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",
@@ -66,6 +69,9 @@
 	"RESERVATION_TEACHER_NAME": "Nom de l'enseignant",
 	"RESERVATION_STUDENT_NAME": "Nom de l'élève",
 	"RESERVATION_STATE": "État",
+
+	"RESERVATIONS_DETAILS_TITLE": "Détails de la réservation",
+	"RESERVATIONS_DETAILS_TUTOR": "Tuteur/Tutrice",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 	"DASHBOARD_USERS_TITLE": "Utilisateurs",
