@@ -7,7 +7,7 @@
 	$tRow = 0;
 ?>
 
-<div id="calendar" class="tile">
+<div class="tile calendar_container" id="calendar">
 	<table>
 		<caption><button id="calendar_down"><</button><p><?= MONTH[$datenow->month - 1] . " " . $datenow->year ?></p><button id="calendar_up">></button></caption>
 		<thead>
