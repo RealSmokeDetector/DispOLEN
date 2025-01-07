@@ -59,7 +59,7 @@ function changeCalendar(scale) {
 
 	captionCalendar = document.querySelector("#calendar caption");
 
-	document.querySelector("#calendar caption p" ).textContent = months[date.getMonth()] + " " + date.getFullYear();
+	document.querySelector("#calendar caption p").textContent = months[date.getMonth()] + " " + date.getFullYear();
 
 	let iteration = 1;
 	let NbDateMounth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
