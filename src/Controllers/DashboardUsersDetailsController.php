@@ -35,7 +35,13 @@ class DashboardUsersDetailsController {
 
 		require Path::LAYOUT . "/dashboard/users/details/index.php";
 
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
+		System::implementScripts(
+			scripts: [
+				"/scripts/engine.js",
+				"/scripts/theme.js",
+				"/scripts/user/edit.js"
+			]
+		);
 
 		include Path::LAYOUT . "/footer.php";
 	}

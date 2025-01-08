@@ -172,4 +172,19 @@ class ApplicationData {
 
 		return $name . " " . $surname;
 	}
+
+	public static function getRoles(): mixed{
+		return ApplicationData::request(
+			query: "SELECT id FROM " . Database::ROLES,
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: false
+		);
+	}
+
+	public static function getAllTeachers(){
+		return ApplicationData::request(
+			query: "SELECT uid FROM " . Database::USERS . " JOIN " . Database::USER_ROLE . " ON " . Database::USERS . ".uid = " . Database::USER_ROLE . ".uid_user WHERE " . Database::USER_ROLE . ".id_role = 2 ",
+			returnType: PDO::FETCH_COLUMN
+		);
+	}
 }
