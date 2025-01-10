@@ -6,10 +6,14 @@ use App\Configs\Path;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
-use App\Utils\System;
 
 class DashboardUsersDetailsController {
 	public function render() : void {
+		$scripts = [
+			"/scripts/engine.js",
+			"/scripts/theme.js"
+		];
+
 		$userId = $_GET["user"];
 
 		$user = UserRepository::getInformations(uid: $userId);
@@ -34,8 +38,6 @@ class DashboardUsersDetailsController {
 		require Path::LAYOUT . "/navbar.php";
 
 		require Path::LAYOUT . "/dashboard/users/details/index.php";
-
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

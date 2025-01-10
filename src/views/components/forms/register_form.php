@@ -3,7 +3,7 @@
 ?>
 
 <form class="tile register" method="POST">
-	<h1><i class="ri-user-line"></i> <?= Lang::translate("REGISTER_TITLE") ?></h1>
+	<h1><i class="ri-user-line"></i> <?= Lang::translate(key: "REGISTER_TITLE") ?></h1>
 
 	<input
 		type="text"
