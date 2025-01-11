@@ -7,10 +7,14 @@ use App\Models\Entities\Reservation;
 use App\Models\Entities\User;
 use App\Models\Repositories\ReservationRepository;
 use App\Models\Repositories\UserRepository;
-use App\Utils\System;
 
 class ReservationsController {
 	public function render() : void {
+		$scripts = [
+			"/scripts/engine.js",
+			"/scripts/theme.js"
+		];
+
 		$user = new User(uid: $_SESSION["user"]["uid"]);
 		$reservation = new Reservation(user: $user);
 		$reservationRepo = new ReservationRepository(reservation: $reservation);
@@ -22,8 +26,6 @@ class ReservationsController {
 		require Path::LAYOUT . "/navbar.php";
 
 		require Path::LAYOUT . "/reservations/index.php";
-
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

@@ -14,6 +14,9 @@
 	"MAIN_STUDENT": "Etudiant",
 	"MAIN_TEACHER": "Enseignant",
 	"MAIN_ADMINISTRATOR": "Administrateur",
+	"MAIN_STATE": "État",
+	"MAIN_REASON": "Raison",
+	"MAIN_COMMENT": "Commentaire",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",
@@ -46,7 +49,8 @@
 	"NAVBAR_REGISTER": "Créer un compte",
 	"NAVBAR_DISCONNECT": "Déconnexion",
 
-	"INDEX_RESERVATION_TITLE": "Vos réservations",
+	"INDEX_RESERVATION_TITLE_STUDENT": "Vos réservations",
+	"INDEX_RESERVATION_TITLE_TEACHER": "Vos rendez-vous",
 	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici  un extrait de la liste de vos <br>vous avec les étudiants  à votre part<br>Cliquez sur Détail pour accéder<br>à toutes les informations<br>du rendez-vous ciblé",
 
 	"LOGIN_TITLE": "Connexion",
@@ -67,11 +71,18 @@
 	"RESERVATION_STUDENT_NAME": "Nom de l'élève",
 	"RESERVATION_STATE": "État",
 
+	"RESERVATIONS_DETAILS_TITLE": "Détails de la réservation",
+	"RESERVATIONS_DETAILS_TUTOR": "Tuteur/Tutrice",
+
 	"GROUPS_TITLE": "Groupes",
 	"GROUPS_REMOVE_STUDENT": "Retirer l'étudiant",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 	"DASHBOARD_USERS_TITLE": "Utilisateurs",
+	"DASHBOARD_USER_DETAILS_TITLE": "Détail d'un utilisateur",
+	"DASHBOARD_USER_DETAILS_TUTOR": "Tuteur",
+	"DASHBOARD_USER_DETAILS_TUTORED_STUDENT" : "Élèves tutorés",
+	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Date de création",
 
 	"ERROR_SERVER": "Erreur serveur.",
 	"ERROR_DATABASE": "Erreur de base de donnée.",

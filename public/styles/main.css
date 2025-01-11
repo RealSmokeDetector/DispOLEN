@@ -537,6 +537,59 @@ nav .logo {
 }
 
 /* ==============================================
+   Components
+   ============================================== */
+
+/* Calendar
+   ============================================== */
+
+.calendar_container table {
+	display: flex;
+	flex-direction: column;
+}
+
+.calendar_container caption {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.calendar_container thead {
+	margin: 5px 0;
+}
+
+.calendar_container thead td {
+	width: 33px;
+}
+
+.calendar_container tbody tr {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.calendar_container tbody td {
+	height: 33px;
+	width: 33px;
+	text-align: center;
+	align-content: center;
+	transition: 500ms;
+
+}
+
+.calendar_container tbody td:empty {
+	height: 0px;
+	padding: 0px;
+}
+
+.calendar_container tbody td:hover:not(:empty) {
+	background-color: var(--button-background-color);
+    border-radius: 50%;
+	cursor: pointer;
+}
+
+/* ==============================================
    Footer
    ============================================== */
 

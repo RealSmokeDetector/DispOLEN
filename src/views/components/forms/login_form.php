@@ -3,7 +3,7 @@
 ?>
 
 <form class="tile login" method="POST">
-	<h1><i class="ri-lock-2-line"></i> <?= Lang::translate("LOGIN_TITLE") ?></h1>
+	<h1><i class="ri-lock-2-line"></i> <?= Lang::translate(key: "LOGIN_TITLE") ?></h1>
 
 	<input
 		type="text"
