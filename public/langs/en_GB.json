@@ -78,6 +78,8 @@
 	"GROUPS_REMOVE_STUDENT": "Remove student",
 	"GROUPS_NO_GROUP": "No groups found.",
 	"GROUPS_NO_USERS": "No users found.",
+	"GROUPS_REMOVE_STUDENT_CONFIRM": "Are you sure you want to remove this student?",
+	"GROUPS_REMOVE_GROUP_CONFIRM": "Are you sure you want to delete this group?",
 
 	"DASHBOARD_TITLE": "Dashboard",
 	"DASHBOARD_USERS_TITLE": "Users",

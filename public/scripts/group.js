@@ -47,7 +47,7 @@ if (groupsButton) {
 deleteUserButoon.forEach(element => {
 	if (isElementExist(element)) {
 		element.addEventListener("click", async () => {
-			if (confirm("Realy?")) { // TODO Traduction
+			if (confirm(await translate("GROUPS_REMOVE_STUDENT_CONFIRM"))) {
 				await callApi("/api/groups/users", "delete", {
 					"group_uid": params.get("group"),
 					"user_uid": element.getAttribute("data-uid")
@@ -85,7 +85,7 @@ groupEditButton.forEach(element => {
 groupDeleteButton.forEach(element => {
 	if (isElementExist(element)) {
 		element.addEventListener("click", async () => {
-			if (confirm("Realy?")) { //TODO traduction
+			if (confirm(await translate("GROUPS_REMOVE_GROUP_CONFIRM"))) {
 				await callApi("/api/groups", "delete", {
 					"group_uid": element.parentElement.parentElement.getAttribute("data-uid")
 				});
