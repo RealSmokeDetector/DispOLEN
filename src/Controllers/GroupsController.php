@@ -6,7 +6,6 @@ use App\Configs\Path;
 use App\Models\Entities\Group;
 use App\Models\Repositories\GroupRepository;
 use App\Utils\ApplicationData;
-use App\Utils\System;
 
 class GroupsController {
 	public function render() : void {
@@ -31,13 +30,17 @@ class GroupsController {
 			}
 		}
 
+		$scripts = [
+			"/scripts/engine.js",
+			"/scripts/theme.js",
+			"/scripts/group.js"
+		];
+
 		require Path::LAYOUT . "/header.php";
 
 		require Path::LAYOUT . "/navbar.php";
 
 		require Path::LAYOUT . "/groups/index.php";
-
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js", "/scripts/group.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

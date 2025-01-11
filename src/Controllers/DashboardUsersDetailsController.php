@@ -24,13 +24,13 @@ class DashboardUsersDetailsController {
 
 		$rolesName = [];
 		foreach ($roles as $role) {
-			array_push($rolesName, ApplicationData::getRoleName(id: $role));
+			array_push($rolesName, ApplicationData::roleFormat(id: $role));
 		}
 
 		$tutoredStudents = [];
 		foreach ($userRepo->getTutoredStudent() as $student) {
-			$studentInfo = UserRepository::getInformations(uid: $student['uid_student']);
-			array_push($tutoredStudents, $studentInfo['name']);
+			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
+			array_push($tutoredStudents, $studentInfo["name"]);
 		}
 
 		require Path::LAYOUT . "/header.php";
