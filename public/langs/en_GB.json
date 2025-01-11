@@ -14,6 +14,9 @@
 	"MAIN_STUDENT": "Student",
 	"MAIN_TEACHER": "Teacher",
 	"MAIN_ADMINISTRATOR": "Administrator",
+	"MAIN_STATE": "State",
+	"MAIN_REASON": "Reason",
+	"MAIN_COMMENT": "Comment",
 
 	"MAIN_MONDAY": "Monday",
 	"MAIN_TUESDAY": "Tuesday",
@@ -73,6 +76,8 @@
 
 	"GROUPS_TITLE": "Groups",
 	"GROUPS_REMOVE_STUDENT": "Remove student",
+	"GROUPS_NO_GROUP": "No groups found.",
+	"GROUPS_NO_USERS": "No users found.",
 
 	"DASHBOARD_TITLE": "Dashboard",
 	"DASHBOARD_USERS_TITLE": "Users",

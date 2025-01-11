@@ -127,7 +127,7 @@ class ApplicationData {
 
 	public static function getGroups() : array {
 		return ApplicationData::request(
-			query: "SELECT uid FROM " . Database::GROUPS,
+			query: "SELECT uid FROM " . Database::GROUPS . " ORDER BY name",
 			returnType: PDO::FETCH_COLUMN
 		);
 	}

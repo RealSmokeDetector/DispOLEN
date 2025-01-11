@@ -76,6 +76,8 @@
 
 	"GROUPS_TITLE": "Groupes",
 	"GROUPS_REMOVE_STUDENT": "Retirer l'étudiant",
+	"GROUPS_NO_GROUP": "Aucuns groupe trouvés.",
+	"GROUPS_NO_USERS": "Aucuns utilisateurs trouvés.",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 	"DASHBOARD_USERS_TITLE": "Utilisateurs",
