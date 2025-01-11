@@ -77,6 +77,8 @@
 	"DASHBOARD_USER_DETAILS_TUTORED_STUDENT" : "Tutored student",
 	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Creation date",
 
+	"DISPONIBILITY_TIMESLOTS_TITLE": "Time slot",
+
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",
 	"ERROR_404": "Unknown pages.",

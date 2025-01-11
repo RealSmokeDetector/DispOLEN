@@ -60,6 +60,15 @@ $router->add(
 		Role::STUDENT
 	]
 );
+$router->add(
+	url: "/disponibilities",
+	controller: $controllersPath . "DisponibilitySlotsController",
+	title: APP_NAME . " - " . Lang::translate(key: "DISPONIBILITY_SLOTS_TITLE"),
+	needLoginToBe: true,
+	accessRoles: [
+		Role::TEACHER
+	]
+);
 
 // Sessions
 $router->add(

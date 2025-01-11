@@ -24,7 +24,7 @@ class IndexController {
 			require Path::LAYOUT . "/index/teacher.php";
 		}
 
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
+		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js","/scripts/display_timeslots.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}
