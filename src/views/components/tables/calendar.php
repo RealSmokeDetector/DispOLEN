@@ -7,9 +7,9 @@
 	$tRow = 0;
 ?>
 
-<div class="tile calendar_container" id="calendar">
+<div class="tile calendar" id="calendar">
 	<table>
-		<caption><button id="calendar_down"><</button><p><?= MONTH[$datenow->month - 1] . " " . $datenow->year ?></p><button id="calendar_up">></button></caption>
+		<caption><button class="button" id="calendar_down"><i class="ri-skip-left-fill"></i></button><p><?= MONTH[$datenow->month - 1] . " " . $datenow->year ?></p><button class="button" id="calendar_up"><i class="ri-skip-right-fill"></i></button></caption>
 		<thead>
 			<tr>
 				<?php foreach (DAYS as $day) { ?>

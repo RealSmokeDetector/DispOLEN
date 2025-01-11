@@ -358,10 +358,6 @@ nav .logo {
 	align-items: center;
 }
 
-.calendar_container {
-	height: fit-content;
-}
-
 /* Error page
    ============================================== */
 
@@ -543,50 +539,56 @@ nav .logo {
 /* Calendar
    ============================================== */
 
-.calendar_container table {
+.calendar table {
 	display: flex;
 	flex-direction: column;
 }
 
-.calendar_container caption {
+.calendar caption {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+	margin-bottom: 10px;
 }
 
-.calendar_container thead {
+.calendar caption i {
+	font-size: 18px;
+	pointer-events: none;
+}
+
+.calendar thead {
 	margin: 5px 0;
 }
 
-.calendar_container thead td {
+.calendar thead td {
 	width: 33px;
 }
 
-.calendar_container tbody tr {
+.calendar tbody tr {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
 }
 
-.calendar_container tbody td {
+.calendar tbody td {
 	height: 33px;
 	width: 33px;
 	text-align: center;
 	align-content: center;
-	transition: 500ms;
-
+	transition: 200ms;
 }
 
-.calendar_container tbody td:empty {
+.calendar tbody td:empty {
 	height: 0px;
 	padding: 0px;
 }
 
-.calendar_container tbody td:hover:not(:empty) {
+.calendar tbody td:hover:not(:empty) {
 	background-color: var(--button-background-color);
     border-radius: 50%;
 	cursor: pointer;
+	transition: 200ms;
 }
 
 /* ==============================================
