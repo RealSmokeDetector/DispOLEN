@@ -49,7 +49,7 @@
 		<i class="ri-eye-off-line"></i>
 	</div>
 
-	<button class="submit" type="submit"><i class="ri-key-line"></i> <?= Lang::translate(key: "REGISTER_SUBMIT") ?></button>
+	<button class="button submit" type="submit"><i class="ri-key-line"></i> <?= Lang::translate(key: "REGISTER_SUBMIT") ?></button>
 
 	<a class="link" href="/login"><?= Lang::translate(key: "REGISTER_LOGIN") ?></a>
 </form>
