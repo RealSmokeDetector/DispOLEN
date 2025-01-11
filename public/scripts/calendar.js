@@ -24,14 +24,10 @@ const months = [
 
 let buttons = [];
 const date = new Date();
-let offSetSet = 0;
+let offSet = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
 	document.querySelectorAll("#calendar button").forEach((element) => {
-		buttons.push(element);
-	});
-
-	buttons.forEach((element) => {
 		element.addEventListener("click", function(event) {
 			switch (event.target.id) {
 				case "calendar_up":
@@ -55,16 +51,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function changeCalendar(scale) {
 	date.setMonth(date.getMonth() + scale);
-	offSetSet += scale;
-
-	captionCalendar = document.querySelector("#calendar caption");
+	offSet += scale;
 
 	document.querySelector("#calendar caption p").textContent = months[date.getMonth()] + " " + date.getFullYear();
-
 	let iteration = 1;
-	let NbDateMounth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+	const DateMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+	const firstDateOfMonth = new Date(date.getFullYear(), date.getMonth() , 1).getDay();
+
 	document.querySelectorAll("#calendar tbody td").forEach((element, index) => {
-		if (index >= ((date.getDay() + 1) % 7) && iteration <= NbDateMounth) {
+		let offSetDayOfWeek = (firstDateOfMonth === 0)? firstDateOfMonth + 6 : firstDateOfMonth - 1
+		if (index >= offSetDayOfWeek && iteration <= DateMonth) {
 			element.textContent = iteration++;
 		} else {
 			element.textContent = "";
