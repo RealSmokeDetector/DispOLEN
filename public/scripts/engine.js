@@ -1,3 +1,11 @@
+let dataLang = [];
+let isDataLangLoaded = false;
+
+(async () => {
+	dataLang = await callApi("/langs/" + getCookie("LANG") + ".json");
+	isDataLangLoaded = true;
+})();
+
 /**
  * Check if element already in DOM
  *
@@ -61,9 +69,18 @@ function getCookie(name) {
  * @return {string}
  */
 async function translate(key, options = null) {
-	let data = await callApi("/langs/" + getCookie("LANG") + ".json");
+	if (!isDataLangLoaded) {
+		await new Promise(resolve => {
+			const checkInterval = setInterval(() => {
+				if (isDataLangLoaded) {
+					clearInterval(checkInterval);
+					resolve();
+				}
+			}, 10);
+		});
+	}
 
-	let result = data[key] || "Missing entry";
+	let result = dataLang[key] || "Missing entry";
 
 	if (options) {
 		for (const [index, option] of Object.entries(options)) {
