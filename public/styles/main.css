@@ -545,9 +545,9 @@ nav .logo {
 }
 
 .calendar caption {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 10px;
 }
 
@@ -577,6 +577,7 @@ nav .logo {
 	text-align: center;
 	align-content: center;
 	transition: 200ms;
+	border-radius: var(--border-radius);
 }
 
 .calendar tbody td:empty {
@@ -586,8 +587,8 @@ nav .logo {
 
 .calendar tbody td:hover:not(:empty) {
 	background-color: var(--button-background-color);
-    border-radius: 50%;
 	cursor: pointer;
+	color: var(--button-text-color);
 	transition: 200ms;
 }
 
