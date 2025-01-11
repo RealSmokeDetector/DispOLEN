@@ -62,7 +62,7 @@ Use `composer install` on any terminal open in project's root folder.
 
 2. <u>Database</u>
 
-	- Execute `sql/database.sql` on your database server
+Execute `sql/database.sql` on your database server
 
 3. <u>Parameters</u>
 
@@ -73,7 +73,7 @@ Rename `.env.example` to `.env` and fill credentials.
 Enable DEBUG key to display some usefull logs.
 
 
-## VirtualHost
+## 🖥️ VirtualHost
 
 ### Apache2 minimal configuration
 
