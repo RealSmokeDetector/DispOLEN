@@ -47,17 +47,16 @@ class ReservationRepository {
 	/**
 	 * Get information
 	 *
-	 * @return array
+	 * @return null | array
 	 */
-	public function getInformation() : array {
+	public function getInformation() : null | array {
 		$reservationData = ApplicationData::request(
-			query: "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_teacher = :uid_teacher AND uid_student = :uid_student AND uid_disponibilities = :uid_disponibilities",
+			query: "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid = :uid",
 			data: [
-				"uid_teacher" => $this->reservation->teacherUid,
-				"uid_student" => $this->reservation->studentUid,
-				"uid_disponibilities" => $this->reservation->disponibilitiesUid
+				"uid" => $this->reservation->uid,
 			],
 			returnType: PDO::FETCH_ASSOC,
+			singleValue: true
 		);
 
 		return $reservationData;

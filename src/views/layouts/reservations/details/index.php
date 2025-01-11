@@ -10,5 +10,5 @@
 	<p><strong><?= Lang::translate(key: "MAIN_STATE") ?> :</strong> <?= htmlspecialchars(string: $reservationData["id_state"]); ?></p>
 	<p><strong><?= Lang::translate(key: "MAIN_REASON") ?> :</strong><?= htmlspecialchars(string: $reservationData["id_reason"]); ?></p>
 	<p><strong>Type:</strong><?= htmlspecialchars(string: $reservationData["id_type"]); ?></p>
-	<p><strong><?= Lang::translate(key: "MAIN_COMMENT") ?> :</strong><?= htmlspecialchars(string: $reservationData["comment"]); ?></p>
+	<p><strong><?= Lang::translate(key: "MAIN_COMMENT") ?> :</strong><?= htmlspecialchars(string: $reservationData["comment"] ?? ""); ?></p>
 </div>

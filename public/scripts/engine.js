@@ -50,14 +50,12 @@ async function callApi(path = "/api", type = "get", settings = null) {
  * @return {string}
  */
 function getCookie(name) {
-	let cookieValue = document.cookie
+	return document.cookie
 		.split("; ")
 		.find(
 			row => row.startsWith(name + "=")
 		)
 		?.split("=")[1];
-
-	return cookieValue;
 }
 
 /**
