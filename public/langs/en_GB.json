@@ -78,6 +78,8 @@
 	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Creation date",
 
 	"DISPONIBILITY_TIMESLOTS_TITLE": "Time slot",
+	"NO_DISPONIBILITY_FOUND": "No availability found",
+	"TEACHER_DISPONIBILITY_TITLE": "Your tutor's availability",
 
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",

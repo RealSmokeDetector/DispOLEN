@@ -31,10 +31,48 @@ function showTimeSlots(date) {
 	const timeSlots = generateTimeSlots();
 	let html = "<ul>";
 	timeSlots.forEach(timeSlot => {
-		html += "<li>" + timeSlot + "</li>";
+		html += "<li class=\"timeslot\" data-time=\"" + date + " " + timeSlot + "\">" + timeSlot + "</li>";
 	});
 	html += "</ul>";
 	timeslotContainer.innerHTML = html;
 	disponibility_timeslots_tile.style.display = "block";
-}
+	document.querySelectorAll(".timeslot").forEach(timeslot => {
+		timeslot.addEventListener("click", function() {
+			const selectedtTime = this.getAttribute("data-time");
+			if (!startTime) {
+				startTime = selectedtTime;
+				this.style.backgroundColor = "green";
+			}
+			else{
+				endTime = selectedtTime;
+				this.style.backgroundColor = "green";
+				saveDisponibility(startTime, endTime);
+				//reset timeslot to allow new selection
+				startTime = null;
+				endTime = null;
 
+			}
+		})
+	});
+
+// Function to save disponibility
+	async function saveDisponibility(startTime, endTime) {
+		const userUid = $_SESSION["user"]["uid"];
+		if (!userUid || !startTime || !endTime) {
+		console.log("Missing data");
+		return;
+		}
+
+		try {
+		await callApi("/disponibility", "POST", {
+			uid_user: userUid,
+			start_time: startTime,
+			end_time: endTime
+		});
+		alert("Disponibility saved");
+		} catch (error) {
+		console.error(error);
+		alert("An error occurred");
+		}
+	}
+}
