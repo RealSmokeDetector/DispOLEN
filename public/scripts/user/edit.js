@@ -2,7 +2,8 @@ const nameElement = document.getElementById("name");
 const surnameElement = document.getElementById("surname");
 const roleElement = document.getElementById("role");
 const tutorElement = document.getElementById("tutors");
-const tutoredStudentsElement = document.getElementById("tutoredStudents")
+const tutoredStudentsElement = document.getElementById("tutoredStudents");
+const formElement = document.getElementById("formUser");
 
 const editButton = document.getElementById("buttonId");
 
@@ -34,6 +35,11 @@ function updateUser() {
 		tutoredStudentsSelectElement.style.display = "inline-block";
 	}
 
+	let submitButton = document.createElement("button")
+	submitButton.type = "submit";
+	submitButton.id = "submitUpdateUser";
+	submitButton.textContent = "Submit";
+
 	nameElement.replaceWith(inputName);
 	surnameElement.replaceWith(inputSurname);
 	roleElement.replaceWith(roleSelectElement);
@@ -43,4 +49,8 @@ function updateUser() {
 	if (isElementExist(tutoredStudentsElement)) {
 		tutoredStudentsElement.replaceWith(tutoredStudentsSelectElement);
 	}
+
+	editButton.remove();
+
+	formElement.appendChild(submitButton);
 }

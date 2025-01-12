@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Configs\Path;
+use App\Events\UpdateUserEvent;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
@@ -10,6 +11,8 @@ use App\Utils\System;
 
 class DashboardUsersDetailsController {
 	public function render() : void {
+		UpdateUserEvent::implement();
+
 		$userId = $_GET["user"];
 
 		$user = UserRepository::getInformations(uid: $userId);

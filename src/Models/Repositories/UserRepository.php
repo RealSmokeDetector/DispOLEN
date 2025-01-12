@@ -48,6 +48,17 @@ class UserRepository {
 		return $this->user->uid;
 	}
 
+	public function update(){
+		ApplicationData::request(
+			query: "UPDATE " . Database::USERS . " SET name = :name, surname = :surname WHERE uid = :uid",
+			data: [
+				"uid" => $this->user->uid,
+				"name" => $this->user->name,
+				"surname" => $this->user->surname
+			]
+		);
+	}
+
 	/**
 	 * Verify user password
 	 *
@@ -120,6 +131,32 @@ class UserRepository {
 			],
 			returnType: PDO::FETCH_COLUMN
 		);
+	}
+
+	/**
+	 * Set user's role(s)
+	 *
+	 * @param array $roles
+	 *
+	 * @return void
+	 */
+	public function setRoles(array $roles) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::USER_ROLE . " WHERE uid_user = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		foreach ($roles as $role) {
+			ApplicationData::request(
+				query: "INSERT INTO " . Database::USER_ROLE . " (uid_user, id_role) VALUES (:uid_user, :id_role)",
+				data: [
+					"uid_user" => $this->user->uid,
+					"id_role" => $role
+				]
+			);
+		}
 	}
 
 	/**
