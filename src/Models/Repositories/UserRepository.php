@@ -49,6 +49,22 @@ class UserRepository {
 	}
 
 	/**
+	 * Update users
+	 *
+	 * @return void
+	 */
+	public function update() : void {
+		ApplicationData::request(
+			query: "UPDATE " . Database::USERS . " SET name = :name, surname = :surname WHERE uid = :uid",
+			data: [
+				"uid" => $this->user->uid,
+				"name" => $this->user->name,
+				"surname" => $this->user->surname
+			]
+		);
+	}
+
+	/**
 	 * Verify user password
 	 *
 	 * @return Exception | string
@@ -91,6 +107,31 @@ class UserRepository {
 	}
 
 	/**
+	 * Set student's tutor
+	 *
+	 * @param array $tutor
+	 *
+	 * @return void
+	 */
+	public function setTutor($tutor) : void {
+
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_student = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		ApplicationData::request(
+			query: "INSERT INTO " .  Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+			data: [
+				"uid_student" => $this->user->uid,
+				"uid_teacher" => $tutor
+			]
+		);
+	}
+
+	/**
 	 * Get teacher's student
 	 *
 	 * @return array
@@ -103,6 +144,32 @@ class UserRepository {
 			],
 			returnType: PDO::FETCH_ASSOC
 		);
+	}
+
+	/**
+	 * Set tutor's sudent(s)
+	 *
+	 * @param array $tutoredStudents
+	 *
+	 * @return void
+	 */
+	public function setTutoredStudent($tutoredStudents) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_teacher = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		foreach ($tutoredStudents as $tutoredStudent) {
+			ApplicationData::request(
+				query: "INSERT INTO " . Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+				data: [
+					"uid_teacher" => $this->user->uid,
+					"uid_student" => $tutoredStudent
+				]
+			);
+		}
 	}
 
 	/**
@@ -120,6 +187,32 @@ class UserRepository {
 			],
 			returnType: PDO::FETCH_COLUMN
 		);
+	}
+
+	/**
+	 * Set user's role(s)
+	 *
+	 * @param array $roles
+	 *
+	 * @return void
+	 */
+	public function setRoles(array $roles) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::USER_ROLE . " WHERE uid_user = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		foreach ($roles as $role) {
+			ApplicationData::request(
+				query: "INSERT INTO " . Database::USER_ROLE . " (uid_user, id_role) VALUES (:uid_user, :id_role)",
+				data: [
+					"uid_user" => $this->user->uid,
+					"id_role" => $role
+				]
+			);
+		}
 	}
 
 	/**

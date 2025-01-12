@@ -3,16 +3,14 @@
 namespace App\Controllers;
 
 use App\Configs\Path;
+use App\Events\UpdateUserEvent;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
 
 class DashboardUsersDetailsController {
 	public function render() : void {
-		$scripts = [
-			"/scripts/engine.js",
-			"/scripts/theme.js"
-		];
+		UpdateUserEvent::implement();
 
 		$userId = $_GET["user"];
 
@@ -21,6 +19,8 @@ class DashboardUsersDetailsController {
 		$userRepo = new UserRepository(user: $userEntity);
 		$userGroup = UserRepository::getGroup(uid: $user["uid"]);
 		$roles = UserRepository::getRoles(uid: $user["uid"]);
+		$teachers = ApplicationData::getAllTeachers();
+		$students = ApplicationData::getAllStudents();
 
 		$rolesName = [];
 		foreach ($roles as $role) {
@@ -32,6 +32,12 @@ class DashboardUsersDetailsController {
 			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
 			array_push($tutoredStudents, $studentInfo["name"]);
 		}
+
+		$scripts = [
+				"/scripts/engine.js",
+				"/scripts/theme.js",
+				"/scripts/user/edit.js"
+		];
 
 		require Path::LAYOUT . "/header.php";
 
