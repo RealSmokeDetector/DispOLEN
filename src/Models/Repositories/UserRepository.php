@@ -48,7 +48,12 @@ class UserRepository {
 		return $this->user->uid;
 	}
 
-	public function update(){
+	/**
+	 * Update users
+	 *
+	 * @return void
+	 */
+	public function update() : void {
 		ApplicationData::request(
 			query: "UPDATE " . Database::USERS . " SET name = :name, surname = :surname WHERE uid = :uid",
 			data: [
@@ -101,7 +106,14 @@ class UserRepository {
 		);
 	}
 
-	public function setTutor($tutor): void {
+	/**
+	 * Set student's tutor
+	 *
+	 * @param array $tutor
+	 *
+	 * @return void
+	 */
+	public function setTutor($tutor) : void {
 
 		ApplicationData::request(
 			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_student = :uid",
@@ -132,6 +144,32 @@ class UserRepository {
 			],
 			returnType: PDO::FETCH_ASSOC
 		);
+	}
+
+	/**
+	 * Set tutor's sudent(s)
+	 *
+	 * @param array $tutoredStudents
+	 *
+	 * @return void
+	 */
+	public function setTutoredStudent($tutoredStudents) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_teacher = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		foreach ($tutoredStudents as $tutoredStudent) {
+			ApplicationData::request(
+				query: "INSERT INTO " . Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+				data: [
+					"uid_teacher" => $this->user->uid,
+					"uid_student" => $tutoredStudent
+				]
+			);
+		}
 	}
 
 	/**

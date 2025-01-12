@@ -48,7 +48,7 @@
 			<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT")?> : </p>
 			<p id="tutoredStudents"><?= join(array: $tutoredStudents, separator: " ") ?></p>
 
-			<select id="tutoredStudentsSelect" name="tutoredStudents" style="display: none">
+			<select id="tutoredStudentsSelect" name="tutoredStudents[]" style="display: none" multiple>
 				<?php foreach ($students as $student) { ?>
 					<option value="<?= $student ?>"
 						<?= in_array(needle: $student, haystack: $students) ? "selected" : "" ?>>

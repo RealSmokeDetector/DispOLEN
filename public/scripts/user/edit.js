@@ -23,7 +23,7 @@ function updateUser() {
 	inputSurname.setAttribute("value", surnameElement.textContent);
 
 	let roleSelectElement = document.getElementById("roleSelect");
-    roleSelectElement.style.display = "inline-block";
+	roleSelectElement.style.display = "inline-block";
 
 	let tutorSelectElement = document.getElementById("tutorsSelect");
 	if (isElementExist(tutorSelectElement)) {
