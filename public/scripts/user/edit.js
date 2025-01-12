@@ -4,7 +4,6 @@ const roleElement = document.getElementById("role");
 const tutorElement = document.getElementById("tutors");
 const tutoredStudentsElement = document.getElementById("tutoredStudents");
 const formElement = document.getElementById("formUser");
-
 const editButton = document.getElementById("buttonId");
 
 editButton.addEventListener("click", () => {
@@ -13,14 +12,14 @@ editButton.addEventListener("click", () => {
 
 function updateUser() {
 	let inputName = document.createElement("input")
-	inputName.setAttribute("type", "text");
-	inputName.setAttribute("name", "name");
-	inputName.setAttribute("value", nameElement.textContent);
+	inputName.type = "text";
+	inputName.name = "name";
+	inputName.value = nameElement.textContent;
 
 	let inputSurname = document.createElement("input")
-	inputSurname.setAttribute("type", "text");
-	inputSurname.setAttribute("name", "surname");
-	inputSurname.setAttribute("value", surnameElement.textContent);
+	inputSurname.type = "text";
+	inputSurname.name = "surname";
+	inputSurname.value = surnameElement.textContent;
 
 	let roleSelectElement = document.getElementById("roleSelect");
 	roleSelectElement.style.display = "inline-block";
@@ -38,14 +37,17 @@ function updateUser() {
 	let submitButton = document.createElement("button")
 	submitButton.type = "submit";
 	submitButton.id = "submitUpdateUser";
+	submitButton.className = "button";
 	submitButton.textContent = "Submit";
 
 	nameElement.replaceWith(inputName);
 	surnameElement.replaceWith(inputSurname);
 	roleElement.replaceWith(roleSelectElement);
+
 	if (isElementExist(tutorElement)) {
 		tutorElement.replaceWith(tutorSelectElement);
 	}
+
 	if (isElementExist(tutoredStudentsElement)) {
 		tutoredStudentsElement.replaceWith(tutoredStudentsSelectElement);
 	}

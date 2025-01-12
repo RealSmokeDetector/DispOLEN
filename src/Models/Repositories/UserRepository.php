@@ -114,7 +114,6 @@ class UserRepository {
 	 * @return void
 	 */
 	public function setTutor($tutor) : void {
-
 		ApplicationData::request(
 			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_student = :uid",
 			data: [

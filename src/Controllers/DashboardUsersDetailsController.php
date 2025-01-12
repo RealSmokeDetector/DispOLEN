@@ -7,15 +7,23 @@ use App\Events\UpdateUserEvent;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
+use App\Utils\System;
 
 class DashboardUsersDetailsController {
 	public function render() : void {
 		UpdateUserEvent::implement();
 
-		$userId = $_GET["user"];
+		$user = UserRepository::getInformations(uid: $_GET["user"]);
 
-		$user = UserRepository::getInformations(uid: $userId);
-		$userEntity = new User(uid : $userId) ;
+		if (
+			!isset($_GET["user"])
+			|| $_GET["user"] === ""
+			|| $user === null
+		) {
+			System::redirect(url: "/dashboard/users");
+		}
+
+		$userEntity = new User(uid : $_GET["user"]) ;
 		$userRepo = new UserRepository(user: $userEntity);
 		$userGroup = UserRepository::getGroup(uid: $user["uid"]);
 		$roles = UserRepository::getRoles(uid: $user["uid"]);
