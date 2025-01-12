@@ -247,4 +247,23 @@ class UserRepository {
 			singleValue: true
 		);
 	}
+
+	/**
+	 * Get teacher disponibilities
+	 *
+	 * @param string $uid
+	 *
+	 * @return array
+	 */
+	public static function getTeacherDisponibilities(string $uid) : array {
+		return ApplicationData::request(
+			query: "SELECT *
+					FROM " . Database::DISPONIBILITIES . "
+					WHERE uid_user = :uid",
+			data: [
+				"uid" => $uid,
+			],
+			returnType: PDO::FETCH_ASSOC
+		);
+	}
 }

@@ -16,7 +16,8 @@ class IndexController {
 		$scripts = [
 			"/scripts/engine.js",
 			"/scripts/theme.js",
-			"/scripts/calendar.js"
+			"/scripts/calendar.js",
+      "/scripts/display_timeslots.js"
 		];
 
 		require Path::LAYOUT . "/header.php";

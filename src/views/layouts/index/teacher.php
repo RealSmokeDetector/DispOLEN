@@ -5,4 +5,5 @@
 <div class="index_container">
 	<?php require Path::COMPONENTS . "/tables/reservation.php"; ?>
 	<?php require Path::COMPONENTS . "/tables/calendar.php"; ?>
+	<?php require Path::COMPONENTS . "/tiles/disponibility_timeslots_tile.php"; ?>
 </div>
