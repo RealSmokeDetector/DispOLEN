@@ -187,4 +187,11 @@ class ApplicationData {
 			returnType: PDO::FETCH_COLUMN
 		);
 	}
+
+	public static function getAllStudents(){
+		return ApplicationData::request(
+			query: "SELECT uid FROM " . Database::USERS . " JOIN " . Database::USER_ROLE . " ON " . Database::USERS . ".uid = " . Database::USER_ROLE . ".uid_user WHERE " . Database::USER_ROLE . ".id_role = 1 ",
+			returnType: PDO::FETCH_COLUMN
+		);
+	}
 }

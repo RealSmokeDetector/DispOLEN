@@ -17,6 +17,8 @@ class DashboardUsersDetailsController {
 		$userRepo = new UserRepository(user: $userEntity);
 		$userGroup = UserRepository::getGroup(uid: $user["uid"]);
 		$roles = UserRepository::getRoles(uid: $user["uid"]);
+		$teachers = ApplicationData::getAllTeachers();
+		$students = ApplicationData::getAllStudents();
 
 		$rolesName = [];
 		foreach ($roles as $role) {

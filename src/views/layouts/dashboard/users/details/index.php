@@ -3,8 +3,6 @@
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
-
-	var_dump(ApplicationData::getAllTeachers())
 ?>
 
 <div>
@@ -28,18 +26,34 @@
 	<?php if (!empty(array_intersect($roles, [Role::STUDENT]))) { ?>
 		<p><?= Lang::translate(key: "MAIN_GROUP")?> : </p>
 		<p><?= $userGroup ? ApplicationData::getGroupName(uid: $userGroup) : " "; ?></p>
-		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTOR")?> : <?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $userRepo->getTutor())["name"], surname: UserRepository::getInformations(uid: $userRepo->getTutor())["surname"])?></p>
-	<?php } ?>
+		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTOR")?> : </p>
 
-	<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
-		<p id="tutor"><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT")?> : <?= join(array: $tutoredStudents, separator: " ") ?></p>
-		<select id="tutorSelect">
-			<?php foreach (ApplicationData::getAllTeachers() as $teacher) { ?>
+		<p id="tutors"><?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $userRepo->getTutor())["name"], surname: UserRepository::getInformations(uid: $userRepo->getTutor())["surname"])?></p>
+		<select id="tutorsSelect" style="display: none">
+			<?php foreach ($teachers as $teacher) { ?>
 				<option value="<?= $teacher ?>"
-					<?= in_array(needle: $teacher, haystack: $roles) ? "selected" : "" ?>>
+					<?= in_array(needle: $teacher, haystack: $teachers) ? "selected" : "" ?>>
+					<?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $teacher)["name"], surname: UserRepository::getInformations(uid: $teacher)["surname"]) ?>
 				</option>
 			<?php } ?>
 		</select>
+
+	<?php } ?>
+
+	<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
+
+		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT")?> : </p>
+		<p id="tutoredStudents"><?= join(array: $tutoredStudents, separator: " ") ?></p>
+
+		<select id="tutoredStudentsSelect" style="display: none">
+			<?php foreach ($students as $student) { ?>
+				<option value="<?= $student ?>"
+					<?= in_array(needle: $student, haystack: $students) ? "selected" : "" ?>>
+					<?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $student)["name"], surname: UserRepository::getInformations(uid: $student)["surname"]) ?>
+				</option>
+			<?php } ?>
+		</select>
+
 	<?php } ?>
 
 	<p><?= Lang::translate(key: "MAIN_EMAIL") ?> : <?= $user["email"]?></p>
