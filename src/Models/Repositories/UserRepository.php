@@ -101,6 +101,24 @@ class UserRepository {
 		);
 	}
 
+	public function setTutor($tutor): void {
+
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_student = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		ApplicationData::request(
+			query: "INSERT INTO " .  Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+			data: [
+				"uid_student" => $this->user->uid,
+				"uid_teacher" => $tutor
+			]
+		);
+	}
+
 	/**
 	 * Get teacher's student
 	 *

@@ -12,6 +12,9 @@ class UpdateUserEvent{
 			$userRepo = new UserRepository(user: $user);
 			$userRepo->update();
 			$userRepo->setRoles($_POST["roles"]);
+			if (isset($_POST["tutor"])){
+				$userRepo->setTutor($_POST["tutor"]);
+			}
 			var_dump(value: $_POST);
 		}
 	}
