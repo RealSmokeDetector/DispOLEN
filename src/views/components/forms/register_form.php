@@ -3,7 +3,7 @@
 ?>
 
 <form class="tile register" method="POST">
-	<h1><i class="ri-user-line"></i> <?= Lang::translate("REGISTER_TITLE") ?></h1>
+	<h1><i class="ri-user-line"></i> <?= Lang::translate(key: "REGISTER_TITLE") ?></h1>
 
 	<input
 		type="text"
@@ -49,7 +49,7 @@
 		<i class="ri-eye-off-line"></i>
 	</div>
 
-	<button class="submit" type="submit"><i class="ri-key-line"></i> <?= Lang::translate(key: "REGISTER_SUBMIT") ?></button>
+	<button class="button submit" type="submit"><i class="ri-key-line"></i> <?= Lang::translate(key: "REGISTER_SUBMIT") ?></button>
 
 	<a class="link" href="/login"><?= Lang::translate(key: "REGISTER_LOGIN") ?></a>
 </form>

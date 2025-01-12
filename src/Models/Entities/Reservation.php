@@ -11,7 +11,7 @@ class Reservation {
 	private ?int $reasonId;
 	private ?int $stateId;
 	private ?string $comment;
-	private User $user;
+	private ?User $user;
 
 	public function __construct(string $uid = null, string $teacherUid = null, string $studentUid = null, string $disponibilitiesUid = null, int $typeId = 1, int $reasonId = 1, int $stateId = 1, string $comment = null, User $user = null) {
 		$this->uid = $uid;

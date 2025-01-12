@@ -7,7 +7,6 @@ use App\Events\UpdateUserEvent;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
-use App\Utils\System;
 
 class DashboardUsersDetailsController {
 	public function render() : void {
@@ -30,23 +29,21 @@ class DashboardUsersDetailsController {
 
 		$tutoredStudents = [];
 		foreach ($userRepo->getTutoredStudent() as $student) {
-			$studentInfo = UserRepository::getInformations(uid: $student['uid_student']);
-			array_push($tutoredStudents, $studentInfo['name']);
+			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
+			array_push($tutoredStudents, $studentInfo["name"]);
 		}
+
+		$scripts = [
+				"/scripts/engine.js",
+				"/scripts/theme.js",
+				"/scripts/user/edit.js"
+		];
 
 		require Path::LAYOUT . "/header.php";
 
 		require Path::LAYOUT . "/navbar.php";
 
 		require Path::LAYOUT . "/dashboard/users/details/index.php";
-
-		System::implementScripts(
-			scripts: [
-				"/scripts/engine.js",
-				"/scripts/theme.js",
-				"/scripts/user/edit.js"
-			]
-		);
 
 		include Path::LAYOUT . "/footer.php";
 	}

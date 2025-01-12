@@ -41,6 +41,24 @@ class GroupRepository {
 	}
 
 	/**
+	 * Remove group
+	 *
+	 * @return void
+	 */
+	public function remove() : void {
+		foreach ($this->getUsers() as $user) {
+			$this->removeUser(uid: $user);
+		}
+
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::GROUPS . " WHERE uid = :uid",
+			data: [
+				"uid" => $this->group->uid
+			]
+		);
+	}
+
+	/**
 	 * Get informations
 	 *
 	 * @return Exception | array
@@ -56,32 +74,77 @@ class GroupRepository {
 		);
 
 		if (empty($groupData)) {
-			throw new Exception("Group not found");
+			throw new Exception(message: "Group not found");
 		}
 
 		return $groupData;
 	}
 
 	/**
-	 * Get users by group
+	 * Get group's users
 	 *
-	 * @return Exception | array
+	 * @return null | array
 	 */
-	public function getUsers() : Exception | array {
-		$users = ApplicationData::request(
-			query: "SELECT u.* FROM " . Database::USERS . " u
-					JOIN user_group ug ON u.uid = ug.uid_user
-					WHERE ug.uid_group = :uid_group",
+	public function getUsers() : null | array {
+		return ApplicationData::request(
+			query: "SELECT uid_user FROM " . Database::USER_GROUP . " WHERE uid_group = :uid_group",
 			data: [
 				"uid_group" =>$this->group->uid
 			],
-			returnType: PDO::FETCH_ASSOC
+			returnType: PDO::FETCH_COLUMN
 		);
+	}
 
-		if (empty($users)) {
-			return new Exception("Users not found");
-		}
+	/**
+	 * Add user
+	 *
+	 * @param string $uid
+	 *
+	 * @return void
+	 */
+	public function addUser(string $uid) : void {
+		ApplicationData::request(
+			query: "INSERT INTO " . Database::USER_GROUP . " (uid_user, uid_group) VALUES (:uid_user, :uid_group)",
+			data: [
+				"uid_user" => $uid,
+				"uid_group" => $this->group->uid
+			]
+		);
+	}
 
-		return $users;
+	/**
+	 * Remove user
+	 *
+	 * @param string $uid
+	 *
+	 * @return void
+	 */
+	public function removeUser(string $uid) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::USER_GROUP . " WHERE uid_user = :uid_user AND uid_group = :uid_group",
+			data: [
+				"uid_user" => $uid,
+				"uid_group" => $this->group->uid
+			]
+		);
+	}
+
+	/**
+	 * Update group name
+	 *
+	 * @param string $name
+	 *
+	 * @return void
+	 */
+	public function setName(string $name) : void {
+		$this->group->name = $name;
+
+		ApplicationData::request(
+			query: "UPDATE " . Database::GROUPS . " SET name = :name WHERE uid = :uid",
+			data: [
+				"uid" => $this->group->uid,
+				"name" => $this->group->name
+			]
+		);
 	}
 }

@@ -14,12 +14,42 @@ $router->add(
 	controller: $controllersPath . "IndexController"
 );
 $router->add(
+	url: "/groups",
+	controller: $controllersPath . "GroupsController",
+	title: APP_NAME . " - " . Lang::translate(key: "GROUPS_TITLE"),
+	needLoginToBe: true,
+	accessRoles: [
+		Role::TEACHER,
+		Role::ADMINISTRATOR
+	]
+);
+$router->add(
 	url: "/dashboard",
 	controller: $controllersPath . "DashboardController",
 	title: APP_NAME . " - " . Lang::translate(key: "DASHBOARD_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
 		Role::ADMINISTRATOR
+	]
+);
+$router->add(
+	url : "/reservations",
+	controller: $controllersPath . "ReservationsController",
+	title: APP_NAME . " - " . Lang::translate(key: "RESERVATION_TITLE"),
+	needLoginToBe: true,
+	accessRoles: [
+		Role::TEACHER,
+		Role::STUDENT
+	]
+);
+$router->add(
+	url: "/reservation/details",
+	controller: $controllersPath . "ReservationDetailsController",
+	title: APP_NAME . " - " . Lang::translate(key: "RESERVATIONS_DETAILS_TITLE"),
+	needLoginToBe: true,
+	accessRoles: [
+		Role::TEACHER,
+		Role::STUDENT
 	]
 );
 $router->add(
@@ -38,16 +68,6 @@ $router->add(
 	needLoginToBe: true,
 	accessRoles: [
 		Role::ADMINISTRATOR
-	]
-);
-$router->add(
-	url : "/reservations",
-	controller: $controllersPath . "ReservationsController",
-	title: APP_NAME . " - " . Lang::translate(key: "RESERVATION_TITLE"),
-	needLoginToBe: true,
-	accessRoles: [
-		Role::TEACHER,
-		Role::STUDENT
 	]
 );
 
@@ -77,7 +97,12 @@ $router->add(
 	title: APP_NAME . " - API"
 );
 $router->add(
-	url: "/api/users",
-	controller: $controllersPath . "API\APIUsersController",
+	url: "/api/groups",
+	controller: $controllersPath . "API\APIGroupsController",
+	title: APP_NAME . " - API"
+);
+$router->add(
+	url: "/api/groups/users",
+	controller: $controllersPath . "API\APIGroupsUsersController",
 	title: APP_NAME . " - API"
 );

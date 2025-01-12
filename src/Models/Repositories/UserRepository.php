@@ -236,9 +236,9 @@ class UserRepository {
 	/**
 	 * Get user's informations
 	 *
-	 * @return array
+	 * @return null | array
 	 */
-	public static function getInformations($uid) : array {
+	public static function getInformations($uid) : null | array {
 		return ApplicationData::request(
 			query: "SELECT * FROM " . Database::USERS . " WHERE uid = :uid",
 			data: [

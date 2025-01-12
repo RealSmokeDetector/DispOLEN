@@ -14,6 +14,9 @@
 	"MAIN_STUDENT": "Etudiant",
 	"MAIN_TEACHER": "Enseignant",
 	"MAIN_ADMINISTRATOR": "Administrateur",
+	"MAIN_STATE": "État",
+	"MAIN_REASON": "Raison",
+	"MAIN_COMMENT": "Commentaire",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",
@@ -40,6 +43,7 @@
 	"NAVBAR_DASHBOARD": "Tableau de bord",
 	"NAVBAR_DASHBOARD_USERS": "Utilisateurs",
 	"NAVBAR_RESERVATION": "Réservations",
+	"NAVBAR_GROUPS": "Groupes",
 	"NAVBAR_PROFILE": "Profil",
 	"NAVBAR_LOGIN": "Connexion",
 	"NAVBAR_REGISTER": "Créer un compte",
@@ -66,6 +70,16 @@
 	"RESERVATION_TEACHER_NAME": "Nom de l'enseignant",
 	"RESERVATION_STUDENT_NAME": "Nom de l'élève",
 	"RESERVATION_STATE": "État",
+
+	"RESERVATIONS_DETAILS_TITLE": "Détails de la réservation",
+	"RESERVATIONS_DETAILS_TUTOR": "Tuteur/Tutrice",
+
+	"GROUPS_TITLE": "Groupes",
+	"GROUPS_REMOVE_STUDENT": "Retirer l'étudiant",
+	"GROUPS_NO_GROUP": "Aucuns groupe trouvés.",
+	"GROUPS_NO_USERS": "Aucuns utilisateurs trouvés.",
+	"GROUPS_REMOVE_STUDENT_CONFIRM": "Etes-vous sûr de vouloir retirer cet étudiant ?",
+	"GROUPS_REMOVE_GROUP_CONFIRM": "Etes-vous sûr de vouloir supprimer ce groupe ?",
 
 	"DASHBOARD_TITLE": "Tableau de bord",
 	"DASHBOARD_USERS_TITLE": "Utilisateurs",

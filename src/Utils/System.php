@@ -67,17 +67,4 @@ class System {
 	public static function getFiles(string $path) : array {
 		return array_diff(scandir(directory: $path), array('.', '..'));
 	}
-
-	/**
-	 * Implement scripts
-	 *
-	 * @param array $scripts
-	 *
-	 * @return void
-	 */
-	public static function implementScripts(array $scripts = []) : void {
-		foreach ($scripts as $script) {
-			echo "<script src=\"" . $script . "\"></script>";
-		}
-	}
 }

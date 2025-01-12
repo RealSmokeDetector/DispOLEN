@@ -4,7 +4,7 @@
 	use App\Utils\Lang;
 ?>
 
-<a href="/reservation/details/uid=<?= $reservation["uid"] ?>">
+<a href="/reservation/details?reservation=<?= $reservation["uid"] ?>">
 	<div class="tile reservation_tile">
 		<p><?= $name ?></p>
 		<p><?= Lang::translate(key: "MAIN_DATE") ?> : <?= ReservationRepository::getStartDate(disponibilityUid: $reservation["uid_disponibilities"]) ?></p>
