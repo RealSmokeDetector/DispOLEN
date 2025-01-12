@@ -14,6 +14,9 @@
 	"MAIN_STUDENT": "Student",
 	"MAIN_TEACHER": "Teacher",
 	"MAIN_ADMINISTRATOR": "Administrator",
+	"MAIN_STATE": "State",
+	"MAIN_REASON": "Reason",
+	"MAIN_COMMENT": "Comment",
 
 	"MAIN_MONDAY": "Monday",
 	"MAIN_TUESDAY": "Tuesday",
@@ -40,6 +43,7 @@
 	"NAVBAR_DASHBOARD": "Dashboard",
 	"NAVBAR_DASHBOARD_USERS": "Users",
 	"NAVBAR_RESERVATION": "Reservations",
+	"NAVBAR_GROUPS": "Groups",
 	"NAVBAR_PROFILE": "Profile",
 	"NAVBAR_LOGIN": "Login",
 	"NAVBAR_REGISTER": "Create account",
@@ -69,6 +73,13 @@
 
 	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
 	"RESERVATIONS_DETAILS_TUTOR": "Tutor",
+
+	"GROUPS_TITLE": "Groups",
+	"GROUPS_REMOVE_STUDENT": "Remove student",
+	"GROUPS_NO_GROUP": "No groups found.",
+	"GROUPS_NO_USERS": "No users found.",
+	"GROUPS_REMOVE_STUDENT_CONFIRM": "Are you sure you want to remove this student?",
+	"GROUPS_REMOVE_GROUP_CONFIRM": "Are you sure you want to delete this group?",
 
 	"DASHBOARD_TITLE": "Dashboard",
 	"DASHBOARD_USERS_TITLE": "Users",

@@ -3,23 +3,34 @@
 namespace App\Controllers;
 
 use App\Configs\Path;
-use App\Utils\System;
-use App\Models\Reservation;
+use App\Models\Entities\Reservation;
 use App\Models\Repositories\ReservationRepository;
+use App\Utils\System;
 
 class ReservationDetailsController {
 	public function render() : void {
-		$reservation= new Reservation();//TODO UID
-		$reservationRepo= new ReservationRepository($reservation);
-		$reservationData= $reservationRepo->getInformation();
+		$reservation = new Reservation(uid: $_GET["reservation"]);
+		$reservationRepo = new ReservationRepository(reservation: $reservation);
+		$reservationData = $reservationRepo->getInformation();
+
+		if (
+			!isset($_GET["reservation"])
+			|| $_GET["reservation"] === ""
+			|| $reservationData === null
+		) {
+			System::redirect(url: "/reservations");
+		}
+
+		$scripts = [
+			"/scripts/engine.js",
+			"/scripts/theme.js"
+		];
 
 		require Path::LAYOUT . "/header.php";
 
 		require Path::LAYOUT . "/navbar.php";
 
 		require Path::LAYOUT . "/reservations/details/index.php";
-
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

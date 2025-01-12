@@ -4,10 +4,14 @@ namespace App\Controllers;
 
 use App\Configs\Path;
 use App\Utils\Lang;
-use App\Utils\System;
 
 class ErrorController {
 	public function render(int $errorCode = 500, string $message = null) : void {
+		$scripts = [
+			"/scripts/engine.js",
+			"/scripts/theme.js"
+		];
+
 		$GLOBALS["title"] = APP_NAME . " - " . Lang::translate(key: "MAIN_ERROR");
 		define(constant_name: "ERROR_CODE", value: $errorCode);
 		define(constant_name: "EXCEPTION", value: isset($message) ? $message : Lang::translate(key: "ERROR_SERVER"));
@@ -17,8 +21,6 @@ class ErrorController {
 		require Path::LAYOUT . "/header.php";
 
 		require Path::LAYOUT . "/error/index.php";
-
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

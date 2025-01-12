@@ -13,6 +13,13 @@ class IndexController {
 			System::redirect(url: "/login");
 		}
 
+		$scripts = [
+			"/scripts/engine.js",
+			"/scripts/theme.js",
+			"/scripts/calendar.js",
+      "/scripts/display_timeslots.js"
+		];
+
 		require Path::LAYOUT . "/header.php";
 
 		require Path::LAYOUT . "/navbar.php";
@@ -23,8 +30,6 @@ class IndexController {
 		else {
 			require Path::LAYOUT . "/index/teacher.php";
 		}
-
-		System::implementScripts(scripts: ["/scripts/engine.js", "/scripts/theme.js","/scripts/display_timeslots.js"]);
 
 		include Path::LAYOUT . "/footer.php";
 	}

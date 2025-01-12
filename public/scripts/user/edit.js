@@ -1,0 +1,58 @@
+const nameElement = document.getElementById("name");
+const surnameElement = document.getElementById("surname");
+const roleElement = document.getElementById("role");
+const tutorElement = document.getElementById("tutors");
+const tutoredStudentsElement = document.getElementById("tutoredStudents");
+const formElement = document.getElementById("formUser");
+const editButton = document.getElementById("buttonId");
+
+editButton.addEventListener("click", () => {
+	updateUser();
+})
+
+function updateUser() {
+	let inputName = document.createElement("input")
+	inputName.type = "text";
+	inputName.name = "name";
+	inputName.value = nameElement.textContent;
+
+	let inputSurname = document.createElement("input")
+	inputSurname.type = "text";
+	inputSurname.name = "surname";
+	inputSurname.value = surnameElement.textContent;
+
+	let roleSelectElement = document.getElementById("roleSelect");
+	roleSelectElement.style.display = "inline-block";
+
+	let tutorSelectElement = document.getElementById("tutorsSelect");
+	if (isElementExist(tutorSelectElement)) {
+		tutorSelectElement.style.display = "inline-block";
+	}
+
+	let tutoredStudentsSelectElement = document.getElementById("tutoredStudentsSelect");
+	if (isElementExist(tutoredStudentsSelectElement)) {
+		tutoredStudentsSelectElement.style.display = "inline-block";
+	}
+
+	let submitButton = document.createElement("button")
+	submitButton.type = "submit";
+	submitButton.id = "submitUpdateUser";
+	submitButton.className = "button";
+	submitButton.textContent = "Submit";
+
+	nameElement.replaceWith(inputName);
+	surnameElement.replaceWith(inputSurname);
+	roleElement.replaceWith(roleSelectElement);
+
+	if (isElementExist(tutorElement)) {
+		tutorElement.replaceWith(tutorSelectElement);
+	}
+
+	if (isElementExist(tutoredStudentsElement)) {
+		tutoredStudentsElement.replaceWith(tutoredStudentsSelectElement);
+	}
+
+	editButton.remove();
+
+	formElement.appendChild(submitButton);
+}
