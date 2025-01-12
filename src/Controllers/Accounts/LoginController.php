@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Accounts;
 
 use App\Configs\Path;
-use App\Events\RegisterEvent;
+use App\Events\LoginEvent;
 
-class RegisterController {
+class LoginController {
 	public function render() : void {
-		RegisterEvent::implement();
+		LoginEvent::implement();
 
 		$scripts = [
 			"/scripts/engine.js",
@@ -18,7 +18,7 @@ class RegisterController {
 
 		require Path::LAYOUT . "/navbar.php";
 
-		require Path::LAYOUT . "/register/index.php";
+		require Path::LAYOUT . "/login/index.php";
 
 		include Path::LAYOUT . "/footer.php";
 	}

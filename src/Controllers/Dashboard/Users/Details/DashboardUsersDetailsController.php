@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Dashboard\Users\Details;
 
 use App\Configs\Path;
 use App\Events\UpdateUserEvent;
@@ -44,7 +44,7 @@ class DashboardUsersDetailsController {
 		$scripts = [
 				"/scripts/engine.js",
 				"/scripts/theme.js",
-				"/scripts/user/edit.js"
+				"/scripts/users/edit.js"
 		];
 
 		require Path::LAYOUT . "/header.php";

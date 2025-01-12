@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\API;
+namespace App\Controllers\API\Groups;
 
 use App\Models\Entities\API;
 use App\Models\Entities\Group;

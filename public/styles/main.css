@@ -522,8 +522,8 @@ nav .logo {
 
 .user_container {
 	display: grid;
-    align-content: space-around;
-    justify-content: space-between;
+	align-content: space-around;
+	justify-content: space-between;
 	gap: 30px;
 }
 

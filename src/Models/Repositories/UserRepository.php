@@ -257,9 +257,7 @@ class UserRepository {
 	 */
 	public static function getTeacherDisponibilities(string $uid) : array {
 		return ApplicationData::request(
-			query: "SELECT *
-					FROM " . Database::DISPONIBILITIES . "
-					WHERE uid_user = :uid",
+			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE uid_user = :uid",
 			data: [
 				"uid" => $uid,
 			],

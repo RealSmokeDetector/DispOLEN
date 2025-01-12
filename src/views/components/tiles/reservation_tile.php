@@ -1,13 +1,21 @@
 <?php
-	use App\Models\Repositories\ReservationRepository;
-	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
+	use App\Configs\Role;
+	use App\Models\Repositories\UserRepository;
 ?>
 
-<a href="/reservation/details?reservation=<?= $reservation["uid"] ?>">
-	<div class="tile reservation_tile">
-		<p><?= $name ?></p>
-		<p><?= Lang::translate(key: "MAIN_DATE") ?> : <?= ReservationRepository::getStartDate(disponibilityUid: $reservation["uid_disponibilities"]) ?></p>
-		<p><?= Lang::translate(key: "RESERVATION_STATE") ?> : <?= ApplicationData::getStateName(id: $reservation["id_state"]) ?></p>
+<div class="tile reservation_container">
+	<h1><?= (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT])))? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT"): Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
+	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
+
+	<div>
+		<?php for ($i = 0; $i < 3; $i++) { ?>
+			<div>
+				<p>row <?= $i + 1 ?></p>
+				<a href="#"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
+			</div>
+		<?php } ?>
+
+		<a href="#"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?></a>
 	</div>
-</a>
+</div>

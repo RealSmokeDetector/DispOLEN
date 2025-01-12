@@ -18,7 +18,7 @@
 				$name = Lang::translate(key: "RESERVATION_STUDENT_NAME") . " : " . ApplicationData::nameFormat(name: $userInformation["name"], surname: $userInformation["surname"], reverse:true);
 			}
 
-			include Path::COMPONENTS . "/tiles/reservation_tile.php";
+			include Path::COMPONENTS . "/tiles/reservation_details_tile.php";
 		}
 	?>
 </div>
