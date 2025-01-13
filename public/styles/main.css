@@ -66,9 +66,11 @@
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #000000;
 	--input-placeholder-text-color: #00000077;
+	--link-color: #2F27CE;
 
 	/* Text hover color */
 	--text-hover-color: #5e5e5e;
+	--link-hover-color: #7671c9;
 
 	/* Shadow */
 	--shadow: #32326415 0px 5px 4px 0px;
@@ -92,9 +94,11 @@
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #ffffff;
 	--input-placeholder-text-color: #ffffff77;
+	--link-color: #2F27CE;
 
 	/* Text hover color */
 	--text-hover-color: #adadad;
+	--link-hover-color: #595ec1;
 
 	/* Shadow */
 	--shadow: 0;
@@ -198,6 +202,19 @@ table {
 
 .profil_button {
 	font-size: 22px;
+}
+
+/* Links
+   ============================================== */
+
+.link {
+	color: var(--link-color) !important;
+	transition: 200ms;
+}
+
+.link:hover {
+	color: var(--link-hover-color) !important;
+	transition: 200ms;
 }
 
 /* Inputs
@@ -606,6 +623,16 @@ nav .logo {
 	cursor: pointer;
 	color: var(--button-text-color);
 	transition: 200ms;
+}
+
+
+/* reservation
+   ============================================== */
+
+.reservation_container.tile .row_reservation {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 /* ==============================================

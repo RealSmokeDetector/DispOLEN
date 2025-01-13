@@ -108,4 +108,36 @@ class ReservationRepository {
 			singleValue: true
 		);
 	}
+
+	/**
+	 * Get timestamp of reservation with limit
+	 *
+	 * @param int $limit
+	 *
+	 * @return array
+	 */
+	public function getTimeOnReservationWithLimit(int $limit = 3) : array {
+		$roleUser = UserRepository::getRoles(uid: $this->reservation->user->uid);
+		if (!empty(array_intersect($roleUser, [Role::TEACHER]))) {
+			$query = "SELECT d.date_start FROM " . Database::RESERVATIONS . " r join " . Database::DISPONIBILITIES . " d on r.uid_disponibilities = d.uid WHERE uid_teacher = :uid_teacher and d.date_end > current_timestamp LIMIT :limit";
+			$data = [
+				"uid_teacher" => $this->reservation->user->uid,
+				"limit" => $limit
+			];
+		}
+
+		if (!empty(array_intersect($roleUser, [Role::STUDENT]))) {
+			$query = "SELECT d.date_start FROM " . Database::RESERVATIONS . " r join " . Database::DISPONIBILITIES . " d on r.uid_disponibilities = d.uid WHERE uid_student = :uid_student and d.date_end > current_timestamp LIMIT :limit";
+			$data = [
+				"uid_student" => $this->reservation->user->uid,
+				"limit" => $limit
+			];
+		}
+
+		return ApplicationData::request(
+			query: $query,
+			data: $data,
+			returnType: PDO::FETCH_ASSOC
+		);
+	}
 }
