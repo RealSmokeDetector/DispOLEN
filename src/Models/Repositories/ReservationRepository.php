@@ -118,6 +118,11 @@ class ReservationRepository {
 	 */
 	public function getTimeOnReservationWithLimit(int $limit = 3) : array {
 		$roleUser = UserRepository::getRoles(uid: $this->reservation->user->uid);
+		$query = "SELECT d.date_start FROM " . Database::RESERVATIONS . " r join " . Database::DISPONIBILITIES . " d on r.uid_disponibilities = d.uid LIMIT :limit";
+		$data = [
+			"limit" => $limit
+		];
+
 		if (!empty(array_intersect($roleUser, [Role::TEACHER]))) {
 			$query = "SELECT d.date_start FROM " . Database::RESERVATIONS . " r join " . Database::DISPONIBILITIES . " d on r.uid_disponibilities = d.uid WHERE uid_teacher = :uid_teacher and d.date_end > current_timestamp LIMIT :limit";
 			$data = [
