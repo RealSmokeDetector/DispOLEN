@@ -1,13 +1,31 @@
 <?php
-	use App\Models\Repositories\ReservationRepository;
-	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
+	use App\Configs\Role;
+	use App\Models\Entities\User;
+	use App\Models\Repositories\UserRepository;
+	use App\Models\Entities\Reservation;
+	use App\Models\Repositories\ReservationRepository;
+
+	$userConnect = UserRepository::getInformations(uid: $_SESSION["user"]["uid"]);
+	$user = new User(uid: $userConnect["uid"]);
+	$reservation = new Reservation();
+ 	$reservation->user = $user;
+	$repoReservation = new ReservationRepository(reservation: $reservation);
+	$allReservation = $repoReservation->getTimeOnReservationWithLimit();
 ?>
 
-<a href="/reservation/details?reservation=<?= $reservation["uid"] ?>">
-	<div class="tile reservation_tile">
-		<p><?= $name ?></p>
-		<p><?= Lang::translate(key: "MAIN_DATE") ?> : <?= ReservationRepository::getStartDate(disponibilityUid: $reservation["uid_disponibilities"]) ?></p>
-		<p><?= Lang::translate(key: "RESERVATION_STATE") ?> : <?= ApplicationData::getStateName(id: $reservation["id_state"]) ?></p>
+<div class="tile reservation_container">
+	<h1><?= (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT])))? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT"): Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
+	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
+
+	<div>
+		<?php foreach ($allReservation as $key=>$value) { ?>
+			<div class="row_reservation">
+				<p><?= $value['date_start'] ?></p>
+				<a class="link" href="#"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
+			</div>
+		<?php } ?>
+
+		<a class="link" href="#"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?></a>
 	</div>
-</a>
+</div>
