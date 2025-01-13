@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Dashboard\Users;
 
 use App\Configs\Path;
 

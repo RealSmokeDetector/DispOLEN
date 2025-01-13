@@ -88,6 +88,10 @@
 	"DASHBOARD_USER_DETAILS_TUTORED_STUDENT" : "Élèves tutorés",
 	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Date de création",
 
+	"DISPONIBILITY_TIMESLOTS_TITLE": "Plage horaire",
+	"NO_DISPONIBILITY_FOUND": "Aucune disponibilité trouvée",
+	"TEACHER_DISPONIBILITY_TITLE": "Disponibilités de votre tuteur",
+
 	"ERROR_SERVER": "Erreur serveur.",
 	"ERROR_DATABASE": "Erreur de base de donnée.",
 	"ERROR_404": "Page inconnue.",

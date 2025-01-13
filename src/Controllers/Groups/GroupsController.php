@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Groups;
 
 use App\Configs\Path;
 use App\Models\Entities\Group;

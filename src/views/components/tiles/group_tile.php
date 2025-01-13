@@ -2,6 +2,6 @@
 	<?php foreach ($groups as $group) {
 		$group["uid"] === $selectedGroup ? $class = "button" : $class = "button button_secondary";
 	?>
-		<button class="<?= $class ?>" data-group="<?= $group["uid"] ?>"><?= $group["name"] ?></button>
+		<button class="<?= $class ?>" data-group="<?= $group["uid"] ?>"><?= htmlspecialchars(string: $group["name"]) ?></button>
 	<?php } ?>
 </div>

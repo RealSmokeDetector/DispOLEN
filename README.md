@@ -72,20 +72,19 @@ Rename `.env.example` to `.env` and fill credentials.
 
 Enable DEBUG key to display some usefull logs.
 
-
 ## 🖥️ VirtualHost
 
 ### Apache2 minimal configuration
 
 ```html
 <VirtualHost *:80>
-        ServerName dispolen.local
-        DocumentRoot /var/www/dispolen/public
+	ServerName dispolen.local
+	DocumentRoot /var/www/dispolen/public
 
-        <Directory /var/www/dispolen/public>
-                DirectoryIndex /index.php
-                FallbackResource /index.php
-        </Directory>
+	<Directory /var/www/dispolen/public>
+		DirectoryIndex /index.php
+		FallbackResource /index.php
+	</Directory>
 </VirtualHost>
 ```
 

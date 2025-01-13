@@ -1,26 +1,31 @@
-const days = [
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-	"Sunday"
-];
-const months = [
-	"January",
-	"February",
-	"March",
-	"April",
-	"May",
-	"June",
-	"July",
-	"August",
-	"September",
-	"October",
-	"November",
-	"December"
-];
+let days = [];
+let month = [];
+
+(async () => {
+	days = [
+		await translate("MAIN_MONDAY"),
+		await translate("MAIN_TUESDAY"),
+		await translate("MAIN_WEDNESDAY"),
+		await translate("MAIN_THURSDAY"),
+		await translate("MAIN_FRIDAY"),
+		await translate("MAIN_SATURDAY"),
+		await translate("MAIN_SUNDAY")
+	];
+	months = [
+		await translate("MAIN_JANUARY"),
+		await translate("MAIN_FEBRUARY"),
+		await translate("MAIN_MARCH"),
+		await translate("MAIN_APRIL"),
+		await translate("MAIN_MAY"),
+		await translate("MAIN_JUNE"),
+		await translate("MAIN_JULY"),
+		await translate("MAIN_AUGUST"),
+		await translate("MAIN_SEPTEMBER"),
+		await translate("MAIN_OCTOBER"),
+		await translate("MAIN_NOVEMBER"),
+		await translate("MAIN_DECEMBER")
+	];
+})()
 
 let buttons = [];
 const date = new Date();

@@ -15,7 +15,7 @@ $router->add(
 );
 $router->add(
 	url: "/groups",
-	controller: $controllersPath . "GroupsController",
+	controller: $controllersPath . "Groups\GroupsController",
 	title: APP_NAME . " - " . Lang::translate(key: "GROUPS_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
@@ -25,7 +25,7 @@ $router->add(
 );
 $router->add(
 	url: "/dashboard",
-	controller: $controllersPath . "DashboardController",
+	controller: $controllersPath . "Dashboard\DashboardController",
 	title: APP_NAME . " - " . Lang::translate(key: "DASHBOARD_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
@@ -34,7 +34,7 @@ $router->add(
 );
 $router->add(
 	url : "/reservations",
-	controller: $controllersPath . "ReservationsController",
+	controller: $controllersPath . "Reservations\ReservationsController",
 	title: APP_NAME . " - " . Lang::translate(key: "RESERVATION_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
@@ -44,7 +44,7 @@ $router->add(
 );
 $router->add(
 	url: "/reservation/details",
-	controller: $controllersPath . "ReservationDetailsController",
+	controller: $controllersPath . "Reservations\Details\ReservationDetailsController",
 	title: APP_NAME . " - " . Lang::translate(key: "RESERVATIONS_DETAILS_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
@@ -54,7 +54,7 @@ $router->add(
 );
 $router->add(
 	url: "/dashboard/users",
-	controller: $controllersPath . "DashboardUsersController",
+	controller: $controllersPath . "Dashboard\Users\DashboardUsersController",
 	title: APP_NAME . " - " . Lang::translate(key: "DASHBOARD_USERS_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
@@ -63,7 +63,7 @@ $router->add(
 );
 $router->add(
 	url: "/dashboard/user/details",
-	controller: $controllersPath . "DashboardUsersDetailsController",
+	controller: $controllersPath . "Dashboard\Users\Details\DashboardUsersDetailsController",
 	title: APP_NAME . " - " . Lang::translate(key: "DASHBOARD_USER_DETAILS_TITLE"),
 	needLoginToBe: true,
 	accessRoles: [
@@ -74,19 +74,19 @@ $router->add(
 // Sessions
 $router->add(
 	url: "/login",
-	controller: $controllersPath . "LoginController",
+	controller: $controllersPath . "Accounts\LoginController",
 	title: APP_NAME . " - " . Lang::translate(key: "LOGIN_TITLE"),
 	needLoginToBe: false
 );
 $router->add(
 	url: "/register",
-	controller: $controllersPath . "RegisterController",
+	controller: $controllersPath . "Accounts\RegisterController",
 	title: APP_NAME . " - " . Lang::translate(key: "REGISTER_TITLE"),
 	needLoginToBe: false
 );
 $router->add(
 	url: "/disconnect",
-	controller: $controllersPath . "DisconnectController",
+	controller: $controllersPath . "Accounts\DisconnectController",
 	needLoginToBe: true
 );
 
@@ -98,11 +98,11 @@ $router->add(
 );
 $router->add(
 	url: "/api/groups",
-	controller: $controllersPath . "API\APIGroupsController",
+	controller: $controllersPath . "API\Groups\APIGroupsController",
 	title: APP_NAME . " - API"
 );
 $router->add(
 	url: "/api/groups/users",
-	controller: $controllersPath . "API\APIGroupsUsersController",
+	controller: $controllersPath . "API\Groups\Users\APIGroupsUsersController",
 	title: APP_NAME . " - API"
 );

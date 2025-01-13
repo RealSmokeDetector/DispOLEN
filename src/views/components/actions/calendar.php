@@ -24,9 +24,11 @@
 			<?php } ?>
 
 			<?php do { ?>
-					<td><?= $currentDate ?></td>
-					<?php if (($currentDate + $offsetDayOfWeak) % 7 === 0) {
-						$tRow++; ?>
+				<td data-date="<?= $datenow->year ?>-<?= $datenow->month ?>-<?= $currentDate ?>" class="calendar-day"><?= $currentDate ?></td>
+				<?php
+					if (($currentDate + $offsetDayOfWeak) % 7 === 0) {
+						$tRow++;
+				?>
 			</tr>
 			<tr>
 				<?php }
