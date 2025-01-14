@@ -610,9 +610,10 @@ nav .logo {
 .calendar tbody td {
 	height: 33px;
 	width: 33px;
+	padding: 2px;
 	text-align: center;
 	align-content: center;
-	transition: 200ms;
+	/* transition: 200ms; */
 	border-radius: var(--border-radius);
 }
 
@@ -625,10 +626,11 @@ nav .logo {
 	background-color: var(--button-background-color);
 	cursor: pointer;
 	color: var(--button-text-color);
-	transition: 200ms;
+	/* transition: 200ms; */
 }
 .selected {
 	border: var(--border-calendar);
+	padding: 0 !important;
 	border-radius: var(--border-radius);
 }
 
