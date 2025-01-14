@@ -23,7 +23,7 @@
 
 		<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
 
-			<p><strong><?= Lang::translate(key: "RESERVATIONS_DETAILS_STUDENT") ?> :</strong></p>
+			<p><strong><?= Lang::translate(key: "MAIN_STUDENT") ?> :</strong></p>
 			<p id="student"><?= ApplicationData::nameFormat(name: $infoStudent["name"], surname: $infoStudent["surname"], reverse: true) ?></p>
 
 		<?php } ?>
@@ -32,8 +32,9 @@
 		<p id="state"><?= htmlspecialchars(string: $reservationData["id_state"]); ?></p>
 		<select id="stateSelect" name="state" style="display: none">
 			<?php foreach ($states as $state) { ?>
-				<option value="<?= $state ?>">
-					<?= $state ?>
+				<option value="<?= $state ?>"
+				<?= $reservationData["id_state"] == $state ? "selected" : "" ?>>
+				<?= $state ?>
 				</option>
 			<?php } ?>
 		</select>
@@ -42,7 +43,10 @@
 		<p id="reason"><?= htmlspecialchars(string: $reservationData["id_reason"]); ?></p>
 		<select id="reasonSelect" name="reason" style="display: none">
 			<?php foreach ($reasons as $reason) { ?>
-				<option value="<?= $reason ?>"><?= $reason ?></option>
+				<option value="<?= $reason ?>"
+				<?= $reservationData["id_reason"] == $reason ? "selected" : "" ?>>
+				<?= $reason ?>
+				</option>
 			<?php } ?>
 		</select>
 
@@ -50,7 +54,10 @@
 		<p id="type"><?= htmlspecialchars(string: $reservationData["id_type"]); ?></p>
 		<select id="typeSelect" name="type" style="display: none">
 			<?php foreach ($types as $type) { ?>
-				<option value="<?= $type ?>"><?= $type ?></option>
+				<option value="<?= $type ?>"
+					<?= $reservationData["id_type"] == $type ? "selected" : "" ?>>
+					<?= $type ?>
+				</option>
 			<?php } ?>
 		</select>
 
