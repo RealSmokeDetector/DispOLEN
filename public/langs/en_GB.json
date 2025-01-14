@@ -67,9 +67,6 @@
 	"REGISTER_LOGIN": "Login",
 
 	"RESERVATION_TITLE": "Reservations",
-	"RESERVATION_TEACHER_NAME": "Teacher name",
-	"RESERVATION_STUDENT_NAME": "Student name",
-	"RESERVATION_STATE": "State",
 
 	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
 	"RESERVATIONS_DETAILS_TUTOR": "Tutor",

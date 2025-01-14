@@ -13,7 +13,7 @@
 	}
 ?>
 
-<h1 class="reservation_title"><?= $title ?></h1>
+<h1 class="reservation_title"><i class="ri-calendar-2-line"></i> <?= $title ?></h1>
 
 <div class="reservation_container">
 	<?php

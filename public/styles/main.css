@@ -598,16 +598,39 @@ nav .logo {
    ============================================== */
 
 .user_container {
+	margin: 40px 10%;
 	display: grid;
-	align-content: space-around;
-	justify-content: space-between;
-	gap: 30px;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+}
+
+.user_title {
+	text-align: center;
 }
 
 .user_container a {
 	text-decoration: none;
 	color: var(--text-color);
 }
+
+.user_container .user_tile .name {
+	font-weight: bold;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+}
+
+.user_container .user_tile .role {
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.user_container .user_tile .group {
+	text-align: end;
+}
+
+/* Dashboard user details page
+   ============================================== */
 
 .user_details_container {
 	display: flex;
