@@ -42,15 +42,15 @@ class Date {
 	 * @return string
 	 */
 	public function convertDate() : string {
+		$day = str_pad(string: $this->day, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT);
+		$month = str_pad(string: $this->month, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT);
+
 		switch ($_COOKIE["LANG"]) {
-			case "en_GB":
-				$result = $this->month . "-" . $this->day . "-" . $this->year;
-				break;
 			case "fr_FR":
-				$result = $this->day . "/" . $this->month . "/" . $this->year;
+				$result = $day . "/" . $month . "/" . $this->year;
 				break;
 			default:
-				$result = $this->month . "-" . $this->day . "-" . $this->year;
+				$result = $month . "-" . $day . "-" . $this->year;
 				break;
 		}
 
@@ -64,8 +64,12 @@ class Date {
 	 */
 	public function convertTime() : string {
 		switch ($_COOKIE["LANG"]) {
+			case "fr_FR":
+				$result = str_pad(string: $this->hour, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->minute, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->second, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT);
+				break;
 			default:
-				$result = $this->hour . ":" . $this->minute . ":" . $this->second . date(format: "A", timestamp: strtotime(datetime: $this->date));
+				$hour = $this->hour % 12;
+				$result = str_pad(string: $hour === 0 ? 12 : $hour, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->minute, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->second, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . date(format: "A", timestamp: strtotime(datetime: $this->date));
 				break;
 		}
 
