@@ -18,7 +18,7 @@
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>
-		<?php foreach ($reservationRepo->getAllDates() as $element) { ?>
+		<?php foreach ($reservationRepo->getAllDates(limit: 3) as $element) { ?>
 			<div class="row_reservation">
 				<p><?= $element["date"] ?></p>
 				<a class="link" href="/reservation/details?reservation=<?= $element["uid"] ?>"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
