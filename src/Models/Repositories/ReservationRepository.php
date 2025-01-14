@@ -85,20 +85,22 @@ class ReservationRepository {
 	 *
 	 * @return array
 	 */
-	public function getReservations() : array {
+	public function getReservations(int $limit = null) : array {
 		$roleUser = UserRepository::getRoles(uid: $this->reservation->user->uid);
 
 		if (!empty(array_intersect($roleUser, [Role::TEACHER, Role::ADMINISTRATOR]))) {
-			$query = "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_teacher = :uid_teacher";
+			$query = "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_teacher = :uid_teacher LIMIT :limit";
 			$data = [
-				"uid_teacher" => $this->reservation->user->uid
+				"uid_teacher" => $this->reservation->user->uid,
+				"limit" => $limit
 			];
 		}
 
 		if (!empty(array_intersect($roleUser, [Role::STUDENT]))) {
-			$query = "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_student = :uid_student";
+			$query = "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_student = :uid_student LIMIT :limit";
 			$data = [
-				"uid_student" => $this->reservation->user->uid
+				"uid_student" => $this->reservation->user->uid,
+				"limit" => $limit
 			];
 		}
 
@@ -152,14 +154,13 @@ class ReservationRepository {
 	 *
 	 * @return array
 	 */
-	public function getAllDates(int $limit = 3) : array {
+	public function getAllDates(int $limit = null) : array {
 		$dates = [];
-		foreach ($this->getReservations() as $reservation) {
+		foreach ($this->getReservations(limit: $limit) as $index=>$reservation) {
 			$date = ApplicationData::request(
-				query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid LIMIT :limit",
+				query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
 				data: [
-					"uid" => $reservation["uid_disponibilities"],
-					"limit" => $limit
+					"uid" => $reservation["uid_disponibilities"]
 				],
 				returnType: PDO::FETCH_COLUMN,
 				singleValue: true

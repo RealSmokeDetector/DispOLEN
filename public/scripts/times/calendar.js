@@ -42,8 +42,20 @@ document.addEventListener("DOMContentLoaded", function() {
 					changeCalendar(-1);
 					break;
 			}
+			document.querySelectorAll('#calendar tbody td').forEach((element) => {
+				element.classList.remove("selected");
+			});
 		});
 	});
+
+	document.querySelectorAll('#calendar tbody td').forEach((element) => {
+		element.addEventListener('click', (event) => {
+			document.querySelectorAll('#calendar tbody td').forEach((element) => {
+				element.classList.remove("selected");
+			});
+			event.target.classList.add("selected");
+		});
+	})
 });
 
 /**
@@ -66,9 +78,12 @@ function changeCalendar(scale) {
 	document.querySelectorAll("#calendar tbody td").forEach((element, index) => {
 		let offSetDayOfWeek = (firstDateOfMonth === 0)? firstDateOfMonth + 6 : firstDateOfMonth - 1
 		if (index >= offSetDayOfWeek && iteration <= DateMonth) {
-			element.textContent = iteration++;
+			element.textContent = iteration;
+			element.dataset.date = date.getFullYear() + "-" + (date.getMonth() + 1)  + "-" + iteration;
+			iteration++;
 		} else {
 			element.textContent = "";
 		}
+
 	});
 }

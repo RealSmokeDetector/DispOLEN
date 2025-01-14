@@ -20,7 +20,7 @@
 
 	<div>
 		<?php
-			foreach ($reservationRepo->getAllDates() as $element) {
+			foreach ($reservationRepo->getAllDates(limit: 3) as $element) {
 				$date = new Date(date: $element["date"]);
 		?>
 			<div class="line"></div>

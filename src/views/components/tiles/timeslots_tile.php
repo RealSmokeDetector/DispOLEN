@@ -4,7 +4,7 @@
 	use App\Utils\Lang;
 ?>
 
-<div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" style="display: none;">
+<div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile">
 	<h1><?= Lang::translate(key: "DISPONIBILITY_TIMESLOTS_TITLE") ?></h1>
 	<div id="timeslots_container">
 		<?php
