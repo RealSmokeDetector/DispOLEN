@@ -2,7 +2,8 @@
 	use App\Utils\Date;
 
 	$datenow = new Date();
-	$offsetDayOfWeak = $datenow->getOffsetWeek() - 1;
+	$offsetDayOfWeak = $datenow->getOffsetWeek();
+	$offsetDayOfWeak = ($offsetDayOfWeak === 0)? $offsetDayOfWeak + 6 : $offsetDayOfWeak - 1;
 	$currentDate = 1;
 	$tRow = 0;
 ?>
@@ -24,7 +25,7 @@
 			<?php } ?>
 
 			<?php do { ?>
-				<td data-date="<?= $datenow->year ?>-<?= $datenow->month ?>-<?= $currentDate ?>" class="calendar-day"><?= $currentDate ?></td>
+				<td data-date="<?= $datenow->year ?>-<?= $datenow->month ?>-<?= $currentDate ?>" class="calendar-day<?= ($currentDate === $datenow->day)?" now": ""?>"><?= $currentDate ?></td>
 				<?php
 					if (($currentDate + $offsetDayOfWeak) % 7 === 0) {
 						$tRow++;

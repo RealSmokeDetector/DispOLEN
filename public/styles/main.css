@@ -624,7 +624,10 @@ nav .logo {
 	color: var(--button-text-color);
 	transition: 200ms;
 }
-
+.now {
+	border: var(--border);
+	border-radius: var(--border-radius);
+}
 
 /* reservation
    ============================================== */
