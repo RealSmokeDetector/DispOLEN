@@ -63,6 +63,7 @@
 
 	/* Text color */
 	--text-color: #000000;
+	--important-text-color: var(--button-background-color);
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #000000;
 	--input-placeholder-text-color: #00000077;
@@ -91,6 +92,7 @@
 
 	/* Text color */
 	--text-color: #ffffff;
+	--important-text-color: #6996ff;
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #ffffff;
 	--input-placeholder-text-color: #ffffff77;
@@ -144,6 +146,12 @@ h1 {
 
 h1 {
 	margin-bottom: 10px;
+}
+
+h2 {
+	font-size: var(--font-size);
+	margin: 0;
+	color: var(--important-text-color);
 }
 
 table {
@@ -493,7 +501,14 @@ nav .logo {
    ============================================== */
 
 .reservation_container {
+	margin: 40px 10%;
 	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+}
+
+.reservation_title {
+	text-align: center;
 }
 
 .reservation_container a {
@@ -501,8 +516,25 @@ nav .logo {
 	color: var(--text-color);
 }
 
-.reservation_container .reservation_tile {
-	width: fit-content;
+.reservation_container .reservation_tile .name {
+	font-weight: bold;
+	padding: 5px 0px 20px 0px;
+	text-align: center;
+}
+
+.reservation_container .reservation_tile .date {
+	text-align: center;
+}
+
+.reservation_container .reservation_tile .state {
+	padding-top: 15px;
+	text-align: end;
+}
+
+.reservation_container .tile .row_reservation {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 /* Groups page
@@ -651,16 +683,6 @@ nav .logo {
 	cursor: pointer;
 	color: var(--button-text-color);
 	transition: 200ms;
-}
-
-
-/* reservation
-   ============================================== */
-
-.reservation_container.tile .row_reservation {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 }
 
 /* ==============================================

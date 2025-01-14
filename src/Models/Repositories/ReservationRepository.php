@@ -128,6 +128,24 @@ class ReservationRepository {
 	}
 
 	/**
+	 * Get end date
+	 *
+	 * @param string $disponibilityUid
+	 *
+	 * @return string
+	 */
+	public static function getEndDate(string $disponibilityUid) : string {
+		return ApplicationData::request(
+			query: "SELECT date_end FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
+			data: [
+				"uid" => $disponibilityUid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
 	 * Get timestamp of reservation with limit
 	 *
 	 * @param int $limit
