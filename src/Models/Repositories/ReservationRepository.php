@@ -118,23 +118,24 @@ class ReservationRepository {
 	 */
 	public function getAllDates(int $limit = 3) : array {
 		$dates = [];
-		foreach ($this->getReservations() as $reservation) {
+		foreach ($this->getReservations() as $index=>$reservation) {
 			$date = ApplicationData::request(
-				query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid LIMIT :limit",
+				query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
 				data: [
-					"uid" => $reservation["uid_disponibilities"],
-					"limit" => $limit
+					"uid" => $reservation["uid_disponibilities"]
 				],
 				returnType: PDO::FETCH_COLUMN,
 				singleValue: true
 			);
 
-			array_push(
-				$dates, [
-					"date" => $date,
-					"uid" => $reservation["uid"]
-				]
-			);
+			if ($index < $limit) {
+				array_push(
+					$dates, [
+						"date" => $date,
+						"uid" => $reservation["uid"]
+					]
+				);
+			}
 		}
 
 		return $dates;
