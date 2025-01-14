@@ -129,7 +129,12 @@ class ReservationRepository {
 				singleValue: true
 			);
 
-			array_push($dates, $date);
+			array_push(
+				$dates, [
+					"date" => $date,
+					"uid" => $reservation["uid"]
+				]
+			);
 		}
 
 		return $dates;

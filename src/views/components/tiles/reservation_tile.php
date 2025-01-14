@@ -18,13 +18,13 @@
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>
-		<?php foreach ($reservationRepo->getAllDates() as $date) { ?>
+		<?php foreach ($reservationRepo->getAllDates() as $element) { ?>
 			<div class="row_reservation">
-				<p><?= $date ?></p>
-				<a class="link" href="#"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
+				<p><?= $element["date"] ?></p>
+				<a class="link" href="/reservation/details?reservation=<?= $element["uid"] ?>"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
 			</div>
 		<?php } ?>
 
-		<a class="link" href="#"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?></a>
+		<a class="link" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?></a>
 	</div>
 </div>
