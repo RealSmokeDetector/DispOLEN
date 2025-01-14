@@ -1,7 +1,6 @@
 <?php
 	use App\Configs\Role;
 	use App\Utils\ApplicationData;
-	use App\Utils\Lang;
 ?>
 
 <a href="/dashboard/user/details?user=<?= $user["uid"] ?>">

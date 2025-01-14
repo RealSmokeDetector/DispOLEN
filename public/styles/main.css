@@ -71,7 +71,7 @@
 
 	/* Text hover color */
 	--text-hover-color: #5e5e5e;
-	--link-hover-color: #7671c9;
+	--link-hover-color: #637cec;
 
 	/* Shadow */
 	--shadow: #32326415 0px 5px 4px 0px;
@@ -96,11 +96,11 @@
 	--button-secondary-text-color: #000000;
 	--theme-button-text-color: #ffffff;
 	--input-placeholder-text-color: #ffffff77;
-	--link-color: #2F27CE;
+	--link-color: #447cff;
 
 	/* Text hover color */
 	--text-hover-color: #adadad;
-	--link-hover-color: #595ec1;
+	--link-hover-color: #9ebbff;
 
 	/* Shadow */
 	--shadow: 0;

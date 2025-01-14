@@ -1,6 +1,5 @@
 <?php
 	use App\Utils\ApplicationData;
-	use App\Utils\Lang;
 ?>
 
 <a href="/reservation/details?reservation=<?= $reservation["uid"] ?>">
