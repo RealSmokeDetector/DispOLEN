@@ -2,7 +2,10 @@
 	use App\Configs\Path;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\ApplicationData;
+	use App\Utils\Lang;
 ?>
+
+<h1 class="user_title"><i class="ri-group-line"></i> <?= Lang::translate(key: "DASHBOARD_USERS_TITLE")?></h1>
 
 <div class="user_container">
 	<?php

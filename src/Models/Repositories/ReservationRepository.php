@@ -45,6 +45,24 @@ class ReservationRepository {
 	}
 
 	/**
+	 * Update reservation
+	 *
+	 * @return void
+	 */
+	public function update() : void {
+		ApplicationData::request(
+			query: "UPDATE " . Database::RESERVATIONS . " SET id_type = :id_type, id_reason = :id_reason, id_state = :id_state, comment = :comment WHERE uid = :uid",
+			data: [
+				"uid" => $this->reservation->uid,
+				"id_type" => $this->reservation->typeId,
+				"id_reason" => $this->reservation->reasonId,
+				"id_state" => $this->reservation->stateId,
+				"comment" => $this->reservation->comment
+			]
+		);
+	}
+
+	/**
 	 * Get information
 	 *
 	 * @return null | array
@@ -103,6 +121,24 @@ class ReservationRepository {
 	public static function getStartDate(string $disponibilityUid) : string {
 		return ApplicationData::request(
 			query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
+			data: [
+				"uid" => $disponibilityUid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Get end date
+	 *
+	 * @param string $disponibilityUid
+	 *
+	 * @return string
+	 */
+	public static function getEndDate(string $disponibilityUid) : string {
+		return ApplicationData::request(
+			query: "SELECT date_end FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
 			data: [
 				"uid" => $disponibilityUid
 			],

@@ -7,7 +7,7 @@
 	"MAIN_ERROR": "Erreur",
 	"MAIN_NO_SCRIPT": "Votre navigateur ne supporte pas JavaScript ou il est désactivé. Veuillez activer JavaScript pour utiliser ce site.",
 	"MAIN_SHOW_MORE":"Voir plus",
-	"MAIN_DETAIL":"détail",
+	"MAIN_DETAIL":"Détails",
 	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Rôle",
 	"MAIN_GROUP": "Groupe",
@@ -51,7 +51,7 @@
 
 	"INDEX_RESERVATION_TITLE_STUDENT": "Vos réservations",
 	"INDEX_RESERVATION_TITLE_TEACHER": "Vos rendez-vous",
-	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici  un extrait de la liste de vos <br>vous avec les étudiants  à votre part<br>Cliquez sur Détail pour accéder<br>à toutes les informations<br>du rendez-vous ciblé",
+	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici  un extrait de la liste de vos réservations",
 
 	"LOGIN_TITLE": "Connexion",
 	"LOGIN_SUBMIT": "Se connecter",
@@ -67,9 +67,6 @@
 	"REGISTER_LOGIN": "Se connecter",
 
 	"RESERVATION_TITLE": "Réservations",
-	"RESERVATION_TEACHER_NAME": "Nom de l'enseignant",
-	"RESERVATION_STUDENT_NAME": "Nom de l'élève",
-	"RESERVATION_STATE": "État",
 
 	"RESERVATIONS_DETAILS_TITLE": "Détails de la réservation",
 	"RESERVATIONS_DETAILS_TUTOR": "Tuteur/Tutrice",

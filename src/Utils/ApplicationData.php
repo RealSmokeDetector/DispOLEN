@@ -70,6 +70,18 @@ class ApplicationData {
 	}
 
 	/**
+	 * Get States
+	 *
+	 * @return array
+	 */
+	public static function getStates() : array {
+		return ApplicationData::request(
+			query: "SELECT id FROM " . Database::STATES,
+			returnType: PDO::FETCH_COLUMN
+		);
+	}
+
+	/**
 	 * Get reason's name
 	 *
 	 * @param int $id
@@ -88,6 +100,18 @@ class ApplicationData {
 	}
 
 	/**
+	 * Get Reasons
+	 *
+	 * @return array
+	 */
+	public static function getReasons() : array {
+		return ApplicationData::request(
+			query: "SELECT id FROM " . Database::REASONS,
+			returnType: PDO::FETCH_COLUMN
+		);
+	}
+
+	/**
 	 * Get type's name
 	 *
 	 * @param int $id
@@ -102,6 +126,18 @@ class ApplicationData {
 			],
 			returnType: PDO::FETCH_COLUMN,
 			singleValue: true
+		);
+	}
+
+	/**
+	 * Get Types
+	 *
+	 * @return array
+	 */
+	public static function getTypes() : array {
+		return ApplicationData::request(
+			query: "SELECT id FROM " . Database::TYPES,
+			returnType: PDO::FETCH_COLUMN
 		);
 	}
 
