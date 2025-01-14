@@ -7,7 +7,7 @@
 	"MAIN_ERROR": "Error",
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
 	"MAIN_SHOW_MORE":"Show more",
-	"MAIN_DETAIL":"detail",
+	"MAIN_DETAIL":"Details",
 	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Role",
 	"MAIN_GROUP": "Group",
@@ -50,8 +50,8 @@
 	"NAVBAR_DISCONNECT": "Logout",
 
 	"INDEX_RESERVATION_TITLE_STUDENT": "Your reservations",
-	"INDEX_RESERVATION_TITLE_TEACHER": "Your meeting(s)",
-	"INDEX_RESERVATION_CONTENT": "Paragraph test <br> \"test\"",
+	"INDEX_RESERVATION_TITLE_TEACHER": "Your meetings",
+	"INDEX_RESERVATION_CONTENT": "Here is an extract from the list of your bookings",
 
 	"LOGIN_TITLE": "Login",
 	"LOGIN_SUBMIT": "Login",
