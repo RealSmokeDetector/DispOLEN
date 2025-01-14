@@ -30,6 +30,6 @@
 			</div>
 		<?php } ?>
 
-		<a class="link show_more" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?></a>
+		<a class="link show_more" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?> <i class="ri-external-link-line"></i></a>
 	</div>
 </div>

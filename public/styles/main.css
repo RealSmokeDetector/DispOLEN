@@ -408,7 +408,11 @@ nav .logo {
 }
 
 .index_container .index_reservation_container .show_more {
-	text-align: right;
+	display: flex;
+	margin: auto;
+	padding-top: 3px;
+	gap: 5px;
+	width: fit-content;
 }
 
 /* Error page
