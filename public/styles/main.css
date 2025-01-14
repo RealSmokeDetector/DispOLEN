@@ -627,7 +627,7 @@ nav .logo {
 	color: var(--button-text-color);
 	transition: 200ms;
 }
-.now {
+.selected {
 	border: var(--border-calendar);
 	border-radius: var(--border-radius);
 }

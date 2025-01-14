@@ -42,8 +42,20 @@ document.addEventListener("DOMContentLoaded", function() {
 					changeCalendar(-1);
 					break;
 			}
+			document.querySelectorAll('#calendar tbody td').forEach((element) => {
+				element.classList.remove("selected");
+			});
 		});
 	});
+
+	document.querySelectorAll('#calendar tbody td').forEach((element) => {
+		element.addEventListener('click', (event) => {
+			document.querySelectorAll('#calendar tbody td').forEach((element) => {
+				element.classList.remove("selected");
+			});
+			event.target.classList.add("selected");
+		});
+	})
 });
 
 /**
@@ -72,5 +84,6 @@ function changeCalendar(scale) {
 		} else {
 			element.textContent = "";
 		}
+
 	});
 }
