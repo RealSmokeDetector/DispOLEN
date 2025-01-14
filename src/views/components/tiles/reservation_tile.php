@@ -10,8 +10,7 @@
 	$user = new User(uid: $userConnect["uid"]);
 	$reservation = new Reservation();
  	$reservation->user = $user;
-	$repoReservation = new ReservationRepository(reservation: $reservation);
-	$allReservation = $repoReservation->getTimeOnReservationWithLimit();
+	$reservationRepo = new ReservationRepository(reservation: $reservation);
 ?>
 
 <div class="tile reservation_container">
@@ -19,9 +18,9 @@
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>
-		<?php foreach ($allReservation as $key=>$value) { ?>
+		<?php foreach ($reservationRepo->getAllDates() as $date) { ?>
 			<div class="row_reservation">
-				<p><?= $value['date_start'] ?></p>
+				<p><?= $date ?></p>
 				<a class="link" href="#"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
 			</div>
 		<?php } ?>
