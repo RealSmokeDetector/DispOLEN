@@ -19,7 +19,6 @@
 
 	/* Border */
 	--border: solid 2px var(--border-color);
-	--border-calendar: solid 2px var(--border-calendar-color);
 
 	/* Border color */
 	--button-border-color: var(--button-background-color);
@@ -61,7 +60,6 @@
 
 	/* Border color */
 	--border-color: #d9d9d9;
-	--border-calendar-color:#979595;
 
 	/* Text color */
 	--text-color: #000000;
@@ -91,7 +89,6 @@
 
 	/* Border color */
 	--border-color: #5c5c5c;
-	--border-calendar-color:#5c5c5c;
 
 	/* Text color */
 	--text-color: #ffffff;
@@ -693,7 +690,7 @@ nav .logo {
 .calendar tbody td {
 	height: 33px;
 	width: 33px;
-	padding: 2px;
+	/* padding: 2px; */
 	text-align: center;
 	align-content: center;
 	transition: 200ms;
@@ -712,9 +709,8 @@ nav .logo {
 	transition: 200ms;
 }
 
-.selected {
-	border: var(--border-calendar);
-	padding: 0 !important;
+.calendar .selected {
+	box-shadow:inset 0px 0px 0px 2px var(--border-color);
 	border-radius: var(--border-radius);
 }
 
