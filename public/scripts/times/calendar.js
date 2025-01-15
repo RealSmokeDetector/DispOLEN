@@ -29,6 +29,7 @@ let month = [];
 
 let buttons = [];
 const date = new Date();
+let dateSelected = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 let offSet = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					break;
 			}
 			document.querySelectorAll('#calendar tbody td').forEach((element) => {
-				element.classList.remove("selected");
+				element.dataset.date === dateSelected ? element.classList.add("selected") : element.classList.remove("selected")
 			});
 		});
 	});
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				element.classList.remove("selected");
 			});
 			event.target.classList.add("selected");
+			dateSelected = event.target.dataset.date;
 		});
 	})
 });
