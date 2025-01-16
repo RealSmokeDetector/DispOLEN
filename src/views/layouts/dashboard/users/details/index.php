@@ -8,7 +8,7 @@
 <div class="tile user_details_container">
 	<form id="formUser" method="POST">
 
-		<input type="hidden" name="uid" value="<?= $user["uid"]?>">
+		<input type="hidden" name="uid" value="<?= $user["uid"] ?>">
 		<p><?= Lang::translate(key: "MAIN_NAME") ?> : </p>
 		<p id="name"><?= htmlspecialchars(string: $user["name"]) ?></p>
 
@@ -59,8 +59,8 @@
 
 		<?php } ?>
 
-		<p><?= Lang::translate(key: "MAIN_EMAIL") ?> : <?= $user["email"]?></p>
-		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_DATE_CREATE") ?> : <?= $user["date_create"]?></p>
+		<p><?= Lang::translate(key: "MAIN_EMAIL") ?> : <?= $user["email"] ?></p>
+		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_DATE_CREATE") ?> : <?= $user["date_create"] ?></p>
 	</form>
 	<button class="button" id="buttonId">Modifier</button>
 </div>

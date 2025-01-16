@@ -18,6 +18,7 @@
 	"MAIN_REASON": "Reason",
 	"MAIN_COMMENT": "Comment",
 	"MAIN_OTHER": "Other",
+	"MAIN_NONE": "None",
 
 	"MAIN_STATE_PENDING": "Pending",
 	"MAIN_STATE_ACCEPTED": "Accepted",

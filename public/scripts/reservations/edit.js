@@ -3,6 +3,7 @@ const reasonElement = document.getElementById("reason");
 const typeElement = document.getElementById("type");
 const commentElement = document.getElementById("comment");
 const formElement = document.getElementById("formReservation");
+const noComment = document.getElementById("no_comment");
 
 const editButton = document.getElementById("buttonId");
 
@@ -29,6 +30,10 @@ function updateReservation() {
 	submitButton.id = "submitUpdateReservation";
 	submitButton.className = "button";
 	submitButton.textContent = "Submit";
+
+	if (isElementExist(noComment)) {
+		noComment.remove();
+	}
 
 	stateElement.replaceWith(stateSelectElement);
 	reasonElement.replaceWith(reasonSelectElement);

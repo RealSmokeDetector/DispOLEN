@@ -9,6 +9,7 @@ use App\Models\Entities\User;
 use App\Models\Repositories\ReservationRepository;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
+use App\Utils\Date;
 use App\Utils\System;
 
 class ReservationDetailsController {
@@ -25,6 +26,10 @@ class ReservationDetailsController {
 		$reasons = ApplicationData::getReasons();
 		$types = ApplicationData::getTypes();
 		$infoStudent = UserRepository::getInformations(uid: $reservationData["uid_student"]);
+		$infoTeacher = UserRepository::getInformations(uid: $reservationData["uid_teacher"]);
+
+		$date_start = new Date(date: ReservationRepository::getStartDate(disponibilityUid: $reservationData["uid_disponibilities"]));
+		$date_end = new Date(date: ReservationRepository::getEndDate(disponibilityUid: $reservationData["uid_disponibilities"]));
 
 		if (
 			!isset($_GET["reservation"])

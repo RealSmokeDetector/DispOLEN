@@ -521,7 +521,6 @@ nav .logo {
 }
 
 .reservation_container .reservation_tile .name {
-	font-weight: bold;
 	padding: 5px 0px 20px 0px;
 	text-align: center;
 }
@@ -539,6 +538,57 @@ nav .logo {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+/* Reservation details page
+   ============================================== */
+
+.reservation_details_container {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	align-items: center;
+	width: fit-content;
+}
+
+.reservation_details_title {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.reservation_details_container .name {
+	text-align: center;
+	padding: 5px 0px 20px 0px;
+	font-size: 20px;
+}
+
+.reservation_details_container .date {
+	text-align: center;
+}
+
+.reservation_details_container .goal {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 15px;
+	padding-top: 5px;
+}
+
+.reservation_details_container .reason,
+.reservation_details_container .type,
+.reservation_details_container .state {
+	padding: 5px 0px;
+}
+
+.reservation_details_container .state {
+	text-align: end;
+	padding-top: 18px;
+	font-weight: bold;
+}
+
+.reservation_details_container .comment {
+	text-align: center;
+	padding-top: 20px;
 }
 
 /* Groups page

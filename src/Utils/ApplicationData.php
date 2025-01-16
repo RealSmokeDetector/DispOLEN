@@ -225,10 +225,10 @@ class ApplicationData {
 		$surname = ucfirst(string: mb_strtolower(string: $surname));
 
 		if ($reverse) {
-			return $surname . " " . $name;
+			return htmlspecialchars(string: $surname . " " . $name);
 		}
 
-		return $name . " " . $surname;
+		return htmlspecialchars(string: $name . " " . $surname);
 	}
 
 	/**
