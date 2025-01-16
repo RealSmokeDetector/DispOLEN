@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Configs\Path;
 use App\Models\Entities\User;
+use App\Utils\Roles;
 use App\Utils\System;
 use App\Configs\Role;
 use App\Models\Repositories\UserRepository;
@@ -25,7 +26,7 @@ class IndexController {
 
 		require Path::LAYOUT . "/navbar.php";
 
-		if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT]))) {
+		if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) {
 			$user = new User(uid: $_SESSION["user"]["uid"]);
 			$userRepo = new UserRepository(user: $user);
 			$teacherUid = $userRepo->getTutor();

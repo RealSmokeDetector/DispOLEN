@@ -6,6 +6,7 @@
 	use App\Models\Repositories\UserRepository;
 	use App\Models\Entities\Reservation;
 	use App\Models\Repositories\ReservationRepository;
+	use App\Utils\Roles;
 
 	$userConnect = UserRepository::getInformations(uid: $_SESSION["user"]["uid"]);
 	$user = new User(uid: $userConnect["uid"]);
@@ -15,7 +16,8 @@
 ?>
 
 <div class="tile index_reservation_container">
-	<h1><?= (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT]))) ? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT") : Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
+	<h1><?= (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) ? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT") : Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
+
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>

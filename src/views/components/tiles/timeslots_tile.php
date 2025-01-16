@@ -2,13 +2,14 @@
 	use App\Configs\Role;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 ?>
 
 <div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile">
 	<h1><?= Lang::translate(key: "DISPONIBILITY_TIMESLOTS_TITLE") ?></h1>
 	<div id="timeslots_container">
 		<?php
-			if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT]))) {
+			if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) {
 				if (!empty($teacherDisponibilities)) {
 		?>
 				<ul>

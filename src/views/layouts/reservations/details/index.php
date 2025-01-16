@@ -2,6 +2,7 @@
 	use App\Configs\Role;
 	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 ?>
 
 <h1 class="reservation_details_title"><?= Lang::translate(key: "RESERVATIONS_DETAILS_TITLE") ?></h1>
@@ -10,7 +11,7 @@
 	<form id="formReservation" method="POST">
 		<input type="hidden" name="uid" value="<?= $reservationData["uid"] ?>">
 
-		<h2 class="name"><?= empty(array_intersect($roles, [Role::STUDENT])) ? mb_strtoupper(string: htmlspecialchars(string: $infoStudent["surname"])) . " " . ucfirst(string: htmlspecialchars(string: $infoStudent["name"])) : ApplicationData::nameFormat(name: $infoTeacher["name"], surname: $infoTeacher["surname"], complete: false, toChange: 1, reverse: true) ?></h2>
+		<h2 class="name"><?= Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT]) ? ApplicationData::nameFormat(name: $infoTeacher["name"], surname: $infoTeacher["surname"], complete: false, toChange: 1, reverse: true) : mb_strtoupper(string: htmlspecialchars(string: $infoStudent["surname"])) . " " . ucfirst(string: htmlspecialchars(string: $infoStudent["name"])) ?></h2>
 
 		<p class="date"><?= $date_start->convertTime() . " - " . $date_end->convertTime() . " " . $date_end->convertDate() ?></p>
 
@@ -30,7 +31,7 @@
 			<p id="comment"></p>
 		<?php } ?>
 
-		<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
+		<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
 			<select id="stateSelect" name="state" style="display: none">
 				<?php foreach ($states as $state) { ?>
 					<option value="<?= $state ?>"
@@ -61,7 +62,7 @@
 
 	</form>
 
-	<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
+	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
 		<button class="button" id="buttonId">Modifier</button>
 	<?php } ?>
 

@@ -5,6 +5,7 @@ namespace App;
 use App\Controllers\ErrorController;
 use App\Models\Repositories\UserRepository;
 use App\Utils\Lang;
+use App\Utils\Roles;
 
 class Router {
 	protected array $routes = [];
@@ -58,7 +59,7 @@ class Router {
 			if ($this->routes[$url][2] == true && isset($_SESSION["user"])) {
 				// User got necessary permissions
 				if (
-					!empty(array_intersect($this->routes[$url][3], UserRepository::getRoles(uid: $_SESSION["user"]["uid"])))
+					Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: $this->routes[$url][3])
 					|| $this->routes[$url][3] === []
 				) {
 					$GLOBALS["title"] = $this->routes[$url][1];

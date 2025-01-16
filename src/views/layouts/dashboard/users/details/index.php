@@ -3,6 +3,7 @@
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 ?>
 
 <div class="tile user_details_container">
@@ -26,7 +27,7 @@
 			<?php } ?>
 		</select>
 
-		<?php if (!empty(array_intersect($roles, [Role::STUDENT]))) { ?>
+		<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) { ?>
 			<p><?= Lang::translate(key: "MAIN_GROUP") ?> : </p>
 			<p><?= htmlspecialchars(string: $userGroup ? ApplicationData::getGroupName(uid: $userGroup) : " ") ?></p>
 			<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTOR") ?> : </p>
@@ -43,7 +44,7 @@
 
 		<?php } ?>
 
-		<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
+		<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
 
 			<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT") ?> : </p>
 			<p id="tutoredStudents"><?= htmlspecialchars(string: join(array: $tutoredStudents, separator: " ")) ?></p>

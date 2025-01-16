@@ -3,6 +3,7 @@
 	use App\Configs\Role;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 ?>
 
 <nav>
@@ -25,21 +26,27 @@
 		<a class="button button_secondary" href="/" title="<?= Lang::translate(key: "NAVBAR_HOME") ?>"><i class="ri-home-2-line"></i> <?= Lang::translate(key: "NAVBAR_HOME") ?></a>
 	</div>
 
-<?php if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::TEACHER, Role::ADMINISTRATOR]))) { ?>
+<?php if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::TEACHER, Role::ADMINISTRATOR])) { ?>
 
 	<div class="item">
 		<a class="button button_secondary" href="/groups" title="<?= Lang::translate(key: "NAVBAR_GROUPS") ?>"><i class="ri-team-line"></i> <?= Lang::translate(key: "NAVBAR_GROUPS") ?></a>
 	</div>
 
-<?php }
-	if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::ADMINISTRATOR]))) { ?>
+<?php
+	}
+
+	if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::ADMINISTRATOR])) {
+?>
 
 	<div class="item">
 		<a class="button button_secondary" href="/dashboard/users" title="<?= Lang::translate(key: "NAVBAR_DASHBOARD_USERS") ?>"><i class="ri-group-line"></i> <?= Lang::translate(key: "NAVBAR_DASHBOARD_USERS") ?></a>
 	</div>
 
-<?php }
-	if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT, Role::TEACHER]))) { ?>
+<?php
+	}
+
+	if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT, Role::TEACHER])) {
+?>
 
 <div class="item">
 	<a class="button button_secondary" href="/reservations" title="<?= Lang::translate(key: "NAVBAR_RESERVATION") ?>"><i class="ri-calendar-2-line"></i> <?= Lang::translate(key: "NAVBAR_RESERVATION") ?></a>
