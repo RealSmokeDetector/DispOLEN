@@ -3,7 +3,7 @@
 
 	$datenow = new Date();
 	$offsetDayOfWeak = $datenow->getOffsetWeek();
-	$offsetDayOfWeak = ($offsetDayOfWeak === 0)? $offsetDayOfWeak + 6 : $offsetDayOfWeak - 1;
+	$offsetDayOfWeak = ($offsetDayOfWeak === 0) ? $offsetDayOfWeak + 6 : $offsetDayOfWeak - 1;
 	$currentDate = 1;
 	$tRow = 0;
 ?>
@@ -14,7 +14,7 @@
 		<thead>
 			<tr>
 				<?php foreach (DAYS as $day) { ?>
-					<td><?= mb_substr(string: $day, start: 0, length: 3)?></td>
+					<td><?= mb_substr(string: $day, start: 0, length: 3) ?></td>
 				<?php } ?>
 			</tr>
 		</thead>
@@ -25,7 +25,7 @@
 			<?php } ?>
 
 			<?php do { ?>
-				<td data-date="<?= $datenow->year ?>-<?= $datenow->month ?>-<?= $currentDate ?>" class="calendar-day<?= ($currentDate === $datenow->day)?" selected": ""?>"><?= $currentDate ?></td>
+				<td data-date="<?= $datenow->year ?>-<?= $datenow->month ?>-<?= $currentDate ?>" class="calendar-day<?= ($currentDate === $datenow->day) ? " selected" : "" ?>"><?= $currentDate ?></td>
 				<?php
 					if (($currentDate + $offsetDayOfWeak) % 7 === 0) {
 						$tRow++;
