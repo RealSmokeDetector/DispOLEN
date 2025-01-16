@@ -1,6 +1,5 @@
 <?php
 	use App\Configs\Role;
-	use App\Models\Repositories\ReservationRepository;
 	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
 ?>
@@ -31,32 +30,39 @@
 			<p id="comment"></p>
 		<?php } ?>
 
-		<select id="stateSelect" name="state" style="display: none">
-			<?php foreach ($states as $state) { ?>
-				<option value="<?= $state ?>"
-				<?= $reservationData["id_state"] == $state ? "selected" : "" ?>>
-				<?= ApplicationData::stateFormat(id: $state) ?>
-				</option>
-			<?php } ?>
-		</select>
+		<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
+			<select id="stateSelect" name="state" style="display: none">
+				<?php foreach ($states as $state) { ?>
+					<option value="<?= $state ?>"
+					<?= $reservationData["id_state"] == $state ? "selected" : "" ?>>
+					<?= ApplicationData::stateFormat(id: $state) ?>
+					</option>
+				<?php } ?>
+			</select>
 
-		<select id="reasonSelect" name="reason" style="display: none">
-			<?php foreach ($reasons as $reason) { ?>
-				<option value="<?= $reason ?>"
-				<?= $reservationData["id_reason"] == $reason ? "selected" : "" ?>>
-				<?= ApplicationData::reasonFormat(id: $reason) ?>
-				</option>
-			<?php } ?>
-		</select>
+			<select id="reasonSelect" name="reason" style="display: none">
+				<?php foreach ($reasons as $reason) { ?>
+					<option value="<?= $reason ?>"
+					<?= $reservationData["id_reason"] == $reason ? "selected" : "" ?>>
+					<?= ApplicationData::reasonFormat(id: $reason) ?>
+					</option>
+				<?php } ?>
+			</select>
 
-		<select id="typeSelect" name="type" style="display: none">
-			<?php foreach ($types as $type) { ?>
-				<option value="<?= $type ?>"
-					<?= $reservationData["id_type"] == $type ? "selected" : "" ?>>
-					<?= ApplicationData::typeFormat(id: $type) ?>
-				</option>
-			<?php } ?>
-		</select>
+			<select id="typeSelect" name="type" style="display: none">
+				<?php foreach ($types as $type) { ?>
+					<option value="<?= $type ?>"
+						<?= $reservationData["id_type"] == $type ? "selected" : "" ?>>
+						<?= ApplicationData::typeFormat(id: $type) ?>
+					</option>
+				<?php } ?>
+			</select>
+		<?php } ?>
+
 	</form>
-	<button class="button" id="buttonId">Modifier</button>
+
+	<?php if (!empty(array_intersect($roles, [Role::TEACHER]))) { ?>
+		<button class="button" id="buttonId">Modifier</button>
+	<?php } ?>
+
 </div>

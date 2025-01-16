@@ -23,7 +23,7 @@ function updateReservation() {
 
 	let inputCommentElement = document.createElement("input");
 	inputCommentElement.name = "comment"
-	inputCommentElement.value = commentElement.textContent;
+	inputCommentElement.value = commentElement.textContent.slice(1, -1);
 
 	let submitButton = document.createElement("button")
 	submitButton.type = "submit";
