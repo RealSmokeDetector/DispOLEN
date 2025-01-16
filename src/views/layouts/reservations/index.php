@@ -17,7 +17,7 @@
 <h1 class="reservation_title"><i class="ri-calendar-2-line"></i> <?= $title ?></h1>
 
 <?php if (!empty(array_intersect($roles, [Role::STUDENT]))) { ?>
-	<button class="button" id="idButton">+</button>
+	<button class="button" id="edit_button">+</button>
 <?php } ?>
 
 <div class="reservation_container">
@@ -40,10 +40,3 @@
 		}
 	?>
 </div>
-
-<?php if (!empty(array_intersect($roles, [Role::STUDENT]))) { ?>
-	<div class="tile reservation_add_popup" id="reservation_popup" style="display: none">
-		<?php require Path::COMPONENTS . "/actions/calendar.php"; ?>
-		<button class="button" id="closePopup">X</button>
-	</div>
-<?php } ?>

@@ -1,6 +1,6 @@
-const editButton = document.getElementById("idButton");
+const editButton = document.getElementById("edit_button");
 const reservationPopup = document.getElementById("reservation_popup");
-const closePopup = document.getElementById("closePopup");
+const closePopup = document.getElementById("close_popup");
 
 editButton.addEventListener("click", () => {
 	addReservation();
@@ -20,9 +20,8 @@ closePopup.addEventListener("click", () => {
 	reservationPopup.style.display = "none";
 });
 
-// Close the popup by clicking outside it
 document.addEventListener("click", (event) => {
-	if (reservationPopup.style.display === "flex" && !reservationPopup.contains(event.target) && event.target !== editButton) {
+	if ((reservationPopup.style.display === "flex" && !reservationPopup.contains(event.target) && event.target !== editButton) || event.target.className === "blur") {
 		reservationPopup.style.display = "none";
 	}
 });

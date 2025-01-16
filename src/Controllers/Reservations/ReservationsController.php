@@ -25,6 +25,8 @@ class ReservationsController {
 
 		require Path::LAYOUT . "/header.php";
 
+		require Path::COMPONENTS . "/popup/reservation_add.php";
+
 		require Path::LAYOUT . "/navbar.php";
 
 		require Path::LAYOUT . "/reservations/index.php";
