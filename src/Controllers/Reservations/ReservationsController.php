@@ -12,7 +12,9 @@ class ReservationsController {
 	public function render() : void {
 		$scripts = [
 			"/scripts/engine.js",
-			"/scripts/theme.js"
+			"/scripts/theme.js",
+			"/scripts/reservations/popup.js",
+			"/scripts/times/calendar.js"
 		];
 
 		$user = new User(uid: $_SESSION["user"]["uid"]);
