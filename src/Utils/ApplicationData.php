@@ -3,7 +3,10 @@
 namespace App\Utils;
 
 use App\Configs\Database;
+use App\Configs\Reason;
 use App\Configs\Role;
+use App\Configs\State;
+use App\Configs\Type;
 use PDO;
 
 class ApplicationData {
@@ -52,24 +55,6 @@ class ApplicationData {
 	}
 
 	/**
-	 * Get state's name
-	 *
-	 * @param int $id
-	 *
-	 * @return string
-	 */
-	public static function getStateName(int $id) : string {
-		return ApplicationData::request(
-			query: "SELECT name FROM " . Database::STATES . " WHERE id = :id",
-			data: [
-				"id" => $id
-			],
-			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
-		);
-	}
-
-	/**
 	 * Get States
 	 *
 	 * @return array
@@ -82,24 +67,6 @@ class ApplicationData {
 	}
 
 	/**
-	 * Get reason's name
-	 *
-	 * @param int $id
-	 *
-	 * @return string
-	 */
-	public static function getReasonName(int $id) : string {
-		return ApplicationData::request(
-			query: "SELECT name FROM " . Database::REASONS . " WHERE id = :id",
-			data: [
-				"id" => $id
-			],
-			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
-		);
-	}
-
-	/**
 	 * Get Reasons
 	 *
 	 * @return array
@@ -108,24 +75,6 @@ class ApplicationData {
 		return ApplicationData::request(
 			query: "SELECT id FROM " . Database::REASONS,
 			returnType: PDO::FETCH_COLUMN
-		);
-	}
-
-	/**
-	 * Get type's name
-	 *
-	 * @param int $id
-	 *
-	 * @return string
-	 */
-	public static function getTypeName(int $id) : string {
-		return ApplicationData::request(
-			query: "SELECT name FROM " . Database::TYPES . " WHERE id = :id",
-			data: [
-				"id" => $id
-			],
-			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
 		);
 	}
 
@@ -156,6 +105,72 @@ class ApplicationData {
 				return Lang::translate(key: "MAIN_TEACHER");
 			case Role::ADMINISTRATOR:
 				return Lang::translate(key: "MAIN_ADMINISTRATOR");
+			default:
+				return "";
+		}
+	}
+
+	/**
+	 * Format state name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
+	public static function stateFormat(int $id) : string {
+		switch ($id) {
+			case State::PENDING:
+				return Lang::translate(key: "MAIN_STATE_PENDING");
+			case State::ACCEPTED:
+				return Lang::translate(key: "MAIN_STATE_ACCEPTED");
+			case State::REFUSED:
+				return Lang::translate(key: "MAIN_STATE_REFUSED");
+			case State::CANCELED:
+				return Lang::translate(key: "MAIN_STATE_CANCELED");
+			default:
+				return "";
+		}
+	}
+
+	/**
+	 * Format reason name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
+	public static function reasonFormat(int $id) : string {
+		switch ($id) {
+			case Reason::INFORMATION:
+				return Lang::translate(key: "MAIN_REASON_INFORMATION");
+			case Reason::PRESENTATION:
+				return Lang::translate(key: "MAIN_REASON_PRESENTATION");
+			case Reason::OTHER:
+				return Lang::translate(key: "MAIN_OTHER");
+			default:
+				return "";
+		}
+	}
+
+	/**
+	 * Format type name
+	 *
+	 * @param int $id
+	 *
+	 * @return string
+	 */
+	public static function typeFormat(int $id) : string {
+		switch ($id) {
+			case Type::FACE_TO_FACE:
+				return Lang::translate(key: "MAIN_TYPE_FACE_TO_FACE");
+			case Type::PHONE:
+				return Lang::translate(key: "MAIN_TYPE_PHONE");
+			case Type::VIDEO:
+				return Lang::translate(key: "MAIN_TYPE_VIDEO");
+			case Type::VISIT:
+				return Lang::translate(key: "MAIN_TYPE_VISIT");
+			case Type::OTHER:
+				return Lang::translate(key: "MAIN_OTHER");
 			default:
 				return "";
 		}

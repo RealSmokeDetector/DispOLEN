@@ -164,19 +164,19 @@ INSERT INTO public.roles (id, name) VALUES (1, 'student'), (2, 'teacher'), (10, 
 -- Data for table 'types'
 --
 
-INSERT INTO public.types (id, name) VALUES (1, 'Company visit'), (2, 'Face-to-face CFA'), (3, 'Phone call'), (4, 'Video Discord'), (5, 'Visio Teams');
+INSERT INTO public.types (id, name) VALUES (1, 'face to face'), (2, 'phone'), (3, 'video'), (4, 'visit'), (5, 'other');
 
 --
 -- Data for table 'reasons'
 --
 
-INSERT INTO public.reasons (id, name) VALUES (1, 'Assessment 1'), (2, 'Assessment 2'), (3, 'Presentation subject & problem'), (4, 'Progress point'), (5, 'Other');
+INSERT INTO public.reasons (id, name) VALUES (1, 'informations'), (2, 'presentation'), (3, 'other');
 
 --
 -- Data for table 'states'
 --
 
-INSERT INTO public.states (id, name) VALUES (1, 'Pending'), (2, 'Accepted'), (3, 'Refused'), (4, 'Canceled');
+INSERT INTO public.states (id, name) VALUES (1, 'pending'), (2, 'accepted'), (3, 'refused'), (4, 'canceled');
 
 --
 -- Constraint for table 'users'

@@ -29,34 +29,34 @@
 		<?php } ?>
 
 		<p><strong><?= Lang::translate(key: "MAIN_STATE") ?> : </strong> </p>
-		<p id="state"><?= htmlspecialchars(string: $reservationData["id_state"]); ?></p>
+		<p id="state"><?= ApplicationData::stateFormat(id: $reservationData["id_state"]); ?></p>
 		<select id="stateSelect" name="state" style="display: none">
 			<?php foreach ($states as $state) { ?>
 				<option value="<?= $state ?>"
 				<?= $reservationData["id_state"] == $state ? "selected" : "" ?>>
-				<?= $state ?>
+				<?= ApplicationData::stateFormat(id: $state) ?>
 				</option>
 			<?php } ?>
 		</select>
 
 		<p><strong><?= Lang::translate(key: "MAIN_REASON") ?> :</strong> </p>
-		<p id="reason"><?= htmlspecialchars(string: $reservationData["id_reason"]); ?></p>
+		<p id="reason"><?= ApplicationData::reasonFormat(id: $reservationData["id_reason"]); ?></p>
 		<select id="reasonSelect" name="reason" style="display: none">
 			<?php foreach ($reasons as $reason) { ?>
 				<option value="<?= $reason ?>"
 				<?= $reservationData["id_reason"] == $reason ? "selected" : "" ?>>
-				<?= $reason ?>
+				<?= ApplicationData::reasonFormat(id: $reason) ?>
 				</option>
 			<?php } ?>
 		</select>
 
 		<p><strong>Type:</strong></p>
-		<p id="type"><?= htmlspecialchars(string: $reservationData["id_type"]); ?></p>
+		<p id="type"><?= ApplicationData::typeFormat(id: $reservationData["id_type"]); ?></p>
 		<select id="typeSelect" name="type" style="display: none">
 			<?php foreach ($types as $type) { ?>
 				<option value="<?= $type ?>"
 					<?= $reservationData["id_type"] == $type ? "selected" : "" ?>>
-					<?= $type ?>
+					<?= ApplicationData::typeFormat(id: $type) ?>
 				</option>
 			<?php } ?>
 		</select>

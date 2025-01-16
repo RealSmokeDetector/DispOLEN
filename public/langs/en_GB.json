@@ -17,6 +17,20 @@
 	"MAIN_STATE": "State",
 	"MAIN_REASON": "Reason",
 	"MAIN_COMMENT": "Comment",
+	"MAIN_OTHER": "Other",
+
+	"MAIN_STATE_PENDING": "Pending",
+	"MAIN_STATE_ACCEPTED": "Accepted",
+	"MAIN_STATE_REFUSED": "Refused",
+	"MAIN_STATE_CANCELED": "Canceled",
+
+	"MAIN_REASON_INFORMATION": "Informations",
+	"MAIN_REASON_PRESENTATION": "Presentation",
+
+	"MAIN_TYPE_FACE_TO_FACE": "Face to face",
+	"MAIN_TYPE_PHONE": "Phone call",
+	"MAIN_TYPE_VIDEO": "Video call",
+	"MAIN_TYPE_VISIT": "Company visit",
 
 	"MAIN_MONDAY": "Monday",
 	"MAIN_TUESDAY": "Tuesday",
