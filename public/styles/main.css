@@ -278,14 +278,14 @@ input::placeholder {
 	font-size: 20px;
 	cursor: pointer;
 	appearance: none;
+
+	option {
+		font-family: "Noto Color Emoji";
+	}
 }
 
 .lang_selection:focus {
 	outline: none;
-}
-
-.lang_selection option {
-	font-family: "Noto Color Emoji";
 }
 
 /* ==============================================
@@ -306,17 +306,17 @@ nav {
 	border-bottom: var(--border);
 	transition: 200ms;
 	margin-bottom: 30px;
-}
 
-nav a {
-	text-decoration: none;
-	color: var(--text-color);
-}
+	a {
+		text-decoration: none;
+		color: var(--text-color);
+	}
 
-nav .logo {
-	font-size: 20px;
-	position: absolute;
-	left: 20px;
+	.logo {
+		font-size: 20px;
+		position: absolute;
+		left: 20px;
+	}
 }
 
 /* ==============================================
@@ -324,20 +324,24 @@ nav .logo {
    ============================================== */
 
 @media only screen and (max-width: 800px) {
-	nav .item a {
-		font-size: 0;
-		height: min-content;
-		display: block;
-		margin-top: -5px;
-		margin-bottom: -4px;
-	}
+	nav {
+		.item {
+			a {
+				font-size: 0;
+				height: min-content;
+				display: block;
+				margin-top: -5px;
+				margin-bottom: -4px;
 
-	nav .item a i {
-		font-size: var(--font-size);
-	}
+				i {
+					font-size: var(--font-size);
+				}
+			}
+		}
 
-	nav .logo {
-		display: none;
+		.logo {
+			display: none;
+		}
 	}
 
 	.groups_content {
@@ -347,10 +351,10 @@ nav .logo {
 	footer {
 		flex-direction: column !important;
 		gap: 4px !important;
-	}
 
-	footer span {
-		display: none;
+		span {
+			display: none;
+		}
 	}
 }
 
@@ -403,25 +407,25 @@ nav .logo {
 	gap: 30px;
 	justify-content: center;
 	align-items: center;
-}
 
-.index_container .index_reservation_container {
-	width: 300px;
-}
+	.index_reservation_container {
+		width: 300px;
 
-.index_container .index_reservation_container .row_reservation {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin-bottom: 20px;
-}
+		.row_reservation {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
 
-.index_container .index_reservation_container .show_more {
-	display: flex;
-	margin: auto;
-	padding-top: 3px;
-	gap: 5px;
-	width: fit-content;
+		.show_more {
+			display: flex;
+			margin: auto;
+			padding-top: 3px;
+			gap: 5px;
+			width: fit-content;
+		}
+	}
 }
 
 /* Error page
@@ -437,10 +441,10 @@ nav .logo {
 	border-radius: var(--border-radius);
 	padding: 20px 30px;
 	width: fit-content;
-}
 
-.error_container a {
-	margin-top: 20px;
+	a {
+		margin-top: 20px;
+	}
 }
 
 /* Login/Register page
@@ -450,6 +454,16 @@ nav .logo {
 .register_container {
 	display: flex;
 	justify-content: center;
+
+	.password i {
+		position: absolute;
+		transform: translate(-36px, 11px);
+		font-size: 18px;
+		background-color: var(--input-background-color);
+		cursor: pointer;
+		padding: 0px 4px;
+		transition: 200ms;
+	}
 }
 
 .login,
@@ -461,53 +475,36 @@ nav .logo {
 	width: fit-content;
 	padding: 40px 30px;
 	transition: 200ms;
-}
 
-.login .submit,
-.register .submit {
-	margin-top: 10px;
-}
+	.submit {
+		margin-top: 10px;
+	}
 
-.login .link,
-.register .link {
-	color: var(--text-color);
-	text-decoration: none;
-	cursor: pointer;
-	margin-top: -5px;
-	margin-bottom: -25px;
-	transition: 200ms;
-}
+	.link {
+		color: var(--text-color);
+		text-decoration: none;
+		cursor: pointer;
+		margin-top: -5px;
+		margin-bottom: -25px;
+		transition: 200ms;
+	}
 
-.login .link:hover,
-.register .link:hover {
-	color: var(--text-hover-color);
-	transition: 200ms;
-}
+	.link:hover {
+		color: var(--text-hover-color);
+		transition: 200ms;
+	}
 
-.login input,
-.register input,
-.login .password,
-.register .password {
-	width: -webkit-fill-available;
-	width: -moz-available;
-}
+	input,
+	.password {
+		width: -webkit-fill-available;
+		width: -moz-available;
+	}
 
-.login h1,
-.register h1 {
-	padding: 0 20px;
-	margin: 0px;
-	margin-bottom: 10px;
-}
-
-.login_container .password i,
-.register_container .password i {
-	position: absolute;
-	transform: translate(-36px, 11px);
-	font-size: 18px;
-	background-color: var(--input-background-color);
-	cursor: pointer;
-	padding: 0px 4px;
-	transition: 200ms;
+	h1 {
+		padding: 0 20px;
+		margin: 0px;
+		margin-bottom: 10px;
+	}
 }
 
 /* Reservations page
@@ -518,52 +515,54 @@ nav .logo {
 	display: grid;
 	grid-gap: 20px;
 	grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+
+	a {
+		text-decoration: none;
+		color: var(--text-color);
+	}
+
+	.reservation_tile {
+		.name {
+			padding: 5px 0px 20px 0px;
+			text-align: center;
+		}
+
+		.date {
+			text-align: center;
+		}
+
+		.state {
+			padding-top: 15px;
+			text-align: end;
+		}
+	}
+
+	.tile .row_reservation {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
 }
 
 .reservation_title {
 	text-align: center;
 }
 
-.reservation_container a {
-	text-decoration: none;
-	color: var(--text-color);
-}
-
-.reservation_container .reservation_tile .name {
-	padding: 5px 0px 20px 0px;
-	text-align: center;
-}
-
-.reservation_container .reservation_tile .date {
-	text-align: center;
-}
-
-.reservation_container .reservation_tile .state {
-	padding-top: 15px;
-	text-align: end;
-}
-
-.reservation_container .tile .row_reservation {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
-
 .reservation_add_popup {
 	width: fit-content;
 	margin: 20vh auto auto auto;
-}
 
-.reservation_add_popup .close_popup {
-	cursor: pointer;
-	font-size: 26px;
-	float: right;
-}
+	.close_popup {
+		cursor: pointer;
+		font-size: 26px;
+		float: right;
+	}
 
-.reservation_add_popup .item {
-	display: flex;
-	flex-direction: row;
-	gap: 20px;
+	.item {
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+	}
 }
 
 /* Reservation details page
@@ -575,46 +574,46 @@ nav .logo {
 	margin: auto;
 	align-items: center;
 	width: fit-content;
+
+	.name {
+		text-align: center;
+		padding: 5px 0px 20px 0px;
+		font-size: 20px;
+	}
+
+	.date {
+		text-align: center;
+	}
+
+	.goal {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		gap: 15px;
+		padding-top: 5px;
+	}
+
+	.reason,
+	.type,
+	.state {
+		padding: 5px 0px;
+	}
+
+	.state {
+		text-align: end;
+		padding-top: 18px;
+		font-weight: bold;
+	}
+
+	.comment {
+		text-align: center;
+		padding-top: 20px;
+	}
 }
 
 .reservation_details_title {
 	text-align: center;
 	padding-bottom: 20px;
-}
-
-.reservation_details_container .name {
-	text-align: center;
-	padding: 5px 0px 20px 0px;
-	font-size: 20px;
-}
-
-.reservation_details_container .date {
-	text-align: center;
-}
-
-.reservation_details_container .goal {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 15px;
-	padding-top: 5px;
-}
-
-.reservation_details_container .reason,
-.reservation_details_container .type,
-.reservation_details_container .state {
-	padding: 5px 0px;
-}
-
-.reservation_details_container .state {
-	text-align: end;
-	padding-top: 18px;
-	font-weight: bold;
-}
-
-.reservation_details_container .comment {
-	text-align: center;
-	padding-top: 20px;
 }
 
 /* Groups page
@@ -627,51 +626,51 @@ nav .logo {
 	flex-direction: column;
 	width: fit-content;
 	margin: auto;
-}
 
-.groups_content {
-	display: flex;
-	gap: 30px;
-}
+	.group_container {
+		width: fit-content;
+		height: fit-content;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
 
-.groups_container .group_container {
-	width: fit-content;
-	height: fit-content;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
+	.student_container {
+		width: fit-content;
+		height: fit-content;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 
-.groups_container .student_container {
-	width: fit-content;
-	height: fit-content;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
+		.item {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			gap: 20px;
+			justify-content: space-between;
 
-.groups_container .student_container .item {
-	display: flex;
-	align-items: center;
-	flex-direction: row;
-	gap: 20px;
-	justify-content: space-between;
-}
+			button:hover {
+				border-color: red;
+			}
+		}
+	}
 
-.groups_container .student_container .item button:hover {
-	border-color: red;
-}
+	.group_control {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
 
-.group_control {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-}
+		.action {
+			display: flex;
+			gap: 20px;
+		}
+	}
 
-.group_control .action {
-	display: flex;
-	gap: 20px;
+	.groups_content {
+		display: flex;
+		gap: 30px;
+	}
 }
 
 /* Dashboard users page
@@ -682,31 +681,33 @@ nav .logo {
 	display: grid;
 	grid-gap: 20px;
 	grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+
+	a {
+		text-decoration: none;
+		color: var(--text-color);
+	}
+
+	.user_tile {
+		.name {
+			font-weight: bold;
+			padding: 5px 0px 5px 0px;
+			text-align: center;
+		}
+
+		.role {
+			font-weight: bold;
+			text-align: center;
+			padding-bottom: 10px;
+		}
+
+		.group {
+			text-align: end;
+		}
+	}
 }
 
 .user_title {
 	text-align: center;
-}
-
-.user_container a {
-	text-decoration: none;
-	color: var(--text-color);
-}
-
-.user_container .user_tile .name {
-	font-weight: bold;
-	padding: 5px 0px 5px 0px;
-	text-align: center;
-}
-
-.user_container .user_tile .role {
-	font-weight: bold;
-	text-align: center;
-	padding-bottom: 10px;
-}
-
-.user_container .user_tile .group {
-	text-align: end;
 }
 
 /* Dashboard user details page
@@ -718,14 +719,14 @@ nav .logo {
 	margin: auto;
 	align-items: center;
 	width: fit-content;
-}
 
-.user_details_container input {
-	width: 100%;
-}
+	input {
+		width: 100%;
+	}
 
-.user_details_container .button {
-	width: fit-content;
+	.button {
+		width: fit-content;
+	}
 }
 
 /* ==============================================
@@ -735,63 +736,66 @@ nav .logo {
 /* Calendar
    ============================================== */
 
-.calendar table {
-	display: flex;
-	flex-direction: column;
-}
+.calendar {
+	table {
+		display: flex;
+		flex-direction: column;
+	}
 
-.calendar caption {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 10px;
-}
+	caption {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 10px;
 
-.calendar caption i {
-	font-size: 18px;
-	pointer-events: none;
-}
+		i {
+			font-size: 18px;
+			pointer-events: none;
+		}
+	}
 
-.calendar thead {
-	margin: 5px 0;
-}
+	thead {
+		margin: 5px 0;
 
-.calendar thead td {
-	width: 33px;
-}
+		td {
+			width: 33px;
+		}
+	}
 
-.calendar tbody tr {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-}
+	tbody {
+		tr {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+		}
 
-.calendar tbody td {
-	height: 33px;
-	width: 33px;
-	/* padding: 2px; */
-	text-align: center;
-	align-content: center;
-	transition: 200ms;
-	border-radius: var(--border-radius);
-}
+		td {
+			height: 33px;
+			width: 33px;
+			text-align: center;
+			align-content: center;
+			transition: 200ms;
+			border-radius: var(--border-radius);
+		}
 
-.calendar tbody td:empty {
-	height: 0px;
-	padding: 0px;
-}
+		td:empty {
+			height: 0px;
+			padding: 0px;
+		}
 
-.calendar tbody td:hover:not(:empty) {
-	background-color: var(--button-background-color);
-	cursor: pointer;
-	color: var(--button-text-color);
-	transition: 200ms;
-}
+		td:hover:not(:empty) {
+			background-color: var(--button-background-color);
+			cursor: pointer;
+			color: var(--button-text-color);
+			transition: 200ms;
+		}
+	}
 
-.calendar .selected {
-	box-shadow:inset 0px 0px 0px 2px var(--border-color);
-	border-radius: var(--border-radius);
+	.selected {
+		box-shadow:inset 0px 0px 0px 2px var(--border-color);
+		border-radius: var(--border-radius);
+	}
 }
 
 /* ==============================================
@@ -807,15 +811,15 @@ footer {
 	border-top: var(--border);
 	gap: 10px;
 	margin-top: 30px;
-}
 
-footer a {
-	text-decoration: none;
-	color: var(--text-color);
-	transition: 200ms;
-}
+	a {
+		text-decoration: none;
+		color: var(--text-color);
+		transition: 200ms;
+	}
 
-footer a:hover {
-	color: var(--text-hover-color);
-	transition: 200ms;
+	a:hover {
+		color: var(--text-hover-color);
+		transition: 200ms;
+	}
 }
