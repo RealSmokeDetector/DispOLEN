@@ -1,5 +1,5 @@
 // Select all elements with the class "calendar-day"
-const calendarDays = document.querySelectorAll(".calendar-day");
+const calendarDays = document.querySelectorAll("#calendar tbody td");
 
 // Loop through each "calendar-day" element
 calendarDays.forEach(day => {
@@ -8,3 +8,4 @@ calendarDays.forEach(day => {
 		window.location.href = `?selected_date=${date}`;
 	});
 });
+

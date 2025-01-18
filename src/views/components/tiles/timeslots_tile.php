@@ -72,13 +72,11 @@
 			$timeSlot = sprintf("%02d:00 - %02d:00", $hour, $hour + 1);
 			$isReserved = isReserved($teacherDisponibilities, $hour);
 	?>
+
+			<div class="line"></div>
 			<div class="timeslot">
 				<h2><?= htmlspecialchars($timeSlot) ?></h2>
-				<?php if ($isReserved) { ?>
-					<p><?= Lang::translate(key: "RESERVED") ?></p>
-				<?php } else { ?>
-					<p><?= Lang::translate(key: "AVAILABLE") ?></p>
-				<?php } ?>
+				<p><?= ($isReserved)? Lang::translate(key: "RESERVED") : Lang::translate(key: "AVAILABLE"); ?></p>
 			</div>
 	<?php
 		}
