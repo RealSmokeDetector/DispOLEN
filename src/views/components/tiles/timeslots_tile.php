@@ -4,9 +4,8 @@
 	use App\Utils\Lang;
 	use App\Models\Repositories\ReservationRepository;
 
-
 	//(note to myself) generate today's date anf fill th container with divs for each hour of the day from 8 am to 5 pm
-	$date=date("Y-m-d");
+	$date=isset($_GET['selected_date']) ? $_GET['selected_date'] : date("Y-m-d");
 
 	$teacherDisponibilities = ReservationRepository::getTeacherDisponibilitiesByDate($date);
 
@@ -58,7 +57,6 @@
 	}
 	// timeslots from 8 am t 5pm
 	$todayTimeslots = generateTodayTimeslots(8, 17, 60);
-	$date = (new DateTime())->format('Y-m-d');
 
 	?>
 
