@@ -82,6 +82,8 @@
 	"REGISTER_LOGIN": "Login",
 
 	"RESERVATION_TITLE": "Reservations",
+	"NO_RESERVATION": "No reservation",
+
 
 	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
 	"RESERVATIONS_DETAILS_TUTOR": "Tutor",

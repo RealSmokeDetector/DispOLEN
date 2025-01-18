@@ -176,4 +176,22 @@ class ReservationRepository {
 
 		return $dates;
 	}
+
+	/**
+	 * Get teacher disponibilities by date
+	 *
+	 * @param string $date
+	 *
+	 * @return array
+	 */
+	public static function getTeacherDisponibilitiesByDate(string $date): array {
+	return ApplicationData::request(
+		query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
+		data: [
+			"date" => $date
+		],
+		returnType: PDO::FETCH_ASSOC
+	);
+	}
+
 }
