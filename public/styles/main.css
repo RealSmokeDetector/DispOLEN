@@ -344,6 +344,10 @@ nav {
 		}
 	}
 
+	.index_container {
+		flex-direction: column !important;
+	}
+
 	.groups_content {
 		flex-direction: column;
 	}
