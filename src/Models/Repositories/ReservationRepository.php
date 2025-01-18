@@ -194,4 +194,26 @@ class ReservationRepository {
 	);
 	}
 
-}
+	/**
+	 * Create availability for today
+	 *
+	 * @param string $teacherUid
+	 *
+	 * @return bool
+	 */
+	public static function createAvailabilityForToday(string $teacherUid): bool {
+		$today = (new DateTime())->format('Y-m-d');
+
+		return ApplicationData::request(
+			query: "INSERT INTO " . Database::DISPONIBILITIES . " (uid, date_start, date_end, uid_user) VALUES (:uid, :date_start, :date_end, :uid_user)",
+			data: [
+				"uid" => uniqid(),
+				"date_start" => $today . ' 08:00:00',
+				"date_end" => $today . ' 17:00:00',
+				"uid_user" => $teacherUid
+			],
+			returnType: PDO::FETCH_NONE
+		);
+	}
+
+	}
