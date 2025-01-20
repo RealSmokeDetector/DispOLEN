@@ -16,6 +16,12 @@ class RouterFactory extends Router {
 			controller: $this->controllersPath . "IndexController"
 		);
 		parent::add(
+			url: "/calendar",
+			controller: $this->controllersPath . "Calendar\CalendarController",
+			title: APP_NAME . " - " . Lang::translate(key: "CALENDAR_TITLE"),
+			needLoginToBe: true
+		);
+		parent::add(
 			url: "/groups",
 			controller: $this->controllersPath . "Groups\GroupsController",
 			title: APP_NAME . " - " . Lang::translate(key: "GROUPS_TITLE"),

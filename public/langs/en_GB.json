@@ -58,6 +58,7 @@
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",
 	"NAVBAR_DASHBOARD_USERS": "Users",
+	"NAVBAR_CALENDAR": "Calendar",
 	"NAVBAR_RESERVATION": "Reservations",
 	"NAVBAR_GROUPS": "Groups",
 	"NAVBAR_ACCOUNT": "Account",
@@ -88,6 +89,8 @@
 
 	"ACCOUNT_TITLE": "Account",
 	"ACCOUNT_MODIFY_TITLE": "Modify account",
+
+	"CALENDAR_TITLE": "Calendar",
 
 	"RESERVATION_TITLE": "Reservations",
 

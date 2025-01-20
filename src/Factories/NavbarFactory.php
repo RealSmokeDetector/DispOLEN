@@ -31,6 +31,13 @@ class NavbarFactory extends Navbar {
 			needLoginToBe: true,
 		);
 		parent::add(
+			title: Lang::translate(key: "NAVBAR_CALENDAR"),
+			icon: "ri-calendar-check-line",
+			url: "/calendar",
+			class: "button button_secondary",
+			needLoginToBe: true
+		);
+		parent::add(
 			title: Lang::translate(key: "NAVBAR_GROUPS"),
 			icon: "ri-team-line",
 			url: "/groups",
