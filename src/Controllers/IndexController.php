@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Configs\Path;
+use App\Factories\NavbarFactory;
 use App\Models\Entities\User;
 use App\Utils\Roles;
 use App\Utils\System;
@@ -24,7 +25,7 @@ class IndexController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		new NavbarFactory();
 
 		if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) {
 			$user = new User(uid: $_SESSION["user"]["uid"]);

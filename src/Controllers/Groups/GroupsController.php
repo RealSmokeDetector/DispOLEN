@@ -3,6 +3,7 @@
 namespace App\Controllers\Groups;
 
 use App\Configs\Path;
+use App\Factories\NavbarFactory;
 use App\Models\Entities\Group;
 use App\Models\Repositories\GroupRepository;
 use App\Utils\ApplicationData;
@@ -38,7 +39,7 @@ class GroupsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		new NavbarFactory();
 
 		require Path::LAYOUT . "/groups/index.php";
 

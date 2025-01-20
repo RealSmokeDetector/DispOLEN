@@ -3,6 +3,7 @@
 namespace App\Controllers\Reservations;
 
 use App\Configs\Path;
+use App\Factories\NavbarFactory;
 use App\Models\Entities\Reservation;
 use App\Models\Entities\User;
 use App\Models\Repositories\ReservationRepository;
@@ -27,7 +28,7 @@ class ReservationsController {
 
 		require Path::COMPONENTS . "/popup/reservation_add.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		new NavbarFactory();
 
 		require Path::LAYOUT . "/reservations/index.php";
 

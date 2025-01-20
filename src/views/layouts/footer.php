@@ -2,7 +2,7 @@
 	use App\Utils\GitHub;
 ?>
 
-</main>
+	</main>
 	<footer>
 		<a href="https://github.com/RealSmokeDetector" target="_blank">RealSmokeDetector <i class="ri-external-link-line"></i></a>
 		<span>-</span>
