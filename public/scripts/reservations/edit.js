@@ -1,4 +1,5 @@
 const stateElement = document.getElementById("state");
+const stateValue = stateElement.getAttribute('value');
 const reasonElement = document.getElementById("reason");
 const typeElement = document.getElementById("type");
 const commentElement = document.getElementById("comment");
@@ -12,9 +13,6 @@ editButton.addEventListener("click", () => {
 })
 
 function updateReservation() {
-	let stateSelectElement = document.getElementById("stateSelect");
-	stateSelectElement.style.display = "inline-block";
-
 	let reasonSelectElement = document.getElementById("reasonSelect");
 	reasonSelectElement.style.display = "inline-block";
 
@@ -25,9 +23,15 @@ function updateReservation() {
 	inputCommentElement.name = "comment"
 	inputCommentElement.value = commentElement.textContent.slice(1, -1);
 
+	let inputHiddenStateElement = document.createElement("input");
+    inputHiddenStateElement.type = "hidden";
+    inputHiddenStateElement.name = "state";
+    inputHiddenStateElement.value = stateValue;
+
 	let submitButton = document.createElement("button")
 	submitButton.type = "submit";
 	submitButton.id = "submitUpdateReservation";
+	submitButton.name = "submitAllForm"
 	submitButton.className = "button";
 	submitButton.textContent = "Submit";
 
@@ -35,10 +39,12 @@ function updateReservation() {
 		noComment.remove();
 	}
 
-	stateElement.replaceWith(stateSelectElement);
 	reasonElement.replaceWith(reasonSelectElement);
 	typeElement.replaceWith(typeSelectElement);
 	commentElement.replaceWith(inputCommentElement);
+
+	formElement.appendChild(inputHiddenStateElement);
+    formElement.appendChild(submitButton);
 
 	editButton.remove();
 

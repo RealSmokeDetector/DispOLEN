@@ -21,7 +21,7 @@
 			<p class="type" id="type"><i class="ri-map-pin-line"></i> <?= ApplicationData::typeFormat(id: $reservationData["id_type"]) ?></p>
 		</div>
 
-		<p class="state" id="state"><i class="ri-speed-up-line"></i> <?= ApplicationData::stateFormat(id: $reservationData["id_state"]) ?></p>
+		<p class="state" id="state" value="<?= $reservationData["id_state"] ?>" ><i class="ri-speed-up-line"></i> <?= ApplicationData::stateFormat(id: $reservationData["id_state"]) ?></p>
 
 		<h2 class="comment"><?= Lang::translate(key: "MAIN_COMMENT") ?></h2>
 		<?php if ($reservationData["comment"]) { ?>
@@ -32,15 +32,6 @@
 		<?php } ?>
 
 		<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
-			<select id="stateSelect" name="state" style="display: none">
-				<?php foreach ($states as $state) { ?>
-					<option value="<?= $state ?>"
-					<?= $reservationData["id_state"] == $state ? "selected" : "" ?>>
-					<?= ApplicationData::stateFormat(id: $state) ?>
-					</option>
-				<?php } ?>
-			</select>
-
 			<select id="reasonSelect" name="reason" style="display: none">
 				<?php foreach ($reasons as $reason) { ?>
 					<option value="<?= $reason ?>"
@@ -62,8 +53,20 @@
 
 	</form>
 
-	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
-		<button class="button" id="buttonId">Modifier</button>
+	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER]) & $reservationData["id_state"] == 1) { ?>
+		<form method="post">
+			<input type="hidden" name="uid" value="<?= $reservationData["uid"] ?>">
+			<button class="button" type="submit" name="action" value="accept"><?= Lang::translate(key: "RESERVATIONS_DETAILS_ACCEPT") ?></button>
+			<button class="button" type="submit" name="action" value="refuse"><?= Lang::translate(key: "RESERVATIONS_DETAILS_REFUSE") ?></button>
+		</form>
+	<?php } ?>
+
+	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER]) & $reservationData["id_state"] == 2) { ?>
+		<button class="button" id="buttonId"><?= Lang::translate(key: "RESERVATIONS_DETAILS_UPDATE") ?></button>
+		<form method="post">
+			<input type="hidden" name="uid" value="<?= $reservationData["uid"] ?>">
+			<button class="button" type="submit" name="action" value="cancel"><?= Lang::translate(key: "RESERVATIONS_DETAILS_CANCEL") ?></button>
+		</form>
 	<?php } ?>
 
 </div>
