@@ -32,6 +32,20 @@
 			</div>
 		<?php } ?>
 
-		<a class="link show_more" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?> <i class="ri-external-link-line"></i></a>
+		<?php if (count(value: $reservationRepo->getReservations()) == 0 && Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) { ?>
+
+			<p class="no_reservation_title"><?= Lang::translate(key: "INDEX_RESERVATION_NO_RESERVATION_STUDENT") ?></p>
+			<a class="link show_more no_reservation" href="/reservations"><?= Lang::translate(key: "INDEX_CREATE_RESERVATION_STUDENT") ?><i class="ri-external-link-line"></i></a>
+
+		<?php } else if (count(value: $reservationRepo->getReservations()) == 0 && Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::TEACHER])) { ?>
+
+			<p class="no_reservation_title"><?= Lang::translate(key: "INDEX_RESERVATION_NO_RESERVATION_TEACHER") ?></p>
+			<a class="link show_more no_reservation" href=""><?= Lang::translate(key: "INDEX_CREATE_RESERVATION_TEACHER") ?><i class="ri-external-link-line"></i></a>
+
+		<?php } else { ?>
+
+			<a class="link show_more" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?> <i class="ri-external-link-line"></i></a>
+
+		<?php } ?>
 	</div>
 </div>
