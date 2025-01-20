@@ -9,7 +9,8 @@ class CalendarController {
 	public function render() : void {
 		$scripts = [
 			"/scripts/engine.js",
-			"/scripts/theme.js"
+			"/scripts/theme.js",
+			"/scripts/times/calendar.js"
 		];
 
 		require Path::LAYOUT . "/header.php";

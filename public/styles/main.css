@@ -780,7 +780,7 @@ nav {
 		flex-direction: column;
 	}
 
-	caption {
+	.action {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

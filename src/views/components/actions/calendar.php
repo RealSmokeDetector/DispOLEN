@@ -9,8 +9,13 @@
 ?>
 
 <div class="tile calendar" id="calendar">
+	<div class="action">
+		<button class="button" id="calendar_down"><i class="ri-skip-left-fill"></i></button>
+		<p id="date_title"><?= MONTH[$datenow->month - 1] . " " . $datenow->year ?></p>
+		<button class="button" id="calendar_up"><i class="ri-skip-right-fill"></i></button>
+	</div>
+
 	<table>
-		<caption><button class="button" id="calendar_down"><i class="ri-skip-left-fill"></i></button><p><?= MONTH[$datenow->month - 1] . " " . $datenow->year ?></p><button class="button" id="calendar_up"><i class="ri-skip-right-fill"></i></button></caption>
 		<thead>
 			<tr>
 				<?php foreach (DAYS as $day) { ?>
@@ -20,7 +25,7 @@
 		</thead>
 		<tbody>
 			<tr>
-			<?php for ($i=0;  $offsetDayOfWeak > $i; $i++) { ?>
+			<?php for ($i=0; $offsetDayOfWeak > $i; $i++) { ?>
 				<td></td>
 			<?php } ?>
 

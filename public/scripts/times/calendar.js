@@ -27,38 +27,39 @@ let month = [];
 	];
 })()
 
-let buttons = [];
 const date = new Date();
 let dateSelected = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 let offSet = 0;
 
-document.addEventListener("DOMContentLoaded", function() {
-	document.querySelectorAll("#calendar button").forEach((element) => {
-		element.addEventListener("click", function(event) {
-			switch (event.target.id) {
-				case "calendar_up":
-					changeCalendar(1);
-					break;
-				case "calendar_down":
-					changeCalendar(-1);
-					break;
-			}
-			document.querySelectorAll('#calendar tbody td').forEach((element) => {
-				element.dataset.date === dateSelected ? element.classList.add("selected") : element.classList.remove("selected")
-			});
+const calendarUp = document.getElementById("calendar_up");
+const calendarDown = document.getElementById("calendar_down");
+const dateTitle = document.getElementById("date_title");
+
+calendarUp.addEventListener("click", () => {
+	changeCalendar(1);
+})
+
+calendarDown.addEventListener("click", () => {
+	changeCalendar(-1);
+})
+
+document.querySelectorAll("#calendar button").forEach((element) => {
+	element.addEventListener("click", () => {
+		document.querySelectorAll('#calendar tbody td').forEach((element) => {
+			element.dataset.date === dateSelected ? element.classList.add("selected") : element.classList.remove("selected")
 		});
 	});
-
-	document.querySelectorAll('#calendar tbody td').forEach((element) => {
-		element.addEventListener('click', (event) => {
-			document.querySelectorAll('#calendar tbody td').forEach((element) => {
-				element.classList.remove("selected");
-			});
-			event.target.classList.add("selected");
-			dateSelected = event.target.dataset.date;
-		});
-	})
 });
+
+document.querySelectorAll('#calendar tbody td').forEach((element) => {
+	element.addEventListener('click', (event) => {
+		document.querySelectorAll('#calendar tbody td').forEach((element) => {
+			element.classList.remove("selected");
+		});
+		event.target.classList.add("selected");
+		dateSelected = event.target.dataset.date;
+	});
+})
 
 /**
  * Change calendar mounth
@@ -67,12 +68,11 @@ document.addEventListener("DOMContentLoaded", function() {
  *
  * @return {void}
  */
-
 function changeCalendar(scale) {
 	date.setMonth(date.getMonth() + scale);
 	offSet += scale;
 
-	document.querySelector("#calendar caption p").textContent = months[date.getMonth()] + " " + date.getFullYear();
+	dateTitle.textContent = months[date.getMonth()] + " " + date.getFullYear();
 	let iteration = 1;
 	const DateMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 	const firstDateOfMonth = new Date(date.getFullYear(), date.getMonth() , 1).getDay();
@@ -86,6 +86,5 @@ function changeCalendar(scale) {
 		} else {
 			element.textContent = "";
 		}
-
 	});
 }
