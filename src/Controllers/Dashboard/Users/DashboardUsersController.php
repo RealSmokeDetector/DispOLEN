@@ -3,6 +3,7 @@
 namespace App\Controllers\Dashboard\Users;
 
 use App\Configs\Path;
+use App\Factories\NavbarFactory;
 
 class DashboardUsersController {
 	public function render() : void {
@@ -13,7 +14,7 @@ class DashboardUsersController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		new NavbarFactory();
 
 		require Path::LAYOUT . "/dashboard/users/index.php";
 
