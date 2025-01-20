@@ -429,6 +429,15 @@ nav {
 			gap: 5px;
 			width: fit-content;
 		}
+
+		.no_reservation {
+			margin-top: 10px;
+		}
+
+		.no_reservation_title {
+			margin-top: 7px;
+			text-align: center;
+		}
 	}
 }
 

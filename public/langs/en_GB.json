@@ -67,6 +67,10 @@
 	"INDEX_RESERVATION_TITLE_STUDENT": "Your reservations",
 	"INDEX_RESERVATION_TITLE_TEACHER": "Your meetings",
 	"INDEX_RESERVATION_CONTENT": "Here is an extract from the list of your bookings",
+	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "You don't have reservation",
+	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "You don't have meetings",
+	"INDEX_CREATE_RESERVATION_STUDENT": "Create reservation",
+	"INDEX_CREATE_RESERVATION_TEACHER": "Create disponibility",
 
 	"LOGIN_TITLE": "Login",
 	"LOGIN_SUBMIT": "Login",
