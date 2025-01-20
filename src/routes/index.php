@@ -85,6 +85,12 @@ $router->add(
 	needLoginToBe: false
 );
 $router->add(
+	url: "/account",
+	controller: $controllersPath . "Accounts\AccountIndexController",
+	title: APP_NAME . " - " . Lang::translate(key: "ACCOUNT_TITLE"),
+	needLoginToBe: true
+);
+$router->add(
 	url: "/disconnect",
 	controller: $controllersPath . "Accounts\DisconnectController",
 	needLoginToBe: true

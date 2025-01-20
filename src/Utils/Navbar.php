@@ -62,7 +62,7 @@ class Navbar {
 			}
 		}
 
-		include Path::COMPONENTS . "/actions/profile_button.php";
+		include Path::COMPONENTS . "/actions/account_button.php";
 		include Path::COMPONENTS . "/actions/theme_button.php";
 		include Path::COMPONENTS . "/actions/lang_selection.php";
 

@@ -6,8 +6,9 @@
 	"MAIN_PASSWORD": "Password",
 	"MAIN_ERROR": "Error",
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
-	"MAIN_SHOW_MORE":"Show more",
-	"MAIN_DETAIL":"Details",
+	"MAIN_SHOW_MORE": "Show more",
+	"MAIN_SAVE": "Save",
+	"MAIN_DETAIL": "Details",
 	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Role",
 	"MAIN_GROUP": "Group",
@@ -59,7 +60,7 @@
 	"NAVBAR_DASHBOARD_USERS": "Users",
 	"NAVBAR_RESERVATION": "Reservations",
 	"NAVBAR_GROUPS": "Groups",
-	"NAVBAR_PROFILE": "Profile",
+	"NAVBAR_ACCOUNT": "Account",
 	"NAVBAR_LOGIN": "Login",
 	"NAVBAR_REGISTER": "Create account",
 	"NAVBAR_DISCONNECT": "Logout",
@@ -84,6 +85,9 @@
 	"REGISTER_UNIDENTICAL_PASSWORD": "The passwords you entered do not match.",
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
+
+	"ACCOUNT_TITLE": "Account",
+	"ACCOUNT_MODIFY_TITLE": "Modify account",
 
 	"RESERVATION_TITLE": "Reservations",
 
