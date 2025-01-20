@@ -2,6 +2,7 @@
 
 use App\Configs\Path;
 use App\Controllers\ErrorController;
+use App\Factories\RouterFactory;
 use App\Utils\Lang;
 use App\Utils\System;
 use Dotenv\Dotenv;
@@ -88,4 +89,4 @@ if (DATABASE instanceof Exception) {
 }
 
 // Routes
-require BASE_DIR . "/src/routes/index.php";
+$router = new RouterFactory();

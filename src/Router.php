@@ -33,11 +33,11 @@ class Router {
 	/**
 	 * Render route's view
 	 *
-	 * @param mixed $url Access URL
+	 * @param string $url Access URL
 	 *
 	 * @return void
 	 */
-	public function render($url) : void {
+	public function render(string $url) : void {
 		while (mb_substr(string: $url, start: -1) === "/") {
 			$url = mb_substr(string: $url, start: 0, length: -1);
 		}
