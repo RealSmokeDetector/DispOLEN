@@ -7,6 +7,7 @@ use App\Configs\Role;
 use App\Models\Entities\Reservation;
 use App\Utils\ApplicationData;
 use App\Utils\System;
+use App\Utils\Date;
 use PDO;
 
 class ReservationRepository {
@@ -216,4 +217,35 @@ class ReservationRepository {
 		);
 	}
 
+	/**
+	 *  create and call function in object Date to formate universal date YYYY-MM-DD HH:mm:ss.000
+	 *
+	 * @param string $date
+	 *
+	 * @return bool
+	 */
+	public function reservationByDate(Date $date_start = new Date()) : array {
+		$dates = [];
+		foreach ($this->getReservations() as $index=>$reservation) {
+			$date = ApplicationData::request(
+				query: "SELECT date_start, date_end FROM " . Database::DISPONIBILITIES . " WHERE date_start >= :date_start_interval
+				AND date_start <= :date_end_interval",
+				data: [
+					"date_start_interval" => $date_start,
+					"date_end_interval" => $date_start
+				],
+				returnType: PDO::FETCH_COLUMN,
+				singleValue: true
+			);
+
+			array_push(
+				$dates, [
+					"date" => $date,
+					"uid" => $reservation["uid"]
+				]
+			);
+		}
+
+		return $dates;
+	}
 	}

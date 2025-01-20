@@ -106,3 +106,8 @@ $router->add(
 	controller: $controllersPath . "API\Groups\Users\APIGroupsUsersController",
 	title: APP_NAME . " - API"
 );
+$router->add(
+	url: "/api/reservations",
+	controller: $controllersPath . "API\Reservations\APIReservationsController",
+	title: APP_NAME . " - API"
+);
