@@ -26,13 +26,16 @@
 	"MAIN_STATE_REFUSED": "Refusé",
 	"MAIN_STATE_CANCELED": "Annulé",
 
-	"MAIN_REASON_INFORMATION": "Prise d'informations",
+	"MAIN_REASON_REVIEW_1": "Bilan 1",
+	"MAIN_REASON_REVIEW_2": "Bilan 2",
 	"MAIN_REASON_PRESENTATION": "Présentation",
+	"MAIN_REASON_PROGRESS": "Point d'avancement",
 
+	"MAIN_TYPE_VISIT": "Visite",
 	"MAIN_TYPE_FACE_TO_FACE": "Face à face",
 	"MAIN_TYPE_PHONE": "Appel",
-	"MAIN_TYPE_VIDEO": "Appel vidéo",
-	"MAIN_TYPE_VISIT": "Visite",
+	"MAIN_TYPE_VIDEO_DISCORD": "Appel Discord",
+	"MAIN_TYPE_VIDEO_TEAMS": "Appel Teams",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",

@@ -164,13 +164,13 @@ INSERT INTO public.roles (id, name) VALUES (1, 'student'), (2, 'teacher'), (10, 
 -- Data for table 'types'
 --
 
-INSERT INTO public.types (id, name) VALUES (1, 'face to face'), (2, 'phone'), (3, 'video'), (4, 'visit'), (5, 'other');
+INSERT INTO public.types (id, name) VALUES (1, 'visit'), (2, 'face to face'), (3, 'phone'), (4, 'video discord'), (5, 'video teams');
 
 --
 -- Data for table 'reasons'
 --
 
-INSERT INTO public.reasons (id, name) VALUES (1, 'informations'), (2, 'presentation'), (3, 'other');
+INSERT INTO public.reasons (id, name) VALUES (1, 'review 1'), (2, 'review 2'), (3, 'presentation'), (4, 'progress'), (5, 'other');
 
 --
 -- Data for table 'states'
