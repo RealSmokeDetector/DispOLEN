@@ -771,6 +771,32 @@ nav .logo {
 }
 
 /* ==============================================
+   Tile
+   ============================================== */
+
+/* timeslots
+   ============================================== */
+
+.disponibility_timeslots_tile {
+
+	.timeslots {
+		display:flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.time_container {
+			display: flex;
+			flex-direction: row;
+		}
+
+	  }
+
+	.line {
+		margin: 10px 0px;
+	}
+}
+
+/* ==============================================
    Footer
    ============================================== */
 
