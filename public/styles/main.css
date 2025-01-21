@@ -700,6 +700,10 @@ nav {
 		justify-content: space-between;
 		align-items: center;
 
+		.group_name {
+			font-weight: bold;
+		}
+
 		.action {
 			display: flex;
 			gap: 20px;
