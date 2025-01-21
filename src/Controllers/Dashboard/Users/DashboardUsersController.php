@@ -9,10 +9,13 @@ class DashboardUsersController {
 	public function render() : void {
 		$scripts = [
 			"/scripts/engine.js",
-			"/scripts/theme.js"
+			"/scripts/theme.js",
+			"/scripts/users/popup.js"
 		];
 
 		require Path::LAYOUT . "/header.php";
+
+		require Path::COMPONENTS . "/popup/user_add_popup.php";
 
 		new NavbarFactory();
 

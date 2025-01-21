@@ -8,6 +8,8 @@
 
 <h1 class="user_title"><i class="ri-group-line"></i> <?= Lang::translate(key: "DASHBOARD_USERS_TITLE") ?></h1>
 
+<button class="button" id="add_button">+</button>
+
 <div class="user_container">
 	<?php
 		foreach (ApplicationData::getUsers() as $user) {

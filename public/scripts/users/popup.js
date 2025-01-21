@@ -1,12 +1,12 @@
-const editButton = document.getElementById("edit_button");
-const userPopup = document.getElementById("reservation_popup");
+const addButton = document.getElementById("add_button");
+const userPopup = document.getElementById("user_popup");
 const closePopup = document.getElementById("close_popup");
 
-editButton.addEventListener("click", () => {
-	addReservation();
+addButton.addEventListener("click", () => {
+	addUser();
 });
 
-function addReservation() {
+function addUser() {
 	userPopup.style.display = "flex";
 }
 
@@ -21,7 +21,7 @@ closePopup.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (event) => {
-	if ((userPopup.style.display === "flex" && !userPopup.contains(event.target) && event.target !== editButton) || event.target.className === "blur") {
+	if ((userPopup.style.display === "flex" && !userPopup.contains(event.target) && event.target !== addButton) || event.target.className === "blur") {
 		userPopup.style.display = "none";
 	}
 });

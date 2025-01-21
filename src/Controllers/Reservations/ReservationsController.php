@@ -26,7 +26,7 @@ class ReservationsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::COMPONENTS . "/popup/reservation_add.php";
+		require Path::COMPONENTS . "/popup/reservation_add_popup.php";
 
 		new NavbarFactory();
 
