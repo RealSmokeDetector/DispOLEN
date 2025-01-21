@@ -113,4 +113,22 @@ class Date {
 	public function getNbDayMonth() : int {
 		return (int)date (format: "t", timestamp: strtotime(datetime: $this->year . "-" . $this->month . "-01"));
 	}
+
+	/**
+	 * converts date in universal format
+	 *
+	 * @return string
+	 */
+	public function convertUniversalFormat() : string {
+		$day = str_pad(string: $this->day, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT);
+		$month = str_pad(string: $this->month, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT);
+		$hour= str_pad(string: $this->hour, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT );
+		$minute= str_pad(string: $this->minute, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT );
+		$second= str_pad(string: $this->second, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT );
+
+		
+
+
+
+	}
 }

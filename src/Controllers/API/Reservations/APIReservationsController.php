@@ -25,6 +25,7 @@ class APIReservationsController {
 					$reservation->user = $user;
 					$reservationRepo = new ReservationRepository(reservation: $reservation);
 					$date = new Date($body['date_start']);
+					var_dump($date);
 					$resByDate = $reservationRepo->reservationByDate($date);
 					$data['message'] = "200";
 					$data["description"] = "Reservations list for given date";
