@@ -1,5 +1,6 @@
 <?php
 	use App\Configs\Path;
+	use App\Models\Entities\User;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
@@ -10,6 +11,9 @@
 <div class="user_container">
 	<?php
 		foreach (ApplicationData::getUsers() as $user) {
+			$userE = new User(uid: $user["uid"]);
+			$userRepo = new UserRepository(user: $userE);
+
 			$userGroup = UserRepository::getGroup(uid: $user["uid"]);
 			$roles = UserRepository::getRoles(uid: $user["uid"]);
 
