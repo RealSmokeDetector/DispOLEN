@@ -60,9 +60,9 @@
 
 ?>
 
-<div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile">
+<div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
 	<h1><?= Lang::translate(key: "DISPONIBILITY_TIMESLOTS_TITLE") ?></h1>
-	<p><?= htmlspecialchars($date) ?></p>
+	<p id="timesolt_date"><?= htmlspecialchars($date) ?></p>
 	<div class="line"></div>
 	<div id="timeslots_container" class="timeslots">
 		<?php
@@ -70,8 +70,8 @@
 			$endHour = 19;
 
 			for ($hour = $startHour; $hour <= $endHour; $hour++) {
-				$timeSlot = sprintf("%02d:00", $hour);
-				$isReserved = isReserved($teacherDisponibilities, $hour);
+				$timeSlot = sprintf( "%02d:00",  $hour);
+				$isReserved = isReserved(reservations: $teacherDisponibilities, hour: $hour);
 		?>
 				<div class="time_container">
 					<div class="timeslot">

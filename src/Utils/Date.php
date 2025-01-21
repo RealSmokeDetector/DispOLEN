@@ -26,6 +26,8 @@ class Date {
 		$this->hour = (int)date(format: "H", timestamp: strtotime(datetime: $this->date));
 		$this->minute = (int)date(format: "i", timestamp: strtotime(datetime: $this->date));
 		$this->second = (int)date(format: "s", timestamp: strtotime(datetime: $this->date));
+
+		$this->date = $this->convertUniversalFormat();
 	}
 
 	public function __get($name) : mixed {
@@ -122,4 +124,16 @@ class Date {
 	public function convertUniversalFormat() : string {
 		return date(format: "Y-m-d H:i:s", timestamp: strtotime(datetime: $this->date));
 	}
+
+	public function GetIntervaleDay() : array {
+		$interval = [];
+		array_push($interval, [
+			"dateStart" => date(format: "Y-m-d 00:00:00", timestamp: strtotime(datetime: $this->date)),
+			"dateEnd" => date(format: "Y-m-d 23:59:59", timestamp: strtotime(datetime: $this->date))
+		]);
+		return $interval[0];
+	}
+
+
+
 }

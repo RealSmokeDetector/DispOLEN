@@ -11,24 +11,24 @@ use App\Utils\Date;
 
 class APIReservationsController {
 	public function render() : void {
-		//header(header: "Content-Type: application/json");
+		header(header: "Content-Type: application/json");
 
 		switch($_SERVER["REQUEST_METHOD"]) {
 			case "GET":
+
 				$json = file_get_contents(filename: "php://input");
 				$body = $_GET;
-				var_dump($body);
 
 				if (isset($body['uid']) && isset($body['date_start'])) {
+					$data = [];
 					$user = new User(uid: $body['uid']);
 					$reservation = new Reservation();
 					$reservation->user = $user;
 					$reservationRepo = new ReservationRepository(reservation: $reservation);
-					$date = new Date($body['date_start']);
-					var_dump($date);
-					$resByDate = $reservationRepo->reservationByDate($date);
-					$data['message'] = "200";
-					$data["description"] = "Reservations list for given date";
+					$date = new Date(date: $body['date_start']);
+					foreach ($reservationRepo->reservationByDate(dateStart: $date) as $resa) {
+						array_push($data, $resa);
+					}
 				} else {
 					http_response_code(response_code: 400);
 

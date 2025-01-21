@@ -224,28 +224,24 @@ class ReservationRepository {
 	 *
 	 * @return bool
 	 */
-	public function reservationByDate(Date $date_start = new Date()) : array {
+	public function reservationByDate(Date $dateStart = new Date()) : array {
 		$dates = [];
-		foreach ($this->getReservations() as $index=>$reservation) {
+		$interval = $dateStart->GetIntervaleDay();
+		foreach ($this->getReservations() as $reservation) {
 			$date = ApplicationData::request(
-				query: "SELECT date_start, date_end FROM " . Database::DISPONIBILITIES . " WHERE date_start >= :date_start_interval
-				AND date_start <= :date_end_interval",
+				query: "SELECT date_start, date_end FROM " . Database::DISPONIBILITIES . " WHERE date_start >= :dateStartInterval AND date_start <= :dateEndInterval AND uid = :uid",
 				data: [
-					"date_start_interval" => $date_start,
-					"date_end_interval" => $date_start
+					"dateStartInterval" => $interval["dateStart"],
+					"dateEndInterval" => $interval["dateEnd"],
+					"uid" => $reservation["uid"]
 				],
-				returnType: PDO::FETCH_COLUMN,
+				returnType: PDO::FETCH_ASSOC,
 				singleValue: true
 			);
-
-			array_push(
-				$dates, [
-					"date" => $date,
-					"uid" => $reservation["uid"]
-				]
-			);
+			if($date) {
+				array_push($dates, $date);
+			}
 		}
-
 		return $dates;
 	}
 	}

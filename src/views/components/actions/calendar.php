@@ -1,8 +1,7 @@
 <?php
 	use App\Utils\Date;
 
-	$datenow = new Date("2025-03-15");
-	var_dump($datenow);
+	$datenow = new Date();
 	$offsetDayOfWeak = $datenow->getOffsetWeek();
 	$offsetDayOfWeak = ($offsetDayOfWeak === 0) ? $offsetDayOfWeak + 6 : $offsetDayOfWeak - 1;
 	$currentDate = 1;
