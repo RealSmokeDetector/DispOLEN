@@ -65,6 +65,6 @@ class System {
 	 * @return array
 	 */
 	public static function getFiles(string $path) : array {
-		return array_diff(scandir(directory: $path), array('.', '..'));
+		return array_diff(scandir(directory: $path), array(".", ".."));
 	}
 }

@@ -45,15 +45,15 @@ calendarDown.addEventListener("click", () => {
 
 document.querySelectorAll("#calendar button").forEach((element) => {
 	element.addEventListener("click", () => {
-		document.querySelectorAll('#calendar tbody td').forEach((element) => {
+		document.querySelectorAll("#calendar tbody td").forEach((element) => {
 			element.dataset.date === dateSelected ? element.classList.add("selected") : element.classList.remove("selected")
 		});
 	});
 });
 
-document.querySelectorAll('#calendar tbody td').forEach((element) => {
-	element.addEventListener('click', (event) => {
-		document.querySelectorAll('#calendar tbody td').forEach((element) => {
+document.querySelectorAll("#calendar tbody td").forEach((element) => {
+	element.addEventListener("click", (event) => {
+		document.querySelectorAll("#calendar tbody td").forEach((element) => {
 			element.classList.remove("selected");
 		});
 		event.target.classList.add("selected");

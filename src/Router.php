@@ -13,15 +13,15 @@ class Router {
 	/**
 	 * Create routeur's routes
 	 *
-	 * @param mixed $url Access URL
-	 * @param mixed $controller View's controller
-	 * @param mixed $title View's title
-	 * @param mixed $needLoginToBe Does user have to be connected or have to be disconnected, null for no restrictions
-	 * @param mixed $accessRoles Roles that can render view
+	 * @param string $url Access URL
+	 * @param string $controller View's controller
+	 * @param string $title View's title
+	 * @param bool $needLoginToBe Does user have to be connected or have to be disconnected, null for no restrictions
+	 * @param array $accessRoles Roles that can render view
 	 *
 	 * @return void
 	 */
-	public function add($url, $controller, $title = APP_NAME, $needLoginToBe = null, $accessRoles = []) : void {
+	public function add(string $url, string $controller, string $title = APP_NAME, bool $needLoginToBe = null, array $accessRoles = []) : void {
 		$this->routes[$url] = [
 			"controller" => $controller,
 			"title" => $title,
