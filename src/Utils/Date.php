@@ -3,7 +3,7 @@
 namespace App\Utils;
 
 class Date {
-	private string $date;
+	private string $dateTime;
 	private int $year;
 	private int $month;
 	private int $day;
@@ -17,17 +17,17 @@ class Date {
 	 * @param string $date formated as "Y-m-d H:i:s"
 	 */
 	public function __construct(string $date = null) {
-		$this->date = $date ?? date(format: "Y-m-d H:i:s");
+		$this->dateTime = $date ?? date(format: "Y-m-d H:i:s");
 
-		$this->year = (int)date(format: "Y", timestamp: strtotime(datetime: $this->date));
-		$this->month = (int)date(format: "m", timestamp: strtotime(datetime: $this->date));
-		$this->day = (int)date(format: "d", timestamp: strtotime(datetime: $this->date));
+		$this->year = (int)date(format: "Y", timestamp: strtotime(datetime: $this->dateTime));
+		$this->month = (int)date(format: "m", timestamp: strtotime(datetime: $this->dateTime));
+		$this->day = (int)date(format: "d", timestamp: strtotime(datetime: $this->dateTime));
 
-		$this->hour = (int)date(format: "H", timestamp: strtotime(datetime: $this->date));
-		$this->minute = (int)date(format: "i", timestamp: strtotime(datetime: $this->date));
-		$this->second = (int)date(format: "s", timestamp: strtotime(datetime: $this->date));
+		$this->hour = (int)date(format: "H", timestamp: strtotime(datetime: $this->dateTime));
+		$this->minute = (int)date(format: "i", timestamp: strtotime(datetime: $this->dateTime));
+		$this->second = (int)date(format: "s", timestamp: strtotime(datetime: $this->dateTime));
 
-		$this->date = $this->convertUniversalFormat();
+		$this->dateTime = $this->convertUniversalFormat();
 	}
 
 	public function __get($name) : mixed {
@@ -71,7 +71,7 @@ class Date {
 				break;
 			default:
 				$hour = $this->hour % 12;
-				$result = str_pad(string: $hour === 0 ? 12 : $hour, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->minute, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->second, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . date(format: "A", timestamp: strtotime(datetime: $this->date));
+				$result = str_pad(string: $hour === 0 ? 12 : $hour, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->minute, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . ":" . str_pad(string: $this->second, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT) . date(format: "A", timestamp: strtotime(datetime: $this->dateTime));
 				break;
 		}
 
@@ -94,7 +94,7 @@ class Date {
 				break;
 		}
 
-		return date(format: $format, timestamp: strtotime(datetime: "first day of", baseTimestamp: strtotime(datetime: $this->date)));
+		return date(format: $format, timestamp: strtotime(datetime: "first day of", baseTimestamp: strtotime(datetime: $this->dateTime)));
 	}
 
 	/**
@@ -112,8 +112,8 @@ class Date {
 	 *
 	 * @return int
 	 */
-	public function getNbDayMonth() : int {
-		return (int)date (format: "t", timestamp: strtotime(datetime: $this->year . "-" . $this->month . "-01"));
+	public function getNbDayMonth(int $day = 1) : int {
+		return (int)date (format: "t", timestamp: strtotime(datetime: $this->year . "-" . $this->month . "-".$day));
 	}
 
 	/**
@@ -122,18 +122,110 @@ class Date {
 	 * @return string
 	 */
 	public function convertUniversalFormat() : string {
-		return date(format: "Y-m-d H:i:s", timestamp: strtotime(datetime: $this->date));
+		return date(format: "Y-m-d H:i:s", timestamp: strtotime(datetime: $this->dateTime));
 	}
 
-	public function GetIntervaleDay() : array {
+	/**
+	 * Get interval whis datetime given in this object
+	 *
+	 * @param int $hourStart
+	 * @param int $hourEnd
+	 *
+	 * @return array
+	 */
+	public function GetIntervaleDay(int $hourStart = 0, int $hourEnd = 24) : array {
 		$interval = [];
 		array_push($interval, [
-			"dateStart" => date(format: "Y-m-d 00:00:00", timestamp: strtotime(datetime: $this->date)),
-			"dateEnd" => date(format: "Y-m-d 23:59:59", timestamp: strtotime(datetime: $this->date))
+			"dateStart" => date(format: "Y-m-d ".$hourStart.":00:00", timestamp: strtotime(datetime: $this->dateTime)),
+			"dateEnd" => date(format: "Y-m-d ".$hourEnd.":00:00", timestamp: strtotime(datetime: $this->dateTime))
 		]);
 		return $interval[0];
 	}
 
+	/**
+	 * Get date of datetime given
+	 *
+	 * @return string
+	 */
+	public function getDate(): string {
+		return date(format: "Y-m-d", timestamp: strtotime(datetime: $this->dateTime));
+	}
 
+	/**
+	 * Get Time of datetime given
+	 * @return string
+	 */
+	public function getTime(): string {
+		return date(format: "H:i:s", timestamp: strtotime(datetime: $this->dateTime));
+	}
+
+/**
+ *  adjuste time whis second given
+ *
+ * @param int $second
+ *
+ * @return void
+ */
+	public function adjusteTimeSec(int $second): void {
+		$this->second = ($this->second + $second) % 60;
+		$this->adjusteTimeMin(minute: intdiv(num1: ($this->second + $second), num2: 60));
+	}
+
+	/**
+	 * adjuste Time whis minute given
+	 *
+	 * @param int $minute
+	 *
+	 * @return void
+	 */
+	public function adjusteTimeMin(int $minute): void {
+		$this->minute = ($this->minute + $minute) % 60;
+		$this->adjusteTimeHour(hour: intdiv(num1: ($this->minute + $minute), num2: 60));
+	}
+
+	/**
+	 * adjuste Time whis hour given
+	 *
+	 * @param int $hour
+	 *
+	 * @return void
+	 */
+	public function adjusteTimeHour(int $hour): void {
+		$this->hour = ($this->hour + $hour) % 24;
+		$this->adjusteTimeDay(day: intdiv(num1: ($this->hour + $hour), num2: 24));
+	}
+
+	/**
+	 * adjuste Time whis day given
+	 *
+	 * @param int $day
+	 *
+	 * @return void
+	 */
+	public function adjusteTimeDay(int $day): void {
+		$this->day = ($this->day + $day) % 30;
+		$this->adjusteTimeMonth(month: intdiv(num1: ($this->day + $day), num2: 30));
+	}
+
+	/**
+	 * adjuste Time whis month given
+	 *
+	 * @param int $month
+	 *
+	 * @return void
+	 */
+	public function adjusteTimeMonth(int $month): void {
+		$this->month = ($this->month + $month) % 12;
+		$this->adjusteTimeMonth(month: intdiv(num1: ($this->month + $month), num2: 12));
+	}
+
+	/**
+	 * adjuste Time whis year given
+	 * @param int $year
+	 * @return void
+	 */
+	public function adjusteTimeYear(int $year): void {
+		$this->year = $this->year + $year;
+	}
 
 }

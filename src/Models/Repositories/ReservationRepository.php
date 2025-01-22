@@ -185,11 +185,12 @@ class ReservationRepository {
 	 *
 	 * @return array
 	 */
-	public static function getTeacherDisponibilitiesByDate(string $date): array {
+	public static function getTeacherDisponibilitiesByDate(Date $date): array {
+		$strDate = $date->getDate();
 	return ApplicationData::request(
 		query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
 		data: [
-			"date" => $date
+			"date" => $strDate
 		],
 		returnType: PDO::FETCH_ASSOC
 	);
@@ -203,17 +204,17 @@ class ReservationRepository {
 	 * @return bool
 	 */
 	public static function createAvailabilityForToday(string $teacherUid): bool {
-		$today = (new DateTime())->format('Y-m-d');
+		$today = new Date();
+		$interval = $today->GetIntervaleDay(hourStart: 8,hourEnd: 19);
 
 		return ApplicationData::request(
 			query: "INSERT INTO " . Database::DISPONIBILITIES . " (uid, date_start, date_end, uid_user) VALUES (:uid, :date_start, :date_end, :uid_user)",
 			data: [
 				"uid" => uniqid(),
-				"date_start" => $today . ' 08:00:00',
-				"date_end" => $today . ' 17:00:00',
+				"date_start" => $interval["dateStart"],
+				"date_end" => $interval["dateEnd"],
 				"uid_user" => $teacherUid
 			],
-			returnType: PDO::FETCH_NONE
 		);
 	}
 
