@@ -69,7 +69,14 @@ class NavbarFactory extends Navbar {
 			class: "button",
 			needLoginToBe: true
 		);
+	}
 
+	/**
+	 * Render navbar
+	 *
+	 * @return void
+	 */
+	public function render() : void {
 		parent::render();
 	}
 }

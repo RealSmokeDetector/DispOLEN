@@ -39,7 +39,7 @@ class GroupsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		new NavbarFactory();
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/groups/index.php";
 

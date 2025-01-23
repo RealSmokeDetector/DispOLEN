@@ -48,7 +48,7 @@ class ReservationDetailsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		new NavbarFactory();
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/reservations/details/index.php";
 

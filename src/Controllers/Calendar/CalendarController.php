@@ -15,7 +15,7 @@ class CalendarController {
 
 		require Path::LAYOUT . "/header.php";
 
-		new NavbarFactory();
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/calendar/index.php";
 

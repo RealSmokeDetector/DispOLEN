@@ -17,7 +17,7 @@ class DashboardUsersController {
 
 		require Path::COMPONENTS . "/popup/user_add_popup.php";
 
-		new NavbarFactory();
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/dashboard/users/index.php";
 

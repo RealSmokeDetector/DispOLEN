@@ -25,7 +25,7 @@ class IndexController {
 
 		require Path::LAYOUT . "/header.php";
 
-		new NavbarFactory();
+		(new NavbarFactory())->render();
 
 		if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) {
 			$user = new User(uid: $_SESSION["user"]["uid"]);

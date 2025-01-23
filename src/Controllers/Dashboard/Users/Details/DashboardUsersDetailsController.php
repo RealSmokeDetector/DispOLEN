@@ -50,7 +50,7 @@ class DashboardUsersDetailsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		new NavbarFactory();
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/dashboard/users/details/index.php";
 
