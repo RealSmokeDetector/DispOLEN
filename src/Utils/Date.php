@@ -17,7 +17,7 @@ class Date {
 	 * @param string $date formated as "Y-m-d H:i:s"
 	 */
 	public function __construct(string $date = null) {
-		$this->dateTime = $date ?? date(format: "Y-m-d H:i:s");
+		$this->dateTime = $date ?? date(format: "Y-m-d 08:00:00");
 
 		$this->year = (int)date(format: "Y", timestamp: strtotime(datetime: $this->dateTime));
 		$this->month = (int)date(format: "m", timestamp: strtotime(datetime: $this->dateTime));
@@ -159,18 +159,6 @@ class Date {
 		return date(format: "H:i:s", timestamp: strtotime(datetime: $this->dateTime));
 	}
 
-/**
- *  adjuste time whis second given
- *
- * @param int $second
- *
- * @return void
- */
-	public function adjusteTimeSec(int $second): void {
-		$this->second = ($this->second + $second) % 60;
-		$this->adjusteTimeMin(minute: intdiv(num1: ($this->second + $second), num2: 60));
-	}
-
 	/**
 	 * adjuste Time whis minute given
 	 *
@@ -192,40 +180,25 @@ class Date {
 	 */
 	public function adjusteTimeHour(int $hour): void {
 		$this->hour = ($this->hour + $hour) % 24;
-		$this->adjusteTimeDay(day: intdiv(num1: ($this->hour + $hour), num2: 24));
 	}
 
 	/**
-	 * adjuste Time whis day given
+	 * Get Duration between this date and date given
 	 *
-	 * @param int $day
+	 * @param Date $dateEnd
 	 *
-	 * @return void
+	 * @return int
 	 */
-	public function adjusteTimeDay(int $day): void {
-		$this->day = ($this->day + $day) % 30;
-		$this->adjusteTimeMonth(month: intdiv(num1: ($this->day + $day), num2: 30));
+	public function getDurationDate(Date $dateEnd):int {
+		return (strtotime(datetime: $dateEnd->dateTime) - strtotime(datetime: $this->dateTime)) / 60;
 	}
 
 	/**
-	 * adjuste Time whis month given
-	 *
-	 * @param int $month
-	 *
-	 * @return void
+	 * Get Duration between this date and available date of reservation
+	 * @return int
 	 */
-	public function adjusteTimeMonth(int $month): void {
-		$this->month = ($this->month + $month) % 12;
-		$this->adjusteTimeMonth(month: intdiv(num1: ($this->month + $month), num2: 12));
-	}
-
-	/**
-	 * adjuste Time whis year given
-	 * @param int $year
-	 * @return void
-	 */
-	public function adjusteTimeYear(int $year): void {
-		$this->year = $this->year + $year;
+	public function getDurationDateAvailableReservations(): int {
+		return (strtotime(datetime: $this->dateTime) - strtotime(datetime: date(format: $this->getDate() . " 08:00:00"))) / 60;
 	}
 
 }
