@@ -14,6 +14,10 @@ class Navbar {
 	 * @param string $title
 	 * @param string $icon
 	 * @param string $url
+	 * @param string $class
+	 * @param bool $needLoginToBe Does user have to be connected or have to be disconnected, null for no restrictions
+	 * @param array $accessRoles Roles that can access item
+	 *
 	 * @return void
 	 */
 	public function add(string $title, string $icon, string $url, string $class, bool $needLoginToBe = null, array $accessRoles = []) : void {
