@@ -1,6 +1,6 @@
 // Select all elements with the class "calendar-day"
 const heightDiv = 306;
-const containerTimeslot = document.getElementById("availbilities_container");
+const containerTimeslot = document.getElementById("availabilities_container");
 const calendarDays = document.querySelectorAll("#calendar tbody td");
 const dateTimeslot = document.getElementById("timesolt_date");
 const uid = document.getElementById("disponibility_timeslots_tile").dataset.uid;
@@ -14,15 +14,14 @@ calendarDays.forEach(day => {
 		let reservations = await callApi(url , "post", {
 			"uid": uid,
 			"date_start": event.target.dataset.date
-		} );
+		});
 
-		console.log("reservations", await reservations);
-		const timeslots = document.querySelectorAll(".availbility_reserved");
-		console.log("timeslots", timeslots);
+		const timeslots = document.querySelectorAll(".availability_reserved");
 
-		timeslots.forEach((value) =>{
+		timeslots.forEach((value) => {
 			value.style.height = 0;
 		});
+
 		await reservations.forEach((value,index) => {
 			lastIndex = index;
 			if (timeslots[index]) {
@@ -34,16 +33,15 @@ calendarDays.forEach(day => {
 	});
 });
 
-function createTimeslot(dateStart, dateEnd) {
-	divTimelot = document.createElement("div");
-	divTimelot.classlisit.add("availbility_reserved");
-	divTimelot.style.position = "fixed";
-	divTimelot.style.height = (((dateEnd - dateStart) / 60000) * heightDiv) / (11 * 60 );
-	divTimelot.style.transform = "translateY" + (((start - dateStart) / (60 * 1000)) * heightDiv) / (11 * 60 ) + "px";
+function createTimeslot(dateStart, dateEnd, divTimeslot) {
+	divTimeslot = document.createElement("div");
+	divTimeslot.className = "availability_reserved";
+	divTimeslot.style.position = "fixed";
+	divTimeslot.style.height = (((dateEnd - dateStart) / 60000) * heightDiv) / (11 * 60);
+	divTimeslot.style.transform = "translateY" + (((dateStart - new Date(dateStart).setHours(8, 0, 0)) / (60 * 1000)) * heightDiv) / (11 * 60) + "px";
 }
 
 function updateTimeslot(dateStart, dateEnd, htmlElement) {
-	htmlElement.style.height = (((dateEnd - dateStart) / 60000) * heightDiv) / (11 * 60 );
-	htmlElement.style.transform = "translateY(" + (((dateStart - new Date(dateStart).setHours(8,0,0)) / (60 * 1000)) * heightDiv) / (11 * 60 ) + "px)";
+	htmlElement.style.height = (((dateEnd - dateStart) / 60000) * heightDiv) / (11 * 60);
+	htmlElement.style.transform = "translateY(" + (((dateStart - new Date(dateStart).setHours(8, 0, 0)) / (60 * 1000)) * heightDiv) / (11 * 60) + "px)";
 }
-

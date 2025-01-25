@@ -901,13 +901,13 @@ nav {
 			gap: 10px;
 		}
 
-		.availbilities_container {
+		.availabilities_container {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
 			padding: 10px 0px;
 
-			.availbility {
+			.availability {
 				display: flex;
 				width: 100%;
 				height: 100%;
@@ -915,7 +915,7 @@ nav {
 				border-bottom: var(--border);
 			}
 
-			.availbility_reserved {
+			.availability_reserved {
 				background-color: var(--timeslot-background-color);
 				border-top: none;
 				border-bottom: none;

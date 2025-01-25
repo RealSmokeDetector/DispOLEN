@@ -74,18 +74,18 @@
 				$date->adjusteTimeMin(minute: 60);
 			} ?>
 		</div>
-		<div class="availbilities_container">
+		<div class="availabilities_container">
 			<?php
 				for ($hour = 8; $hour <= 18; $hour++) {
 					$isReserved = isReserved(reservations: $teacherDisponibilities, hour: $hour);
 			?>
-			<div class="availbility" id="reservations"></div>
+			<div class="availability" id="reservations"></div>
 			<?php }
 				foreach ($teacherDisponibilities as $timeslot) {
 					$dateStart = new Date(date: $timeslot["date_start"]);
 					$dateEnd = new Date(date: $timeslot["date_end"]);
 			?>
-					<div class="availbility_reserved" style="position:fixed; height:<?=(($dateStart->getDurationDate(dateEnd: $dateEnd) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60) ?>px; transform: translateY(<?= (($dateStart->getDurationDateAvailableReservations() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60)?>px); width: 90px;" ></div>
+					<div class="availability_reserved" style="position:fixed; height:<?=(($dateStart->getDurationDate(dateEnd: $dateEnd) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60) ?>px; transform: translateY(<?= (($dateStart->getDurationDateAvailableReservations() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60)?>px); width: 90px;" ></div>
 			<?php } ?>
 		</div>
 	</div>
