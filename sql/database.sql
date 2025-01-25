@@ -37,20 +37,19 @@ BEGIN
 END; $$;
 
 --
---Trigger Refused reservation
+-- Trigger triggerdeleterefused()
 --
 
-CREATE OR REPLACE FUNCTION public.trigger_delete_refused()
-RETURNS TRIGGER
-AS $$
+CREATE OR REPLACE FUNCTION public.triggerdeleterefused() RETURNS TRIGGER
+	LANGUAGE PLPGSQL
+	AS $$
 BEGIN
     IF NEW.id_state = 3 THEN
         DELETE FROM public.reservations WHERE uid = NEW.uid;
         RETURN NULL;
     END IF;
     RETURN NEW;
-END;
-$$ LANGUAGE PLPGSQL;
+END; $$;
 
 --
 -- Table structure for table 'disponibilities'
@@ -304,6 +303,7 @@ CREATE TRIGGER trigger_date_update_users BEFORE UPDATE ON public.users FOR EACH 
 --
 
 CREATE TRIGGER trigger_date_update_reservations BEFORE UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+CREATE TRIGGER trigger_delete_reservation AFTER UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdeleterefused();
 
 --
 -- Trigger for table 'tutoring'
@@ -320,9 +320,5 @@ CREATE TRIGGER trigger_date_update_user_group BEFORE UPDATE ON public.user_group
 --
 -- Trigger for table 'user_role'
 --
-CREATE TRIGGER trigger_date_update_user_role BEFORE UPDATE ON user_role FOR EACH ROW EXECUTE FUNCTION triggerdateupdate();
 
---
---Trigger for table  'reservation'
---
-CREATE TRIGGER trigger_delete_reservation AFTER UPDATE ON public.reservations FOR EACH row EXECUTE FUNCTION public.trigger_delete_refused();
+CREATE TRIGGER trigger_date_update_user_role BEFORE UPDATE ON public.user_role FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
