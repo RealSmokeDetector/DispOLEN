@@ -185,7 +185,7 @@ class ReservationRepository {
 	 *
 	 * @return array
 	 */
-	public static function getTeacherDisponibilitiesByDate(Date $date): array {
+	public static function getTeacherDisponibilitiesByDate(Date $date) : array {
 		$strDate = $date->getDate();
 	return ApplicationData::request(
 		query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
@@ -203,7 +203,7 @@ class ReservationRepository {
 	 *
 	 * @return bool
 	 */
-	public static function createAvailabilityForToday(string $teacherUid): bool {
+	public static function createAvailabilityForToday(string $teacherUid) : bool {
 		$today = new Date();
 		$interval = $today->GetIntervaleDay(hourStart: 8,hourEnd: 19);
 
@@ -239,10 +239,10 @@ class ReservationRepository {
 				returnType: PDO::FETCH_ASSOC,
 				singleValue: true
 			);
-			if($date) {
+			if ($date) {
 				array_push($dates, $date);
 			}
 		}
 		return $dates;
 	}
-	}
+}

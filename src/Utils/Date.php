@@ -147,7 +147,7 @@ class Date {
 	 *
 	 * @return string
 	 */
-	public function getDate(): string {
+	public function getDate() : string {
 		return date(format: "Y-m-d", timestamp: strtotime(datetime: $this->dateTime));
 	}
 
@@ -155,7 +155,7 @@ class Date {
 	 * Get Time of datetime given
 	 * @return string
 	 */
-	public function getTime(): string {
+	public function getTime() : string {
 		return date(format: "H:i:s", timestamp: strtotime(datetime: $this->dateTime));
 	}
 
@@ -166,7 +166,7 @@ class Date {
 	 *
 	 * @return void
 	 */
-	public function adjusteTimeMin(int $minute): void {
+	public function adjusteTimeMin(int $minute) : void {
 		$this->minute = ($this->minute + $minute) % 60;
 		$this->adjusteTimeHour(hour: intdiv(num1: ($this->minute + $minute), num2: 60));
 	}
@@ -178,7 +178,7 @@ class Date {
 	 *
 	 * @return void
 	 */
-	public function adjusteTimeHour(int $hour): void {
+	public function adjusteTimeHour(int $hour) : void {
 		$this->hour = ($this->hour + $hour) % 24;
 	}
 
@@ -189,16 +189,17 @@ class Date {
 	 *
 	 * @return int
 	 */
-	public function getDurationDate(Date $dateEnd):int {
-		return (strtotime(datetime: $dateEnd->dateTime) - strtotime(datetime: $this->dateTime)) / 60;
+	public function getDurationDate(Date $dateEnd) : int {
+		return strtotime(datetime: $dateEnd->dateTime) - strtotime(datetime: $this->dateTime);
 	}
-
+	
 	/**
-	 * Get Duration between this date and available date of reservation
+	 * Get Duration (secound) between this date and available date of reservation
+	 *
 	 * @return int
 	 */
-	public function getDurationDateAvailableReservations(): int {
-		return (strtotime(datetime: $this->dateTime) - strtotime(datetime: date(format: $this->getDate() . " 08:00:00"))) / 60;
+	public function getDurationDateAvailableReservations() : int {
+		return strtotime(datetime: $this->dateTime) - strtotime(datetime: date(format: $this->getDate() . " 08:00:00"));
 	}
 
 }

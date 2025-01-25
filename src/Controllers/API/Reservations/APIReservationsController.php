@@ -14,21 +14,18 @@ class APIReservationsController {
 		header(header: "Content-Type: application/json");
 
 		switch($_SERVER["REQUEST_METHOD"]) {
-			case "GET":
-
+			case "POST":
 				$json = file_get_contents(filename: "php://input");
-				$body = $_GET;
+				$body = json_decode(json: $json);
 
-				if (isset($body['uid']) && isset($body['date_start'])) {
-					$data = [];
-					$user = new User(uid: $body['uid']);
+				if (isset($body->uid) && isset($body->date_start)) {
+					$user = new User(uid: $body->uid);
 					$reservation = new Reservation();
 					$reservation->user = $user;
 					$reservationRepo = new ReservationRepository(reservation: $reservation);
-					$date = new Date(date: $body['date_start']);
-					foreach ($reservationRepo->reservationByDate(dateStart: $date) as $resa) {
-						array_push($data, $resa);
-					}
+					$date = new Date(date: $body->date_start);
+
+					$data = $reservationRepo->reservationByDate(dateStart: $date);
 				} else {
 					http_response_code(response_code: 400);
 

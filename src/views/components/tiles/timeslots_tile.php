@@ -8,7 +8,6 @@
 	//(note to myself) generate today's date anf fill th container with divs for each hour of the day from 8 am to 5 pm
 	$date = new Date(date: "2025-06-25 08:00:00");
 	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
-	$constHeight = 306;
 
 	$teacherDisponibilities = ReservationRepository::getTeacherDisponibilitiesByDate(date: $date);
 
@@ -80,13 +79,13 @@
 				for ($hour = 8; $hour <= 18; $hour++) {
 					$isReserved = isReserved(reservations: $teacherDisponibilities, hour: $hour);
 			?>
-			<div class="availbility"></div>
+			<div class="availbility" id="reservations"></div>
 			<?php }
 				foreach ($teacherDisponibilities as $timeslot) {
 					$dateStart = new Date(date: $timeslot["date_start"]);
 					$dateEnd = new Date(date: $timeslot["date_end"]);
 			?>
-					<div data-date="<?=$dateStart->dateTime . "|" . $dateEnd->dateTime?>" class="availbility_reserved" style="position:fixed; height:<?=($dateStart->getDurationDate(dateEnd: $dateEnd) * HEIGHT_TIMESLOTS_DIV) / 660 ?>px; transform: translateY(<?= ($dateStart->getDurationDateAvailableReservations() * HEIGHT_TIMESLOTS_DIV) / 660?>px);">test</div>
+					<div class="availbility_reserved" style="position:fixed; height:<?=(($dateStart->getDurationDate(dateEnd: $dateEnd) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60) ?>px; transform: translateY(<?= (($dateStart->getDurationDateAvailableReservations() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60)?>px); width: 90px;" ></div>
 			<?php } ?>
 		</div>
 	</div>
