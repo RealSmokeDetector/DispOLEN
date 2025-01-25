@@ -177,4 +177,14 @@ class ReservationRepository {
 
 		return $dates;
 	}
+
+	public function setState(int $state) : void {
+		ApplicationData::request(
+			query: "UPDATE " . Database::RESERVATIONS . " SET id_state = :id_state WHERE uid = :uid",
+			data: [
+				"id_state" => $state,
+				"uid" => $this->reservation->uid
+			]
+		);
+	}
 }

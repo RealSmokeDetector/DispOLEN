@@ -1,5 +1,6 @@
 <?php
 	use App\Configs\Role;
+	use App\Configs\State;
 	use App\Utils\ApplicationData;
 	use App\Utils\Lang;
 	use App\Utils\Roles;
@@ -21,7 +22,7 @@
 			<p class="type" id="type"><i class="ri-map-pin-line"></i> <?= ApplicationData::typeFormat(id: $reservationData["id_type"]) ?></p>
 		</div>
 
-		<p class="state" id="state"><i class="ri-speed-up-line"></i> <?= ApplicationData::stateFormat(id: $reservationData["id_state"]) ?></p>
+		<p class="state" id="state_value" data-state="<?= $reservationData["id_state"] ?>"><i class="ri-speed-up-line"></i> <p id="state_display"><?= ApplicationData::stateFormat(id: $reservationData["id_state"]) ?></p></p>
 
 		<h2 class="comment"><?= Lang::translate(key: "MAIN_COMMENT") ?></h2>
 		<?php if ($reservationData["comment"]) { ?>
@@ -32,15 +33,6 @@
 		<?php } ?>
 
 		<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
-			<select id="stateSelect" name="state" style="display: none">
-				<?php foreach ($states as $state) { ?>
-					<option value="<?= $state ?>"
-					<?= $reservationData["id_state"] == $state ? "selected" : "" ?>>
-					<?= ApplicationData::stateFormat(id: $state) ?>
-					</option>
-				<?php } ?>
-			</select>
-
 			<select id="reasonSelect" name="reason" style="display: none">
 				<?php foreach ($reasons as $reason) { ?>
 					<option value="<?= $reason ?>"
@@ -63,7 +55,13 @@
 	</form>
 
 	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
-		<button class="button" id="buttonId">Modifier</button>
+		<button class="button" id="state" data-state="<?= State::ACCEPTED ?>" style="display: <?= $reservationData["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_ACCEPT") ?></button>
+
+		<button class="button" id="state" data-state="<?= State::REFUSED ?>" style="display: <?= $reservationData["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_REFUSE") ?></button>
+
+		<button class="button" id="buttonId" style="display: <?= $reservationData["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_UPDATE") ?></button>
+
+		<button class="button" id="state" data-state="<?= State::CANCELED ?>" style="display: <?= $reservationData["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_CANCEL") ?></button>
 	<?php } ?>
 
 </div>
