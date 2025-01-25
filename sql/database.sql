@@ -37,6 +37,21 @@ BEGIN
 END; $$;
 
 --
+-- Trigger triggerdeleterefused()
+--
+
+CREATE OR REPLACE FUNCTION public.triggerdeleterefused() RETURNS TRIGGER
+	LANGUAGE PLPGSQL
+	AS $$
+BEGIN
+    IF NEW.id_state = 3 THEN
+        DELETE FROM public.reservations WHERE uid = NEW.uid;
+        RETURN NULL;
+    END IF;
+    RETURN NEW;
+END; $$;
+
+--
 -- Table structure for table 'disponibilities'
 --
 
@@ -288,6 +303,7 @@ CREATE TRIGGER trigger_date_update_users BEFORE UPDATE ON public.users FOR EACH 
 --
 
 CREATE TRIGGER trigger_date_update_reservations BEFORE UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+CREATE TRIGGER trigger_delete_reservation AFTER UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdeleterefused();
 
 --
 -- Trigger for table 'tutoring'
