@@ -8,6 +8,7 @@ use App\Models\Entities\Reservation;
 use App\Utils\ApplicationData;
 use App\Utils\Roles;
 use App\Utils\System;
+use App\Utils\Date;
 use PDO;
 
 class ReservationRepository {
@@ -175,6 +176,74 @@ class ReservationRepository {
 			);
 		}
 
+		return $dates;
+	}
+
+	/**
+	 * Get teacher disponibilities by date
+	 *
+	 * @param string $date
+	 *
+	 * @return array
+	 */
+	public static function getTeacherDisponibilitiesByDate(Date $date) : array {
+		$strDate = $date->getDate();
+	return ApplicationData::request(
+		query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
+		data: [
+			"date" => $strDate
+		],
+		returnType: PDO::FETCH_ASSOC
+	);
+	}
+
+	/**
+	 * Create availability for today
+	 *
+	 * @param string $teacherUid
+	 *
+	 * @return bool
+	 */
+	public static function createAvailabilityForToday(string $teacherUid) : bool {
+		$today = new Date();
+		$interval = $today->GetIntervaleDay(hourStart: 8,hourEnd: 19);
+
+		return ApplicationData::request(
+			query: "INSERT INTO " . Database::DISPONIBILITIES . " (uid, date_start, date_end, uid_user) VALUES (:uid, :date_start, :date_end, :uid_user)",
+			data: [
+				"uid" => uniqid(),
+				"date_start" => $interval["dateStart"],
+				"date_end" => $interval["dateEnd"],
+				"uid_user" => $teacherUid
+			],
+		);
+	}
+
+	/**
+	 *  create and call function in object Date to formate universal date YYYY-MM-DD HH:mm:ss.000
+	 *
+	 * @param string $date
+	 *
+	 * @return bool
+	 */
+	public function reservationByDate(Date $dateStart = new Date()) : array {
+		$dates = [];
+		$interval = $dateStart->GetIntervaleDay();
+		foreach ($this->getReservations() as $reservation) {
+			$date = ApplicationData::request(
+				query: "SELECT date_start, date_end FROM " . Database::DISPONIBILITIES . " WHERE date_start >= :dateStartInterval AND date_start <= :dateEndInterval AND uid = :uid",
+				data: [
+					"dateStartInterval" => $interval["dateStart"],
+					"dateEndInterval" => $interval["dateEnd"],
+					"uid" => $reservation["uid"]
+				],
+				returnType: PDO::FETCH_ASSOC,
+				singleValue: true
+			);
+			if ($date) {
+				array_push($dates, $date);
+			}
+		}
 		return $dates;
 	}
 

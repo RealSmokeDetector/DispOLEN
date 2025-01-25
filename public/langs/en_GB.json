@@ -96,6 +96,9 @@
 	"CALENDAR_TITLE": "Calendar",
 
 	"RESERVATION_TITLE": "Reservations",
+	"NO_RESERVATION": "No reservation",
+	"RESERVED":"Reserved",
+	"AVAILABLE":"Available",
 
 	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
 	"RESERVATIONS_DETAILS_TUTOR": "Tutor",
