@@ -121,7 +121,7 @@ class RouterFactory extends Router {
 			title: APP_NAME . " - API"
 		);
 		parent::add(
-			url: "/api/reservations",
+			url: "/api/reservation",
 			controller: $this->controllersPath . "API\Reservations\APIReservationsController",
 			title: APP_NAME . " - API"
 		);

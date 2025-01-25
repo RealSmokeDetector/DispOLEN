@@ -7,7 +7,7 @@
 	use App\Models\Repositories\ReservationRepository;
 
 	//(note to myself) generate today's date anf fill th container with divs for each hour of the day from 8 am to 5 pm
-	$date = new Date(date: "2025-06-25 08:00:00");
+	$date = new Date();
 	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 
 	$teacherDisponibilities = ReservationRepository::getTeacherDisponibilitiesByDate(date: $date);
@@ -64,7 +64,7 @@
 	<h1><?= Lang::translate(key: "DISPONIBILITY_TIMESLOTS_TITLE") ?></h1>
 	<p id="timesolt_date"><?= htmlspecialchars($date->GetDate()) ?></p>
 	<div class="line"></div>
-	<div id="timeslots_container" class="timeslots_container">
+	<div class="timeslots_container">
 		<div class="times">
 			<?php
 				for ($hour = 8; $hour <= 19; $hour++) {
@@ -74,7 +74,8 @@
 				$date->adjusteTimeMin(minute: 60);
 			} ?>
 		</div>
-		<div class="availabilities_container">
+
+		<div class="availabilities_container" id="availabilities_container">
 			<?php
 				for ($hour = 8; $hour <= 18; $hour++) {
 					$isReserved = isReserved(reservations: $teacherDisponibilities, hour: $hour);
