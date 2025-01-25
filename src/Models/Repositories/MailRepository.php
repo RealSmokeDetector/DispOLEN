@@ -38,7 +38,7 @@ class MailRepository {
 	 * @return void
 	 */
 	public function send() : void {
-		$this->mailer->setFrom(address: $this->mail->address);
+		$this->mailer->setFrom(address: $this->mail->address, name: APP_NAME);
 		$this->mailer->AddAddress(address: $this->mail->receiver);
 
 		$this->mailer->Subject = $this->mail->object;
