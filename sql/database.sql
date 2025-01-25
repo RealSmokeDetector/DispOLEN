@@ -46,10 +46,9 @@ AS $$
 BEGIN
     IF NEW.id_state = 3 THEN
         DELETE FROM public.reservations WHERE uid = NEW.uid;
-        RETURN NULL;  -- Empeche le update car res suppr
+        RETURN NULL;
     END IF;
-
-    RETURN NEW;  -- continue le uptate si state n etait pas à 3
+    RETURN NEW;
 END;
 $$ LANGUAGE PLPGSQL;
 
@@ -326,4 +325,4 @@ CREATE TRIGGER trigger_date_update_user_role BEFORE UPDATE ON user_role FOR EACH
 --
 --Trigger for table  'reservation'
 --
-create trigger trigger_delete_reservation AFTER UPDATE ON public.reservations FOR EACH row EXECUTE FUNCTION public.trigger_delete_refused();
+CREATE TRIGGER trigger_delete_reservation AFTER UPDATE ON public.reservations FOR EACH row EXECUTE FUNCTION public.trigger_delete_refused();
