@@ -6,6 +6,7 @@
 	use App\Models\Repositories\UserRepository;
 	use App\Models\Entities\Reservation;
 	use App\Models\Repositories\ReservationRepository;
+	use App\Utils\Roles;
 
 	$userConnect = UserRepository::getInformations(uid: $_SESSION["user"]["uid"]);
 	$user = new User(uid: $userConnect["uid"]);
@@ -15,7 +16,8 @@
 ?>
 
 <div class="tile index_reservation_container">
-	<h1><?= (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::STUDENT]))) ? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT") : Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
+	<h1><?= (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) ? Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT") : Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER") ?></h1>
+
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>
@@ -30,6 +32,20 @@
 			</div>
 		<?php } ?>
 
-		<a class="link show_more" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?> <i class="ri-external-link-line"></i></a>
+		<?php if (count(value: $reservationRepo->getReservations()) == 0 && Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) { ?>
+
+			<p class="no_reservation_title"><?= Lang::translate(key: "INDEX_RESERVATION_NO_RESERVATION_STUDENT") ?></p>
+			<a class="link show_more no_reservation" href="/reservations"><?= Lang::translate(key: "INDEX_CREATE_RESERVATION_STUDENT") ?><i class="ri-external-link-line"></i></a>
+
+		<?php } else if (count(value: $reservationRepo->getReservations()) == 0 && Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::TEACHER])) { ?>
+
+			<p class="no_reservation_title"><?= Lang::translate(key: "INDEX_RESERVATION_NO_RESERVATION_TEACHER") ?></p>
+			<a class="link show_more no_reservation" href=""><?= Lang::translate(key: "INDEX_CREATE_RESERVATION_TEACHER") ?><i class="ri-external-link-line"></i></a>
+
+		<?php } else { ?>
+
+			<a class="link show_more" href="/reservations"><?= Lang::translate(key: "MAIN_SHOW_MORE") ?> <i class="ri-external-link-line"></i></a>
+
+		<?php } ?>
 	</div>
 </div>

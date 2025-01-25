@@ -2,6 +2,7 @@
 	use App\Configs\Role;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 ?>
 
 <div class="tile student_container" id="group" data-uid="<?= $group["uid"] ?>" style="display: <?= $group["uid"] === $selectedGroup ? "flex" : "none" ?>">
@@ -15,7 +16,7 @@
 		<div class="item">
 			<p><?= htmlspecialchars(string: ucfirst(string: $user["name"])) ?></p>
 			<p><?= htmlspecialchars(string: mb_strtoupper(string: $user["surname"])) ?></p>
-			<?php if (!empty(array_intersect(UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), [Role::ADMINISTRATOR]))) { ?>
+			<?php if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::ADMINISTRATOR])) { ?>
 				<button class="button button_secondary" id="delete_user" data-uid="<?= $student ?>" title="<?= Lang::translate(key: "GROUPS_REMOVE_STUDENT") ?>"><i class="ri-eraser-line"></i></button>
 			<?php } ?>
 		</div>

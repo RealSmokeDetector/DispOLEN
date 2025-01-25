@@ -15,7 +15,7 @@ if (groupsButton) {
 			element.addEventListener("click", () => {
 				params.set("group", element.getAttribute("data-group"));
 				url.search = params.toString();
-				window.history.pushState({}, '', url);
+				window.history.pushState({}, "", url);
 
 				groupsContainer.forEach(group => {
 					group.style.display = "none";
@@ -104,6 +104,7 @@ async function save(event, element, groupUid) {
 	element.removeAttribute("onclick");
 
 	let p = document.createElement("p");
+	p.className = "group_name";
 	p.textContent = title.value;
 	title.replaceWith(p);
 

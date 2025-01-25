@@ -3,9 +3,9 @@
 namespace App\Configs;
 
 class Type {
-	const FACE_TO_FACE = 1;
-	const PHONE = 2;
-	const VIDEO = 3;
-	const VISIT = 4;
-	const OTHER = 5;
+	const VISIT = 1;
+	const FACE_TO_FACE = 2;
+	const PHONE = 3;
+	const VIDEO_DISCORD = 4;
+	const VIDEO_TEAMS = 5;
 }

@@ -4,6 +4,7 @@ namespace App\Controllers\Reservations\Details;
 
 use App\Configs\Path;
 use App\Events\UpdateReservationEvent;
+use App\Factories\NavbarFactory;
 use App\Models\Entities\Reservation;
 use App\Models\Entities\User;
 use App\Models\Repositories\ReservationRepository;
@@ -47,7 +48,7 @@ class ReservationDetailsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/reservations/details/index.php";
 

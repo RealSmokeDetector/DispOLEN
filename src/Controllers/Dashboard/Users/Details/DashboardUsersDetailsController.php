@@ -4,6 +4,7 @@ namespace App\Controllers\Dashboard\Users\Details;
 
 use App\Configs\Path;
 use App\Events\UpdateUserEvent;
+use App\Factories\NavbarFactory;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
@@ -49,7 +50,7 @@ class DashboardUsersDetailsController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/dashboard/users/details/index.php";
 

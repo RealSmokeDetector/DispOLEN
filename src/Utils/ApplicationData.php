@@ -141,10 +141,14 @@ class ApplicationData {
 	 */
 	public static function reasonFormat(int $id) : string {
 		switch ($id) {
-			case Reason::INFORMATION:
-				return Lang::translate(key: "MAIN_REASON_INFORMATION");
+			case Reason::REVIEW_1:
+				return Lang::translate(key: "MAIN_REASON_REVIEW_1");
+			case Reason::REVIEW_2:
+				return Lang::translate(key: "MAIN_REASON_REVIEW_1");
 			case Reason::PRESENTATION:
 				return Lang::translate(key: "MAIN_REASON_PRESENTATION");
+			case Reason::PROGRESS:
+				return Lang::translate(key: "MAIN_REASON_PROGRESS");
 			case Reason::OTHER:
 				return Lang::translate(key: "MAIN_OTHER");
 			default:
@@ -161,16 +165,16 @@ class ApplicationData {
 	 */
 	public static function typeFormat(int $id) : string {
 		switch ($id) {
+			case Type::VISIT:
+				return Lang::translate(key: "MAIN_TYPE_VISIT");
 			case Type::FACE_TO_FACE:
 				return Lang::translate(key: "MAIN_TYPE_FACE_TO_FACE");
 			case Type::PHONE:
 				return Lang::translate(key: "MAIN_TYPE_PHONE");
-			case Type::VIDEO:
-				return Lang::translate(key: "MAIN_TYPE_VIDEO");
-			case Type::VISIT:
-				return Lang::translate(key: "MAIN_TYPE_VISIT");
-			case Type::OTHER:
-				return Lang::translate(key: "MAIN_OTHER");
+			case Type::VIDEO_DISCORD:
+				return Lang::translate(key: "MAIN_TYPE_VIDEO_DISCORD");
+			case Type::VIDEO_TEAMS:
+				return Lang::translate(key: "MAIN_TYPE_VIDEO_TEAMS");
 			default:
 				return "";
 		}

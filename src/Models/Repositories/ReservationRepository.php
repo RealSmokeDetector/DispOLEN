@@ -6,6 +6,7 @@ use App\Configs\Database;
 use App\Configs\Role;
 use App\Models\Entities\Reservation;
 use App\Utils\ApplicationData;
+use App\Utils\Roles;
 use App\Utils\System;
 use App\Utils\Date;
 use PDO;
@@ -89,7 +90,7 @@ class ReservationRepository {
 	public function getReservations(int $limit = null) : array {
 		$roleUser = UserRepository::getRoles(uid: $this->reservation->user->uid);
 
-		if (!empty(array_intersect($roleUser, [Role::TEACHER, Role::ADMINISTRATOR]))) {
+		if (Roles::check(userRoles: $roleUser, allowRoles: [Role::TEACHER, Role::ADMINISTRATOR])) {
 			$query = "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_teacher = :uid_teacher LIMIT :limit";
 			$data = [
 				"uid_teacher" => $this->reservation->user->uid,
@@ -97,7 +98,7 @@ class ReservationRepository {
 			];
 		}
 
-		if (!empty(array_intersect($roleUser, [Role::STUDENT]))) {
+		if (Roles::check(userRoles: $roleUser, allowRoles: [Role::STUDENT])) {
 			$query = "SELECT * FROM " . Database::RESERVATIONS . " WHERE uid_student = :uid_student LIMIT :limit";
 			$data = [
 				"uid_student" => $this->reservation->user->uid,
@@ -244,5 +245,15 @@ class ReservationRepository {
 			}
 		}
 		return $dates;
+	}
+
+	public function setState(int $state) : void {
+		ApplicationData::request(
+			query: "UPDATE " . Database::RESERVATIONS . " SET id_state = :id_state WHERE uid = :uid",
+			data: [
+				"id_state" => $state,
+				"uid" => $this->reservation->uid
+			]
+		);
 	}
 }

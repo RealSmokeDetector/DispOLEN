@@ -3,6 +3,7 @@
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\Date;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 	use App\Models\Repositories\ReservationRepository;
 
 	//(note to myself) generate today's date anf fill th container with divs for each hour of the day from 8 am to 5 pm
@@ -57,7 +58,6 @@
 	}
 	// timeslots from 8 am t 5pm
 	$todayTimeslots = generateTodayTimeslots(startHour: 8, endHour: 19, intervalMinutes: 30);
-
 ?>
 
 <div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">

@@ -6,8 +6,9 @@
 	"MAIN_PASSWORD": "Mot de passe",
 	"MAIN_ERROR": "Erreur",
 	"MAIN_NO_SCRIPT": "Votre navigateur ne supporte pas JavaScript ou il est désactivé. Veuillez activer JavaScript pour utiliser ce site.",
-	"MAIN_SHOW_MORE":"Voir plus",
-	"MAIN_DETAIL":"Détails",
+	"MAIN_SHOW_MORE": "Voir plus",
+	"MAIN_SAVE": "Sauvegarder",
+	"MAIN_DETAIL": "Détails",
 	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Rôle",
 	"MAIN_GROUP": "Groupe",
@@ -25,13 +26,16 @@
 	"MAIN_STATE_REFUSED": "Refusé",
 	"MAIN_STATE_CANCELED": "Annulé",
 
-	"MAIN_REASON_INFORMATION": "Prise d'informations",
+	"MAIN_REASON_REVIEW_1": "Bilan 1",
+	"MAIN_REASON_REVIEW_2": "Bilan 2",
 	"MAIN_REASON_PRESENTATION": "Présentation",
+	"MAIN_REASON_PROGRESS": "Point d'avancement",
 
+	"MAIN_TYPE_VISIT": "Visite",
 	"MAIN_TYPE_FACE_TO_FACE": "Face à face",
 	"MAIN_TYPE_PHONE": "Appel",
-	"MAIN_TYPE_VIDEO": "Appel vidéo",
-	"MAIN_TYPE_VISIT": "Visite",
+	"MAIN_TYPE_VIDEO_DISCORD": "Appel Discord",
+	"MAIN_TYPE_VIDEO_TEAMS": "Appel Teams",
 
 	"MAIN_MONDAY": "Lundi",
 	"MAIN_TUESDAY": "Mardi",
@@ -57,9 +61,10 @@
 	"NAVBAR_HOME": "Accueil",
 	"NAVBAR_DASHBOARD": "Tableau de bord",
 	"NAVBAR_DASHBOARD_USERS": "Utilisateurs",
+	"NAVBAR_CALENDAR": "Calendrier",
 	"NAVBAR_RESERVATION": "Réservations",
 	"NAVBAR_GROUPS": "Groupes",
-	"NAVBAR_PROFILE": "Profil",
+	"NAVBAR_ACCOUNT": "Compte",
 	"NAVBAR_LOGIN": "Connexion",
 	"NAVBAR_REGISTER": "Créer un compte",
 	"NAVBAR_DISCONNECT": "Déconnexion",
@@ -67,6 +72,10 @@
 	"INDEX_RESERVATION_TITLE_STUDENT": "Vos réservations",
 	"INDEX_RESERVATION_TITLE_TEACHER": "Vos rendez-vous",
 	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici  un extrait de la liste de vos réservations",
+	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "Vous n'avez pas de réservation",
+	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "Vous n'avez pas de rendez-vous",
+	"INDEX_CREATE_RESERVATION_STUDENT": "Créer une réservation",
+	"INDEX_CREATE_RESERVATION_TEACHER": "Créer une disponibilité",
 
 	"LOGIN_TITLE": "Connexion",
 	"LOGIN_SUBMIT": "Se connecter",
@@ -81,6 +90,11 @@
 	"REGISTER_ALREADY_EXIST": "Le compte \"$[email]\" existe déjà.",
 	"REGISTER_LOGIN": "Se connecter",
 
+	"ACCOUNT_TITLE": "Compte",
+	"ACCOUNT_MODIFY_TITLE": "Modifier le compte",
+
+	"CALENDAR_TITLE": "Calendrier",
+
 	"RESERVATION_TITLE": "Réservations",
 	"NO_RESERVATION": "Aucune reservation prévue",
 	"RESERVED":"Réservée",
@@ -88,6 +102,10 @@
 
 	"RESERVATIONS_DETAILS_TITLE": "Détails de la réservation",
 	"RESERVATIONS_DETAILS_TUTOR": "Tuteur/Tutrice",
+	"RESERVATIONS_DETAILS_ACCEPT": "Accepter",
+	"RESERVATIONS_DETAILS_REFUSE": "Refuser",
+	"RESERVATIONS_DETAILS_UPDATE": "Modifier",
+	"RESERVATIONS_DETAILS_CANCEL": "Annuler",
 
 	"GROUPS_TITLE": "Groupes",
 	"GROUPS_REMOVE_STUDENT": "Retirer l'étudiant",

@@ -6,24 +6,29 @@
 	use App\Utils\ApplicationData;
 	use App\Utils\Date;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 
 	$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER");
-	if (!empty(array_intersect($roles, [Role::STUDENT]))) {
+	if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {
 		$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT");
 	}
 ?>
 
 <h1 class="reservation_title"><i class="ri-calendar-2-line"></i> <?= $title ?></h1>
 
+<?php if (!empty(array_intersect($roles, [Role::STUDENT]))) { ?>
+	<button class="button" id="edit_button">+</button>
+<?php } ?>
+
 <div class="reservation_container">
 	<?php
 		foreach ($reservations as $reservation) {
-			if (!empty(array_intersect($roles, [Role::STUDENT]))) {
+			if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {
 				$userInformation = UserRepository::getInformations(uid: $reservation["uid_teacher"]);
 				$name = ApplicationData::nameFormat(name: $userInformation["name"], surname: $userInformation["surname"], complete: false, toChange: 1);
 			}
 
-			if (!empty(array_intersect($roles, [Role::TEACHER]))) {
+			if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) {
 				$userInformation = UserRepository::getInformations(uid: $reservation["uid_student"]);
 				$name = mb_strtoupper(string: $userInformation["surname"]) . " " . ucfirst(string: $userInformation["name"]);
 			}

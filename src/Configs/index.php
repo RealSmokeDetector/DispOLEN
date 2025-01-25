@@ -86,6 +86,3 @@ if (DATABASE instanceof Exception) {
 	$controller->render(message: Lang::translate(key: "ERROR_DATABASE"));
 	exit;
 }
-
-// Routes
-require BASE_DIR . "/src/routes/index.php";

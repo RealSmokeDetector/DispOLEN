@@ -4,6 +4,7 @@ namespace App\Controllers\Accounts;
 
 use App\Configs\Path;
 use App\Events\LoginEvent;
+use App\Factories\NavbarFactory;
 
 class LoginController {
 	public function render() : void {
@@ -16,7 +17,7 @@ class LoginController {
 
 		require Path::LAYOUT . "/header.php";
 
-		require Path::LAYOUT . "/navbar.php";
+		(new NavbarFactory())->render();
 
 		require Path::LAYOUT . "/login/index.php";
 
