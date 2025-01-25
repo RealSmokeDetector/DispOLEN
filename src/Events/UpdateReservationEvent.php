@@ -26,9 +26,6 @@ class UpdateReservationEvent {
 				$reservationRepo = new ReservationRepository(reservation: $reservation);
 				$reservationRepo->update();
 			}
-
 		}
 	}
 }
-
-?>
