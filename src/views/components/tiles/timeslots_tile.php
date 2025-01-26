@@ -6,27 +6,6 @@
 	$date = new Date();
 	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 	$teacherDisponibilities = ReservationRepository::getDisponibilitiesByDate(date: $date);
-
-	/**
-	 * Check if reserved
-	 *
-	 * @param array $reservations
-	 * @param int $hour
-	 *
-	 * @return bool
-	 */
-	function isReserved(array $reservations, int $hour) : bool {
-		foreach ($reservations as $reservation) {
-			$startHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_start"]));
-			$endHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_end"]));
-
-			if ($hour >= $startHour && $hour < $endHour) {
-				return true;
-			}
-		}
-
-		return false;
-	}
 ?>
 
 <div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
@@ -49,7 +28,7 @@
 		<div class="availabilities_container" id="availabilities_container">
 			<?php
 				for ($hour = 8; $hour <= 18; $hour++) {
-					$isReserved = isReserved(reservations: $teacherDisponibilities, hour: $hour);
+					$isReserved = ReservationRepository::isReserved(reservations: $teacherDisponibilities, hour: $hour);
 			?>
 					<div class="availability" id="reservations" data-day="<?= $date->GetDate() ?>" data-hour="<?= $hour ?>"></div>
 			<?php }
@@ -58,7 +37,7 @@
 					$dateEnd = new Date(date: $timeslot["date_end"]);
 
 					$height = (($dateStart->getDurationDate(dateEnd: $dateEnd) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
-					$translate = (($dateStart->getDurationDateAvailableReservations() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
+					$translate = (($dateStart->getIntervalFromBegin() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
 			?>
 					<div
 						class="availability_reserved"

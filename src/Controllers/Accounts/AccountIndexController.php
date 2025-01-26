@@ -11,13 +11,12 @@ use App\Utils\ApplicationData;
 
 class AccountIndexController {
 	public function render() : void {
-
 		AccountEvent::implement();
-		$user = UserRepository::getInformations(uid:$_SESSION["user"]["uid"]);
-		$userEntity = new User(uid :$_SESSION["user"]["uid"]) ;
-		$userRepo = new UserRepository(user: $userEntity);
-		$userGroup = UserRepository::getGroup(uid: $user["uid"]);
-		$roles = UserRepository::getRoles(uid: $user["uid"]);
+
+		$userInfo = UserRepository::getInformations(uid:$_SESSION["user"]["uid"]);
+		$userRepo = new UserRepository(user: new User(uid :$_SESSION["user"]["uid"]));
+		$userGroup = UserRepository::getGroup(uid: $userInfo["uid"]);
+		$roles = UserRepository::getRoles(uid: $userInfo["uid"]);
 		$teachers = ApplicationData::getAllTeachers();
 		$students = ApplicationData::getAllStudents();
 

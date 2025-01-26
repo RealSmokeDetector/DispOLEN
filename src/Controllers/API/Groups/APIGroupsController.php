@@ -37,8 +37,7 @@ class APIGroupsController {
 				$body = json_decode(json: $json);
 
 				if (isset($body->group_uid)) {
-					$group = new Group(uid: $body->group_uid);
-					$groupRepo = new GroupRepository(group: $group);
+					$groupRepo = new GroupRepository(group: new Group(uid: $body->group_uid));
 
 					$groupRepo->remove();
 

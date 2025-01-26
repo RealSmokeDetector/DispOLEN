@@ -32,7 +32,7 @@ class ReservationRepository {
 		$this->reservation->uid = System::uidGen(size: 16, table: Database::USERS);
 
 		ApplicationData::request(
-			query: "INSERT INTO " . Database::RESERVATIONS . "(uid, uid_teacher, uid_student, uid_disponibilities, id_type, id_reason, id_state, comment) VALUES (:uid, :uid_teacher, :uid_student, :uid_disponibilities, :id_type, :id_reason, :id_state, :comment)",
+			query: "INSERT INTO " . Database::RESERVATIONS . "(uid, uid_teacher, uid_student, uid_disponibilities, id_type, id_reason, id_state, date_start, date_end, comment) VALUES (:uid, :uid_teacher, :uid_student, :uid_disponibilities, :id_type, :id_reason, :id_state, :date_start, :date_end, :comment)",
 			data: [
 				"uid" => $this->reservation->uid,
 				"uid_teacher" => $this->reservation->teacherUid,
@@ -41,6 +41,8 @@ class ReservationRepository {
 				"id_type" => $this->reservation->typeId,
 				"id_reason" => $this->reservation->reasonId,
 				"id_state" => $this->reservation->stateId,
+				"date_start" => $this->reservation->date_start,
+				"date_end" => $this->reservation->date_end,
 				"comment" => $this->reservation->comment
 			]
 		);
@@ -53,12 +55,14 @@ class ReservationRepository {
 	 */
 	public function update() : void {
 		ApplicationData::request(
-			query: "UPDATE " . Database::RESERVATIONS . " SET id_type = :id_type, id_reason = :id_reason, id_state = :id_state, comment = :comment WHERE uid = :uid",
+			query: "UPDATE " . Database::RESERVATIONS . " SET id_type = :id_type, id_reason = :id_reason, id_state = :id_state, date_start = :date_start, date_end = :date_end, comment = :comment WHERE uid = :uid",
 			data: [
 				"uid" => $this->reservation->uid,
 				"id_type" => $this->reservation->typeId,
 				"id_reason" => $this->reservation->reasonId,
 				"id_state" => $this->reservation->stateId,
+				"date_start"=>$this->reservation->date_start,
+				"date_end"=>$this->reservation->date_end,
 				"comment" => $this->reservation->comment
 			]
 		);
@@ -114,42 +118,6 @@ class ReservationRepository {
 	}
 
 	/**
-	 * Get start date
-	 *
-	 * @param string $disponibilityUid
-	 *
-	 * @return string
-	 */
-	public static function getStartDate(string $disponibilityUid) : string {
-		return ApplicationData::request(
-			query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
-			data: [
-				"uid" => $disponibilityUid
-			],
-			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
-		);
-	}
-
-	/**
-	 * Get end date
-	 *
-	 * @param string $disponibilityUid
-	 *
-	 * @return string
-	 */
-	public static function getEndDate(string $disponibilityUid) : string {
-		return ApplicationData::request(
-			query: "SELECT date_end FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
-			data: [
-				"uid" => $disponibilityUid
-			],
-			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
-		);
-	}
-
-	/**
 	 * Get timestamp of reservation with limit
 	 *
 	 * @param int $limit
@@ -188,7 +156,7 @@ class ReservationRepository {
 	 */
 	public static function getDisponibilitiesByDate(Date $date) : array {
 		return ApplicationData::request(
-			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start = :date",
+			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
 			data: [
 				"date" => $date->getDate()
 			],
@@ -247,6 +215,13 @@ class ReservationRepository {
 		return $dates;
 	}
 
+	/**
+	 * Set state
+	 *
+	 * @param int $state
+	 *
+	 * @return void
+	 */
 	public function setState(int $state) : void {
 		ApplicationData::request(
 			query: "UPDATE " . Database::RESERVATIONS . " SET id_state = :id_state WHERE uid = :uid",
@@ -267,5 +242,25 @@ class ReservationRepository {
 				"date_end" =>$this->reservation->date_end
 			]
 		);
+
+	/**
+	 * Check if reserved
+	 *
+	 * @param array $reservations
+	 * @param int $hour
+	 *
+	 * @return bool
+	 */
+	public static function isReserved(array $reservations, int $hour) : bool {
+		foreach ($reservations as $reservation) {
+			$startHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_start"]));
+			$endHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_end"]));
+
+			if ($hour >= $startHour && $hour < $endHour) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

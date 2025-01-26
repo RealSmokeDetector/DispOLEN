@@ -198,7 +198,7 @@ class Date {
 	 *
 	 * @return int
 	 */
-	public function getDurationDateAvailableReservations() : int {
+	public function getIntervalFromBegin() : int {
 		return strtotime(datetime: $this->dateTime) - strtotime(datetime: date(format: $this->getDate() . " 08:00:00"));
 	}
 

@@ -5,7 +5,6 @@ namespace App\Events;
 use App\Models\Entities\User;
 use App\Models\Repositories\UserRepository;
 use App\Utils\Lang;
-use App\Utils\System;
 
 class AccountEvent {
 	public static function implement() : void {
@@ -15,8 +14,7 @@ class AccountEvent {
 				&& isset($_POST["password_confirm"])
 			) {
 				if ($_POST["password"] === $_POST["password_confirm"]) {
-					$user = new User(uid: $_SESSION["user"]["uid"], password: $_POST["password"]);
-					$userRepo = new UserRepository(user: $user);
+					$userRepo = new UserRepository(user: new User(uid: $_SESSION["user"]["uid"], password: $_POST["password"]));
 					$userRepo->setPassword();
 				} else {
 					setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_UNIDENTICAL_PASSWORD"), time() + 60*60*24*30);
