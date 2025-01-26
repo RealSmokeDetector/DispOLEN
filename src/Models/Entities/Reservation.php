@@ -19,8 +19,8 @@ class Reservation {
 		$this->uid = $uid;
 		$this->teacherUid = $teacherUid;
 		$this->studentUid = $studentUid;
-		$this->date_start =$date_start;
-		$this->date_end =$date_end;
+		$this->date_start = $date_start;
+		$this->date_end = $date_end;
 		$this->disponibilitiesUid = $disponibilitiesUid;
 		$this->typeId = $typeId;
 		$this->reasonId = $reasonId;

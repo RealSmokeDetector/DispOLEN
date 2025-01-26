@@ -15,7 +15,8 @@ class ReservationsController {
 			"/scripts/engine.js",
 			"/scripts/theme.js",
 			"/scripts/reservations/popup.js",
-			"/scripts/times/calendar.js"
+			"/scripts/times/calendar.js",
+			"/scripts/reservations/timeslot.js",
 		];
 
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
