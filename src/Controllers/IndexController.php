@@ -28,8 +28,7 @@ class IndexController {
 		(new NavbarFactory())->render();
 
 		if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) {
-			$user = new User(uid: $_SESSION["user"]["uid"]);
-			$userRepo = new UserRepository(user: $user);
+			$userRepo = new UserRepository(user: new User(uid: $_SESSION["user"]["uid"]));
 			$teacherUid = $userRepo->getTutor();
 
 			if ($teacherUid != null) {

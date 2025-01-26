@@ -24,8 +24,7 @@ class DashboardUsersDetailsController {
 			System::redirect(url: "/dashboard/users");
 		}
 
-		$userEntity = new User(uid : $_GET["user"]) ;
-		$userRepo = new UserRepository(user: $userEntity);
+		$userRepo = new UserRepository(user: new User(uid : $_GET["user"]));
 		$userGroup = UserRepository::getGroup(uid: $user["uid"]);
 		$roles = UserRepository::getRoles(uid: $user["uid"]);
 		$teachers = ApplicationData::getAllTeachers();

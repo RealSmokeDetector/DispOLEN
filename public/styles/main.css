@@ -879,10 +879,6 @@ nav {
 	}
 }
 
-/* ==============================================
-   Tile
-   ============================================== */
-
 /* timeslots
    ============================================== */
 
@@ -919,12 +915,11 @@ nav {
 				background-color: var(--timeslot-background-color);
 				border-top: none;
 				border-bottom: none;
+				width: 90px;
+				position: fixed;
 			}
 		}
 	}
-
-
-
 
 	.line {
 		margin: 10px 0px;

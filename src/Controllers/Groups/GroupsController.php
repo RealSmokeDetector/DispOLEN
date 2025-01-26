@@ -20,8 +20,7 @@ class GroupsController {
 			}
 
 			foreach ($groups as $key => $value) {
-				$group = new Group(uid: $value);
-				$groupRepo = new GroupRepository(group: $group);
+				$groupRepo = new GroupRepository(group: new Group(uid: $value));
 
 				$groups[$key] = [
 					"uid" => $value,

@@ -17,8 +17,7 @@ class APIReservationStatesController {
 				$body = json_decode(json: $json);
 
 				if (isset($body->reservation_uid) && isset($body->state)) {
-					$reservation = new Reservation(uid: $body->reservation_uid);
-					$reservationRepo = new ReservationRepository(reservation: $reservation);
+					$reservationRepo = new ReservationRepository(reservation: new Reservation(uid: $body->reservation_uid));
 					$reservationRepo->setState(state: $body->state);
 
 					$data["message"] = "200";

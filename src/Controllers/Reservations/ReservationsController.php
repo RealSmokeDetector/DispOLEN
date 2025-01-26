@@ -18,9 +18,7 @@ class ReservationsController {
 			"/scripts/times/calendar.js"
 		];
 
-		$user = new User(uid: $_SESSION["user"]["uid"]);
-		$reservation = new Reservation(user: $user);
-		$reservationRepo = new ReservationRepository(reservation: $reservation);
+		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
 		$reservations = $reservationRepo->getReservations();
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
 

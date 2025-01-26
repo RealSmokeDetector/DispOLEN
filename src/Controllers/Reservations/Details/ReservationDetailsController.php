@@ -17,11 +17,9 @@ class ReservationDetailsController {
 	public function render() : void {
 		UpdateReservationEvent::implement();
 
-		$userEntity = new User($_SESSION["user"]["uid"]) ;
-		$userRepo = new UserRepository(user: $userEntity);
+		$userRepo = new UserRepository(user: new User(uid: $_SESSION["user"]["uid"]));
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
-		$reservation = new Reservation(uid: $_GET["reservation"]);
-		$reservationRepo = new ReservationRepository(reservation: $reservation);
+		$reservationRepo = new ReservationRepository(reservation: new Reservation(uid: $_GET["reservation"]));
 		$reservationData = $reservationRepo->getInformation();
 		$states = ApplicationData::getStates();
 		$reasons = ApplicationData::getReasons();

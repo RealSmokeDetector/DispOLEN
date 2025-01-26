@@ -22,8 +22,7 @@ class RegisterEvent {
 					setcookie("NOTIFICATION", Lang::translate(key: "REGISTER_INVALID_EMAIL", options: ["email" => htmlspecialchars(string: $_POST["email"])]), time() + 60*60*24*30);
 				} else {
 					if ($_POST["password"] === $_POST["password_confirm"]) {
-						$user = new User(name: $_POST["name"], surname: $_POST["surname"], email: $_POST["email"], password: $_POST["password"]);
-						$userRepo = new UserRepository(user: $user);
+						$userRepo = new UserRepository(user: new User(name: $_POST["name"], surname: $_POST["surname"], email: $_POST["email"], password: $_POST["password"]));
 						$uid = $userRepo->create();
 
 						if ($uid instanceof Exception) {

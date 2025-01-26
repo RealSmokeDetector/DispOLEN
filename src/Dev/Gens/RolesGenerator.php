@@ -20,15 +20,13 @@ class RolesGenerator {
 		);
 
 		for ($i = 0; $i < $amountAdministrator; $i++) {
-			$user = new User(uid: $usersUid[$i]["uid_user"]);
-			$userRepo = new UserRepository(user: $user);
+			$userRepo = new UserRepository(user: new User(uid: $usersUid[$i]["uid_user"]));
 
 			$userRepo->setRoles(roles: [Role::ADMINISTRATOR]);
 		}
 
 		for ($i = $amountAdministrator; $i < $amountAdministrator + $amountTutor; $i++) {
-			$user = new User(uid: $usersUid[$i]["uid_user"]);
-			$userRepo = new UserRepository(user: $user);
+			$userRepo = new UserRepository(user: new User(uid: $usersUid[$i]["uid_user"]));
 
 			$userRepo->setRoles(roles: [Role::TEACHER]);
 		}

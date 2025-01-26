@@ -17,8 +17,7 @@ class APIGroupsUsersController {
 				$body = json_decode(json: $json);
 
 				if (isset($body->group_uid) && isset($body->user_uid)) {
-					$group = new Group(uid: $body->group_uid);
-					$groupRepo = new GroupRepository(group: $group);
+					$groupRepo = new GroupRepository(group: new Group(uid: $body->group_uid));
 
 					if (!in_array(needle: $body->user_uid, haystack: $groupRepo->getUsers())) {
 						$groupRepo->addUser(uid: $body->user_uid);
@@ -45,8 +44,7 @@ class APIGroupsUsersController {
 				$body = json_decode(json: $json);
 
 				if (isset($body->group_uid) && isset($body->user_uid)) {
-					$group = new Group(uid: $body->group_uid);
-					$groupRepo = new GroupRepository(group: $group);
+					$groupRepo = new GroupRepository(group: new Group(uid: $body->group_uid));
 
 					$groupRepo->removeUser(uid: $body->user_uid);
 

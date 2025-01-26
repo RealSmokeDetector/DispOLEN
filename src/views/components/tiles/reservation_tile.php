@@ -9,10 +9,7 @@
 	use App\Utils\Roles;
 
 	$userConnect = UserRepository::getInformations(uid: $_SESSION["user"]["uid"]);
-	$user = new User(uid: $userConnect["uid"]);
-	$reservation = new Reservation();
- 	$reservation->user = $user;
-	$reservationRepo = new ReservationRepository(reservation: $reservation);
+	$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $userConnect["uid"])));
 ?>
 
 <div class="tile index_reservation_container">

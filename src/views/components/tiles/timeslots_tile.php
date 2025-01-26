@@ -1,78 +1,49 @@
 <?php
-	use App\Configs\Role;
-	use App\Models\Repositories\UserRepository;
 	use App\Utils\Date;
 	use App\Utils\Lang;
-	use App\Utils\Roles;
 	use App\Models\Repositories\ReservationRepository;
 
-	//(note to myself) generate today's date anf fill th container with divs for each hour of the day from 8 am to 5 pm
 	$date = new Date();
 	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
+	$teacherDisponibilities = ReservationRepository::getDisponibilitiesByDate(date: $date);
 
-	$teacherDisponibilities = ReservationRepository::getTeacherDisponibilitiesByDate(date: $date);
-
-	// Function checking if there's a reservation for given time
-	function getReservationForTime($reservations, $time) {
+	/**
+	 * Check if reserved
+	 *
+	 * @param array $reservations
+	 * @param int $hour
+	 *
+	 * @return bool
+	 */
+	function isReserved(array $reservations, int $hour) : bool {
 		foreach ($reservations as $reservation) {
-			if (strpos($reservation["date_start"], needle: $time) !== false) {
-
-				return $reservation;
-			}
-		}
-		return null;
-	}
-
-	// function generating timesolts
-	function generateTodayTimeslots($startHour, $endHour, $intervalMinutes) {
-		$today = new Date();
-		$timeslotsInterval = $today->GetIntervaleDay($startHour, $endHour);
-
-		$timeslots = [];
-
-		while ( $today < $timeslotsInterval["dateEnd"]) {
-			$slotStart = $today->GetTime();
-			$today->adjusteTimeMin(minute: 30);
-			$slotEnd = $today->GetTime();
-
-			$timeslots[] = [
-				'start' => $slotStart,
-				'end' => $slotEnd
-			];
-		}
-
-		return $timeslots;
-	}
-
-	// check if reserved
-	function isReserved($reservations, $hour) {
-		foreach ($reservations as $reservation) {
-			$startHour = (int)date("H", strtotime($reservation["date_start"]));
-			$endHour = (int)date("H", strtotime($reservation["date_end"]));
+			$startHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_start"]));
+			$endHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_end"]));
 
 			if ($hour >= $startHour && $hour < $endHour) {
 				return true;
 			}
 		}
+
 		return false;
 	}
-	// timeslots from 8 am t 5pm
-	$todayTimeslots = generateTodayTimeslots(startHour: 8, endHour: 19, intervalMinutes: 30);
 ?>
 
 <div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
 	<h1><?= Lang::translate(key: "DISPONIBILITY_TIMESLOTS_TITLE") ?></h1>
-	<p id="timesolt_date"><?= htmlspecialchars($date->GetDate()) ?></p>
+	<p id="timesolt_date"><?= $date->GetDate() ?></p>
+
 	<div class="line"></div>
 	<div class="timeslots_container">
 		<div class="times">
+			<?php for ($hour = 8; $hour <= 19; $hour++) { ?>
+
+			<p class="time"><?= date(format: "H:i", timestamp: strtotime(datetime: $date->hour . ":" . $date->minute)) ?></p>
+
 			<?php
-				for ($hour = 8; $hour <= 19; $hour++) {
+					$date->adjusteTimeMin(minute: 60);
+				}
 			?>
-			<p class="time"><?= date("H:i", strtotime($date->hour.":".$date->minute)) ?></p>
-			<?php
-				$date->adjusteTimeMin(minute: 60);
-			} ?>
 		</div>
 
 		<div class="availabilities_container" id="availabilities_container">
@@ -85,8 +56,17 @@
 				foreach ($teacherDisponibilities as $timeslot) {
 					$dateStart = new Date(date: $timeslot["date_start"]);
 					$dateEnd = new Date(date: $timeslot["date_end"]);
+
+					$height = (($dateStart->getDurationDate(dateEnd: $dateEnd) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
+					$translate = (($dateStart->getDurationDateAvailableReservations() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
 			?>
-					<div class="availability_reserved" style="position:fixed; height:<?=(($dateStart->getDurationDate(dateEnd: $dateEnd) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60) ?>px; transform: translateY(<?= (($dateStart->getDurationDateAvailableReservations() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60)?>px); width: 90px;" ></div>
+					<div
+						class="availability_reserved"
+						style="
+							height:<?= $height ?>px;
+							transform: translateY(<?= $translate ?>px);
+						"
+					></div>
 			<?php } ?>
 		</div>
 	</div>

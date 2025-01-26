@@ -19,10 +19,7 @@ class APIReservationsController {
 				$body = json_decode(json: $json);
 
 				if (isset($body->uid) && isset($body->date_start)) {
-					$user = new User(uid: $body->uid);
-					$reservation = new Reservation();
-					$reservation->user = $user;
-					$reservationRepo = new ReservationRepository(reservation: $reservation);
+					$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
 					$date = new Date(date: $body->date_start);
 
 					$data = $reservationRepo->reservationByDate(dateStart: $date);

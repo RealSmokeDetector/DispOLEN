@@ -182,19 +182,18 @@ class ReservationRepository {
 	/**
 	 * Get teacher disponibilities by date
 	 *
-	 * @param string $date
+	 * @param Date $date
 	 *
 	 * @return array
 	 */
-	public static function getTeacherDisponibilitiesByDate(Date $date) : array {
-		$strDate = $date->getDate();
-	return ApplicationData::request(
-		query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
-		data: [
-			"date" => $strDate
-		],
-		returnType: PDO::FETCH_ASSOC
-	);
+	public static function getDisponibilitiesByDate(Date $date) : array {
+		return ApplicationData::request(
+			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start = :date",
+			data: [
+				"date" => $date->getDate()
+			],
+			returnType: PDO::FETCH_ASSOC
+		);
 	}
 
 	/**
@@ -206,12 +205,12 @@ class ReservationRepository {
 	 */
 	public static function createAvailabilityForToday(string $teacherUid) : bool {
 		$today = new Date();
-		$interval = $today->GetIntervaleDay(hourStart: 8,hourEnd: 19);
+		$interval = $today->GetIntervaleDay(hourStart: 8, hourEnd: 19);
 
 		return ApplicationData::request(
 			query: "INSERT INTO " . Database::DISPONIBILITIES . " (uid, date_start, date_end, uid_user) VALUES (:uid, :date_start, :date_end, :uid_user)",
 			data: [
-				"uid" => uniqid(),
+				"uid" => System::uidGen(size: 16, table: Database::DISPONIBILITIES),
 				"date_start" => $interval["dateStart"],
 				"date_end" => $interval["dateEnd"],
 				"uid_user" => $teacherUid
@@ -220,7 +219,8 @@ class ReservationRepository {
 	}
 
 	/**
-	 *  create and call function in object Date to formate universal date YYYY-MM-DD HH:mm:ss.000
+	 * Create and call function in object Date to
+	 * formate universal date YYYY-MM-DD HH:mm:ss.000
 	 *
 	 * @param string $date
 	 *

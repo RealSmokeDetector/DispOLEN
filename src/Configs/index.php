@@ -69,17 +69,22 @@ define(constant_name: "MONTH", value: [
 ]);
 
 // Database
-$database = new Database(
-	hostname: $_ENV["DATABASE_HOST"],
-	port: $_ENV["DATABASE_PORT"],
-	dbname: $_ENV["DATABASE_NAME"],
-	username: $_ENV["DATABASE_USER"],
-	password: $_ENV["DATABASE_PASSWORD"],
-	driver: $_ENV["DATABASE_DRIVER"],
-	charset: $_ENV["DATABASE_CHARSET"]
+define(
+	constant_name: "DATABASE",
+	value: (
+		new DatabaseRepository(
+			database: new Database(
+				hostname: $_ENV["DATABASE_HOST"],
+				port: $_ENV["DATABASE_PORT"],
+				dbname: $_ENV["DATABASE_NAME"],
+				username: $_ENV["DATABASE_USER"],
+				password: $_ENV["DATABASE_PASSWORD"],
+				driver: $_ENV["DATABASE_DRIVER"],
+				charset: $_ENV["DATABASE_CHARSET"]
+			)
+		)
+	)->createConnection()
 );
-$databaseRepo = new DatabaseRepository(database: $database);
-define(constant_name: "DATABASE", value: $databaseRepo->createConnection());
 
 if (DATABASE instanceof Exception) {
 	$controller = new ErrorController();

@@ -15,8 +15,7 @@ class LoginEvent {
 				isset($_POST["email"])
 				&& isset($_POST["password"])
 			) {
-				$user = new User(email: $_POST["email"], password: $_POST["password"]);
-				$userRepo = new UserRepository(user: $user);
+				$userRepo = new UserRepository(user: new User(email: $_POST["email"], password: $_POST["password"]));
 				$uid = $userRepo->verifyPassword();
 
 				if ($uid instanceof Exception) {

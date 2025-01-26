@@ -192,7 +192,7 @@ class Date {
 	public function getDurationDate(Date $dateEnd) : int {
 		return strtotime(datetime: $dateEnd->dateTime) - strtotime(datetime: $this->dateTime);
 	}
-	
+
 	/**
 	 * Get Duration (secound) between this date and available date of reservation
 	 *
@@ -202,4 +202,27 @@ class Date {
 		return strtotime(datetime: $this->dateTime) - strtotime(datetime: date(format: $this->getDate() . " 08:00:00"));
 	}
 
+	/**
+	 * Function generating timesolts
+	 *
+	 * @param int $startHour
+	 * @param int $endHour
+	 *
+	 * @return array
+	 */
+	function generateTimeslots(int $startHour, int $endHour) : array {
+		// wtf did you do here?
+		while ($this->__construct() < $this->GetIntervaleDay(hourStart: $startHour, hourEnd: $endHour)) {
+			$slotStart = $this->GetTime();
+			$this->adjusteTimeMin(minute: 30);
+			$slotEnd = $this->GetTime();
+
+			$timeslots = [
+				"start" => $slotStart,
+				"end" => $slotEnd
+			];
+		}
+
+		return $timeslots;
+	}
 }

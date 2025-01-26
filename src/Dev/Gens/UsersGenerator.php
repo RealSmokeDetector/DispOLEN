@@ -23,10 +23,9 @@ class UsersGenerator {
 			$name = $names[0];
 			$surname = $names[1];
 
-			$email = mb_strtolower(string: iconv(from_encoding: 'UTF-8', to_encoding: 'ASCII//TRANSLIT',  string: $name . "." . $surname)) . "@" . $this->emailProvider[array_rand(array: $this->emailProvider)];
+			$email = mb_strtolower(string: iconv(from_encoding: "UTF-8", to_encoding: "ASCII//TRANSLIT",  string: $name . "." . $surname)) . "@" . $this->emailProvider[array_rand(array: $this->emailProvider)];
 
-			$user = new User(name: $name, surname: $surname, email: $email, password: mb_strtolower(string: iconv(from_encoding: 'UTF-8', to_encoding: 'ASCII//TRANSLIT', string: $name)));
-			$userRepo = new UserRepository(user: $user);
+			$userRepo = new UserRepository(user: new User(name: $name, surname: $surname, email: $email, password: mb_strtolower(string: iconv(from_encoding: "UTF-8", to_encoding: "ASCII//TRANSLIT", string: $name))));
 
 			$userRepo->create();
 		}

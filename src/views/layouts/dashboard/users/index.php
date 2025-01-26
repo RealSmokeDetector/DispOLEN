@@ -13,8 +13,7 @@
 <div class="user_container">
 	<?php
 		foreach (ApplicationData::getUsers() as $user) {
-			$userE = new User(uid: $user["uid"]);
-			$userRepo = new UserRepository(user: $userE);
+			$userRepo = new UserRepository(user: new User(uid: $user["uid"]));
 
 			$userGroup = UserRepository::getGroup(uid: $user["uid"]);
 			$roles = UserRepository::getRoles(uid: $user["uid"]);
