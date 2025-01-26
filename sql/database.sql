@@ -44,11 +44,11 @@ CREATE OR REPLACE FUNCTION public.triggerdeleterefused() RETURNS TRIGGER
 	LANGUAGE PLPGSQL
 	AS $$
 BEGIN
-    IF NEW.id_state = 3 THEN
-        DELETE FROM public.reservations WHERE uid = NEW.uid;
-        RETURN NULL;
-    END IF;
-    RETURN NEW;
+	IF NEW.id_state = 3 THEN
+		DELETE FROM public.reservations WHERE uid = NEW.uid;
+		RETURN NULL;
+	END IF;
+	RETURN NEW;
 END; $$;
 
 --
@@ -81,11 +81,14 @@ CREATE TABLE public.reservations (
 	uid CHARACTER VARYING(32) NOT NULL,
 	uid_teacher CHARACTER VARYING(32) NOT NULL,
 	uid_student CHARACTER VARYING(32) NOT NULL,
-	uid_disponibilities CHARACTER VARYING(32) NOT NULL,
+	date_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT null,
+	date_end TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT null,
+	uid_disponibilities CHARACTER VARYING(32) ,
 	id_type INTEGER NOT NULL DEFAULT 1,
 	id_reason INTEGER NOT NULL DEFAULT 1,
 	id_state INTEGER NOT NULL DEFAULT 1,
 	comment TEXT NULL,
+	date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	date_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -243,7 +246,6 @@ ALTER TABLE ONLY public.states
 
 ALTER TABLE ONLY public.reservations
 	ADD CONSTRAINT reservations_pk PRIMARY KEY (uid),
-	ADD CONSTRAINT reservations_disponibilities_fk FOREIGN KEY (uid_disponibilities) REFERENCES public.disponibilities(uid),
 	ADD CONSTRAINT reservations_users_fk FOREIGN KEY (uid_teacher) REFERENCES public.users(uid),
 	ADD CONSTRAINT reservations_users_fk_1 FOREIGN KEY (uid_student) REFERENCES public.users(uid),
 	ADD CONSTRAINT reservations_type_fk FOREIGN KEY (id_type) REFERENCES public.types(id),
