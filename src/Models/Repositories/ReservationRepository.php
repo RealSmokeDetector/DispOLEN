@@ -232,16 +232,22 @@ class ReservationRepository {
 		);
 	}
 
-	public function addDisponibility() : void{
+	/**
+	 * Add disponiblity
+	 *
+	 * @return void
+	 */
+	public function addDisponibility() : void {
 		ApplicationData::request(
 			query: "INSERT INTO " . Database::DISPONIBILITIES . " (uid, uid_user, date_start, date_end) VALUES (:uid, :uid_user, to_timestamp(:date_start), to_timestamp(:date_end))",
 			data: [
 				"uid" => System::uidGen(size: 16, table: Database::DISPONIBILITIES),
 				"uid_user" => $this->reservation->user->uid,
 				"date_start" => $this->reservation->date_start,
-				"date_end" =>$this->reservation->date_end
+				"date_end" => $this->reservation->date_end
 			]
 		);
+	}
 
 	/**
 	 * Check if reserved
