@@ -188,7 +188,7 @@ class ReservationRepository {
 	 */
 	public static function getDisponibilitiesByDate(Date $date) : array {
 		return ApplicationData::request(
-			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start = :date",
+			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
 			data: [
 				"date" => $date->getDate()
 			],
@@ -247,6 +247,13 @@ class ReservationRepository {
 		return $dates;
 	}
 
+	/**
+	 * Set state
+	 *
+	 * @param int $state
+	 *
+	 * @return void
+	 */
 	public function setState(int $state) : void {
 		ApplicationData::request(
 			query: "UPDATE " . Database::RESERVATIONS . " SET id_state = :id_state WHERE uid = :uid",
@@ -255,5 +262,26 @@ class ReservationRepository {
 				"uid" => $this->reservation->uid
 			]
 		);
+	}
+
+	/**
+	 * Check if reserved
+	 *
+	 * @param array $reservations
+	 * @param int $hour
+	 *
+	 * @return bool
+	 */
+	public static function isReserved(array $reservations, int $hour) : bool {
+		foreach ($reservations as $reservation) {
+			$startHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_start"]));
+			$endHour = (int)date(format: "H", timestamp: strtotime(datetime: $reservation["date_end"]));
+
+			if ($hour >= $startHour && $hour < $endHour) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
