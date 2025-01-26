@@ -31,8 +31,8 @@
 				$name = mb_strtoupper(string: $userInformation["surname"]) . " " . ucfirst(string: $userInformation["name"]);
 			}
 
-			$date_start = new Date(date: ReservationRepository::getStartDate(disponibilityUid: $reservation["uid_disponibilities"]));
-			$date_end = new Date(date: ReservationRepository::getEndDate(disponibilityUid: $reservation["uid_disponibilities"]));
+			$date_start = new Date($reservation["date_start"]);
+			$date_end = new Date($reservation["date_end"]);
 
 			include Path::COMPONENTS . "/tiles/reservation_details_tile.php";
 		}
