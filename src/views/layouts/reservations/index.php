@@ -16,9 +16,7 @@
 
 <h1 class="reservation_title"><i class="ri-calendar-2-line"></i> <?= $title ?></h1>
 
-<?php if (!empty(array_intersect($roles, [Role::STUDENT]))) { ?>
-	<button class="button" id="edit_button">+</button>
-<?php } ?>
+<button class="button" id="edit_button">+</button>
 
 <div class="reservation_container">
 	<?php
