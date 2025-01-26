@@ -30,7 +30,7 @@
 		<p><?= htmlspecialchars(string: $userGroup ? ApplicationData::getGroupName(uid: $userGroup) : " ") ?></p>
 		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTOR") ?> : </p>
 
-		<p id="tutors"><?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $userRepo->getTutor())["name"], surname: UserRepository::getInformations(uid: $userRepo->getTutor())["surname"]) ?></p>
+		<p id="tutors"><?= $userRepo->getTutor() == null ? Lang::translate(key: "DASHBOARD_USER_DETAILS_NO_TUTOR") : ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $userRepo->getTutor())["name"], surname: UserRepository::getInformations(uid: $userRepo->getTutor())["surname"]) ?></p>
 		<select id="tutors_select" name="tutor" style="display: none">
 			<?php foreach ($teachers as $teacher) { ?>
 				<option value="<?= htmlspecialchars(string: $teacher) ?>"

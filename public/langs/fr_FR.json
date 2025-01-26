@@ -20,6 +20,7 @@
 	"MAIN_COMMENT": "Commentaire",
 	"MAIN_OTHER": "Autre",
 	"MAIN_NONE": "Aucun",
+	"MAIN_MODIFY": "Modifier",
 
 	"MAIN_STATE_PENDING": "En attente",
 	"MAIN_STATE_ACCEPTED": "Accepté",
@@ -92,6 +93,7 @@
 
 	"ACCOUNT_TITLE": "Compte",
 	"ACCOUNT_MODIFY_TITLE": "Modifier le compte",
+	"ACCOUNT_NO_TUTOR": "Vous n'avez pas de tuteur.",
 
 	"CALENDAR_TITLE": "Calendrier",
 
@@ -120,6 +122,7 @@
 	"DASHBOARD_USER_DETAILS_TUTOR": "Tuteur",
 	"DASHBOARD_USER_DETAILS_TUTORED_STUDENT" : "Élèves tutorés",
 	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Date de création",
+	"DASHBOARD_USER_DETAILS_NO_TUTOR" : "Aucun tuteur",
 
 	"DISPONIBILITY_TIMESLOTS_TITLE": "Plage horaire",
 	"NO_DISPONIBILITY_FOUND": "Aucune disponibilité trouvée",
