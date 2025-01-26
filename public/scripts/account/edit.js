@@ -7,7 +7,7 @@ editButton.addEventListener("click", () => {
 	updateUser();
 })
 
-function updateUser(){
+function updateUser() {
 	passwordElement.forEach(password => {
 		password.style.display = "block";
 	})

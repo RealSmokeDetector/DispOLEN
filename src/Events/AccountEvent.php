@@ -7,7 +7,6 @@ use App\Models\Repositories\UserRepository;
 use App\Utils\Lang;
 use App\Utils\System;
 
-
 class AccountEvent {
 	public static function implement() : void {
 		if ($_SERVER["REQUEST_METHOD"] === "POST") {

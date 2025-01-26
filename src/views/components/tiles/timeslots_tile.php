@@ -51,7 +51,7 @@
 				for ($hour = 8; $hour <= 18; $hour++) {
 					$isReserved = isReserved(reservations: $teacherDisponibilities, hour: $hour);
 			?>
-			<div class="availability" id="reservations"></div>
+					<div class="availability" id="reservations" data-day="<?= $date->GetDate() ?>" data-hour="<?= $hour ?>"></div>
 			<?php }
 				foreach ($teacherDisponibilities as $timeslot) {
 					$dateStart = new Date(date: $timeslot["date_start"]);

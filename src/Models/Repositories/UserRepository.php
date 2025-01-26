@@ -64,7 +64,7 @@ class UserRepository {
 		);
 	}
 
-	public function setPassword(): void{
+	public function setPassword() : void {
 		$this->user->password = password_hash(password: $this->user->password, algo: PASSWORD_BCRYPT);
 		ApplicationData::request(
 			query: "UPDATE " . Database::USERS . " SET password = :password WHERE uid = :uid",
