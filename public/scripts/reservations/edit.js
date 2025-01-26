@@ -25,12 +25,12 @@ stateButtons.forEach(button => {
 				case "1":
 					stateElement.textContent = await stateFormat(button.dataset.state);
 					break;
-				case "2":
-					console.log("ptn")
+				case "2": // Accepted
 					if (newButton.dataset.state == 4) {
 						newButton.style.display = "inline-block";
 					}
 					editButton.style.display = "block";
+					stateValueElement.dataset.state = 2;
 					stateElement.textContent = await stateFormat(button.dataset.state);
 					break;
 				case "3":
