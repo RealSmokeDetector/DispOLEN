@@ -13,8 +13,9 @@ class AccountIndexController {
 	public function render() : void {
 		AccountEvent::implement();
 
-		$userInfo = UserRepository::getInformations(uid:$_SESSION["user"]["uid"]);
-		$userRepo = new UserRepository(user: new User(uid :$_SESSION["user"]["uid"]));
+		$userInfo = UserRepository::getInformations(uid: $_SESSION["user"]["uid"]);
+		$userRepo = new UserRepository(user: new User(uid: $_SESSION["user"]["uid"]));
+		$userInfo = UserRepository::getInformations(uid: $_SESSION["user"]["uid"]);
 		$userGroup = UserRepository::getGroup(uid: $userInfo["uid"]);
 		$roles = UserRepository::getRoles(uid: $userInfo["uid"]);
 		$teachers = ApplicationData::getAllTeachers();
@@ -27,9 +28,8 @@ class AccountIndexController {
 
 		$tutoredStudents = [];
 		foreach ($userRepo->getTutoredStudent() as $student) {
-
 			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
-			array_push($tutoredStudents, mb_strtoupper( string: $studentInfo["surname"]), $studentInfo["name"]);
+			array_push($tutoredStudents, mb_strtoupper(string: $studentInfo["surname"]), $studentInfo["name"]);
 		}
 
 		$scripts = [

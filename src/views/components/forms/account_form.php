@@ -10,11 +10,11 @@
 	<h1><?= Lang::translate(key: "ACCOUNT_MODIFY_TITLE") ?></h1>
 
 	<p><?= Lang::translate(key: "MAIN_NAME") ?></p>
-	<p><?= htmlspecialchars(string: $user["name"]) ?></p>
+	<p><?= htmlspecialchars(string: $userInfo["name"]) ?></p>
 	<p><?= Lang::translate(key: "MAIN_SURNAME") ?></p>
-	<p><?= htmlspecialchars(string: $user["surname"]) ?></p>
+	<p><?= htmlspecialchars(string: $userInfo["surname"]) ?></p>
 	<p><?= Lang::translate(key: "MAIN_EMAIL") ?></p>
-	<p><?= htmlspecialchars(string: $user["email"]) ?></p>
+	<p><?= htmlspecialchars(string: $userInfo["email"]) ?></p>
 	<p><?= Lang::translate(key: "MAIN_ROLE") ?></p>
 	<p id="role"><?= join(array: $rolesName, separator: " ") ?></p>
 
