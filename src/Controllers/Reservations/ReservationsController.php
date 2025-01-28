@@ -8,6 +8,7 @@ use App\Models\Entities\Reservation;
 use App\Models\Entities\User;
 use App\Models\Repositories\ReservationRepository;
 use App\Models\Repositories\UserRepository;
+use App\Utils\Date;
 
 class ReservationsController {
 	public function render() : void {
@@ -22,6 +23,7 @@ class ReservationsController {
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
 		$reservations = $reservationRepo->getReservations();
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
+		$date = new Date();
 
 		require Path::LAYOUT . "/header.php";
 
