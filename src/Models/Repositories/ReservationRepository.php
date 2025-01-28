@@ -127,7 +127,7 @@ class ReservationRepository {
 	public function getAllDates(int $limit = null) : array {
 		$dates = [];
 		foreach ($this->getReservations(limit: $limit) as $index=>$reservation) {
-			$date = ApplicationData::request(
+			$getStartDate = ApplicationData::request(
 				query: "SELECT date_start FROM " . Database::DISPONIBILITIES . " WHERE uid = :uid",
 				data: [
 					"uid" => $reservation["uid_disponibilities"]
@@ -138,7 +138,7 @@ class ReservationRepository {
 
 			array_push(
 				$dates, [
-					"date" => $date,
+					"date" => $getStartDate,
 					"uid" => $reservation["uid"]
 				]
 			);
@@ -194,7 +194,7 @@ class ReservationRepository {
 	 * Create and call function in object Date to
 	 * formate universal date YYYY-MM-DD HH:mm:ss.000
 	 *
-	 * @param string $date
+	 * @param Date $dateStart
 	 *
 	 * @return bool
 	 */
@@ -202,7 +202,7 @@ class ReservationRepository {
 		$dates = [];
 		$interval = $dateStart->GetIntervaleDay();
 		foreach ($this->getReservations() as $reservation) {
-			$date = ApplicationData::request(
+			$dateStartEnd = ApplicationData::request(
 				query: "SELECT date_start, date_end FROM " . Database::DISPONIBILITIES . " WHERE date_start >= :dateStartInterval AND date_start <= :dateEndInterval AND uid = :uid",
 				data: [
 					"dateStartInterval" => $interval["dateStart"],
@@ -212,8 +212,8 @@ class ReservationRepository {
 				returnType: PDO::FETCH_ASSOC,
 				singleValue: true
 			);
-			if ($date) {
-				array_push($dates, $date);
+			if ($dateStartEnd) {
+				array_push($dates, $dateStartEnd);
 			}
 		}
 		return $dates;

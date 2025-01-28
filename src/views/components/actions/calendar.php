@@ -1,8 +1,6 @@
 <?php
-	use App\Utils\Date;
 
-	$datenow = new Date();
-	$offsetDayOfWeak = $datenow->getOffsetWeek();
+	$offsetDayOfWeak = $date->getOffsetWeek();
 	$offsetDayOfWeak = ($offsetDayOfWeak === 0) ? $offsetDayOfWeak + 6 : $offsetDayOfWeak - 1;
 	$currentDate = 1;
 	$tRow = 0;
@@ -11,7 +9,7 @@
 <div class="tile calendar" id="calendar">
 	<div class="action">
 		<button class="button" id="calendar_down"><i class="ri-skip-left-fill"></i></button>
-		<p id="date_title"><?= MONTH[$datenow->month - 1] . " " . $datenow->year ?></p>
+		<p id="date_title"><?= MONTH[$date->month - 1] . " " . $date->year ?></p>
 		<button class="button" id="calendar_up"><i class="ri-skip-right-fill"></i></button>
 	</div>
 
@@ -30,7 +28,7 @@
 			<?php } ?>
 
 			<?php do { ?>
-				<td data-date="<?= $datenow->year ?>-<?= $datenow->month ?>-<?= $currentDate ?>" class="<?= ($currentDate === $datenow->day) ? " selected" : "" ?>"><?= $currentDate ?></td>
+				<td data-date="<?= $date->year ?>-<?= $date->month ?>-<?= $currentDate ?>" class="<?= ($currentDate === $date->day) ? " selected" : "" ?>"><?= $currentDate ?></td>
 				<?php
 					if (($currentDate + $offsetDayOfWeak) % 7 === 0) {
 						$tRow++;
@@ -39,7 +37,7 @@
 			<tr>
 				<?php }
 					$currentDate++;
-				} while ($currentDate <= $datenow->getNbDayMonth());
+				} while ($currentDate <= $date->getNbDayMonth());
 				for ($i = 0; (7 - ($offsetDayOfWeak + $currentDate -1) % 7) > $i; $i++) { ?>
 					<td></td>
 				<?php }

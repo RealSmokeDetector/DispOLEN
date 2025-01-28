@@ -5,12 +5,11 @@
 	use App\Utils\Lang;
 	use App\Models\Repositories\ReservationRepository;
 
+	$teacherDisponibilities = ReservationRepository::getDisponibilitiesByDate(date: $date);
 	$date = new Date();
 	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
-	// $teacherDisponibilities = ReservationRepository::getDisponibilities(date: $date);
-
 	$reservationRepository = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
-	$teacherDisponibilities = $reservationRepository->getDisponibilities(date: $date);
+
 ?>
 
 <div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">

@@ -20,11 +20,11 @@
 	<div>
 		<?php
 			foreach ($reservationRepo->getAllDates(limit: 3) as $element) {
-				$date = new Date(date: $element["date"]);
+				$dateGeting = new Date(date: $element["date"]);
 		?>
 			<div class="line"></div>
 			<div class="row_reservation">
-				<p><?= $date->convertTime() . " " . $date->convertDate() ?></p>
+				<p><?= $dateGeting->convertTime() . " " . $dateGeting->convertDate() ?></p>
 				<a class="link" href="/reservation/details?reservation=<?= $element["uid"] ?>"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
 			</div>
 		<?php } ?>
