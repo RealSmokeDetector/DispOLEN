@@ -1,10 +1,8 @@
 <?php
-	use App\Utils\Date;
 	use App\Utils\Lang;
 	use App\Models\Repositories\ReservationRepository;
+	use App\Utils\Date;
 
-	$date = new Date();
-	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 	$teacherDisponibilities = ReservationRepository::getDisponibilitiesByDate(date: $date);
 ?>
 

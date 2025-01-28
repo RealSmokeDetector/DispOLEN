@@ -9,6 +9,8 @@ use App\Utils\Roles;
 use App\Utils\System;
 use App\Configs\Role;
 use App\Models\Repositories\UserRepository;
+use App\Utils\Date;
+
 
 class IndexController {
 	public function render() : void {
@@ -35,6 +37,10 @@ class IndexController {
 				$teacherDisponibilities = UserRepository::getTeacherDisponibilities(uid: $teacherUid);
 			}
 		}
+		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
+
+		$date = new Date();
+
 
 		require Path::LAYOUT . "/index/index.php";
 

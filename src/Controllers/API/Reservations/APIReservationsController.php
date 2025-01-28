@@ -23,9 +23,9 @@ class APIReservationsController {
 
 				if (isset($body->uid) && isset($body->date_start)) {
 					$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
-					$date = new Date(date: $body->date_start);
+					$dateGiven = new Date(date: $body->date_start);
 
-					$data = $reservationRepo->reservationByDate(dateStart: $date);
+					$data = $reservationRepo->reservationByDate(dateStart: $dateGiven);
 				} else {
 					http_response_code(response_code: 400);
 
