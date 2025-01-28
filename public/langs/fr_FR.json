@@ -21,6 +21,7 @@
 	"MAIN_OTHER": "Autre",
 	"MAIN_NONE": "Aucun",
 	"MAIN_MODIFY": "Modifier",
+	"MAIN_BACK": "Retour",
 
 	"MAIN_STATE_PENDING": "En attente",
 	"MAIN_STATE_ACCEPTED": "Accepté",
@@ -72,7 +73,7 @@
 
 	"INDEX_RESERVATION_TITLE_STUDENT": "Vos réservations",
 	"INDEX_RESERVATION_TITLE_TEACHER": "Vos rendez-vous",
-	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici  un extrait de la liste de vos réservations",
+	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici un extrait de la liste de vos réservations",
 	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "Vous n'avez pas de réservation",
 	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "Vous n'avez pas de rendez-vous",
 	"INDEX_CREATE_RESERVATION_STUDENT": "Créer une réservation",
@@ -124,7 +125,7 @@
 	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Date de création",
 	"DASHBOARD_USER_DETAILS_NO_TUTOR" : "Aucun tuteur",
 
-	"DISPONIBILITY_TIMESLOTS_TITLE": "Plage horaire",
+	"TIMESLOTS_TITLE": "Plage horaire",
 	"NO_DISPONIBILITY_FOUND": "Aucune disponibilité trouvée",
 	"TEACHER_DISPONIBILITY_TITLE": "Disponibilités de votre tuteur",
 

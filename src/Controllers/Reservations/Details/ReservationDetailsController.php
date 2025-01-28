@@ -5,35 +5,36 @@ namespace App\Controllers\Reservations\Details;
 use App\Configs\Path;
 use App\Events\UpdateReservationEvent;
 use App\Factories\NavbarFactory;
+use App\Models\Entities\Date;
 use App\Models\Entities\Reservation;
-use App\Models\Entities\User;
+use App\Models\Repositories\DateRepository;
 use App\Models\Repositories\ReservationRepository;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
-use App\Utils\Date;
 use App\Utils\System;
 
 class ReservationDetailsController {
 	public function render() : void {
 		UpdateReservationEvent::implement();
 
-		$userRepo = new UserRepository(user: new User(uid: $_SESSION["user"]["uid"]));
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
+
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(uid: $_GET["reservation"]));
-		$reservationData = $reservationRepo->getInformation();
-		$states = ApplicationData::getStates();
+		$reservationInfo = ReservationRepository::getInformation(uid: $_GET["reservation"]);
+
+		$infoStudent = UserRepository::getInformations(uid: $reservationInfo["uid_student"]);
+		$infoTeacher = UserRepository::getInformations(uid: $reservationInfo["uid_teacher"]);
+
+		$startDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_start"])));
+		$endDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_end"])));
+
 		$reasons = ApplicationData::getReasons();
 		$types = ApplicationData::getTypes();
-		$infoStudent = UserRepository::getInformations(uid: $reservationData["uid_student"]);
-		$infoTeacher = UserRepository::getInformations(uid: $reservationData["uid_teacher"]);
-
-		$date_start = new Date($reservationData["date_start"]);
-		$date_end = new Date($reservationData["date_end"]);
 
 		if (
 			!isset($_GET["reservation"])
 			|| $_GET["reservation"] === ""
-			|| $reservationData === null
+			|| $reservationInfo === null
 		) {
 			System::redirect(url: "/reservations");
 		}

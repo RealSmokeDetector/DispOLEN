@@ -1,21 +1,27 @@
 <?php
 	use App\Configs\Path;
-	use App\Utils\Date;
+	use App\Models\Entities\Date;
+	use App\Models\Repositories\DateRepository;
 ?>
 
 <div class="calendar_container">
 	<?php
 		include Path::COMPONENTS . "/actions/calendar.php";
-		$dateOutOffBounts = new Date();
-		for($i = 0; $i < 5; $i++) {
+
+		$dateRepo = new DateRepository(date: new Date());
+
+		for ($i = 0; $i < 5; $i++) {
 			include Path::COMPONENTS . "/tiles/timeslots_tile.php";
-			if ($dateOutOffBounts->getNbDayMonth() === $date->day &&  $date->month === 12) {
-				$date = new Date ( date: ($date->year + 1) . "-01-01");
-			} else if ($dateOutOffBounts->getNbDayMonth() === $date->day) {
-				$date = new Date ( date: $date->year . "-" . ($date->month + 1) . "-1");
+
+			if ($dateRepo->getDayNumber() === $dateRepo->getDay() && $dateRepo->getMonth() === 12) {
+				$date = new Date(timestamp: strtotime(datetime: $dateRepo->getYear() + 1) . "-01-01");
+			} else if ($dateRepo->getDayNumber() === $dateRepo->getDay()) {
+				$date = new Date(timestamp: strtotime(datetime: $dateRepo->getYear() . "-" . ($dateRepo->getMonth() + 1) . "-1"));
 			} else {
-				$date = new Date ( date: $date->year . "-" . $date->month . "-" . ($date->day + 1));
+				$date = new Date(timestamp: strtotime(datetime: $dateRepo->getYear() . "-" . $dateRepo->getMonth() . "-" . ($dateRepo->getDay() + 1)));
 			}
+
+			$dateRepo = new DateRepository(date: $date);
 		}
 	?>
 </div>

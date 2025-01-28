@@ -4,11 +4,17 @@ namespace App\Controllers\Calendar;
 
 use App\Configs\Path;
 use App\Factories\NavbarFactory;
-use App\Utils\Date;
-
+use App\Models\Entities\Date;
+use App\Models\Entities\Reservation;
+use App\Models\Entities\User;
+use App\Models\Repositories\DateRepository;
+use App\Models\Repositories\ReservationRepository;
 
 class CalendarController {
 	public function render() : void {
+		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
+		$reservations = $reservationRepo->getReservations();
+
 		$scripts = [
 			"/scripts/engine.js",
 			"/scripts/theme.js",
@@ -21,7 +27,7 @@ class CalendarController {
 
 		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 
-		$date = new Date();
+		$dateRepo = new DateRepository(date: new Date());
 
 		require Path::LAYOUT . "/calendar/index.php";
 
