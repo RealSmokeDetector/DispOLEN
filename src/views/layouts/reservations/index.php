@@ -20,7 +20,6 @@
 
 <div class="reservation_container">
 	<?php
-		var_dump($reservations);
 		foreach ($reservations as $reservation) {
 			if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {
 				$userInformation = UserRepository::getInformations(uid: $reservation["uid_teacher"]);

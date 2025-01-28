@@ -23,6 +23,7 @@ class ReservationsController {
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
 		$reservations = $reservationRepo->getReservations();
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
+		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 		$date = new Date();
 
 		require Path::LAYOUT . "/header.php";
