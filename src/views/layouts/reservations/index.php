@@ -1,7 +1,6 @@
 <?php
 	use App\Configs\Path;
 	use App\Configs\Role;
-	use App\Models\Repositories\ReservationRepository;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\ApplicationData;
 	use App\Utils\Date;

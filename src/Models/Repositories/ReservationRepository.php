@@ -154,11 +154,15 @@ class ReservationRepository {
 	 *
 	 * @return array
 	 */
-	public static function getDisponibilitiesByDate(Date $date) : array {
+	public function getDisponibilities(Date $date) : array {
+		$userRepo = new UserRepository(user: $this->reservation->user);
+
 		return ApplicationData::request(
-			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE date_start::date = :date",
+			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE uid_user = :uid_user AND date_start >= :start_date AND date_start < :end_date",
 			data: [
-				"date" => $date->getDate()
+				"uid_user" => $userRepo->getTutor(),
+				"start_date" => $date->getDate() . " 08:00:00",
+				"end_date" => $date->getDate() . " 19:00:00"
 			],
 			returnType: PDO::FETCH_ASSOC
 		);

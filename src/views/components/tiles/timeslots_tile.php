@@ -1,9 +1,15 @@
 <?php
+	use App\Models\Entities\Reservation;
+	use App\Models\Entities\User;
+	use App\Utils\Date;
 	use App\Utils\Lang;
 	use App\Models\Repositories\ReservationRepository;
-	use App\Utils\Date;
 
 	$teacherDisponibilities = ReservationRepository::getDisponibilitiesByDate(date: $date);
+	$date = new Date();
+	define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
+	$reservationRepository = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
+
 ?>
 
 <div class="tile disponibility_timeslots_tile" id="disponibility_timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
@@ -26,7 +32,7 @@
 		<div class="availabilities_container" id="availabilities_container">
 			<?php
 				for ($hour = 8; $hour <= 18; $hour++) {
-					$isReserved = ReservationRepository::isReserved(reservations: $teacherDisponibilities, hour: $hour);
+					// $isReserved = ReservationRepository::isReserved(reservations: $teacherReservation, hour: $hour);
 			?>
 					<div class="availability" id="reservations" data-day="<?= $date->GetDate() ?>" data-hour="<?= $hour ?>"></div>
 			<?php }
