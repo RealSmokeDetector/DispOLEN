@@ -144,7 +144,7 @@ class ApplicationData {
 			case Reason::REVIEW_1:
 				return Lang::translate(key: "MAIN_REASON_REVIEW_1");
 			case Reason::REVIEW_2:
-				return Lang::translate(key: "MAIN_REASON_REVIEW_1");
+				return Lang::translate(key: "MAIN_REASON_REVIEW_2");
 			case Reason::PRESENTATION:
 				return Lang::translate(key: "MAIN_REASON_PRESENTATION");
 			case Reason::PROGRESS:

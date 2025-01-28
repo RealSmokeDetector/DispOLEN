@@ -81,7 +81,7 @@ function changeCalendar(scale) {
 		let offSetDayOfWeek = (firstDateOfMonth === 0) ? firstDateOfMonth + 6 : firstDateOfMonth - 1
 		if (index >= offSetDayOfWeek && iteration <= DateMonth) {
 			element.textContent = iteration;
-			element.dataset.date = date.getFullYear() + "-" + (date.getMonth() + 1)  + "-" + iteration;
+			element.dataset.date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + iteration;
 			iteration++;
 		} else {
 			element.textContent = "";
