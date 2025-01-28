@@ -21,6 +21,7 @@
 	"MAIN_OTHER": "Other",
 	"MAIN_NONE": "None",
 	"MAIN_MODIFY": "Modify",
+	"MAIN_BACK": "Back",
 
 	"MAIN_STATE_PENDING": "Pending",
 	"MAIN_STATE_ACCEPTED": "Accepted",

@@ -10,7 +10,7 @@ function addUser() {
 	userPopup.style.display = "flex";
 }
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") {
 		userPopup.style.display = "none";
 	}

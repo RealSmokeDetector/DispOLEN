@@ -24,7 +24,6 @@ if (isElementExist(reservationTime)) {
 					"date_end": endDate
 				});
 			});
-			reservationTime.style.display = "none";
 		});
 	});
 }

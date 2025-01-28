@@ -133,7 +133,7 @@ class UserRepository {
 		);
 
 		ApplicationData::request(
-			query: "INSERT INTO " .  Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+			query: "INSERT INTO " . Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
 			data: [
 				"uid_student" => $this->user->uid,
 				"uid_teacher" => $tutor

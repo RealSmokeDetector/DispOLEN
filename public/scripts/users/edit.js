@@ -6,11 +6,7 @@ const tutoredStudentsElement = document.getElementById("tutored_students");
 const formElement = document.getElementById("form_user");
 const editButton = document.getElementById("button_id");
 
-editButton.addEventListener("click", () => {
-	updateUser();
-})
-
-function updateUser() {
+editButton.addEventListener("click", async () => {
 	let inputName = document.createElement("input")
 	inputName.type = "text";
 	inputName.name = "name";
@@ -38,7 +34,7 @@ function updateUser() {
 	submitButton.type = "submit";
 	submitButton.id = "submitUpdateUser";
 	submitButton.className = "button";
-	submitButton.textContent = "Submit";
+	submitButton.textContent = await translate("MAIN_SAVE");
 
 	nameElement.replaceWith(inputName);
 	surnameElement.replaceWith(inputSurname);
@@ -55,4 +51,4 @@ function updateUser() {
 	editButton.remove();
 
 	formElement.appendChild(submitButton);
-}
+})

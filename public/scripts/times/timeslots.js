@@ -30,7 +30,7 @@ calendarDays.forEach(day => {
 
 function createTimeslot(dateStart, dateEnd) {
 	const divTimeslot = document.createElement("div");
-	divTimeslot.classList.add("availability_reserved");
+	divTimeslot.className = "availability_reserved";
 	divTimeslot.style.height = (((dateEnd - dateStart) / 60000) * heightDiv) / (11 * 60) + "px";
 	divTimeslot.style.transform = "translateY(" + (((dateStart - new Date(dateStart).setHours(8,0,0)) / (60 * 1000)) * heightDiv) / (11 * 60) + "px)";
 	containerTimeslot.append(divTimeslot);

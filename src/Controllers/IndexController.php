@@ -11,7 +11,6 @@ use App\Configs\Role;
 use App\Models\Repositories\UserRepository;
 use App\Utils\Date;
 
-
 class IndexController {
 	public function render() : void {
 		if (!isset($_SESSION["user"])) {
@@ -40,7 +39,6 @@ class IndexController {
 		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 
 		$date = new Date();
-
 
 		require Path::LAYOUT . "/index/index.php";
 

@@ -27,8 +27,8 @@ class ReservationDetailsController {
 		$infoStudent = UserRepository::getInformations(uid: $reservationData["uid_student"]);
 		$infoTeacher = UserRepository::getInformations(uid: $reservationData["uid_teacher"]);
 
-		$date_start = new Date($reservationData["date_start"]);
-		$date_end = new Date($reservationData["date_end"]);
+		$date_start = new Date(date: $reservationData["date_start"]);
+		$date_end = new Date(date: $reservationData["date_end"]);
 
 		if (
 			!isset($_GET["reservation"])

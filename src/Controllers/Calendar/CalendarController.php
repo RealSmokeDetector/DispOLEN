@@ -6,7 +6,6 @@ use App\Configs\Path;
 use App\Factories\NavbarFactory;
 use App\Utils\Date;
 
-
 class CalendarController {
 	public function render() : void {
 		$scripts = [
