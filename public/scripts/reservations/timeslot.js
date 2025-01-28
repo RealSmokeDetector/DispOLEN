@@ -13,8 +13,8 @@ slots.forEach(slot => {
 		endTime.value = (parseInt(startHour) + 1).toString().padStart(2, '0') + ":00";
 		reservationTime.style.display = "flex";
 
-		const startDate = Date.parse(`${slot.dataset.day} ${slot.dataset.hour}:00.000`);
-		const endDate = Date.parse(`${slot.dataset.day} ${slot.dataset.hour}:00.000`);
+		const startDate = Date.parse(`${slot.dataset.day} ${startTime.value}`) /1000 ;
+		const endDate = Date.parse(`${slot.dataset.day} ${endTime.value}`) /1000 ;
 
 		validate.addEventListener("click", () => {
 			callApi("/api/reservation", "put", {
@@ -22,6 +22,7 @@ slots.forEach(slot => {
 				"date_start": startDate,
 				"date_end": endDate
 			});
+			reservationTime.style.display = "none";
 		});
 	});
 });
