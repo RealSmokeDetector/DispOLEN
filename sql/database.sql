@@ -52,6 +52,45 @@ BEGIN
 END; $$;
 
 --
+-- Trigger trigger_check_overlap()
+--
+
+CREATE OR REPLACE FUNCTION public.trigger_check_overlap() RETURNS TRIGGER
+	LANGUAGE PLPGSQL
+	AS $$
+BEGIN
+	IF EXISTS (
+		SELECT 1
+		FROM public.disponibilities d
+		WHERE d.uid_user = NEW.uid_user
+			AND (d.date_start, d.date_end) OVERLAPS (NEW.date_start, NEW.date_end)
+	) THEN
+		RETURN NULL;
+	END IF;
+	RETURN NEW;
+END;
+$$;
+
+--
+--Trigger trigger_check_reservation_overlap()
+--
+CREATE OR REPLACE FUNCTION public.trigger_check_reservation_overlap() RETURNS TRIGGER
+	LANGUAGE PLPGSQL
+	AS $$
+BEGIN
+	IF EXISTS (
+		SELECT 1
+		FROM public.reservations r
+		WHERE r.uid_teacher = NEW.uid_teacher
+			AND (r.date_start, r.date_end) OVERLAPS (NEW.date_start, NEW.date_end)
+	) THEN
+		RETURN NULL;
+	END IF;
+	RETURN NEW;
+END;
+$$;
+
+--
 -- Table structure for table 'disponibilities'
 --
 
@@ -292,6 +331,7 @@ ALTER TABLE ONLY public.user_role
 
 CREATE TRIGGER trigger_date BEFORE INSERT ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdate();
 CREATE TRIGGER trigger_date_update_disponibilities BEFORE UPDATE ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
+CREATE TRIGGER trigger_check_overlap BEFORE INSERT OR UPDATE ON public.disponibilities FOR EACH ROW EXECUTE FUNCTION public.trigger_check_overlap();
 
 --
 -- Trigger for table 'users'
@@ -306,6 +346,7 @@ CREATE TRIGGER trigger_date_update_users BEFORE UPDATE ON public.users FOR EACH 
 
 CREATE TRIGGER trigger_date_update_reservations BEFORE UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdateupdate();
 CREATE TRIGGER trigger_delete_reservation AFTER UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.triggerdeleterefused();
+CREATE TRIGGER trigger_check_reservation_overlap BEFORE INSERT OR UPDATE ON public.reservations FOR EACH ROW EXECUTE FUNCTION public.trigger_check_reservation_overlap();
 
 --
 -- Trigger for table 'tutoring'
