@@ -173,3 +173,27 @@ passwordFields.forEach(passwordField => {
 		}
 	})
 })
+
+//navbar hamburger
+buttonPhone = document.getElementById("phone_button");
+navBar = document.querySelector("nav");
+if (isElementExist(navBar) && isElementExist(buttonPhone)) {
+	buttonPhone.addEventListener("click", () => {
+		if (buttonPhone.children[0].classList.contains("ri-menu-line")) {
+			buttonPhone.children[0].className = "ri-close-circle-line";
+			navBar.style = "position: relative; height: fit-content;";
+
+			for (let i = 0; i < navBar.childElementCount; i++ ) {
+				navBar.children[i].style.display = "flex";
+			}
+
+		} else {
+			buttonPhone.children[0].className = "ri-menu-line";
+			navBar.removeAttribute("style");
+
+			for (let i = 0; i < navBar.childElementCount; i++ ) {
+				navBar.children[i].removeAttribute("style");
+			}
+		}
+	});
+}
