@@ -328,6 +328,10 @@ nav {
 		position: absolute;
 		left: 20px;
 	}
+
+	.phone_button {
+		display: none;
+	}
 }
 
 /* ==============================================
@@ -336,9 +340,14 @@ nav {
 
 @media only screen and (max-width: 800px) {
 	nav {
+		flex-direction: column;
+		justify-content: center;
+		height: fit-content;
+
 		.item {
+			display: none;
 			a {
-				font-size: 0;
+				font-size: var(--font-size);
 				height: min-content;
 				display: block;
 				margin-top: -5px;
@@ -351,6 +360,23 @@ nav {
 		}
 
 		.logo {
+			display: flex;
+			top: 16px;
+		}
+
+		.phone_button {
+			display: flex;
+			position: absolute;
+			top: 5px;
+			right: 20px;
+			padding: 5px 10px;
+
+			i {
+				font-size: var(--font-size);
+			}
+		}
+
+		a, button, select{
 			display: none;
 		}
 	}
