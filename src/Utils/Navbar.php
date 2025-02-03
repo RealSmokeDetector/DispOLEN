@@ -62,9 +62,12 @@ class Navbar {
 			}
 		}
 
+		echo "<div class=\"action\">";
 		include Path::COMPONENTS . "/actions/account_button.php";
 		include Path::COMPONENTS . "/actions/theme_button.php";
 		include Path::COMPONENTS . "/actions/lang_selection.php";
+		echo "</div>";
+
 		include Path::COMPONENTS . "/actions/phone_button.php";
 
 		echo "</nav>";

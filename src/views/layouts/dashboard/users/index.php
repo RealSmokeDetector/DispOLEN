@@ -26,4 +26,4 @@
 	?>
 </div>
 
-<button class="button add_button" id="add_button">+</button>
+<?php include Path::COMPONENTS . "/actions/add_button.php"; ?>

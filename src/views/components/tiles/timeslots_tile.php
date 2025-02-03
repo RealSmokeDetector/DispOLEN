@@ -5,11 +5,6 @@
 	use App\Utils\Lang;
 ?>
 
-<div class="tile timeslots_tile" id="timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
-	<h1 class="title"><?= Lang::translate(key: "TIMESLOTS_TITLE") ?></h1>
-	<p class="title" id="timesolt_date"><?= $dateRepo->convertDate() ?></p>
-
-	<div class="line"></div>
 	<div class="timeslots_container">
 		<div class="times">
 			<?php for ($hour = 8; $hour <= 19; $hour++) { ?>
@@ -48,4 +43,3 @@
 			?>
 		</div>
 	</div>
-</div>

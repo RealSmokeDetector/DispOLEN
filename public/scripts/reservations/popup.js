@@ -1,8 +1,8 @@
-const editButton = document.getElementById("edit_button");
+const addButton = document.getElementById("add_button");
 const reservationPopup = document.getElementById("reservation_popup");
 const closePopup = document.getElementById("close_popup");
 
-editButton.addEventListener("click", () => {
+addButton.addEventListener("click", () => {
 	addReservation();
 });
 
@@ -21,7 +21,7 @@ closePopup.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (event) => {
-	if ((reservationPopup.style.display === "flex" && !reservationPopup.contains(event.target) && event.target !== editButton) || event.target.className === "blur") {
+	if ((reservationPopup.style.display === "flex" && !reservationPopup.contains(event.target) && event.target !== addButton) || event.target.className === "blur") {
 		reservationPopup.style.display = "none";
 	}
 });

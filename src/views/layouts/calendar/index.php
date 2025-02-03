@@ -7,7 +7,7 @@
 <div class="calendar_container">
 	<?php include Path::COMPONENTS . "/actions/calendar.php"; ?>
 
-	<div class="timeslots">
+	<div class="tile timeslots">
 		<?php
 			$dateRepo = new DateRepository(date: new Date());
 
