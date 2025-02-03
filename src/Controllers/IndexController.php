@@ -45,7 +45,6 @@ class IndexController {
 		$scripts = [
 			"/scripts/engine.js",
 			"/scripts/theme.js",
-			"/scripts/responsive_nav.js",
 			"/scripts/times/calendar.js",
 			"/scripts/times/timeslots.js"
 		];
