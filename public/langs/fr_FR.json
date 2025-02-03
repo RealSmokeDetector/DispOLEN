@@ -21,6 +21,8 @@
 	"MAIN_OTHER": "Autre",
 	"MAIN_NONE": "Aucun",
 	"MAIN_MODIFY": "Modifier",
+	"MAIN_BACK": "Retour",
+	"MAIN_SUBMIT": "Envoyer",
 
 	"MAIN_STATE_PENDING": "En attente",
 	"MAIN_STATE_ACCEPTED": "Accepté",

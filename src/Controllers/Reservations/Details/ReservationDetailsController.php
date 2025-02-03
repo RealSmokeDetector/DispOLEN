@@ -15,7 +15,6 @@ use App\Utils\System;
 
 class ReservationDetailsController {
 	public function render() : void {
-		UpdateReservationEvent::implement();
 
 		$userRepo = new UserRepository(user: new User(uid: $_SESSION["user"]["uid"]));
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);

@@ -3,9 +3,10 @@ const stateValueElement = document.getElementById("state_value")
 const reasonElement = document.getElementById("reason");
 const typeElement = document.getElementById("type");
 const commentElement = document.getElementById("comment");
-const formElement = document.getElementById("formReservation");
 const noComment = document.getElementById("no_comment");
 const stateButtons = document.querySelectorAll("#state");
+const divInitElement = document.getElementById("reservation_details_container");
+const submitButton = document.getElementById("submit")
 
 const editButton = document.getElementById("buttonId");
 
@@ -71,37 +72,46 @@ function updateReservation() {
 
 	let inputCommentElement = document.createElement("input");
 	inputCommentElement.name = "comment"
+	inputCommentElement.id = "commentInput";
 	inputCommentElement.value = commentElement.textContent.slice(1, -1);
-
-	let submitButton = document.createElement("button")
-	submitButton.type = "submit";
-	submitButton.id = "submitUpdateReservation";
-	submitButton.name = "submitAllForm"
-	submitButton.className = "button";
-	submitButton.textContent = "Submit";
 
 	let inputStateElement = document.createElement("input");
 	inputStateElement.type = "hidden";
 	inputStateElement.name = "state";
 	inputStateElement.value = stateValueElement.dataset.state;
 
+	submitButton.style.display = "flex";
+
 	if (isElementExist(noComment)) {
 		noComment.remove();
 	}
 
+	// reasonElement.style.display = "none";
+	// divElement.appendChild(reasonSelectElement);
 	reasonElement.replaceWith(reasonSelectElement);
 	typeElement.replaceWith(typeSelectElement);
 	commentElement.replaceWith(inputCommentElement);
 
-	formElement.appendChild(inputStateElement);
-	formElement.appendChild(submitButton);
+	divInitElement.appendChild(inputStateElement);
+	divInitElement.appendChild(submitButton);
 
 	editButton.style.display = "none";
 
 	stateButtons.forEach(button => {
 		button.style.display = "none";
-	})
+	});
 
-	formElement.appendChild(submitButton);
+	submitButton.addEventListener("click", () => {
+		submit();
+	});
+
+	function submit() {
+		callApi("/api/reservation/details", "put", {
+			"uid_reservation": params.get("reservation"),
+			"id_type": document.getElementById("typeSelect").value,
+			"id_reason": document.getElementById("reasonSelect").value,
+			"id_state": document.getElementById("state_value").dataset.state,
+			"comment": document.getElementById("commentInput").value
+		});
+	}
 }
-
