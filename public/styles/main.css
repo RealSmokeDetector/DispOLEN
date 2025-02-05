@@ -949,7 +949,7 @@ nav {
 			margin: 0;
 		}
 
-		td:hover:not(:empty) {
+		td:hover:not(:empty):not(.off) {
 			background-color: var(--button-background-color);
 			cursor: pointer;
 			color: var(--button-text-color);
@@ -960,6 +960,11 @@ nav {
 	.selected {
 		box-shadow:inset 0px 0px 0px 2px var(--border-color);
 		border-radius: var(--border-radius);
+	}
+
+	.off {
+		color: var(--text-hover-color);
+		cursor: not-allowed;
 	}
 }
 

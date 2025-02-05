@@ -52,13 +52,15 @@ document.querySelectorAll("#calendar button").forEach((element) => {
 });
 
 document.querySelectorAll("#calendar tbody td").forEach((element) => {
-	element.addEventListener("click", (event) => {
-		document.querySelectorAll("#calendar tbody td").forEach((element) => {
-			element.classList.remove("selected");
+	if (!element.classList.contains("off")) {
+		element.addEventListener("click", (event) => {
+			document.querySelectorAll("#calendar tbody td").forEach((element) => {
+				element.classList.remove("selected");
+			});
+			event.target.classList.add("selected");
+			dateSelected = event.target.dataset.date;
 		});
-		event.target.classList.add("selected");
-		dateSelected = event.target.dataset.date;
-	});
+	}
 })
 
 /**

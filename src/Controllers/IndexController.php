@@ -33,6 +33,7 @@ class IndexController {
 		}
 
 		$dateRepo = new DateRepository(date: new Date());
+		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
 
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: $user));
 		$reservations = $reservationRepo->getReservations();

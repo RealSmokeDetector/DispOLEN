@@ -5,29 +5,31 @@ const dateTimeslot = document.getElementById("timesolt_date");
 const uid = document.getElementById("timeslots_tile").dataset.uid;
 
 calendarDays.forEach(day => {
-	day.addEventListener("click", async function(event) {
-		dateTimeslot.innerText = event.target.dataset.date;
-		let reservationDates = await callApi("/api/reservation" , "post", {
-			"uid": uid,
-			"date_start": event.target.dataset.date
-		});
-
-		const timeslots = document.querySelectorAll(".availability_reserved");
-
-		timeslots.forEach((value) => {
-			value.style.height = 0;
-		});
-
-		if (!reservationDates.error) {
-			reservationDates.forEach((value, index) => {
-				if (timeslots[index]) {
-					updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslots[index]);
-				} else {
-					createTimeslot(new Date(value.date_start), new Date(value.date_end));
-				}
+	if (!day.classList.contains("off")) {
+		day.addEventListener("click", async function(event) {
+			dateTimeslot.innerText = event.target.dataset.date;
+			let reservationDates = await callApi("/api/reservation" , "post", {
+				"uid": uid,
+				"date_start": event.target.dataset.date
 			});
-		}
-	});
+
+			const timeslots = document.querySelectorAll(".availability_reserved");
+
+			timeslots.forEach((value) => {
+				value.style.height = 0;
+			});
+
+			if (!reservationDates.error) {
+				reservationDates.forEach((value, index) => {
+					if (timeslots[index]) {
+						updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslots[index]);
+					} else {
+						createTimeslot(new Date(value.date_start), new Date(value.date_end));
+					}
+				});
+			}
+		});
+	}
 });
 
 function createTimeslot(dateStart, dateEnd) {

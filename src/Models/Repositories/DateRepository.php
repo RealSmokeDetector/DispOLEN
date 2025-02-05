@@ -5,14 +5,14 @@ namespace App\Models\Repositories;
 use App\Models\Entities\Date;
 
 class DateRepository {
-	private $date;
+	private ?Date $date;
 
 	/**
 	 * Reservation construct
 	 *
 	 * @param Date $date
 	 */
-	public function __construct(Date $date) {
+	public function __construct(Date $date = null) {
 		$this->date = $date;
 	}
 
@@ -187,10 +187,12 @@ class DateRepository {
 	/**
 	 * Get date of datetime given
 	 *
+	 * @param int $timestamp
+	 *
 	 * @return string
 	 */
-	public function getDate() : string {
-		return date(format: "Y-m-d", timestamp: $this->date->timestamp);
+	public function getDate($timestamp = null) : string {
+		return date(format: "Y-m-d", timestamp: $timestamp ?? $this->date->timestamp);
 	}
 
 	/**
@@ -199,6 +201,42 @@ class DateRepository {
 	 */
 	public function getTime() : string {
 		return date(format: "H:i:s", timestamp: $this->date->timestamp);
+	}
+
+	/**
+	 * Get off days
+	 *
+	 * @param int $year
+	 *
+	 * @return array
+	 */
+	public static function getOffDays(int $year) : array {
+		$offDays = [
+			$year . "-1-1",
+			$year . "-5-1",
+			$year . "-5-8",
+			$year . "-7-14",
+			$year . "-8-15",
+			$year . "-11-1",
+			$year . "-11-11",
+			$year . "-12-25"
+		];
+
+		$easterDate = date(format: "Y-m-d", timestamp: easter_date(year: $year));
+
+		$dates = [
+			easter_date(year: $year),
+			date(format: "U", timestamp: strtotime(datetime: "$easterDate -2 days")),
+			date(format: "U", timestamp: strtotime(datetime: "$easterDate +1 days")),
+			date(format: "U", timestamp: strtotime(datetime: "$easterDate +39 days")),
+			date(format: "U", timestamp: strtotime(datetime: "$easterDate +50 days"))
+		];
+
+		foreach ($dates as $date) {
+			array_push($offDays, str_replace(search: "-0", replace: "-", subject: (new DateRepository)->getDate(timestamp: $date)));
+		}
+
+		return $offDays;
 	}
 
 	/**

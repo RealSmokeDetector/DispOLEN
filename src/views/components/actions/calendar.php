@@ -27,26 +27,40 @@
 				<td></td>
 			<?php } ?>
 
-			<?php do { ?>
-				<td data-date="<?= $dateRepo->getYear() ?>-<?= $dateRepo->getMonth() ?>-<?= $currentDate ?>" class="<?= ($currentDate === $dateRepo->getDay()) ? " selected" : "" ?>"><?= $currentDate ?></td>
+			<?php
+				do {
+					$date = $dateRepo->getYear() . "-" . $dateRepo->getMonth() . "-" . $currentDate;
+					$dayOfWeek = date(format: 'w', timestamp: strtotime(datetime: $date));
+					$isOffDay = in_array($date, $offDays) || $dayOfWeek == 0 || $dayOfWeek == 6;
+			?>
+
+				<td data-date="<?= $date ?>" class="<?= $isOffDay ? "off" : "" ?> <?= ($currentDate === $dateRepo->getDay()) ? " selected" : "" ?>"><?= $currentDate ?></td>
+
 				<?php
 					if (($currentDate + $offsetDayOfWeak) % 7 === 0) {
 						$tRow++;
 				?>
 			</tr>
+
 			<tr>
-				<?php }
+			<?php
+					}
 					$currentDate++;
 				} while ($currentDate <= $dateRepo->getDayNumber());
-				for ($i = 0; (7 - ($offsetDayOfWeak + $currentDate -1) % 7) > $i; $i++) { ?>
-					<td></td>
-				<?php }
-					$tRow++; ?>
+
+				for ($i = 0; (7 - ($offsetDayOfWeak + $currentDate -1) % 7) > $i; $i++) {
+			?>
+				<td></td>
+			<?php
+				}
+				$tRow++;
+			?>
 			</tr>
+
 			<?php for ($i = 0; 6 - $tRow > $i; $i++) { ?>
 			<tr>
 				<?php for ($j = 0; 7 > $j; $j++) { ?>
-				<td></td>
+					<td></td>
 				<?php } ?>
 			</tr>
 			<?php } ?>
