@@ -130,6 +130,16 @@ class RouterFactory extends Router {
 			controller: $this->controllersPath . "API\Reservations\States\APIReservationStatesController",
 			title: APP_NAME . " - API"
 		);
+		parent::add(
+			url: "/api/date",
+			controller: $this->controllersPath . "API\Dates\APIDateController",
+			title: APP_NAME . " - API"
+		);
+		parent::add(
+			url: "/api/date/offdays",
+			controller: $this->controllersPath . "API\Dates\Offdays\APIDateOffdaysController",
+			title: APP_NAME . " - API"
+		);
 	}
 
 	/**
