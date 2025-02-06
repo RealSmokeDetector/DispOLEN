@@ -19,6 +19,7 @@ class ReservationsController {
 			"/scripts/reservations/popup.js",
 			"/scripts/times/calendar.js",
 			"/scripts/reservations/timeslot.js",
+			"https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.4.0/tsparticles.confetti.bundle.min.js"
 		];
 
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
