@@ -9,8 +9,7 @@
 
 	<div class="tile timeslots">
 		<?php
-			$dateRepo = new DateRepository(date: new Date());
-
+			$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
 			for ($i = 0; $i < 5; $i++) {
 				include Path::COMPONENTS . "/tiles/timeslots_tile.php";
 
