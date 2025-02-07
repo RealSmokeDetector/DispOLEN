@@ -437,6 +437,12 @@ nav {
 		bottom: 130px;
 		right: 30px;
 	}
+
+	.reservation_add_popup {
+		.item {
+			flex-direction: column !important;
+		}
+	}
 }
 
 /* ==============================================
@@ -698,6 +704,24 @@ nav {
 		display: flex;
 		flex-direction: row;
 		gap: 20px;
+		align-items: center;
+
+		.reservation_time {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+
+			.time {
+				display: flex;
+				flex-direction: row;
+				gap: 10px;
+			}
+
+			.button {
+				width: fit-content;
+				margin: auto;
+			}
+		}
 	}
 }
 
@@ -972,7 +996,7 @@ nav {
 	}
 
 	.selected {
-		box-shadow:inset 0px 0px 0px 2px var(--border-color);
+		box-shadow: inset 0px 0px 0px 2px var(--border-color);
 		border-radius: var(--border-radius);
 	}
 
@@ -1028,6 +1052,16 @@ nav {
 			border-bottom: none;
 			width: 200px;
 			position: absolute;
+		}
+
+		.availability_teacher {
+			transition: 200ms;
+		}
+
+		.availability_teacher:hover {
+			cursor: pointer;
+			background-color: var(--background-color);
+			transition: 200ms;
 		}
 	}
 
