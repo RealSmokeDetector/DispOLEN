@@ -58,4 +58,50 @@ if (isElementExist(button)) {
 
 		currentThemeSetting = newTheme;
 	});
+
+	button.addEventListener("auxclick", async (e) => {
+		if (e.button === 1) {
+			document.body.style.backgroundImage = 'url("/images/notsuspiciousatall.jpg")';
+
+			await confetti({
+				particleCount: 50,
+				origin: {
+					y: 0
+				},
+				spread: 1000,
+				scalar: 10,
+				shapes: ["emoji"],
+				shapeOptions: {
+					emoji: {
+						value: ["🦄", "🌈", "✨"],
+					},
+				},
+			});
+
+			const main = document.getElementsByTagName("main")[0];
+
+			main.after(document.getElementById("confetti"));
+
+			for (let i = 0; i < 50; i++) {
+				let particle = document.createElement("span");
+				particle.setAttribute("class", "particle");
+				main.appendChild(particle);
+			}
+
+			function rand(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+
+			Array.from(document.getElementsByClassName('particle')).forEach(element => {
+				setInterval(() => {
+					element.style.left = rand(0, 100) + "%";
+					element.style.top = rand(0, 100) + "%";
+					let size = rand(3, 5);
+					element.style.height = size + "px";
+					element.style.width = size + "px";
+					element.style.transform = "rotate(" + rand(0, 90) + "deg)";
+				}, 150)
+			});
+		}
+	})
 }

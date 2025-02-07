@@ -70,20 +70,33 @@ document.querySelectorAll("#calendar tbody td").forEach((element) => {
  *
  * @return {void}
  */
-function changeCalendar(scale) {
+async function changeCalendar(scale) {
 	date.setMonth(date.getMonth() + scale);
 	offSet += scale;
 
+	let offDays = await callApi("/api/date/offdays", "POST", {"year": date.getFullYear()});
+
 	dateTitle.textContent = months[date.getMonth()] + " " + date.getFullYear();
-	let iteration = 1;
 	const DateMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 	const firstDateOfMonth = new Date(date.getFullYear(), date.getMonth() , 1).getDay();
 
+	let iteration = 1;
 	document.querySelectorAll("#calendar tbody td").forEach((element, index) => {
-		let offSetDayOfWeek = (firstDateOfMonth === 0) ? firstDateOfMonth + 6 : firstDateOfMonth - 1
+		let offSetDayOfWeek = (firstDateOfMonth === 0) ? firstDateOfMonth + 6 : firstDateOfMonth - 1;
+
 		if (index >= offSetDayOfWeek && iteration <= DateMonth) {
 			element.textContent = iteration;
 			element.dataset.date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + iteration;
+			element.classList.remove("off");
+
+			let dayOfWeek = new Date(date.getFullYear(), date.getMonth(), iteration).getDay();
+			if (
+				offDays.includes(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + iteration)
+				|| (dayOfWeek === 0 || dayOfWeek === 6)
+			) {
+				element.classList.add("off");
+			}
+
 			iteration++;
 		} else {
 			element.textContent = "";

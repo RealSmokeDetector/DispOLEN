@@ -3,12 +3,8 @@ const reservationPopup = document.getElementById("reservation_popup");
 const closePopup = document.getElementById("close_popup");
 
 addButton.addEventListener("click", () => {
-	addReservation();
-});
-
-function addReservation() {
 	reservationPopup.style.display = "flex";
-}
+});
 
 document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") {
