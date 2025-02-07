@@ -7,10 +7,9 @@
 <div class="calendar_container">
 	<?php include Path::COMPONENTS . "/actions/calendar.php"; ?>
 
-	<div class="tile timeslots">
+	<div class="tile timeslots" id="timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
 		<?php
-			$dateRepo = new DateRepository(date: new Date());
-
+			$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
 			for ($i = 0; $i < 5; $i++) {
 				include Path::COMPONENTS . "/tiles/timeslots_tile.php";
 
