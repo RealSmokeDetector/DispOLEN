@@ -2,7 +2,6 @@
 	use App\Models\Entities\Date;
 	use App\Models\Repositories\DateRepository;
 	use App\Models\Repositories\ReservationRepository;
-	use App\Utils\Lang;
 ?>
 
 	<div class="timeslots_container">
