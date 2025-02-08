@@ -129,8 +129,8 @@ function displayEdit() {
 	typeTitleElement.style.display = "none";
 	commentElement.style.display = "none";
 
-	dateTitleElement.after(reasonEditElement);
 	dateTitleElement.after(typeEditElement);
+	dateTitleElement.after(reasonEditElement);
 
 	reservationDetailsElement.append(inputCommentElement);
 	reservationDetailsElement.append(inputStateElement);

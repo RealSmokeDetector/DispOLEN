@@ -15,13 +15,20 @@
 
 	<p class="date" id="date_title"><?= $startDate->convertTime() . " - " . $endDate->convertTime() . " " . $endDate->convertDate() ?></p>
 
-	<div class="goal">
-		<p class="reason"><i class="ri-slideshow-line"></i><p id="reason_title"><?= ApplicationData::reasonFormat(id: $reservationInfo["id_reason"]) ?></p></p>
+	<div class="line"></div>
 
-		<p class="type"><i class="ri-map-pin-line"></i> <p id="type_title"> <?= ApplicationData::typeFormat(id: $reservationInfo["id_type"]) ?></p></p>
+	<div class="goal">
+		<p class="reason"><i class="ri-slideshow-line"></i></p>
+		<p id="reason_title"><?= ApplicationData::reasonFormat(id: $reservationInfo["id_reason"]) ?></p>
+
+		<p class="type"><i class="ri-map-pin-line"></i></p>
+		<p id="type_title"> <?= ApplicationData::typeFormat(id: $reservationInfo["id_type"]) ?></p>
 	</div>
 
-	<p class="state"><i class="ri-speed-up-line"></i> <p id="state_title" data-state="<?= $reservationInfo["id_state"] ?>"><?= ApplicationData::stateFormat(id: $reservationInfo["id_state"]) ?></p></p>
+	<div class="state">
+		<p><i class="ri-speed-up-line"></i></p>
+		<p id="state_title" data-state="<?= $reservationInfo["id_state"] ?>"><?= ApplicationData::stateFormat(id: $reservationInfo["id_state"]) ?></p>
+	</div>
 
 	<h2 class="comment"><?= Lang::translate(key: "MAIN_COMMENT") ?></h2>
 	<?php if ($reservationInfo["comment"]) { ?>
@@ -54,12 +61,14 @@
 	<button type="button" class="button" id="submit_button" style="display : none"><?= Lang::translate(key: "MAIN_SUBMIT") ?></button>
 
 	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
-		<button class="button" id="state" data-state="<?= State::ACCEPTED ?>" style="display: <?= $reservationInfo["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_ACCEPT") ?></button>
+		<div class="button_container">
+			<button class="button" id="state" data-state="<?= State::ACCEPTED ?>" style="display: <?= $reservationInfo["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_ACCEPT") ?></button>
 
-		<button class="button" id="state" data-state="<?= State::REFUSED ?>" style="display: <?= $reservationInfo["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_REFUSE") ?></button>
+			<button class="button" id="state" data-state="<?= State::REFUSED ?>" style="display: <?= $reservationInfo["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_REFUSE") ?></button>
 
-		<button class="button" id="edit_button" style="display: <?= $reservationInfo["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_UPDATE") ?></button>
+			<button class="button" id="edit_button" style="display: <?= $reservationInfo["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_UPDATE") ?></button>
 
-		<button class="button" id="state" data-state="<?= State::CANCELED ?>" style="display: <?= $reservationInfo["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_CANCEL") ?></button>
-	<?php } ?>
+			<button class="button" id="state" data-state="<?= State::CANCELED ?>" style="display: <?= $reservationInfo["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_CANCEL") ?></button>
+		<?php } ?>
+	</div>
 </div>
