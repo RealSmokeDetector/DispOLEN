@@ -16,7 +16,13 @@ class APIReservationsDetailsController {
 				$json = file_get_contents(filename: "php://input");
 				$body = json_decode(json: $json);
 
-				if (isset($body->uid_reservation) && isset($body->id_type) && isset($body->id_reason) && isset($body->id_state) && isset($body->comment)) {
+				if (
+					isset($body->uid_reservation)
+					&& isset($body->id_type)
+					&& isset($body->id_reason)
+					&& isset($body->id_state)
+					&& isset($body->comment)
+				) {
 					$reservationInfo = ReservationRepository::getInformation(uid: $body->uid_reservation);
 					$reservationsRepo = new ReservationRepository(
 						reservation: new Reservation(
@@ -27,18 +33,20 @@ class APIReservationsDetailsController {
 							comment: $body->comment,
 							date_start: $reservationInfo["date_start"],
 							date_end: $reservationInfo["date_end"]
-						));
+						)
+					);
 
 					$reservationsRepo->update();
 
 					$data["message"] = "200";
-					$data["description"] = "Disponibility added successufully.";
+					$data["description"] = "Reservation successufully updated.";
 				} else {
 					http_response_code(response_code: 400);
 
 					$data["error"] = "Invalid request";
 					$data["description"] = "Unspecified date.";
 				}
+
 				$api = new API(data: $data);
 				break;
 			default:
