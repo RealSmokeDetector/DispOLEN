@@ -31,8 +31,8 @@ class APIReservationsDetailsController {
 							reasonId: $body->id_reason,
 							stateId: $body->id_state,
 							comment: $body->comment,
-							date_start: $reservationInfo["date_start"],
-							date_end: $reservationInfo["date_end"]
+							startDate: $reservationInfo["date_start"],
+							endDate: $reservationInfo["date_end"]
 						)
 					);
 

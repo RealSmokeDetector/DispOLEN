@@ -134,6 +134,7 @@ class RouterFactory extends Router {
 			url: "/api/reservation/details",
 			controller: $this->controllersPath . "API\Reservations\Details\APIReservationsDetailsController",
 			title: APP_NAME . " - API"
+		);
 		parent::add(
 			url: "/api/date",
 			controller: $this->controllersPath . "API\Dates\APIDateController",
