@@ -1,13 +1,19 @@
-const stateElement = document.getElementById("state_display");
-const stateValueElement = document.getElementById("state_value")
-const reasonElement = document.getElementById("reason");
-const typeElement = document.getElementById("type");
-const commentElement = document.getElementById("comment");
-const formElement = document.getElementById("formReservation");
-const noComment = document.getElementById("no_comment");
-const stateButtons = document.querySelectorAll("#state");
+const stateTitleElement = document.getElementById("state_title");
+const reasonTitleElement = document.getElementById("reason_title");
+const typeTitleElement = document.getElementById("type_title");
 
-const editButton = document.getElementById("buttonId");
+const commentElement = document.getElementById("comment_value");
+const noCommentElement = document.getElementById("no_comment_title");
+
+const stateButtons = document.querySelectorAll("#state");
+const editButton = document.getElementById("edit_button");
+const submitButton = document.getElementById("submit_button")
+
+const reservationDetailsElement = document.getElementById("reservation_details_container");
+const dateTitleElement = document.getElementById("date_title");
+
+const typeEditElement = document.getElementById("type_edit");
+const reasonEditElement = document.getElementById("reason_edit");
 
 let url = new URL(window.location.href);
 let params = url.searchParams;
@@ -19,11 +25,12 @@ stateButtons.forEach(button => {
 			"reservation_uid": params.get("reservation"),
 			"state": button.dataset.state
 		});
+
 		stateButtons.forEach(async newButton => {
 			newButton.style.display = "none";
 			switch (button.dataset.state) {
 				case "1":
-					stateElement.textContent = await stateFormat(button.dataset.state);
+					stateTitleElement.textContent = await stateFormat(button.dataset.state);
 					break;
 				case "2":
 					if (newButton.dataset.state == 4) {
@@ -31,14 +38,14 @@ stateButtons.forEach(button => {
 					}
 
 					editButton.style.display = "block";
-					stateValueElement.dataset.state = 2;
-					stateElement.textContent = await stateFormat(button.dataset.state);
+					stateTitleElement.dataset.state = 2;
+					stateTitleElement.textContent = await stateFormat(button.dataset.state);
 					break;
 				case "3":
-					stateElement.textContent = await stateFormat(button.dataset.state);
+					stateTitleElement.textContent = await stateFormat(button.dataset.state);
 					break;
 				case "4":
-					stateElement.textContent = await stateFormat(button.dataset.state);
+					stateTitleElement.textContent = await stateFormat(button.dataset.state);
 					editButton.style.display = "none";
 					break;
 			}
@@ -49,60 +56,130 @@ stateButtons.forEach(button => {
 async function stateFormat(id) {
 	switch(id) {
 		case "1":
-			return await translate("MAIN_STATE_PENDING")
+			return await translate("MAIN_STATE_PENDING");
 		case "2":
-			return await translate("MAIN_STATE_ACCEPTED")
+			return await translate("MAIN_STATE_ACCEPTED");
 		case "3":
-			return await translate("MAIN_STATE_REFUSED")
+			return await translate("MAIN_STATE_REFUSED");
 		case "4":
-			return await translate("MAIN_STATE_CANCELED")
+			return await translate("MAIN_STATE_CANCELED");
+		default:
+			return "";
 	}
 }
 
-editButton.addEventListener("click", () => {
-	updateReservation();
-})
+async function reasonFormat(id) {
+	switch(id) {
+		case "1":
+			return await translate("MAIN_REASON_REVIEW_1");
+		case "2":
+			return await translate("MAIN_REASON_REVIEW_2");
+		case "3":
+			return await translate("MAIN_REASON_PRESENTATION");
+		case "4":
+			return await translate("MAIN_REASON_PROGRESS");
+		case "5":
+			return await translate("MAIN_OTHER");
+		default:
+			return "";
+	}
+}
 
-function updateReservation() {
-	let reasonSelectElement = document.getElementById("reasonSelect");
-	reasonSelectElement.style.display = "inline-block";
+async function typeFormat(id) {
+	switch(id) {
+		case "1":
+			return await translate("MAIN_TYPE_VISIT");
+		case "2":
+			return await translate("MAIN_TYPE_FACE_TO_FACE");
+		case "3":
+			return await translate("MAIN_TYPE_PHONE");
+		case "4":
+			return await translate("MAIN_TYPE_VIDEO_DISCORD");
+		case "5":
+			return await translate("MAIN_TYPE_VIDEO_TEAMS");
+		default:
+			return "";
+	}
+}
 
-	let typeSelectElement = document.getElementById("typeSelect");
-	typeSelectElement.style.display = "inline-block";
+editButton.addEventListener("click", displayEdit);
+
+function displayEdit() {
+	reasonEditElement.style.display = "block";
+	typeEditElement.style.display = "block";
 
 	let inputCommentElement = document.createElement("input");
-	inputCommentElement.name = "comment"
+	inputCommentElement.name = "comment";
 	inputCommentElement.value = commentElement.textContent.slice(1, -1);
-
-	let submitButton = document.createElement("button")
-	submitButton.type = "submit";
-	submitButton.id = "submitUpdateReservation";
-	submitButton.name = "submitAllForm"
-	submitButton.className = "button";
-	submitButton.textContent = "Submit";
+	inputCommentElement.id = "edit_comment";
 
 	let inputStateElement = document.createElement("input");
 	inputStateElement.type = "hidden";
 	inputStateElement.name = "state";
-	inputStateElement.value = stateValueElement.dataset.state;
+	inputStateElement.id = "state_value";
+	inputStateElement.value = stateTitleElement.dataset.state;
 
-	if (isElementExist(noComment)) {
-		noComment.remove();
+	submitButton.style.display = "flex";
+
+	if (isElementExist(noCommentElement)) {
+		noCommentElement.remove();
 	}
 
-	reasonElement.replaceWith(reasonSelectElement);
-	typeElement.replaceWith(typeSelectElement);
-	commentElement.replaceWith(inputCommentElement);
+	reasonTitleElement.style.display = "none";
+	typeTitleElement.style.display = "none";
+	commentElement.style.display = "none";
 
-	formElement.appendChild(inputStateElement);
-	formElement.appendChild(submitButton);
+	dateTitleElement.after(reasonEditElement);
+	dateTitleElement.after(typeEditElement);
+
+	reservationDetailsElement.append(inputCommentElement);
+	reservationDetailsElement.append(inputStateElement);
+	reservationDetailsElement.append(submitButton);
 
 	editButton.style.display = "none";
 
 	stateButtons.forEach(button => {
 		button.style.display = "none";
-	})
+	});
 
-	formElement.appendChild(submitButton);
+	editButton.removeEventListener("click", displayEdit);
+
+	submitButton.addEventListener("click", submitEdit);
 }
 
+async function submitEdit() {
+	await callApi("/api/reservation/details", "put", {
+		"uid_reservation": params.get("reservation"),
+		"id_type": typeEditElement.value,
+		"id_reason": reasonEditElement.value,
+		"id_state": stateTitleElement.dataset.state,
+		"comment": document.getElementById("edit_comment").value
+	});
+
+	reasonTitleElement.textContent = await reasonFormat(reasonEditElement.value);
+	typeTitleElement.textContent = await reasonFormat(typeEditElement.value);
+	commentElement.textContent = document.getElementById("edit_comment").value;
+
+	if (stateTitleElement.dataset.state == 2) {
+		stateButtons.forEach(async button => {
+			if (button.dataset.state == 4) {
+				button.style.display = "block";
+			}
+		});
+	}
+
+	reasonTitleElement.style.display = "block";
+	typeTitleElement.style.display = "block";
+	commentElement.style.display = "block";
+
+	reasonEditElement.remove();
+	typeEditElement.remove();
+	document.getElementById("edit_comment").remove();
+	document.getElementById("state_value").remove();
+
+	submitButton.removeEventListener("click", submitEdit);
+	editButton.addEventListener("click", displayEdit);
+
+	submitButton.style.display = "none";
+	editButton.style.display = "block";
+}
