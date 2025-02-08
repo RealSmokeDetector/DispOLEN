@@ -16,9 +16,9 @@
 	<p class="date" id="date_title"><?= $startDate->convertTime() . " - " . $endDate->convertTime() . " " . $endDate->convertDate() ?></p>
 
 	<div class="goal">
-		<p class="reason" id="reason_title"><i class="ri-slideshow-line"></i> <?= ApplicationData::reasonFormat(id: $reservationInfo["id_reason"]) ?></p>
+		<p class="reason"><i class="ri-slideshow-line"></i><p id="reason_title"><?= ApplicationData::reasonFormat(id: $reservationInfo["id_reason"]) ?></p></p>
 
-		<p class="type" id="type_title"><i class="ri-map-pin-line"></i> <?= ApplicationData::typeFormat(id: $reservationInfo["id_type"]) ?></p>
+		<p class="type"><i class="ri-map-pin-line"></i> <p id="type_title"> <?= ApplicationData::typeFormat(id: $reservationInfo["id_type"]) ?></p></p>
 	</div>
 
 	<p class="state"><i class="ri-speed-up-line"></i> <p id="state_title" data-state="<?= $reservationInfo["id_state"] ?>"><?= ApplicationData::stateFormat(id: $reservationInfo["id_state"]) ?></p></p>
