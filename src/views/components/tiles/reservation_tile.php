@@ -1,5 +1,6 @@
 <?php
-	use App\Utils\Date;
+	use App\Models\Entities\Date;
+	use App\Models\Repositories\DateRepository;
 	use App\Utils\Lang;
 	use App\Configs\Role;
 	use App\Models\Entities\User;
@@ -19,13 +20,14 @@
 
 	<div>
 		<?php
-			foreach ($reservationRepo->getAllDates(limit: 3) as $element) {
-				$dateGeting = new Date(date: $element["date"]);
+			foreach ($reservations as $element) {
+				$reservationInfo = ReservationRepository::getInformation(uid: $element);
+				$dateRepoReservations = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_start"])));
 		?>
 			<div class="line"></div>
 			<div class="row_reservation">
-				<p><?= $dateGeting->convertTime() . " " . $dateGeting->convertDate() ?></p>
-				<a class="link" href="/reservation/details?reservation=<?= $element["uid"] ?>"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
+				<p><?= $dateRepoReservations->convertTime() . " " . $dateRepoReservations->convertDate() ?></p>
+				<a class="link" href="/reservation/details?reservation=<?= $reservationInfo["uid"] ?>"><?= Lang::translate(key: "MAIN_DETAIL") ?></a>
 			</div>
 		<?php } ?>
 

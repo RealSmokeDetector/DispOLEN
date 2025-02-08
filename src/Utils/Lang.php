@@ -13,7 +13,7 @@ class Lang {
 	 * @return string
 	 */
 	public static function translate(string $key, array $options = null) : string {
-		$file = file_get_contents(filename: BASE_DIR . "/public/langs/" . $_COOKIE["LANG"] . ".json");
+		$file = file_get_contents(filename: BASE_DIR . "/public/langs/" . USER_LANG . ".json");
 		$json = json_decode(json: $file);
 
 		if (isset($json->$key)) {

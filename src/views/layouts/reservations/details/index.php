@@ -54,12 +54,12 @@
 	<button type="button" class="button" id="submit_button" style="display : none"><?= Lang::translate(key: "MAIN_SUBMIT") ?></button>
 
 	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
-		<button class="button" id="state" data-state="<?= State::ACCEPTED ?>" style="display: <?= $reservationData["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_ACCEPT") ?></button>
+		<button class="button" id="state" data-state="<?= State::ACCEPTED ?>" style="display: <?= $reservationInfo["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_ACCEPT") ?></button>
 
-		<button class="button" id="state" data-state="<?= State::REFUSED ?>" style="display: <?= $reservationData["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_REFUSE") ?></button>
+		<button class="button" id="state" data-state="<?= State::REFUSED ?>" style="display: <?= $reservationInfo["id_state"] == 1 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_REFUSE") ?></button>
 
 		<button class="button" id="edit_button" style="display: <?= $reservationInfo["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_UPDATE") ?></button>
 
-		<button class="button" id="state" data-state="<?= State::CANCELED ?>" style="display: <?= $reservationData["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_CANCEL") ?></button>
+		<button class="button" id="state" data-state="<?= State::CANCELED ?>" style="display: <?= $reservationInfo["id_state"] == 2 ? "block" : "none" ?>"><?= Lang::translate(key: "RESERVATIONS_DETAILS_CANCEL") ?></button>
 	<?php } ?>
 </div>

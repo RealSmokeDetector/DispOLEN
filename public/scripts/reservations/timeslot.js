@@ -7,6 +7,8 @@ const validate = document.getElementById("add_availability");
 
 if (isElementExist(reservationTime)) {
 	slots.forEach(slot => {
+		slot.classList.add("availability_teacher");
+
 		slot.addEventListener("click", () => {
 			const startHour = slot.dataset.hour;
 
@@ -24,7 +26,6 @@ if (isElementExist(reservationTime)) {
 					"date_end": endDate
 				});
 			});
-			reservationTime.style.display = "none";
 		});
 	});
 }

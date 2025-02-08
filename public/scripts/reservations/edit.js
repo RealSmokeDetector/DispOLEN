@@ -32,10 +32,11 @@ stateButtons.forEach(button => {
 				case "1":
 					stateTitleElement.textContent = await stateFormat(button.dataset.state);
 					break;
-				case "2": // Accepted
+				case "2":
 					if (newButton.dataset.state == 4) {
 						newButton.style.display = "inline-block";
 					}
+
 					editButton.style.display = "block";
 					stateTitleElement.dataset.state = 2;
 					stateTitleElement.textContent = await stateFormat(button.dataset.state);

@@ -3,11 +3,14 @@
 namespace App\Controllers\API\Reservations;
 
 use App\Models\Entities\API;
+use App\Models\Entities\Date;
+use App\Models\Entities\Disponibility;
 use App\Models\Entities\User;
 use App\Models\Entities\Reservation;
 use App\Models\Repositories\APIRepository;
+use App\Models\Repositories\DateRepository;
+use App\Models\Repositories\DisponibilityRepository;
 use App\Models\Repositories\ReservationRepository;
-use App\Utils\Date;
 
 class APIReservationsController {
 	public function render() : void {
@@ -20,9 +23,17 @@ class APIReservationsController {
 
 				if (isset($body->uid) && isset($body->date_start)) {
 					$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
-					$dateGiven = new Date(date: $body->date_start);
 
-					$data = $reservationRepo->reservationByDate(dateStart: $dateGiven);
+					$result = $reservationRepo->reservationByDate(dateRepo: new DateRepository(date: new Date(timestamp: strtotime(datetime: $body->date_start))));
+
+					if ($result != null) {
+						$data = $result;
+					} else {
+						http_response_code(response_code: 200);
+
+						$data["error"] = "Not found";
+						$data["description"] = "No reservations found.";
+					}
 				} else {
 					http_response_code(response_code: 400);
 
@@ -36,8 +47,8 @@ class APIReservationsController {
 				$body = json_decode(json: $json);
 
 				if (isset($body->uid_user) && isset($body->date_start) && isset($body->date_end)) {
-					$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid_user), date_start: $body->date_start, date_end: $body->date_end));
-					$reservationRepo->addDisponibility();
+					$reservationRepo = new DisponibilityRepository(disponibility: new Disponibility(user: new User(uid: $body->uid_user), startDate: $body->date_start, endDate: $body->date_end));
+					$reservationRepo->create();
 
 					$data["message"] = "200";
 					$data["description"] = "Disponibility added successufully.";

@@ -8,6 +8,7 @@
 	"MAIN_NO_SCRIPT": "Your browser does not support JavaScript or it is disabled. Please enable JavaScript to use this site.",
 	"MAIN_SHOW_MORE": "Show more",
 	"MAIN_SAVE": "Save",
+	"MAIN_ADD": "Add",
 	"MAIN_DETAIL": "Details",
 	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Role",
@@ -126,7 +127,7 @@
 	"DASHBOARD_USER_DETAILS_DATE_CREATE" : "Creation date",
 	"DASHBOARD_USER_DETAILS_NO_TUTOR" : "No tutor",
 
-	"DISPONIBILITY_TIMESLOTS_TITLE": "Time slot",
+	"TIMESLOTS_TITLE": "Time slot",
 	"NO_DISPONIBILITY_FOUND": "No availability found",
 	"TEACHER_DISPONIBILITY_TITLE": "Your tutor's availability",
 
