@@ -157,7 +157,7 @@ async function submitEdit() {
 	});
 
 	reasonTitleElement.textContent = await reasonFormat(reasonEditElement.value);
-	typeTitleElement.textContent = await reasonFormat(typeEditElement.value);
+	typeTitleElement.textContent = await typeFormat(typeEditElement.value);
 	commentElement.textContent = document.getElementById("edit_comment").value;
 
 	if (stateTitleElement.dataset.state == 2) {
