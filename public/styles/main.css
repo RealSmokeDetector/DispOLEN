@@ -424,6 +424,11 @@ nav {
 		align-items: center;
 	}
 
+	.group_control {
+		flex-direction: column !important;
+		gap: 10px;
+	}
+
 	footer {
 		flex-direction: column !important;
 		gap: 4px !important;
