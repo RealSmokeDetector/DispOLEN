@@ -78,7 +78,7 @@
 	"INDEX_RESERVATION_CONTENT": "Here is an extract from the list of your bookings",
 	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "You don't have reservation",
 	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "You don't have meetings",
-	"INDEX_CREATE_RESERVATION_STUDENT": "Create reservation",
+	"INDEX_CREATE_RESERVATION_STUDENT": "Take a disponibility",
 	"INDEX_CREATE_RESERVATION_TEACHER": "Create disponibility",
 
 	"LOGIN_TITLE": "Login",
@@ -97,6 +97,8 @@
 	"ACCOUNT_TITLE": "Account",
 	"ACCOUNT_MODIFY_TITLE": "Modify account",
 	"ACCOUNT_NO_TUTOR": "You don't have a tutor.",
+	"ACCOUNT_NO_GROUP": "You don't have a group.",
+	"ACCOUNT_MODIFY_PASSWORD": "Modify password",
 
 	"CALENDAR_TITLE": "Calendar",
 

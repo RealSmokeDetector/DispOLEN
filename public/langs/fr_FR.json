@@ -79,7 +79,7 @@
 	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici un extrait de la liste de vos réservations",
 	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "Vous n'avez pas de réservation",
 	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "Vous n'avez pas de rendez-vous",
-	"INDEX_CREATE_RESERVATION_STUDENT": "Créer une réservation",
+	"INDEX_CREATE_RESERVATION_STUDENT": "Réserver un créneau",
 	"INDEX_CREATE_RESERVATION_TEACHER": "Créer une disponibilité",
 
 	"LOGIN_TITLE": "Connexion",
@@ -98,6 +98,8 @@
 	"ACCOUNT_TITLE": "Compte",
 	"ACCOUNT_MODIFY_TITLE": "Modifier le compte",
 	"ACCOUNT_NO_TUTOR": "Vous n'avez pas de tuteur.",
+	"ACCOUNT_NO_GROUP": "Vous n'avez pas de groupe.",
+	"ACCOUNT_MODIFY_PASSWORD": "Modifier le mot de passe",
 
 	"CALENDAR_TITLE": "Calendrier",
 

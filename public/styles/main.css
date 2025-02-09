@@ -660,12 +660,42 @@ nav {
 
 .account_container {
 	display: flex;
+	flex-direction: column;
 	width: fit-content;
 	margin: auto;
 	justify-content: center;
 
 	.account_modify {
 		text-align: center;
+
+		h2 {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+
+		.password {
+			margin-bottom: 10px;
+
+			input {
+				width: -webkit-fill-available;
+				width: -moz-available;
+			}
+
+			i {
+				position: absolute;
+				transform: translate(-36px, 11px);
+				font-size: 18px;
+				background-color: var(--input-background-color);
+				cursor: pointer;
+				padding: 0px 4px;
+				transition: 200ms;
+			}
+		}
+	}
+
+	.button {
+		margin: auto;
+		width: fit-content;
 	}
 }
 

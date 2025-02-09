@@ -230,9 +230,9 @@ class UserRepository {
 	 *
 	 * @param string $uid User's UID
 	 *
-	 * @return mixed
+	 * @return string | null
 	 */
-	public static function getGroup($uid) : mixed{
+	public static function getGroup($uid) : string | null {
 		return ApplicationData::request(
 			query: "SELECT uid_group FROM " . Database::USER_GROUP . " WHERE uid_user = :uid",
 			data: [
