@@ -17,6 +17,8 @@
 
 <h1 class="reservation_title"><i class="ri-calendar-2-line"></i> <?= $title ?></h1>
 
+<?php include Path::COMPONENTS . "/actions/control_panel.php"; ?>
+
 <div class="reservation_container">
 	<?php
 		foreach ($reservations as $reservation) {

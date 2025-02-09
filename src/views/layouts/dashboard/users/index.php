@@ -8,6 +8,8 @@
 
 <h1 class="user_title"><i class="ri-group-line"></i> <?= Lang::translate(key: "DASHBOARD_USERS_TITLE") ?></h1>
 
+<?php include Path::COMPONENTS . "/actions/control_panel.php"; ?>
+
 <div class="user_container">
 	<?php
 		foreach (ApplicationData::getUsers() as $user) {

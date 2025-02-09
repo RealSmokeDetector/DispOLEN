@@ -24,6 +24,7 @@
 	"MAIN_MODIFY": "Modifier",
 	"MAIN_BACK": "Retour",
 	"MAIN_SUBMIT": "Envoyer",
+	"MAIN_SEARCH": "Rechercher",
 
 	"MAIN_STATE_PENDING": "En attente",
 	"MAIN_STATE_ACCEPTED": "Accepté",

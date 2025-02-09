@@ -443,6 +443,45 @@ nav {
 			flex-direction: column !important;
 		}
 	}
+
+	.control_panel {
+		flex-direction: column !important;
+		gap: 20px !important;
+
+		input {
+			width: 200px;
+		}
+	}
+}
+
+/* ==============================================
+   Control panel
+   ============================================== */
+
+.control_panel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10vh;
+	margin: 20px auto;
+	width: fit-content;
+	align-items: center;
+
+	.controls,
+	.filters {
+		display: flex;
+		flex-direction: row;
+		gap: 15px;
+	}
+
+	select {
+		background: var(--button-secondary-background-color);
+		border-radius: var(--border-radius);
+		padding: 0 10px;
+		border: 0;
+		cursor: pointer;
+		outline: none;
+	}
 }
 
 /* ==============================================
