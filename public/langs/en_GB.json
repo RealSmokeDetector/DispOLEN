@@ -10,7 +10,6 @@
 	"MAIN_SAVE": "Save",
 	"MAIN_ADD": "Add",
 	"MAIN_DETAIL": "Details",
-	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Role",
 	"MAIN_GROUP": "Group",
 	"MAIN_STUDENT": "Student",
@@ -24,6 +23,7 @@
 	"MAIN_MODIFY": "Modify",
 	"MAIN_BACK": "Back",
 	"MAIN_SUBMIT": "Submit",
+	"MAIN_SEARCH": "Search",
 
 	"MAIN_STATE_PENDING": "Pending",
 	"MAIN_STATE_ACCEPTED": "Accepted",
@@ -108,7 +108,6 @@
 	"AVAILABLE": "Available",
 
 	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
-	"RESERVATIONS_DETAILS_TUTOR": "Tutor",
 	"RESERVATIONS_DETAILS_ACCEPT": "Accept",
 	"RESERVATIONS_DETAILS_REFUSE": "Refuse",
 	"RESERVATIONS_DETAILS_UPDATE": "Update",
@@ -130,8 +129,6 @@
 	"DASHBOARD_USER_DETAILS_NO_TUTOR" : "No tutor",
 
 	"TIMESLOTS_TITLE": "Time slot",
-	"NO_DISPONIBILITY_FOUND": "No availability found",
-	"TEACHER_DISPONIBILITY_TITLE": "Your tutor's availability",
 
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",
