@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="filters">
-		<input type="text" placeholder="<?= Lang::translate(key: "MAIN_SEARCH") ?>">
+		<input id="control_panel_search" type="text" placeholder="<?= Lang::translate(key: "MAIN_SEARCH") ?>" autofocus>
 
 		<select id="control_panel_filter">
 			<option value="a-z">A-Z</option>

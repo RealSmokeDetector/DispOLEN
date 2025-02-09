@@ -6,13 +6,7 @@
 	use App\Models\Repositories\ReservationRepository;
 	use App\Models\Repositories\UserRepository;
 	use App\Utils\ApplicationData;
-	use App\Utils\Lang;
 	use App\Utils\Roles;
-
-	$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER");
-	if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {
-		$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT");
-	}
 ?>
 
 <h1 class="reservation_title"><i class="ri-calendar-2-line"></i> <?= $title ?></h1>
