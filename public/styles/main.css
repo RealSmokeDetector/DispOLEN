@@ -426,6 +426,11 @@ nav {
 		align-items: center;
 	}
 
+	.group_control {
+		flex-direction: column !important;
+		gap: 10px;
+	}
+
 	footer {
 		flex-direction: column !important;
 		gap: 4px !important;
@@ -444,6 +449,45 @@ nav {
 		.item {
 			flex-direction: column !important;
 		}
+	}
+
+	.control_panel {
+		flex-direction: column !important;
+		gap: 20px !important;
+
+		input {
+			width: 200px;
+		}
+	}
+}
+
+/* ==============================================
+   Control panel
+   ============================================== */
+
+.control_panel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10vh;
+	margin: 20px auto;
+	width: fit-content;
+	align-items: center;
+
+	.controls,
+	.filters {
+		display: flex;
+		flex-direction: row;
+		gap: 15px;
+	}
+
+	select {
+		background: var(--button-secondary-background-color);
+		border-radius: var(--border-radius);
+		padding: 0 10px;
+		border: 0;
+		cursor: pointer;
+		outline: none;
 	}
 }
 
@@ -623,12 +667,42 @@ nav {
 
 .account_container {
 	display: flex;
+	flex-direction: column;
 	width: fit-content;
 	margin: auto;
 	justify-content: center;
 
 	.account_modify {
 		text-align: center;
+
+		h2 {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+
+		.password {
+			margin-bottom: 10px;
+
+			input {
+				width: -webkit-fill-available;
+				width: -moz-available;
+			}
+
+			i {
+				position: absolute;
+				transform: translate(-36px, 11px);
+				font-size: 18px;
+				background-color: var(--input-background-color);
+				cursor: pointer;
+				padding: 0px 4px;
+				transition: 200ms;
+			}
+		}
+	}
+
+	.button {
+		margin: auto;
+		width: fit-content;
 	}
 }
 
@@ -747,10 +821,12 @@ nav {
 		text-align: center;
 	}
 
-	.goal {
+	.goal,
+	.state {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		align-items: center;
 		gap: 15px;
 		padding-top: 5px;
 	}
@@ -761,15 +837,16 @@ nav {
 		padding: 5px 0px;
 	}
 
-	.state {
-		text-align: end;
-		padding-top: 18px;
-		font-weight: bold;
-	}
-
 	.comment {
 		text-align: center;
 		padding-top: 20px;
+	}
+
+	.button_container {
+		display: flex;
+		flex-direction: row;
+		padding-top: 15px;
+		gap: 15px;
 	}
 }
 

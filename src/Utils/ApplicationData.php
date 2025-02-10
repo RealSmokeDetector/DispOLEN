@@ -49,7 +49,7 @@ class ApplicationData {
 	 */
 	public static function getUsers() : array {
 		return ApplicationData::request(
-			query: "SELECT * FROM " . Database::USERS,
+			query: "SELECT * FROM " . Database::USERS . " ORDER BY surname",
 			returnType: PDO::FETCH_ASSOC
 		);
 	}

@@ -3,6 +3,7 @@
 namespace App\Controllers\Reservations;
 
 use App\Configs\Path;
+use App\Configs\Role;
 use App\Factories\NavbarFactory;
 use App\Models\Entities\Date;
 use App\Models\Entities\Reservation;
@@ -10,6 +11,8 @@ use App\Models\Entities\User;
 use App\Models\Repositories\DateRepository;
 use App\Models\Repositories\ReservationRepository;
 use App\Models\Repositories\UserRepository;
+use App\Utils\Lang;
+use App\Utils\Roles;
 
 class ReservationsController {
 	public function render() : void {
@@ -28,6 +31,11 @@ class ReservationsController {
 		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 		$dateRepo = new DateRepository(date: new Date());
 		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
+
+		$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER");
+		if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {
+			$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_STUDENT");
+		}
 
 		require Path::LAYOUT . "/header.php";
 

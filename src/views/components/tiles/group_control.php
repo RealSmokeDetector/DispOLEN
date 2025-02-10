@@ -1,8 +1,4 @@
-<?php
-	$group["uid"] === $selectedGroup ? $display = "flex" : $display = "none";
-?>
-
-<div class="tile group_control" id="group_control" data-uid="<?= $group["uid"] ?>" style="Display: <?= $display ?>">
+<div class="tile group_control" id="group_control" data-uid="<?= $group["uid"] ?>" style="display: <?= $display ?>">
 	<p class="group_name"><?= htmlspecialchars(string: $group["name"]) ?></p>
 
 	<div class="action">

@@ -39,6 +39,17 @@ class ReservationDetailsController {
 			System::redirect(url: "/reservations");
 		}
 
+		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
+
+		$infoStudent = UserRepository::getInformations(uid: $reservationInfo["uid_student"]);
+		$infoTeacher = UserRepository::getInformations(uid: $reservationInfo["uid_teacher"]);
+
+		$startDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_start"])));
+		$endDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_end"])));
+
+		$reasons = ApplicationData::getReasons();
+		$types = ApplicationData::getTypes();
+
 		$scripts = [
 			"/scripts/engine.js",
 			"/scripts/theme.js",

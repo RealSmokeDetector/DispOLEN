@@ -5,7 +5,7 @@
 	use App\Utils\Roles;
 ?>
 
-<a href="/dashboard/user/details?user=<?= $user["uid"] ?>">
+<a id="user_tile" href="/dashboard/user/details?user=<?= $user["uid"] ?>">
 	<div class="tile user_tile">
 		<h2 class="name"><?= mb_strtoupper(string: htmlspecialchars(string: $user["surname"])) . " " . ucfirst(string: htmlspecialchars(string: $user["name"])) ?></h2>
 		<p class="role"><?= htmlspecialchars(string: join(array: $rolesName, separator: " ")) ?></p>

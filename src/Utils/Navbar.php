@@ -63,7 +63,9 @@ class Navbar {
 		}
 
 		echo "<div class=\"action\">";
-		include Path::COMPONENTS . "/actions/account_button.php";
+		if (isset($_SESSION["user"]["uid"])) {
+			include Path::COMPONENTS . "/actions/account_button.php";
+		}
 		include Path::COMPONENTS . "/actions/theme_button.php";
 		include Path::COMPONENTS . "/actions/lang_selection.php";
 		echo "</div>";

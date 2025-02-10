@@ -29,13 +29,15 @@ class AccountIndexController {
 		$tutoredStudents = [];
 		foreach ($userRepo->getTutoredStudent() as $student) {
 			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
-			array_push($tutoredStudents, mb_strtoupper(string: $studentInfo["surname"]), $studentInfo["name"]);
+
+			array_push($tutoredStudents, htmlspecialchars(string: ucfirst(string: $studentInfo["surname"]) . " " . ucfirst(string: $studentInfo["name"])));
 		}
 
 		$scripts = [
 			"/scripts/engine.js",
 			"/scripts/theme.js",
-			"/scripts/account/edit.js"
+			"/scripts/account/edit.js",
+			"https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.4.0/tsparticles.confetti.bundle.min.js"
 		];
 
 		require Path::LAYOUT . "/header.php";

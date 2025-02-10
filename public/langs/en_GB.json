@@ -10,7 +10,6 @@
 	"MAIN_SAVE": "Save",
 	"MAIN_ADD": "Add",
 	"MAIN_DETAIL": "Details",
-	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Role",
 	"MAIN_GROUP": "Group",
 	"MAIN_STUDENT": "Student",
@@ -23,6 +22,8 @@
 	"MAIN_NONE": "None",
 	"MAIN_MODIFY": "Modify",
 	"MAIN_BACK": "Back",
+	"MAIN_SUBMIT": "Submit",
+	"MAIN_SEARCH": "Search",
 
 	"MAIN_STATE_PENDING": "Pending",
 	"MAIN_STATE_ACCEPTED": "Accepted",
@@ -77,7 +78,7 @@
 	"INDEX_RESERVATION_CONTENT": "Here is an extract from the list of your bookings",
 	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "You don't have reservation",
 	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "You don't have meetings",
-	"INDEX_CREATE_RESERVATION_STUDENT": "Create reservation",
+	"INDEX_CREATE_RESERVATION_STUDENT": "Take a disponibility",
 	"INDEX_CREATE_RESERVATION_TEACHER": "Create disponibility",
 
 	"LOGIN_TITLE": "Login",
@@ -96,6 +97,8 @@
 	"ACCOUNT_TITLE": "Account",
 	"ACCOUNT_MODIFY_TITLE": "Modify account",
 	"ACCOUNT_NO_TUTOR": "You don't have a tutor.",
+	"ACCOUNT_NO_GROUP": "You don't have a group.",
+	"ACCOUNT_MODIFY_PASSWORD": "Modify password",
 
 	"CALENDAR_TITLE": "Calendar",
 
@@ -105,11 +108,10 @@
 	"AVAILABLE": "Available",
 
 	"RESERVATIONS_DETAILS_TITLE": "Reservation details",
-	"RESERVATIONS_DETAILS_TUTOR": "Tutor",
 	"RESERVATIONS_DETAILS_ACCEPT": "Accept",
 	"RESERVATIONS_DETAILS_REFUSE": "Refuse",
 	"RESERVATIONS_DETAILS_UPDATE": "Update",
-	"RESERVATIONS_DETAILS_CANCEL": "Cancel",
+	"RESERVATIONS_DETAILS_CANCEL": "Cancel reservation",
 
 	"GROUPS_TITLE": "Groups",
 	"GROUPS_REMOVE_STUDENT": "Remove student",
@@ -127,8 +129,6 @@
 	"DASHBOARD_USER_DETAILS_NO_TUTOR" : "No tutor",
 
 	"TIMESLOTS_TITLE": "Time slot",
-	"NO_DISPONIBILITY_FOUND": "No availability found",
-	"TEACHER_DISPONIBILITY_TITLE": "Your tutor's availability",
 
 	"ERROR_SERVER": "Server error.",
 	"ERROR_DATABASE": "Database error.",

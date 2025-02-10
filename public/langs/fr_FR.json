@@ -10,7 +10,6 @@
 	"MAIN_SAVE": "Sauvegarder",
 	"MAIN_ADD": "Ajouter",
 	"MAIN_DETAIL": "Détails",
-	"MAIN_DATE": "Date",
 	"MAIN_ROLE": "Rôle",
 	"MAIN_GROUP": "Groupe",
 	"MAIN_STUDENT": "Etudiant",
@@ -23,6 +22,8 @@
 	"MAIN_NONE": "Aucun",
 	"MAIN_MODIFY": "Modifier",
 	"MAIN_BACK": "Retour",
+	"MAIN_SUBMIT": "Envoyer",
+	"MAIN_SEARCH": "Rechercher",
 
 	"MAIN_STATE_PENDING": "En attente",
 	"MAIN_STATE_ACCEPTED": "Accepté",
@@ -77,7 +78,7 @@
 	"INDEX_RESERVATION_CONTENT": "Vous trouverez ici un extrait de la liste de vos réservations",
 	"INDEX_RESERVATION_NO_RESERVATION_STUDENT": "Vous n'avez pas de réservation",
 	"INDEX_RESERVATION_NO_RESERVATION_TEACHER": "Vous n'avez pas de rendez-vous",
-	"INDEX_CREATE_RESERVATION_STUDENT": "Créer une réservation",
+	"INDEX_CREATE_RESERVATION_STUDENT": "Réserver un créneau",
 	"INDEX_CREATE_RESERVATION_TEACHER": "Créer une disponibilité",
 
 	"LOGIN_TITLE": "Connexion",
@@ -96,6 +97,8 @@
 	"ACCOUNT_TITLE": "Compte",
 	"ACCOUNT_MODIFY_TITLE": "Modifier le compte",
 	"ACCOUNT_NO_TUTOR": "Vous n'avez pas de tuteur.",
+	"ACCOUNT_NO_GROUP": "Vous n'avez pas de groupe.",
+	"ACCOUNT_MODIFY_PASSWORD": "Modifier le mot de passe",
 
 	"CALENDAR_TITLE": "Calendrier",
 
@@ -105,11 +108,10 @@
 	"AVAILABLE": "Disponible",
 
 	"RESERVATIONS_DETAILS_TITLE": "Détails de la réservation",
-	"RESERVATIONS_DETAILS_TUTOR": "Tuteur/Tutrice",
 	"RESERVATIONS_DETAILS_ACCEPT": "Accepter",
 	"RESERVATIONS_DETAILS_REFUSE": "Refuser",
 	"RESERVATIONS_DETAILS_UPDATE": "Modifier",
-	"RESERVATIONS_DETAILS_CANCEL": "Annuler",
+	"RESERVATIONS_DETAILS_CANCEL": "Annuler la réservation",
 
 	"GROUPS_TITLE": "Groupes",
 	"GROUPS_REMOVE_STUDENT": "Retirer l'étudiant",
@@ -127,8 +129,6 @@
 	"DASHBOARD_USER_DETAILS_NO_TUTOR" : "Aucun tuteur",
 
 	"TIMESLOTS_TITLE": "Plage horaire",
-	"NO_DISPONIBILITY_FOUND": "Aucune disponibilité trouvée",
-	"TEACHER_DISPONIBILITY_TITLE": "Disponibilités de votre tuteur",
 
 	"ERROR_SERVER": "Erreur serveur.",
 	"ERROR_DATABASE": "Erreur de base de donnée.",

@@ -7,6 +7,8 @@
 	<?php
 		if (count(value: $groups) > 0) {
 			foreach ($groups as $group) {
+				$group["uid"] === $selectedGroup ? $display = "flex" : $display = "none";
+
 				include Path::COMPONENTS . "/tiles/group_control.php";
 			}
 	?>

@@ -22,8 +22,8 @@ class CalendarController {
 			"/scripts/engine.js",
 			"/scripts/theme.js",
 			"/scripts/times/calendar.js",
-			"https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.4.0/tsparticles.confetti.bundle.min.js",
-			"/scripts/times/timeslots.js"
+			"/scripts/times/timeslots.js",
+			"https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.4.0/tsparticles.confetti.bundle.min.js"
 		];
 
 		require Path::LAYOUT . "/header.php";
