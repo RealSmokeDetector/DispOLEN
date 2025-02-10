@@ -5,14 +5,17 @@ namespace App\Controllers\Calendar;
 use App\Configs\Path;
 use App\Factories\NavbarFactory;
 use App\Models\Entities\Date;
+use App\Models\Entities\Disponibility;
 use App\Models\Entities\Reservation;
 use App\Models\Entities\User;
 use App\Models\Repositories\DateRepository;
+use App\Models\Repositories\DisponibilityRepository;
 use App\Models\Repositories\ReservationRepository;
 
 class CalendarController {
 	public function render() : void {
-		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $_SESSION["user"]["uid"])));
+		$user =new User(uid: $_SESSION["user"]["uid"]);
+		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: $user));
 		$reservations = $reservationRepo->getReservations();
 
 		$scripts = [
@@ -31,6 +34,9 @@ class CalendarController {
 
 		$dateRepo = new DateRepository(date: new Date());
 		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
+
+
+		$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: $user));
 
 		require Path::LAYOUT . "/calendar/index.php";
 

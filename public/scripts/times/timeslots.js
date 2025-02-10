@@ -22,12 +22,14 @@ if (containersTimeslots.length === 1) {
 
 				const timeslotsReservation = document.querySelectorAll(".availability_reserved");
 				const timeslotsDisponibilities = document.querySelectorAll(".disponibility");
+
 				timeslotsReservation.forEach((value) => {
 					value.style.height = 0;
 				});
 				timeslotsDisponibilities.forEach((value)=> {
 					value.style.height = 0;
-				})
+				});
+
 				if (!reservationDates.error) {
 					reservationDates.forEach((value, index) => {
 						if (timeslotsReservation[index]) {
@@ -53,23 +55,44 @@ if (containersTimeslots.length === 1) {
 } else if (containersTimeslots.length > 1) {
 	calendarWeek.forEach((weekElement) => {
 		weekElement.addEventListener("click", (event) => {
-			const timeslots = document.querySelectorAll(".availability_reserved");
+			const timeslotsReservation = document.querySelectorAll(".availability_reserved");
+			const timeslotsDisponibilities = document.querySelectorAll(".disponibility");
 
-			timeslots.forEach((value) => {
+			timeslotsReservation.forEach((value) => {
 				value.style.height = 0;
 			});
+			timeslotsDisponibilities.forEach((value)=> {
+				value.style.height = 0;
+			});
+
 			containersTimeslots.forEach(async (containerTimeslot, i) => {
+				let date = event.currentTarget.children[i].dataset.date;
 				let reservationDates = await callApi("/api/reservation" , "post", {
 					"uid": uid,
-					"date_start": event.currentTarget.children[i].dataset.date
+					"date_start": date
+				});
+
+				let disponibilityDates = await callApi("/api/disponibility" , "post", {
+					"uid": uid,
+					"date_start": date
 				});
 
 				if (!reservationDates.error) {
 					reservationDates.forEach((value, index) => {
-						if (timeslots[index]) {
-							updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslots[index]);
+						if (timeslotsReservation[index]) {
+							updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslotsReservation[index]);
 						} else {
 							createTimeslot(new Date(value.date_start), new Date(value.date_end), containerTimeslot);
+						}
+					});
+				}
+
+				if (!disponibilityDates.error) {
+					disponibilityDates.forEach((value, index) => {
+						if (timeslotsDisponibilities[index]) {
+							updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslotsDisponibilities[index]);
+						} else {
+							createTimeslot(new Date(value.date_start), new Date(value.date_end), containerTimeslot, "disponibility");
 						}
 					});
 				}
