@@ -57,7 +57,8 @@
 	--form-background-color: #ffffff75;
 	--input-background-color: var(--background-color);
 	--tile-background-color: #f5f5f5;
-	--timeslot-background-color: #447cff;
+	--timeslot-background-color: #447cff69;
+	--timeslot-disponibility-background-color: #ff000069;
 
 	/* Border color */
 	--border-color: #d9d9d9;
@@ -87,7 +88,8 @@
 	--form-background-color: #1d1d1d75;
 	--input-background-color: var(--background-color);
 	--tile-background-color: #222222;
-	--timeslot-background-color: var(--link-color);
+	--timeslot-background-color: #447cff69;
+	--timeslot-disponibility-background-color: #ff000069;
 
 	/* Border color */
 	--border-color: #5c5c5c;
@@ -1131,6 +1133,13 @@ nav {
 			position: absolute;
 		}
 
+		.disponibility {
+			background-color: var(--timeslot-disponibility-background-color);
+			border-top: none;
+			border-bottom: none;
+			width: 200px;
+			position: absolute;
+		}
 		.availability_teacher {
 			transition: 200ms;
 		}

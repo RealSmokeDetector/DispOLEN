@@ -11,6 +11,8 @@
 		<?php
 			$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
 			for ($i = 0; $i < 5; $i++) {
+				$disponibilities = $disponibilityRepo->getDisponibilities(date: $dateRepo);
+
 				include Path::COMPONENTS . "/tiles/timeslots_tile.php";
 
 				if ($dateRepo->getDayNumber() === $dateRepo->getDay() && $dateRepo->getMonth() === 12) {

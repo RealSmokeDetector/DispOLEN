@@ -23,14 +23,6 @@ class IndexController {
 		}
 
 		$user = new User(uid: $_SESSION["user"]["uid"]);
-		if (Roles::check(userRoles: UserRepository::getRoles(uid: $_SESSION["user"]["uid"]), allowRoles: [Role::STUDENT])) {
-			$userRepo = new UserRepository(user: $user);
-			$teacherUid = $userRepo->getTutor();
-
-			if ($teacherUid != null) {
-				$teacherDisponibilities = UserRepository::getTeacherDisponibilities(uid: $teacherUid);
-			}
-		}
 
 		$dateRepo = new DateRepository(date: new Date());
 		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());

@@ -174,14 +174,10 @@ class DateRepository {
 	 * @return array
 	 */
 	public function getIntervalDay(int $hourStart = 0, int $hourEnd = 23) : array {
-		$interval = [];
-
-		array_push($interval, [
+		return [
 			"startDate" => date(format: "Y-m-d " . $hourStart . ":00:00", timestamp: $this->date->timestamp),
 			"endDate" => date(format: "Y-m-d " . $hourEnd . ":59:59", timestamp: $this->date->timestamp)
-		]);
-
-		return $interval[0];
+		];
 	}
 
 	/**

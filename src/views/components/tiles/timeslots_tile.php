@@ -2,6 +2,7 @@
 	use App\Models\Entities\Date;
 	use App\Models\Repositories\DateRepository;
 	use App\Models\Repositories\ReservationRepository;
+	use App\Models\Repositories\DisponibilityRepository;
 ?>
 
 	<div class="timeslots_container">
@@ -35,6 +36,23 @@
 			?>
 
 				<div class="availability_reserved" style="height:<?= $height ?>px;transform: translateY(<?= $translate ?>px);"></div>
+
+			<?php
+					}
+				}
+
+				foreach ($disponibilities as $disponibility) {
+
+					$startDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $disponibility["date_start"])));
+
+					if ($dateRepo->getDay() === $startDate->getDay()) {
+						$endDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $disponibility["date_end"])));
+
+						$height = (($startDate->getDurationDate(dateRepo: $endDate) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
+						$translate = (($startDate->getIntervalFromBegin() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
+			?>
+
+				<div class="disponibility" style="height:<?= $height ?>px;transform: translateY(<?= $translate ?>px);"></div>
 
 			<?php
 					}
