@@ -9,7 +9,6 @@
 
 	<div class="tile timeslots" id="timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"]?>">
 		<?php
-			$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
 			for ($i = 0; $i < 5; $i++) {
 				$disponibilities = $disponibilityRepo->getDisponibilities(date: $dateRepo);
 

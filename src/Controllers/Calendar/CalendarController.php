@@ -14,7 +14,7 @@ use App\Models\Repositories\ReservationRepository;
 
 class CalendarController {
 	public function render() : void {
-		$user =new User(uid: $_SESSION["user"]["uid"]);
+		$user = new User(uid: $_SESSION["user"]["uid"]);
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: $user));
 		$reservations = $reservationRepo->getReservations();
 
@@ -32,9 +32,9 @@ class CalendarController {
 
 		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 
-		$dateRepo = new DateRepository(date: new Date());
-		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
+		$offDays = DateRepository::getOffDays(year: (new DateRepository(date: new Date()))->getYear());
 
+		$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
 
 		$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: $user));
 
