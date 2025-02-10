@@ -15,15 +15,13 @@ class APIDisponibilitiesController {
 		header(header: "Content-Type: application/json");
 
 		switch($_SERVER["REQUEST_METHOD"]) {
-			case "GET":
+			case "POST":
 				$json = file_get_contents(filename: "php://input");
 				$body = json_decode(json: $json);
-
 				if (isset($body->uid) && isset($body->date_start)) {
 					$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: new User(uid: $body->uid)));
 
 					$result = $disponibilityRepo->getDisponibilities( date: new DateRepository(date: new Date(timestamp: strtotime(datetime: $body->date_start))));
-
 					if ($result != null) {
 						$data = $result;
 					} else {

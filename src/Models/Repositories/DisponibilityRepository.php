@@ -45,13 +45,14 @@ class DisponibilityRepository {
 	 * @return array
 	 */
 	public function getDisponibilities(DateRepository $date) : array {
+		$interval = $date->GetIntervalDay();
 		$userRepo = new UserRepository(user: $this->disponibility->user);
 		return ApplicationData::request(
 			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE uid_user = :uid_user AND date_start >= :startDate AND date_start <= :endDate",
 			data: [
 				"uid_user" => $userRepo->getTutor(),
-				"startDate" => $date->getDate() . " 08:00:00",
-				"endDate" => $date->getDate() . " 19:00:00"
+				"startDate" => $interval["startDate"],
+				"endDate" => $interval["endDate"]
 			],
 			returnType: PDO::FETCH_ASSOC
 		);

@@ -142,7 +142,7 @@ class RouterFactory extends Router {
 		);
 		parent::add(
 			url: "/api/disponibility",
-			controller: $this->controllersPath . "API\Disponibilities\APIDisponibillitiesController",
+			controller: $this->controllersPath . "API\Disponibilities\APIDisponibilitiesController",
 			title: APP_NAME . " - API"
 		);
 	}
