@@ -31,7 +31,7 @@
 			$startDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_start"])));
 			$endDate = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_end"])));
 
-			include Path::COMPONENTS . "/tiles/reservation_details_tile.php";
+			include Path::COMPONENTS . "/tiles/reservation_tile.php";
 		}
 	?>
 </div>

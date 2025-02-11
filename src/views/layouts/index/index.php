@@ -4,7 +4,7 @@
 ?>
 
 <div class="index_container">
-	<?php require Path::COMPONENTS . "/tiles/reservation_tile.php"; ?>
+	<?php require Path::COMPONENTS . "/tiles/reservations_list_tile.php"; ?>
 	<?php require Path::COMPONENTS . "/actions/calendar.php"; ?>
 
 	<div class="tile timeslots_tile" id="timeslots_tile" data-uid="<?= $_SESSION["user"]["uid"] ?>">
