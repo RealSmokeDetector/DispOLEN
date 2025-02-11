@@ -17,6 +17,7 @@ class CalendarController {
 		$user = new User(uid: $_SESSION["user"]["uid"]);
 		$reservationRepo = new ReservationRepository(reservation: new Reservation(user: $user));
 		$reservations = $reservationRepo->getReservations();
+		$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: $user));
 
 		$scripts = [
 			"/scripts/engine.js",
@@ -35,8 +36,6 @@ class CalendarController {
 		$offDays = DateRepository::getOffDays(year: (new DateRepository(date: new Date()))->getYear());
 
 		$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
-
-		$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: $user));
 
 		require Path::LAYOUT . "/calendar/index.php";
 

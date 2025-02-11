@@ -6,9 +6,11 @@ use App\Configs\Path;
 use App\Configs\Role;
 use App\Factories\NavbarFactory;
 use App\Models\Entities\Date;
+use App\Models\Entities\Disponibility;
 use App\Models\Entities\Reservation;
 use App\Models\Entities\User;
 use App\Models\Repositories\DateRepository;
+use App\Models\Repositories\DisponibilityRepository;
 use App\Models\Repositories\ReservationRepository;
 use App\Models\Repositories\UserRepository;
 use App\Utils\Lang;
@@ -31,6 +33,9 @@ class ReservationsController {
 		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 		$dateRepo = new DateRepository(date: new Date());
 		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
+
+		$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: new User(uid: $_SESSION["user"]["uid"])));
+		$disponibilities = $disponibilityRepo->getDisponibilities(date: $dateRepo);
 
 		$title = Lang::translate(key: "INDEX_RESERVATION_TITLE_TEACHER");
 		if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {
