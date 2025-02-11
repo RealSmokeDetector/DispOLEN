@@ -459,6 +459,12 @@ nav {
 			width: 200px;
 		}
 	}
+
+	.calendar_container {
+		.timeslots {
+			flex-direction: column !important;
+		}
+	}
 }
 
 /* ==============================================
@@ -1136,6 +1142,7 @@ nav {
 
 		.disponibility {
 			background-color: var(--timeslot-disponibility-background-color);
+			opacity: 50%;
 			border-top: none;
 			border-bottom: none;
 			width: 200px;
