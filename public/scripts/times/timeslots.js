@@ -55,8 +55,8 @@ if (containersTimeslots.length === 1) {
 } else if (containersTimeslots.length > 1) {
 	calendarWeek.forEach((weekElement) => {
 		weekElement.addEventListener("click", (event) => {
-			const timeslotsReservation = document.querySelectorAll(".availability_reserved");
-			const timeslotsDisponibilities = document.querySelectorAll(".disponibility");
+			let timeslotsReservation = document.querySelectorAll(".availability_reserved");
+			let timeslotsDisponibilities = document.querySelectorAll(".disponibility");
 
 			timeslotsReservation.forEach((value) => {
 				value.style.height = 0;
@@ -65,38 +65,44 @@ if (containersTimeslots.length === 1) {
 				value.style.height = 0;
 			});
 
-			containersTimeslots.forEach(async (containerTimeslot, i) => {
-				let date = event.currentTarget.children[i].dataset.date;
-				let reservationDates = await callApi("/api/reservation" , "post", {
-					"uid": uid,
-					"date_start": date
-				});
-
-				let disponibilityDates = await callApi("/api/disponibility" , "post", {
-					"uid": uid,
-					"date_start": date
-				});
-
-				if (!reservationDates.error) {
-					reservationDates.forEach((value, index) => {
-						if (timeslotsReservation[index]) {
-							updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslotsReservation[index]);
-						} else {
-							createTimeslot(new Date(value.date_start), new Date(value.date_end), containerTimeslot);
-						}
+			let liste = [event.currentTarget.children[0].dataset.date, event.currentTarget.children[event.currentTarget.children.length - 1].dataset.date];
+			if (!liste.includes(undefined)) {
+				containersTimeslots.forEach(async (containerTimeslot, i) => {
+					let timeslotsReservation = containerTimeslot.querySelectorAll(".availability_reserved");
+					let timeslotsDisponibilities = containerTimeslot.querySelectorAll(".disponibility");
+					let date = event.currentTarget.children[i].dataset.date;
+					let reservationDates = await callApi("/api/reservation" , "post", {
+						"uid": uid,
+						"date_start": date
 					});
-				}
 
-				if (!disponibilityDates.error) {
-					disponibilityDates.forEach((value, index) => {
-						if (timeslotsDisponibilities[index]) {
-							updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslotsDisponibilities[index]);
-						} else {
-							createTimeslot(new Date(value.date_start), new Date(value.date_end), containerTimeslot, "disponibility");
-						}
+					let disponibilityDates = await callApi("/api/disponibility" , "post", {
+						"uid": uid,
+						"date_start": date
 					});
-				}
-			});
+					if (!reservationDates.error) {
+						reservationDates.forEach((value, index) => {
+
+							if (timeslotsReservation[index]) {
+
+								updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslotsReservation[index]);
+							} else {
+								createTimeslot(new Date(value.date_start), new Date(value.date_end), containerTimeslot);
+							}
+						});
+					}
+
+					if (!disponibilityDates.error) {
+						disponibilityDates.forEach((value, index) => {
+							if (timeslotsDisponibilities[index]) {
+								updateTimeslot(new Date(value.date_start), new Date(value.date_end), timeslotsDisponibilities[index]);
+							} else {
+								createTimeslot(new Date(value.date_start), new Date(value.date_end), containerTimeslot, "disponibility");
+							}
+						});
+					}
+				});
+			}
 		});
 	});
 }
