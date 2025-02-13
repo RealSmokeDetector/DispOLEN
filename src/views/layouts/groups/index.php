@@ -1,6 +1,8 @@
 <?php
 	use App\Configs\Path;
+	use App\Configs\Role;
 	use App\Utils\Lang;
+	use App\Utils\Roles;
 ?>
 
 <div class="groups_container">
@@ -30,5 +32,10 @@
 
 	</div>
 
-	<?php include Path::COMPONENTS . "/actions/add_button.php"; ?>
+	<?php
+		if (Roles::check(userRoles: $roles, allowRoles: [Role::ADMINISTRATOR])) {
+			include Path::COMPONENTS . "/actions/add_button.php";
+		}
+	?>
+
 </div>
