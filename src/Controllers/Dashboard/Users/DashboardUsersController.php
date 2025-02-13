@@ -3,10 +3,13 @@
 namespace App\Controllers\Dashboard\Users;
 
 use App\Configs\Path;
+use App\Events\AddUserEvent;
 use App\Factories\NavbarFactory;
 
 class DashboardUsersController {
 	public function render() : void {
+		AddUserEvent::implement();
+
 		$scripts = [
 			"/scripts/engine.js",
 			"/scripts/theme.js",

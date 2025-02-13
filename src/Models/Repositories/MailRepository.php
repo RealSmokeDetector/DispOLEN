@@ -23,6 +23,7 @@ class MailRepository {
 		$this->mailer->isSMTP();
 		$this->mailer->SMTPAuth = true;
 		$this->mailer->SMTPSecure = "tls";
+		$this->mailer->CharSet = "UTF-8";
 		$this->mailer->Host = $this->mail->host;
 		$this->mailer->Port = $this->mail->port;
 		$this->mailer->SMTPAuth = true;
