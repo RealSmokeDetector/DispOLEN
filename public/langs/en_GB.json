@@ -1,5 +1,6 @@
 {
 	"MAIN_LANG": "en",
+	"MAIN_OBJECT_NAME": "Name",
 	"MAIN_NAME": "Name",
 	"MAIN_SURNAME": "Surname",
 	"MAIN_EMAIL": "Email",
@@ -61,6 +62,9 @@
 	"MAIN_OCTOBER": "October",
 	"MAIN_NOVEMBER": "November",
 	"MAIN_DECEMBER": "December",
+
+	"EMAIL_CREATE_USER_OBJECT": "Account creation on $[name]",
+	"EMAIL_CREATE_USER_BODY": "Welcome in $[name]!<br><br>Here your temporary password, it will be ask you to change it after your first login : $[password]",
 
 	"NAVBAR_HOME": "Home",
 	"NAVBAR_DASHBOARD": "Dashboard",

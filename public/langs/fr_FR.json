@@ -1,5 +1,6 @@
 {
 	"MAIN_LANG": "fr",
+	"MAIN_OBJECT_NAME": "Nom",
 	"MAIN_NAME": "Prénom",
 	"MAIN_SURNAME": "Nom de famille",
 	"MAIN_EMAIL": "Email",

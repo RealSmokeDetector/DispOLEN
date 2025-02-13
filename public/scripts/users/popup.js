@@ -1,5 +1,5 @@
 const addButton = document.getElementById("add_button");
-const userPopup = document.getElementById("user_popup");
+const groupPopup = document.getElementById("user_popup");
 const closePopup = document.getElementById("close_popup");
 
 addButton.addEventListener("click", () => {
@@ -7,21 +7,21 @@ addButton.addEventListener("click", () => {
 });
 
 function addUser() {
-	userPopup.style.display = "flex";
+	groupPopup.style.display = "flex";
 }
 
 document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") {
-		userPopup.style.display = "none";
+		groupPopup.style.display = "none";
 	}
 })
 
 closePopup.addEventListener("click", () => {
-	userPopup.style.display = "none";
+	groupPopup.style.display = "none";
 });
 
 document.addEventListener("click", (event) => {
-	if ((userPopup.style.display === "flex" && !userPopup.contains(event.target) && event.target !== addButton) || event.target.className === "blur") {
-		userPopup.style.display = "none";
+	if ((groupPopup.style.display === "flex" && !groupPopup.contains(event.target) && event.target !== addButton) || event.target.className === "blur") {
+		groupPopup.style.display = "none";
 	}
 });
