@@ -54,7 +54,10 @@ document.querySelectorAll("#calendar button").forEach((element) => {
 document.querySelectorAll("#calendar tbody td").forEach((element) => {
 	if (!element.classList.contains("off")) {
 		element.addEventListener("click", (event) => {
-			document.querySelectorAll("#calendar tbody td").forEach((element) => {
+			if (event.currentTarget.classList.contains("off")) {
+				return;
+			}
+			document.querySelectorAll(".selected").forEach((element) => {
 				element.classList.remove("selected");
 			});
 			event.target.classList.add("selected");
