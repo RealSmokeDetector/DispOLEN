@@ -9,6 +9,9 @@ if (containersTimeslots.length === 1) {
 	calendarDays.forEach(day => {
 		if (!day.classList.contains("off")) {
 			day.addEventListener("click", async function(event) {
+				if (event.currentTarget.classList.contains("off")) {
+					return;
+				}
 				dateTimeslot.innerText = event.target.dataset.date;
 				let reservationDates = await callApi("/api/reservation" , "post", {
 					"uid": uid,
