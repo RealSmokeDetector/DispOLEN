@@ -11,9 +11,7 @@ use App\Models\Entities\User;
 use App\Models\Repositories\DateRepository;
 use App\Models\Repositories\DisponibilityRepository;
 use App\Models\Repositories\ReservationRepository;
-use App\Utils\Roles;
 use App\Utils\System;
-use App\Configs\Role;
 use App\Models\Repositories\UserRepository;
 
 class IndexController {
@@ -23,6 +21,7 @@ class IndexController {
 		}
 
 		$user = new User(uid: $_SESSION["user"]["uid"]);
+		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
 
 		$dateRepo = new DateRepository(date: new Date());
 		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
