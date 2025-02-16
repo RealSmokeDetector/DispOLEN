@@ -7,27 +7,17 @@ const add = document.getElementById("add_availability");
 const startTimePopUp = document.getElementById("selected_start_time");
 const endTimePopUp = document.getElementById("selected_end_time");
 const slotPopUp = document.getElementById("reservations");
-const startHour = slotPopUp.dataset.hour;
 const uidTeacher = document.getElementById("uid_teacher");
 
-startTimePopUp.value = startHour.toString().padStart(2, '0') + ":00";
-endTimePopUp.value = (parseInt(startHour) + 1).toString().padStart(2, '0') + ":00";
 studentReservation.style.display = "flex";
 
-let startDate = Date.parse(`${slotPopUp.dataset.day} ${startTimePopUp.value}`) /1000 ;
-let endDate = Date.parse(`${slotPopUp.dataset.day} ${endTimePopUp.value}`) /1000 ;
-const slotsPopUp = document.querySelectorAll("#reservations");
+function getSelectedDate() {
+	return slotPopUp.dataset.day;
+}
 
-	if (!slotsPopUp || slotsPopUp.length === 0) {
-		console.warn("Aucun timeslot trouvé !");
-	}
-	function formatTimestampToDate(timestamp) {
-		const date = new Date(timestamp * 1000); //convert timpstamp to js date
-		date.setMinutes(date.getMinutes() - date.getTimezoneOffset()); // corrects timezone
-		return date.toISOString().slice(0, 19).replace("T", " "); // PostgreSQL format
-	}
-startDate = formatTimestampToDate(parseInt(startDate));
-endDate = formatTimestampToDate(parseInt(endDate));
+function getFormattedDateTime(date, time) {
+	return `${date} ${time}:00`;
+}
 
 addButton.addEventListener("click", () => {
 	reservationPopup.style.display = "flex";
@@ -37,7 +27,7 @@ document.addEventListener("keydown", (event) => {
 	if (event.key === "Escape") {
 		reservationPopup.style.display = "none";
 	}
-})
+});
 
 closePopup.addEventListener("click", () => {
 	reservationPopup.style.display = "none";
@@ -49,19 +39,31 @@ document.addEventListener("click", (event) => {
 	}
 });
 
-if (isElementExist(dispo)) {
-
+if (dispo) {
 	dispo.addEventListener("click", () => {
 		studentReservation.style.display = "flex";
 	});
-
 }
 
 add.addEventListener("click", () => {
-	console.log(startDate);
-	console.log(endDate);
-	console.log(uidUser.value);
-	console.log(uidTeacher.value);
+	let selectedDate = getSelectedDate();
+	let selectedStartHour = startTimePopUp.value;
+	let selectedEndHour = endTimePopUp.value; 
+
+	if (!selectedDate || !selectedStartHour || !selectedEndHour) {
+		console.error("Erreur : Données manquantes avant l'envoi !");
+		alert("Erreur : Date ou heure non sélectionnée !");
+		return;
+	}
+
+	let startDate = getFormattedDateTime(selectedDate, selectedStartHour);
+	let endDate = getFormattedDateTime(selectedDate, selectedEndHour);
+
+	console.log("Envoi des données à l'API:");
+	console.log("Start Date:", startDate);
+	console.log("End Date:", endDate);
+	console.log("UID Student:", uidUser.value);
+	console.log("UID Teacher:", uidTeacher.value);
 
 	callApi("/api/reservation", "post", {
 		"uid_student": uidUser.value,
@@ -70,4 +72,3 @@ add.addEventListener("click", () => {
 		"uid_teacher": uidTeacher.value
 	});
 });
-
