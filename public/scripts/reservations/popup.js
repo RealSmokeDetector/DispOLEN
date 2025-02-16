@@ -4,22 +4,30 @@ const closePopup = document.getElementById("close_popup");
 const dispo = document.getElementById("disponibility");
 const studentReservation = document.getElementById("student_reservation_time");
 const add = document.getElementById("add_availability");
-const startTimePopUp = document.getElementById("start_time");
-const endTimePopUp = document.getElementById("end_time");
+const startTimePopUp = document.getElementById("selected_start_time");
+const endTimePopUp = document.getElementById("selected_end_time");
 const slotPopUp = document.getElementById("reservations");
 const startHour = slotPopUp.dataset.hour;
+const uidTeacher = document.getElementById("uid_teacher");
 
-	startTimePopUp.value = startHour.toString().padStart(2, '0') + ":00";
-	endTimePopUp.value = (parseInt(startHour) + 1).toString().padStart(2, '0') + ":00";
-	studentReservation.style.display = "flex";
+startTimePopUp.value = startHour.toString().padStart(2, '0') + ":00";
+endTimePopUp.value = (parseInt(startHour) + 1).toString().padStart(2, '0') + ":00";
+studentReservation.style.display = "flex";
 
-			const startDate = Date.parse(`${slotPopUp.dataset.day} ${startTimePopUp.value}`) /1000 ;
-			const endDate = Date.parse(`${slotPopUp.dataset.day} ${endTimePopUp.value}`) /1000 ;
-			const slotsPopUp = document.querySelectorAll("#reservations");
+let startDate = Date.parse(`${slotPopUp.dataset.day} ${startTimePopUp.value}`) /1000 ;
+let endDate = Date.parse(`${slotPopUp.dataset.day} ${endTimePopUp.value}`) /1000 ;
+const slotsPopUp = document.querySelectorAll("#reservations");
 
-			if (!slotsPopUp || slotsPopUp.length === 0) {
-				console.warn("Aucun timeslot trouvé !");
-			}
+	if (!slotsPopUp || slotsPopUp.length === 0) {
+		console.warn("Aucun timeslot trouvé !");
+	}
+	function formatTimestampToDate(timestamp) {
+		const date = new Date(timestamp * 1000); //convert timpstamp to js date
+		date.setMinutes(date.getMinutes() - date.getTimezoneOffset()); // corrects timezone
+		return date.toISOString().slice(0, 19).replace("T", " "); // PostgreSQL format
+	}
+startDate = formatTimestampToDate(parseInt(startDate));
+endDate = formatTimestampToDate(parseInt(endDate));
 
 addButton.addEventListener("click", () => {
 	reservationPopup.style.display = "flex";
@@ -41,7 +49,7 @@ document.addEventListener("click", (event) => {
 	}
 });
 
-if (isElementExist(dispo)){
+if (isElementExist(dispo)) {
 
 	dispo.addEventListener("click", () => {
 		studentReservation.style.display = "flex";
@@ -53,10 +61,13 @@ add.addEventListener("click", () => {
 	console.log(startDate);
 	console.log(endDate);
 	console.log(uidUser.value);
+	console.log(uidTeacher.value);
+
 	callApi("/api/reservation", "post", {
-		"uid": uidUser.value,
+		"uid_student": uidUser.value,
 		"date_start": startDate,
-		"date_end": endDate
+		"date_end": endDate,
+		"uid_teacher": uidTeacher.value
 	});
 });
 

@@ -33,10 +33,11 @@
 						$end = ($endDate->getHour() <= 9 ? '0' . $endDate->getHour() : $endDate->getHour()) . ":" .
 						($endDate->getMinute() <= 9 ? '0' . $endDate->getMinute() : $endDate->getMinute());
 						?>
-						<input type="time" id="start_time" min="<?=$start?>" max="<? $end?>" value="<?= $start?>" required>
-						<input type="time" id="end_time" min="<? $start?>" max="<? $end?>" value="<?= $end ?>" required>
+						<input type="time" id="selected_start_time" min="<?=$start?>" max="<? $end?>" value="<?= $start?>" required>
+						<input type="time" id="selected_end_time" min="<? $start?>" max="<? $end?>" value="<?= $end ?>" required>
 					</div>
 					<input type="hidden" id="uid_user" value="<?= $_SESSION["user"]["uid"] ?>">
+					<input type="hidden" id="uid_teacher" value="<?= $userRepo->getTutor() ?>">
 					<button class="button" id="add_availability"><?= Lang::translate(key: "MAIN_ADD") ?></button>
 				</div>
 			<?php } ?>

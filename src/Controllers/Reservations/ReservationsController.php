@@ -32,6 +32,8 @@ class ReservationsController {
 		$roles = UserRepository::getRoles(uid: $_SESSION["user"]["uid"]);
 		define(constant_name: "HEIGHT_TIMESLOTS_DIV", value: 306);
 		$dateRepo = new DateRepository(date: new Date());
+		$user= new User(uid: $_SESSION["user"]["uid"]);
+		$userRepo = new UserRepository(user: $user);
 		$offDays = DateRepository::getOffDays(year: $dateRepo->getYear());
 
 		$disponibilityRepo = new DisponibilityRepository(disponibility: new Disponibility(user: new User(uid: $_SESSION["user"]["uid"])));

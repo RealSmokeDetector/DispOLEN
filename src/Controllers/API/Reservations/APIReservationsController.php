@@ -21,9 +21,10 @@ class APIReservationsController {
 				$json = file_get_contents(filename: "php://input");
 				$body = json_decode(json: $json);
 
-				if(isset($body->date_end)){
-					if (isset($body->uid) && isset($body->date_start) && isset($body->date_end)) {
-						$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
+				if (isset($body->date_end)) {
+					if (isset($body->uid_student) && isset($body->uid_teacher) && isset($body->date_start) && isset($body->date_end)) {
+						$reservationRepo = new ReservationRepository(reservation: new Reservation(startDate: $body->date_start, endDate: $body->date_end, teacherUid: $body->uid_teacher, studentUid: $body->uid_student));
+						$reservationRepo->create();
 
 						$result = $reservationRepo->reservationByDate(dateRepo: new DateRepository(date: new Date(timestamp: strtotime(datetime: $body->date_start))));
 
