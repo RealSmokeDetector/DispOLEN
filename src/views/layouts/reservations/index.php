@@ -15,7 +15,7 @@
 
 <div class="reservation_container">
 	<?php
-		foreach ($reservations as $reservation) {
+		foreach ($reservations as $iteration => $reservation) {
 			$reservationInfo = ReservationRepository::getInformation(uid: $reservation);
 
 			if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) {

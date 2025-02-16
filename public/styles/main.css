@@ -847,6 +847,10 @@ nav {
 	}
 }
 
+.hidden {
+	display: none;
+}
+
 /* Reservation details page
    ============================================== */
 

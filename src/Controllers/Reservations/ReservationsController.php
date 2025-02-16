@@ -24,6 +24,7 @@ class ReservationsController {
 			"/scripts/reservations/popup.js",
 			"/scripts/times/calendar.js",
 			"/scripts/reservations/timeslot.js",
+			"/scripts/users/search.js",
 			"https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.4.0/tsparticles.confetti.bundle.min.js"
 		];
 
