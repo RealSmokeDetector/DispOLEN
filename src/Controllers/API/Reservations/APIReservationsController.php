@@ -21,24 +21,46 @@ class APIReservationsController {
 				$json = file_get_contents(filename: "php://input");
 				$body = json_decode(json: $json);
 
-				if (isset($body->uid) && isset($body->date_start)) {
-					$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
+				if(isset($body->date_end)){
+					if (isset($body->uid) && isset($body->date_start) && isset($body->date_end)) {
+						$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
 
-					$result = $reservationRepo->reservationByDate(dateRepo: new DateRepository(date: new Date(timestamp: strtotime(datetime: $body->date_start))));
+						$result = $reservationRepo->reservationByDate(dateRepo: new DateRepository(date: new Date(timestamp: strtotime(datetime: $body->date_start))));
 
-					if ($result != null) {
-						$data = $result;
+						if ($result != null) {
+							$data = $result;
+						} else {
+							http_response_code(response_code: 200);
+
+							$data["error"] = "Not found";
+							$data["description"] = "No reservations found.";
+						}
 					} else {
-						http_response_code(response_code: 200);
+						http_response_code(response_code: 400);
 
-						$data["error"] = "Not found";
-						$data["description"] = "No reservations found.";
+						$data["error"] = "Invalid request";
+						$data["description"] = "Unspecified date.";
 					}
 				} else {
-					http_response_code(response_code: 400);
+					if (isset($body->uid) && isset($body->date_start)) {
+						$reservationRepo = new ReservationRepository(reservation: new Reservation(user: new User(uid: $body->uid)));
 
-					$data["error"] = "Invalid request";
-					$data["description"] = "Unspecified date.";
+						$result = $reservationRepo->reservationByDate(dateRepo: new DateRepository(date: new Date(timestamp: strtotime(datetime: $body->date_start))));
+
+						if ($result != null) {
+							$data = $result;
+						} else {
+							http_response_code(response_code: 200);
+
+							$data["error"] = "Not found";
+							$data["description"] = "No reservations found.";
+						}
+					} else {
+						http_response_code(response_code: 400);
+
+						$data["error"] = "Invalid request";
+						$data["description"] = "Unspecified date.";
+					}
 				}
 				$api = new API(data: $data);
 				break;
@@ -58,6 +80,7 @@ class APIReservationsController {
 					$data["error"] = "Invalid request";
 					$data["description"] = "Unspecified date.";
 				}
+
 				$api = new API(data: $data);
 				break;
 			default:
