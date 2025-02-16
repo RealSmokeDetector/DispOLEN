@@ -25,10 +25,10 @@
 
 	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
 
-	<div class="line"></div>
+		<div class="line"></div>
 
-	<h2><i class="ri-user-line"></i> <?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT") ?></h2>
-	<p id="tutored_students"><?= join(array: $tutoredStudents, separator: "<br>") ?></p>
+		<h2><i class="ri-user-line"></i> <?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT") ?></h2>
+		<p id="tutored_students"><?= join(array: $tutoredStudentsName, separator: "<br>") ?></p>
 
 	<?php } ?>
 

@@ -172,7 +172,7 @@ class UserRepository {
 			data: [
 				"uid_teacher" => $this->user->uid
 			],
-			returnType: PDO::FETCH_ASSOC
+			returnType: PDO::FETCH_COLUMN
 		);
 	}
 

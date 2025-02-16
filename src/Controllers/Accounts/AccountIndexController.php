@@ -26,11 +26,11 @@ class AccountIndexController {
 			array_push($rolesName, ApplicationData::roleFormat(id: $role));
 		}
 
-		$tutoredStudents = [];
-		foreach ($userRepo->getTutoredStudent() as $student) {
-			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
-
-			array_push($tutoredStudents, htmlspecialchars(string: ucfirst(string: $studentInfo["surname"]) . " " . ucfirst(string: $studentInfo["name"])));
+		$tutoredStudents = $userRepo->getTutoredStudent();
+		$tutoredStudentsName = [];
+		foreach ($tutoredStudents as $student) {
+			$studentInfo = UserRepository::getInformations(uid: $student);
+			array_push($tutoredStudentsName, htmlspecialchars(string: ApplicationData::nameFormat(name: $studentInfo["name"], surname: $studentInfo["surname"])));
 		}
 
 		$scripts = [

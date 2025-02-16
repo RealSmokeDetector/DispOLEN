@@ -8,56 +8,72 @@
 
 <form id="form_user" method="POST">
 	<input type="hidden" name="uid" value="<?= $user["uid"] ?>">
-	<p><?= Lang::translate(key: "MAIN_NAME") ?> : </p>
-	<p id="name"><?= htmlspecialchars(string: $user["name"]) ?></p>
 
-	<p><?= Lang::translate(key: "MAIN_SURNAME") ?> :</p>
-	<p id="surname"><?= htmlspecialchars(string: $user["surname"]) ?></p>
+	<div class="up">
+		<div class="left">
+			<h2><?= Lang::translate(key: "MAIN_NAME") ?></h2>
+			<p id="name"><?= htmlspecialchars(string: $user["name"]) ?></p>
 
-	<p><?= Lang::translate(key: "MAIN_ROLE") ?> : </p>
-	<p id="role"><?= join(array: $rolesName, separator: " ") ?></p>
-	<select id="role_select" name="roles[]" style="display: none" multiple>
-		<?php foreach (ApplicationData::getRoles() as $role) { ?>
-			<option value="<?= $role ?>"
-				<?= in_array(needle: $role, haystack: $roles) ? "selected" : "" ?>>
-				<?= ApplicationData::roleFormat(id: $role) ?>
-			</option>
-		<?php } ?>
-	</select>
+			<h2><?= Lang::translate(key: "MAIN_SURNAME") ?></h2>
+			<p id="surname"><?= htmlspecialchars(string: $user["surname"]) ?></p>
 
-	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) { ?>
-		<p><?= Lang::translate(key: "MAIN_GROUP") ?> : </p>
-		<p><?= htmlspecialchars(string: $userGroup ? ApplicationData::getGroupName(uid: $userGroup) : " ") ?></p>
-		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTOR") ?> : </p>
+			<h2><?= Lang::translate(key: "MAIN_EMAIL") ?></h2>
+			<p><?= $user["email"] ?></p>
+		</div>
 
-		<p id="tutors"><?= $userRepo->getTutor() == null ? Lang::translate(key: "DASHBOARD_USER_DETAILS_NO_TUTOR") : ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $userRepo->getTutor())["name"], surname: UserRepository::getInformations(uid: $userRepo->getTutor())["surname"]) ?></p>
-		<select id="tutors_select" name="tutor" style="display: none">
-			<?php foreach ($teachers as $teacher) { ?>
-				<option value="<?= htmlspecialchars(string: $teacher) ?>"
-					<?= in_array(needle: $teacher, haystack: $teachers) ? "selected" : "" ?>>
-					<?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $teacher)["name"], surname: UserRepository::getInformations(uid: $teacher)["surname"]) ?>
-				</option>
+		<div class="right">
+			<h2><?= Lang::translate(key: "MAIN_ROLE") ?></h2>
+			<p id="role"><?= join(array: $rolesName, separator: " ") ?></p>
+			<select id="role_select" name="roles[]" style="display: none" multiple>
+				<?php foreach (ApplicationData::getRoles() as $role) { ?>
+					<option value="<?= $role ?>"
+						<?= in_array(needle: $role, haystack: $roles) ? "selected" : "" ?>>
+						<?= ApplicationData::roleFormat(id: $role) ?>
+					</option>
+				<?php } ?>
+			</select>
+
+			<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::STUDENT])) { ?>
+
+				<h2><?= Lang::translate(key: "MAIN_GROUP") ?></h2>
+				<p><?= htmlspecialchars(string: $userGroup ? ApplicationData::getGroupName(uid: $userGroup) : " ") ?></p>
+
+				<h2><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTOR") ?></h2>
+				<p id="tutors"><?= $userRepo->getTutor() == null ? Lang::translate(key: "DASHBOARD_USER_DETAILS_NO_TUTOR") : ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $userRepo->getTutor())["name"], surname: UserRepository::getInformations(uid: $userRepo->getTutor())["surname"]) ?></p>
+				<select id="tutors_select" name="tutor" style="display: none">
+					<?php foreach ($teachers as $teacher) { ?>
+						<option value="<?= htmlspecialchars(string: $teacher) ?>"
+							<?= in_array(needle: $teacher, haystack: $teachers) ? "selected" : "" ?>>
+							<?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $teacher)["name"], surname: UserRepository::getInformations(uid: $teacher)["surname"]) ?>
+						</option>
+					<?php } ?>
+				</select>
+
 			<?php } ?>
-		</select>
 
-	<?php } ?>
+			<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
 
-	<?php if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) { ?>
+				<h2><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT") ?></h2>
+				<p id="tutored_students"><?= join(array: $tutoredStudentsName, separator: "<br>") ?></p>
 
-		<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_TUTORED_STUDENT") ?> : </p>
-		<p id="tutored_students"><?= htmlspecialchars(string: join(array: $tutoredStudents, separator: " ")) ?></p>
+				<select id="tutored_students_select" name="tutoredStudents[]" style="display: none" multiple>
+					<?php
+						foreach ($students as $student) {
+							$studentInfo = UserRepository::getInformations(uid: $student);
+					?>
+						<option value="<?= $student ?>"
+							<?= in_array(needle: $student, haystack: $tutoredStudents) ? "selected" : "" ?>>
+							<?= ApplicationData::nameFormat(name: $studentInfo["name"], surname: $studentInfo["surname"]) ?>
+						</option>
+					<?php } ?>
+				</select>
 
-		<select id="tutored_students_select" name="tutoredStudents[]" style="display: none" multiple>
-			<?php foreach ($students as $student) { ?>
-				<option value="<?= $student ?>"
-					<?= in_array(needle: $student, haystack: $students) ? "selected" : "" ?>>
-					<?= ApplicationData::nameFormat(name: UserRepository::getInformations(uid: $student)["name"], surname: UserRepository::getInformations(uid: $student)["surname"]) ?>
-				</option>
 			<?php } ?>
-		</select>
+		</div>
+	</div>
 
-	<?php } ?>
+	<div class="line"></div>
 
-	<p><?= Lang::translate(key: "MAIN_EMAIL") ?> : <?= $user["email"] ?></p>
-	<p><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_DATE_CREATE") ?> : <?= $user["date_create"] ?></p>
+	<h2><?= Lang::translate(key: "DASHBOARD_USER_DETAILS_DATE_CREATE") ?></h2>
+	<p><?= $dateRepo->getDate() . " " . $dateRepo->getTime() ?></p>
 </form>

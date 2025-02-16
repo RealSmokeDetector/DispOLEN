@@ -5,7 +5,9 @@ namespace App\Controllers\Dashboard\Users\Details;
 use App\Configs\Path;
 use App\Events\UpdateUserEvent;
 use App\Factories\NavbarFactory;
+use App\Models\Entities\Date;
 use App\Models\Entities\User;
+use App\Models\Repositories\DateRepository;
 use App\Models\Repositories\UserRepository;
 use App\Utils\ApplicationData;
 use App\Utils\System;
@@ -15,6 +17,8 @@ class DashboardUsersDetailsController {
 		UpdateUserEvent::implement();
 
 		$user = UserRepository::getInformations(uid: $_GET["user"]);
+
+		$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: $user["date_create"])));
 
 		if (
 			!isset($_GET["user"])
@@ -35,10 +39,11 @@ class DashboardUsersDetailsController {
 			array_push($rolesName, ApplicationData::roleFormat(id: $role));
 		}
 
-		$tutoredStudents = [];
-		foreach ($userRepo->getTutoredStudent() as $student) {
-			$studentInfo = UserRepository::getInformations(uid: $student["uid_student"]);
-			array_push($tutoredStudents, $studentInfo["name"]);
+		$tutoredStudents = $userRepo->getTutoredStudent();
+		$tutoredStudentsName = [];
+		foreach ($tutoredStudents as $student) {
+			$studentInfo = UserRepository::getInformations(uid: $student);
+			array_push($tutoredStudentsName, htmlspecialchars(string: ApplicationData::nameFormat(name: $studentInfo["name"], surname: $studentInfo["surname"])));
 		}
 
 		$scripts = [
