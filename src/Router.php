@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Controllers\Accounts\ModifyController;
 use App\Controllers\ErrorController;
 use App\Models\Repositories\UserRepository;
 use App\Utils\Lang;
@@ -48,6 +49,17 @@ class Router {
 		$view = $this->routes[$url]["controller"] ?? null;
 
 		if ($view) {
+			// User need to modify his password
+			if (
+				isset($_SESSION["user"])
+				&& UserRepository::getInformations(uid: $_SESSION["user"]["uid"])["to_modify"] === true
+			) {
+				$GLOBALS["title"] = APP_NAME . " - " . Lang::translate(key: "MODIFY_TITLE");
+				$controller = new ModifyController();
+				$controller->render();
+				exit;
+			}
+
 			// Page accessible anytime for everyone
 			if ($this->routes[$url]["needLoginToBe"] === null) {
 				$GLOBALS["title"] = $this->routes[$url]["title"];

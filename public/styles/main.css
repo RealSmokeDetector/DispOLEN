@@ -668,6 +668,31 @@ nav {
 	}
 }
 
+.modify_container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: fit-content;
+	margin: 10vh auto;
+	align-items: center;
+	gap: 15px;
+
+	.password i {
+		position: absolute;
+		transform: translate(-36px, 11px);
+		font-size: 18px;
+		background-color: var(--input-background-color);
+		cursor: pointer;
+		padding: 0px 4px;
+		transition: 200ms;
+	}
+
+	.button {
+		width: fit-content;
+		margin: auto;
+	}
+}
+
 /* Account page
    ============================================== */
 

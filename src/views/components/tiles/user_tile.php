@@ -16,6 +16,7 @@
 
 		<?php
 			}
+
 			if (Roles::check(userRoles: $roles, allowRoles: [Role::TEACHER])) {
 		?>
 

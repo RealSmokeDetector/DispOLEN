@@ -32,13 +32,14 @@ class UserRepository {
 
 		try {
 			ApplicationData::request(
-				query: "INSERT INTO " . Database::USERS . " (uid, name, surname, email, password) VALUES (:uid, :name, :surname, :email, :password)",
+				query: "INSERT INTO " . Database::USERS . " (uid, name, surname, email, password, to_modify) VALUES (:uid, :name, :surname, :email, :password, :toModify)",
 				data: [
 					"uid" => $this->user->uid,
 					"name" => $this->user->name,
 					"surname" => $this->user->surname,
 					"email" => $this->user->email,
-					"password" => $this->user->password
+					"password" => $this->user->password,
+					"toModify" => (int)$this->user->toModify
 				]
 			);
 		} catch (Exception $exception) {
@@ -66,8 +67,9 @@ class UserRepository {
 
 	public function setPassword() : void {
 		$this->user->password = password_hash(password: $this->user->password, algo: PASSWORD_BCRYPT);
+
 		ApplicationData::request(
-			query: "UPDATE " . Database::USERS . " SET password = :password WHERE uid = :uid",
+			query: "UPDATE " . Database::USERS . " SET password = :password, to_modify = false WHERE uid = :uid",
 			data: [
 				"uid" => $this->user->uid,
 				"password" => $this->user->password
@@ -99,6 +101,24 @@ class UserRepository {
 		}
 
 		return new Exception(message: "Unknown user");
+	}
+
+	/**
+	 * Get user's informations
+	 *
+	 * @param string $uid
+	 *
+	 * @return null | array
+	 */
+	public static function getInformations(string $uid) : null | array {
+		return ApplicationData::request(
+			query: "SELECT * FROM " . Database::USERS . " WHERE uid = :uid",
+			data: [
+				"uid" => $uid
+			],
+			returnType: PDO::FETCH_ASSOC,
+			singleValue: true
+		);
 	}
 
 	/**
@@ -239,24 +259,6 @@ class UserRepository {
 				"uid" => $uid
 			],
 			returnType: PDO::FETCH_COLUMN,
-			singleValue: true
-		);
-	}
-
-	/**
-	 * Get user's informations
-	 *
-	 * @param string $uid
-	 *
-	 * @return null | array
-	 */
-	public static function getInformations(string $uid) : null | array {
-		return ApplicationData::request(
-			query: "SELECT * FROM " . Database::USERS . " WHERE uid = :uid",
-			data: [
-				"uid" => $uid
-			],
-			returnType: PDO::FETCH_ASSOC,
 			singleValue: true
 		);
 	}

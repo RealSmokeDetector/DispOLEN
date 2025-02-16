@@ -98,6 +98,9 @@
 	"REGISTER_ALREADY_EXIST": "Le compte \"$[email]\" existe déjà.",
 	"REGISTER_LOGIN": "Se connecter",
 
+	"MODIFY_TITLE": "Modifier son mot de passe",
+	"MODIFY_FIRST_CONNECTION": "Première connexion",
+
 	"ACCOUNT_TITLE": "Compte",
 	"ACCOUNT_MODIFY_TITLE": "Modifier le compte",
 	"ACCOUNT_NO_TUTOR": "Vous n'avez pas de tuteur.",

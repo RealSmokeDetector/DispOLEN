@@ -98,6 +98,9 @@
 	"REGISTER_ALREADY_EXIST": "Account \"$[email]\" already exist.",
 	"REGISTER_LOGIN": "Login",
 
+	"MODIFY_TITLE": "Modify password",
+	"MODIFY_FIRST_CONNECTION": "First connection",
+
 	"ACCOUNT_TITLE": "Account",
 	"ACCOUNT_MODIFY_TITLE": "Modify account",
 	"ACCOUNT_NO_TUTOR": "You don't have a tutor.",
