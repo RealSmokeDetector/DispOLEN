@@ -1,6 +1,10 @@
 const searchInput = document.getElementById("control_panel_search");
 const orderSelect = document.getElementById("control_panel_filter");
-const userTiles = document.querySelectorAll("#user_tile");
+let userTiles = document.querySelectorAll("#user_tile");
+const controlPanelBefore = document.getElementById("control_panel_before");
+const controlPanelAfter = document.getElementById("control_panel_after");
+const controlPanelInfo = document.getElementById("control_panel_info");
+const nbShow = 10;
 
 if (isElementExist(searchInput)) {
 	searchInput.addEventListener("input", () => {
@@ -19,6 +23,8 @@ if (isElementExist(searchInput)) {
 
 if (isElementExist(orderSelect)) {
 	orderSelect.addEventListener("change", (event) => {
+		userTiles = document.querySelectorAll("#user_tile");
+		let nbPanelInfo = Number.parseInt(controlPanelInfo.textContent);
 		let order = event.currentTarget.value;
 		let sortedUserTiles = Array.from(userTiles).sort((firstElement, secondElement) => {
 			let firstText = firstElement.children[0].children[0].textContent.toLowerCase();
@@ -33,8 +39,51 @@ if (isElementExist(orderSelect)) {
 
 		const parent = userTiles[0].parentNode;
 		parent.innerHTML = "";
-		sortedUserTiles.forEach(tile => {
+		console.log(nbPanelInfo);
+		sortedUserTiles.forEach((tile, index) => {
+			console.log(index, tile);
+			if (index >= nbShow * (nbPanelInfo - 1)  && index < nbShow * nbPanelInfo) {
+				tile.classList.remove("hidden");
+			} else {
+				tile.classList.add("hidden");
+			}
 			parent.appendChild(tile);
 		});
 	});
+}
+
+if (isElementExist(controlPanelBefore) && isElementExist(controlPanelAfter)) {
+	if (userTiles.length > nbShow) {
+		controlPanelBefore.addEventListener("click", () => {
+			userTiles = document.querySelectorAll("#user_tile");
+			let nbPanelInfo = Number.parseInt(controlPanelInfo.textContent);
+			if (controlPanelInfo.textContent > 1) {
+				controlPanelInfo.textContent = nbPanelInfo - 1;
+
+				userTiles.forEach((tile, index) => {
+				if (index >= nbShow * (nbPanelInfo - 2)  && index < nbShow * (nbPanelInfo - 1)) {
+						tile.classList.remove("hidden");
+					} else {
+						tile.classList.add("hidden");
+					}
+				});
+			}
+		});
+
+		controlPanelAfter.addEventListener("click", () => {
+			userTiles = document.querySelectorAll("#user_tile");
+			let nbPanelInfo = Number.parseInt(controlPanelInfo.textContent);
+			if (nbShow * nbPanelInfo < userTiles.length) {
+				controlPanelInfo.textContent = nbPanelInfo + 1;
+
+				userTiles.forEach((tile, index) => {
+					if (index >= nbShow * nbPanelInfo  && index < nbShow * (nbPanelInfo + 1)) {
+						tile.classList.remove("hidden");
+					} else {
+						tile.classList.add("hidden");
+					}
+				});
+			}
+		});
+	}
 }

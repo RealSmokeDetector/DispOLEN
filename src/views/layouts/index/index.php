@@ -1,6 +1,7 @@
 <?php
 	use App\Configs\Path;
 	use App\Configs\Role;
+	use App\Dev\Gens\UsersGenerator;
 	use App\Utils\Lang;
 	use App\Utils\Roles;
 ?>
