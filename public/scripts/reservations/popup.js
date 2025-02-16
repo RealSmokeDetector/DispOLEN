@@ -48,7 +48,7 @@ if (dispo) {
 add.addEventListener("click", () => {
 	let selectedDate = getSelectedDate();
 	let selectedStartHour = startTimePopUp.value;
-	let selectedEndHour = endTimePopUp.value; 
+	let selectedEndHour = endTimePopUp.value;
 
 	if (!selectedDate || !selectedStartHour || !selectedEndHour) {
 		console.error("Erreur : Données manquantes avant l'envoi !");
@@ -58,12 +58,6 @@ add.addEventListener("click", () => {
 
 	let startDate = getFormattedDateTime(selectedDate, selectedStartHour);
 	let endDate = getFormattedDateTime(selectedDate, selectedEndHour);
-
-	console.log("Envoi des données à l'API:");
-	console.log("Start Date:", startDate);
-	console.log("End Date:", endDate);
-	console.log("UID Student:", uidUser.value);
-	console.log("UID Teacher:", uidTeacher.value);
 
 	callApi("/api/reservation", "post", {
 		"uid_student": uidUser.value,
