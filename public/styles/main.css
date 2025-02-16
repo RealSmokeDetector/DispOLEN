@@ -446,6 +446,12 @@ nav {
 	}
 
 	.reservation_add_popup {
+		overflow: scroll;
+		height: -webkit-fill-available;
+		height: -moz-available;
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
+
 		.item {
 			flex-direction: column !important;
 		}
@@ -887,6 +893,16 @@ nav {
 		flex-direction: row;
 		padding-top: 15px;
 		gap: 15px;
+	}
+
+	select {
+		background: var(--input-background-color);
+		border-radius: var(--border-radius);
+		color: var(--text-color);
+		padding: 10px;
+		border: solid 2px var(--border-color);
+		cursor: pointer;
+		outline: none;
 	}
 }
 
