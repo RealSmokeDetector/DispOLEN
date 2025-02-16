@@ -3,6 +3,11 @@
 	use App\Utils\Lang;
 ?>
 
+<?php
+	$backPath = "/dashboard/users";
+	include Path::COMPONENTS . "/actions/back_button.php"
+?>
+
 <div class="tile user_details_container">
 	<?php include Path::COMPONENTS . "/forms/user_details_form.php"; ?>
 
