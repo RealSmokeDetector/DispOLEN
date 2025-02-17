@@ -35,7 +35,7 @@ class CalendarController {
 
 		$offDays = DateRepository::getOffDays(year: (new DateRepository(date: new Date()))->getYear());
 
-		$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday -1 week")));
+		$dateRepo = new DateRepository(date: new Date(timestamp: strtotime(datetime: "monday this week")));
 
 		require Path::LAYOUT . "/calendar/index.php";
 
