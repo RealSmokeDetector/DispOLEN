@@ -1,7 +1,7 @@
 const heightDiv = 306;
 const containersTimeslots = document.querySelectorAll("#availabilities_container");
 const calendarDays = document.querySelectorAll("#calendar tbody td");
-const dateTimeslot = document.getElementById("timesolt_date");
+const dateTimeslot = document.querySelectorAll("#timesolt_date");
 const calendarWeek = document.querySelectorAll("#calendar tbody tr");
 const uid = document.getElementById("timeslots_tile").dataset.uid;
 const format = new Intl.DateTimeFormat(getCookie("LANG").replace("_", "-"), {day: "2-digit", month: "2-digit", year: "numeric"});
@@ -13,7 +13,7 @@ if (containersTimeslots.length === 1) {
 				if (event.currentTarget.classList.contains("off")) {
 					return;
 				}
-				dateTimeslot.innerText = format.format(new Date(event.target.dataset.date));
+				dateTimeslot[0].innerText = format.format(new Date(event.target.dataset.date));
 				let reservationDates = await callApi("/api/reservation" , "post", {
 					"uid": uid,
 					"date_start": event.target.dataset.date
@@ -68,13 +68,13 @@ if (containersTimeslots.length === 1) {
 			timeslotsDisponibilities.forEach((value)=> {
 				value.style.height = 0;
 			});
-
-			let liste = [event.currentTarget.children[0].dataset.date, event.currentTarget.children[event.currentTarget.children.length - 1].dataset.date];
+			let liste = [event.currentTarget.children[0].dataset.date, event.currentTarget.children[event.currentTarget.children.length - 3].dataset.date];
 			if (!liste.includes(undefined)) {
 				containersTimeslots.forEach(async (containerTimeslot, i) => {
 					let timeslotsReservation = containerTimeslot.querySelectorAll(".availability_reserved");
 					let timeslotsDisponibilities = containerTimeslot.querySelectorAll(".disponibility");
 					let date = event.currentTarget.children[i].dataset.date;
+					dateTimeslot[i].innerText = format.format(new Date(date));
 					let reservationDates = await callApi("/api/reservation" , "post", {
 						"uid": uid,
 						"date_start": date
