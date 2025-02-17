@@ -5,7 +5,7 @@
 	use App\Models\Repositories\DisponibilityRepository;
 ?>
 <div class="timeslot_container">
-	<p class="title" id="timesolt_date"><?= $dateRepo->convertDate() ?></p>
+	<h2 class="title" id="timesolt_date"><?= $dateRepo->convertDate() ?></h2>
 	<div class="line"></div>
 	<div class="timeslots_container">
 		<div class="times">
