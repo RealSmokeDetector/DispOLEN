@@ -39,9 +39,7 @@ if (isElementExist(orderSelect)) {
 
 		const parent = userTiles[0].parentNode;
 		parent.innerHTML = "";
-		console.log(nbPanelInfo);
 		sortedUserTiles.forEach((tile, index) => {
-			console.log(index, tile);
 			if (index >= nbShow * (nbPanelInfo - 1)  && index < nbShow * nbPanelInfo) {
 				tile.classList.remove("hidden");
 			} else {
