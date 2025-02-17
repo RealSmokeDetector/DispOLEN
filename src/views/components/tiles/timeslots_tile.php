@@ -4,7 +4,9 @@
 	use App\Models\Repositories\ReservationRepository;
 	use App\Models\Repositories\DisponibilityRepository;
 ?>
-
+<div class="timeslot_container">
+	<p class="title" id="timesolt_date"><?= $dateRepo->convertDate() ?></p>
+	<div class="line"></div>
 	<div class="timeslots_container">
 		<div class="times">
 			<?php for ($hour = 8; $hour <= 19; $hour++) { ?>
@@ -60,3 +62,4 @@
 			?>
 		</div>
 	</div>
+</div>
