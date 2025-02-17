@@ -49,8 +49,7 @@ if (dispo) {
 
 if (isElementExist(add) && !isElementExist(document.getElementById("reservation_time"))) {
 add.addEventListener("click", () => {
-
-	console.log('click');
+	
 	let selectedDate = getSelectedDate();
 	let selectedStartHour = startTimePopUp.value;
 	let selectedEndHour = endTimePopUp.value;
