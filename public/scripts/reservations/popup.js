@@ -4,8 +4,8 @@ const closePopup = document.getElementById("close_popup");
 const dispo = document.getElementById("disponibility");
 const studentReservation = document.getElementById("student_reservation_time");
 const add = document.getElementById("add_reservation");
-const startTimePopUp = document.getElementById("selected_start_time");
-const endTimePopUp = document.getElementById("selected_end_time");
+const startTimePopUp = document.getElementById("start_time");
+const endTimePopUp = document.getElementById("end_time");
 const slotPopUp = document.getElementById("reservations");
 const uidTeacher = document.getElementById("uid_teacher");
 
@@ -36,7 +36,14 @@ closePopup.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (event) => {
-	if ((reservationPopup.style.display === "flex" && !reservationPopup.contains(event.target) && event.target !== addButton) || event.target.className === "blur") {
+	if (
+		(
+			reservationPopup.style.display === "flex"
+			&& !reservationPopup.contains(event.target)
+			&& event.target !== addButton
+		)
+		|| event.target.className === "blur"
+	) {
 		reservationPopup.style.display = "none";
 	}
 });
@@ -47,27 +54,29 @@ if (dispo) {
 	});
 }
 
-if (isElementExist(add) && !isElementExist(document.getElementById("reservation_time"))) {
-add.addEventListener("click", () => {
-	
-	let selectedDate = getSelectedDate();
-	let selectedStartHour = startTimePopUp.value;
-	let selectedEndHour = endTimePopUp.value;
+if (
+	isElementExist(add)
+	&& !isElementExist(document.getElementById("reservation_time"))
+) {
+	add.addEventListener("click", () => {
+		let selectedDate = getSelectedDate();
+		let selectedStartHour = startTimePopUp.value;
+		let selectedEndHour = endTimePopUp.value;
 
-	if (!selectedDate || !selectedStartHour || !selectedEndHour) {
-		console.error("Erreur : Données manquantes avant l'envoi !");
-		alert("Erreur : Date ou heure non sélectionnée !");
-		return;
-	}
+		if (!selectedDate || !selectedStartHour || !selectedEndHour) {
+			console.error("Erreur : Données manquantes avant l'envoi !");
+			alert("Erreur : Date ou heure non sélectionnée !");
+			return;
+		}
 
-	let startDate = getFormattedDateTime(selectedDate, selectedStartHour);
-	let endDate = getFormattedDateTime(selectedDate, selectedEndHour);
+		let startDate = getFormattedDateTime(selectedDate, selectedStartHour);
+		let endDate = getFormattedDateTime(selectedDate, selectedEndHour);
 
-	callApi("/api/reservation", "post", {
-		"uid_student": uidUser.value,
-		"date_start": startDate,
-		"date_end": endDate,
-		"uid_teacher": uidTeacher.value
+		callApi("/api/reservation", "post", {
+			"uid_student": uidUser.value,
+			"date_start": startDate,
+			"date_end": endDate,
+			"uid_teacher": uidTeacher.value
+		});
 	});
-});
 }
