@@ -3,13 +3,15 @@ const reservationPopup = document.getElementById("reservation_popup");
 const closePopup = document.getElementById("close_popup");
 const dispo = document.getElementById("disponibility");
 const studentReservation = document.getElementById("student_reservation_time");
-const add = document.getElementById("add_availability");
+const add = document.getElementById("add_reservation");
 const startTimePopUp = document.getElementById("selected_start_time");
 const endTimePopUp = document.getElementById("selected_end_time");
 const slotPopUp = document.getElementById("reservations");
 const uidTeacher = document.getElementById("uid_teacher");
 
-studentReservation.style.display = "flex";
+if (isElementExist(studentReservation)) {
+	studentReservation.style.display = "flex";
+}
 
 function getSelectedDate() {
 	return slotPopUp.dataset.day;
@@ -45,7 +47,10 @@ if (dispo) {
 	});
 }
 
+if (isElementExist(add) && !isElementExist(document.getElementById("reservation_time"))) {
 add.addEventListener("click", () => {
+
+	console.log('click');
 	let selectedDate = getSelectedDate();
 	let selectedStartHour = startTimePopUp.value;
 	let selectedEndHour = endTimePopUp.value;
@@ -66,3 +71,4 @@ add.addEventListener("click", () => {
 		"uid_teacher": uidTeacher.value
 	});
 });
+}

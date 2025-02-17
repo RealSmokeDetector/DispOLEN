@@ -38,7 +38,7 @@
 					</div>
 					<input type="hidden" id="uid_user" value="<?= $_SESSION["user"]["uid"] ?>">
 					<input type="hidden" id="uid_teacher" value="<?= $userRepo->getTutor() ?>">
-					<button class="button" id="add_availability"><?= Lang::translate(key: "MAIN_ADD") ?></button>
+					<button class="button" id="add_reservation"><?= Lang::translate(key: "MAIN_ADD") ?></button>
 				</div>
 			<?php } ?>
 		</div>
