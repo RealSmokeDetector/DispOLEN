@@ -4,8 +4,10 @@ namespace App\Models\Repositories;
 
 use App\Configs\Database;
 use App\Configs\Role;
+use App\Models\Entities\Mail;
 use App\Models\Entities\Reservation;
 use App\Utils\ApplicationData;
+use App\Utils\Lang;
 use App\Utils\Roles;
 use App\Utils\System;
 use PDO;
@@ -65,6 +67,17 @@ class ReservationRepository {
 				"comment" => $this->reservation->comment
 			]
 		);
+
+		$reservationInfo = $this->getInformation(uid: $this->reservation->uid);
+
+		$studentInfo = UserRepository::getInformations(uid: $reservationInfo["uid_student"]);
+		$teacherInfo = UserRepository::getInformations(uid: $reservationInfo["uid_teacher"]);
+
+		$email = new MailRepository(mail: new Mail(receiver: $studentInfo["email"], body: Lang::translate(key: "EMAIL_UPDATE_RESERVATION_BODY"), object: Lang::translate(key: "EMAIL_UPDATE_RESERVATION_OBJECT")));
+		$email->send();
+
+		$email = new MailRepository(mail: new Mail(receiver: $teacherInfo["email"], body: Lang::translate(key: "EMAIL_UPDATE_RESERVATION_BODY"), object: Lang::translate(key: "EMAIL_UPDATE_RESERVATION_OBJECT")));
+		$email->send();
 	}
 
 	/**

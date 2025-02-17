@@ -66,6 +66,9 @@
 	"EMAIL_CREATE_USER_OBJECT": "Création de ton compte sur $[name]",
 	"EMAIL_CREATE_USER_BODY": "Bienvenue sur $[name] !<br><br>Voici ton mot de passe temporaire qu'il te sera demandé de changer à la connexion : $[password]",
 
+	"EMAIL_UPDATE_RESERVATION_OBJECT": "Modification réservation",
+	"EMAIL_UPDATE_RESERVATION_BODY": "Une réservation a été modifié.",
+
 	"NAVBAR_HOME": "Accueil",
 	"NAVBAR_DASHBOARD": "Tableau de bord",
 	"NAVBAR_DASHBOARD_USERS": "Utilisateurs",
