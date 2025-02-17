@@ -1274,11 +1274,13 @@ nav {
 			position: absolute;
 		}
 
-		.availability_teacher {
+		.availability_teacher,
+		.availability_student {
 			transition: 200ms;
 		}
 
-		.availability_teacher:hover {
+		.availability_teacher:hover,
+		.availability_student:hover {
 			cursor: pointer;
 			background-color: var(--background-color);
 			transition: 200ms;

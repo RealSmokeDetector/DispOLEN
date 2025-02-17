@@ -53,8 +53,7 @@
 						$height = (($startDate->getDurationDate(dateRepo: $endDate) / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
 						$translate = (($startDate->getIntervalFromBegin() / 60) * HEIGHT_TIMESLOTS_DIV) / (11 * 60);
 			?>
-
-				<div class="disponibility" style="height:<?= $height ?>px;transform: translateY(<?= $translate ?>px);"></div>
+				<div data-datestart=<?= $startDate->getTimestamp() ?> data-datend=<?= $endDate->getTimestamp() ?> class="disponibility" id="disponibility" style="height:<?= $height ?>px;transform: translateY(<?= $translate ?>px);"></div>
 
 			<?php
 					}
