@@ -89,6 +89,7 @@ class DateRepository {
 		$month = str_pad(string: $this->date->month, length: 2, pad_string: "0", pad_type: STR_PAD_LEFT);
 
 		switch (USER_LANG) {
+			case "en_GB":
 			case "fr_FR":
 				$result = $day . "/" . $month . "/" . $this->date->year;
 				break;

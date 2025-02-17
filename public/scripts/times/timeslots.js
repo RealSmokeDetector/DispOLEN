@@ -4,6 +4,7 @@ const calendarDays = document.querySelectorAll("#calendar tbody td");
 const dateTimeslot = document.getElementById("timesolt_date");
 const calendarWeek = document.querySelectorAll("#calendar tbody tr");
 const uid = document.getElementById("timeslots_tile").dataset.uid;
+const format = new Intl.DateTimeFormat(getCookie("LANG").replace("_", "-"), {day: "2-digit", month: "2-digit", year: "numeric"});
 
 if (containersTimeslots.length === 1) {
 	calendarDays.forEach(day => {
@@ -12,7 +13,7 @@ if (containersTimeslots.length === 1) {
 				if (event.currentTarget.classList.contains("off")) {
 					return;
 				}
-				dateTimeslot.innerText = event.target.dataset.date;
+				dateTimeslot.innerText = format.format(new Date(event.target.dataset.date));
 				let reservationDates = await callApi("/api/reservation" , "post", {
 					"uid": uid,
 					"date_start": event.target.dataset.date
