@@ -44,7 +44,7 @@ class System {
 
 			if (!empty($table)) {
 				$uidChecked = ApplicationData::request(
-					query: "SELECT uid FROM `" . $table . "` WHERE uid = :uid",
+					query: "SELECT uid FROM " . $table . " WHERE uid = :uid",
 					data: [
 						"uid" => $uid
 					],
@@ -65,19 +65,6 @@ class System {
 	 * @return array
 	 */
 	public static function getFiles(string $path) : array {
-		return array_diff(scandir(directory: $path), array('.', '..'));
-	}
-
-	/**
-	 * Implement scripts
-	 *
-	 * @param array $scripts
-	 *
-	 * @return void
-	 */
-	public static function implementScripts(array $scripts = []) : void {
-		foreach ($scripts as $script) {
-			echo "<script src=\"" . $script . "\"></script>";
-		}
+		return array_diff(scandir(directory: $path), array(".", ".."));
 	}
 }

@@ -23,10 +23,12 @@ date_default_timezone_set(timezoneId: $_ENV["TIMEZONE"]);
 define(constant_name: "APP_NAME", value: $_ENV["APP_NAME"]);
 
 // Languages
-setcookie("LANG", isset($_COOKIE["LANG"]) ? $_COOKIE["LANG"] : $_ENV["DEFAULT_LANG"], time() + 60*60*24*30);
+define(constant_name: "USER_LANG", value: $_COOKIE["LANG"]);
 
-if (!in_array($_COOKIE["LANG"] . ".json", System::getFiles(Path::PUBLIC . "/langs"))) {
-	setcookie("LANG", $_ENV["DEFAULT_LANG"], time() + 60*60*24*30);
+setcookie(name: "LANG", value: isset($_COOKIE["LANG"]) ? $_COOKIE["LANG"] : $_ENV["DEFAULT_LANG"], expires_or_options: time() + 60*60*24*30, path: "/");
+
+if (!in_array($_COOKIE["LANG"] . ".json", System::getFiles(path: Path::PUBLIC . "/langs"))) {
+	setcookie(name: "LANG", value: $_ENV["DEFAULT_LANG"], expires_or_options: time() + 60*60*24*30, path: "/");
 	System::redirect();
 }
 
@@ -43,24 +45,51 @@ if ($_ENV["DEBUG"] == 1) {
 	register_shutdown_function(callback: [ErrorRepository::class, "shutdown"]);
 }
 
-//Database
-$database = new Database(
-	hostname: $_ENV["DATABASE_HOST"],
-	port: $_ENV["DATABASE_PORT"],
-	dbname: $_ENV["DATABASE_NAME"],
-	username: $_ENV["DATABASE_USER"],
-	password: $_ENV["DATABASE_PASSWORD"],
-	driver: $_ENV["DATABASE_DRIVER"],
-	charset: $_ENV["DATABASE_CHARSET"]
+// Dates
+define(constant_name: "DAYS", value: [
+	Lang::translate(key: "MAIN_MONDAY"),
+	Lang::translate(key: "MAIN_TUESDAY"),
+	Lang::translate(key: "MAIN_WEDNESDAY"),
+	Lang::translate(key: "MAIN_THURSDAY"),
+	Lang::translate(key: "MAIN_FRIDAY"),
+	Lang::translate(key: "MAIN_SATURDAY"),
+	Lang::translate(key: "MAIN_SUNDAY")
+]);
+define(constant_name: "MONTH", value: [
+	LANG::translate(key: "MAIN_JANUARY"),
+	LANG::translate(key: "MAIN_FEBRUARY"),
+	LANG::translate(key: "MAIN_MARCH"),
+	LANG::translate(key: "MAIN_APRIL"),
+	LANG::translate(key: "MAIN_MAY"),
+	LANG::translate(key: "MAIN_JUNE"),
+	LANG::translate(key: "MAIN_JULY"),
+	LANG::translate(key: "MAIN_AUGUST"),
+	LANG::translate(key: "MAIN_SEPTEMBER"),
+	LANG::translate(key: "MAIN_OCTOBER"),
+	LANG::translate(key: "MAIN_NOVEMBER"),
+	LANG::translate(key: "MAIN_DECEMBER")
+]);
+
+// Database
+define(
+	constant_name: "DATABASE",
+	value: (
+		new DatabaseRepository(
+			database: new Database(
+				hostname: $_ENV["DATABASE_HOST"],
+				port: $_ENV["DATABASE_PORT"],
+				dbname: $_ENV["DATABASE_NAME"],
+				username: $_ENV["DATABASE_USER"],
+				password: $_ENV["DATABASE_PASSWORD"],
+				driver: $_ENV["DATABASE_DRIVER"],
+				charset: $_ENV["DATABASE_CHARSET"]
+			)
+		)
+	)->createConnection()
 );
-$databaseRepo = new DatabaseRepository(database: $database);
-define(constant_name: "DATABASE", value: $databaseRepo->createConnection());
 
 if (DATABASE instanceof Exception) {
 	$controller = new ErrorController();
 	$controller->render(message: Lang::translate(key: "ERROR_DATABASE"));
 	exit;
 }
-
-// Routes
-require BASE_DIR . "/src/routes/index.php";

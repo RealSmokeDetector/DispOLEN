@@ -38,11 +38,10 @@ class DatabaseRepository {
 				"$driver:dbname=$dbname;
 					host=$hostname;
 					port=$port;
-					options=\"--client_encoding=$charset\"",
+					options='--client_encoding=$charset'",
 				username: $username,
 				password: $password
 			);
-			$this->database->connection->exec(statement: "SET NAMES \"$charset\"");
 		} catch (Exception $exception) {
 			return $exception;
 		}

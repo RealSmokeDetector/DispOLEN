@@ -1,3 +1,11 @@
+let dataLang = [];
+let isDataLangLoaded = false;
+
+(async () => {
+	dataLang = await callApi("/langs/" + getCookie("LANG") + ".json");
+	isDataLangLoaded = true;
+})();
+
 /**
  * Check if element already in DOM
  *
@@ -30,7 +38,7 @@ async function callApi(path = "/api", type = "get", settings = null) {
 	}).then((response) => {
 		return response.json();
 	}).catch((error) => {
-		console.log(error);
+		console.error(error);
 	})
 }
 
@@ -42,14 +50,12 @@ async function callApi(path = "/api", type = "get", settings = null) {
  * @return {string}
  */
 function getCookie(name) {
-	let cookieValue = document.cookie
+	return document.cookie
 		.split("; ")
 		.find(
 			row => row.startsWith(name + "=")
 		)
 		?.split("=")[1];
-
-	return cookieValue;
 }
 
 /**
@@ -61,9 +67,18 @@ function getCookie(name) {
  * @return {string}
  */
 async function translate(key, options = null) {
-	let data = await callApi("/langs/" + getCookie("LANG") + ".json");
+	if (!isDataLangLoaded) {
+		await new Promise(resolve => {
+			const checkInterval = setInterval(() => {
+				if (isDataLangLoaded) {
+					clearInterval(checkInterval);
+					resolve();
+				}
+			}, 10);
+		});
+	}
 
-	let result = data[key] || "Missing entry";
+	let result = dataLang[key] || "Missing entry";
 
 	if (options) {
 		for (const [index, option] of Object.entries(options)) {
@@ -136,3 +151,49 @@ setInterval(() => {
 		)
 	}
 }, 1000);
+
+const DOMnotification = document.getElementById("main_notification");
+if (isElementExist(DOMnotification)) {
+	DOMnotification.addEventListener("click", () => {
+		DOMnotification.remove();
+	})
+}
+
+const passwordFields = document.querySelectorAll(".password i");
+
+passwordFields.forEach(passwordField => {
+	passwordField.addEventListener("click", function() {
+		const passwordField = this.previousElementSibling;
+		if (passwordField.type === "password") {
+			passwordField.type = "text";
+			this.className = "ri-eye-line";
+		} else {
+			passwordField.type = "password";
+			this.className = "ri-eye-off-line";
+		}
+	})
+})
+
+// Navbar
+const buttonPhone = document.getElementById("phone_button");
+const navBar = document.querySelector("nav");
+
+if (isElementExist(navBar) && isElementExist(buttonPhone)) {
+	buttonPhone.addEventListener("click", () => {
+		if (buttonPhone.children[0].classList.contains("ri-menu-line")) {
+			buttonPhone.children[0].className = "ri-close-circle-line";
+			navBar.style = "position: relative; height: fit-content; padding-top: 50px;";
+
+			for (let i = 0; i < navBar.childElementCount; i++ ) {
+				navBar.children[i].style.display = "flex";
+			}
+		} else {
+			buttonPhone.children[0].className = "ri-menu-line";
+			navBar.removeAttribute("style");
+
+			for (let i = 0; i < navBar.childElementCount; i++ ) {
+				navBar.children[i].removeAttribute("style");
+			}
+		}
+	});
+}

@@ -32,13 +32,14 @@ class UserRepository {
 
 		try {
 			ApplicationData::request(
-				query: "INSERT INTO " . Database::USERS . " (uid, name, surname, email, password) VALUES (:uid, :name, :surname, :email, :password)",
+				query: "INSERT INTO " . Database::USERS . " (uid, name, surname, email, password, to_modify) VALUES (:uid, :name, :surname, :email, :password, :toModify)",
 				data: [
 					"uid" => $this->user->uid,
 					"name" => $this->user->name,
 					"surname" => $this->user->surname,
 					"email" => $this->user->email,
-					"password" => $this->user->password
+					"password" => $this->user->password,
+					"toModify" => (int)$this->user->toModify
 				]
 			);
 		} catch (Exception $exception) {
@@ -46,6 +47,34 @@ class UserRepository {
 		}
 
 		return $this->user->uid;
+	}
+
+	/**
+	 * Update users
+	 *
+	 * @return void
+	 */
+	public function update() : void {
+		ApplicationData::request(
+			query: "UPDATE " . Database::USERS . " SET name = :name, surname = :surname WHERE uid = :uid",
+			data: [
+				"uid" => $this->user->uid,
+				"name" => $this->user->name,
+				"surname" => $this->user->surname
+			]
+		);
+	}
+
+	public function setPassword() : void {
+		$this->user->password = password_hash(password: $this->user->password, algo: PASSWORD_BCRYPT);
+
+		ApplicationData::request(
+			query: "UPDATE " . Database::USERS . " SET password = :password, to_modify = false WHERE uid = :uid",
+			data: [
+				"uid" => $this->user->uid,
+				"password" => $this->user->password
+			]
+		);
 	}
 
 	/**
@@ -75,6 +104,105 @@ class UserRepository {
 	}
 
 	/**
+	 * Get user's informations
+	 *
+	 * @param string $uid
+	 *
+	 * @return null | array
+	 */
+	public static function getInformations(string $uid) : null | array {
+		return ApplicationData::request(
+			query: "SELECT * FROM " . Database::USERS . " WHERE uid = :uid",
+			data: [
+				"uid" => $uid
+			],
+			returnType: PDO::FETCH_ASSOC,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Get student's tutor
+	 *
+	 * @return string
+	 */
+	public function getTutor() : mixed {
+		return ApplicationData::request(
+			query: "SELECT uid_teacher FROM " . Database::TUTORING . " WHERE uid_student = :uid_student",
+			data: [
+				"uid_student" => $this->user->uid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Set student's tutor
+	 *
+	 * @param array $tutor
+	 *
+	 * @return void
+	 */
+	public function setTutor($tutor) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_student = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		ApplicationData::request(
+			query: "INSERT INTO " . Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+			data: [
+				"uid_student" => $this->user->uid,
+				"uid_teacher" => $tutor
+			]
+		);
+	}
+
+	/**
+	 * Get teacher's student
+	 *
+	 * @return array
+	 */
+	public function getTutoredStudent() : mixed {
+		return ApplicationData::request(
+			query: "SELECT uid_student FROM " . Database::TUTORING . " WHERE uid_teacher = :uid_teacher",
+			data: [
+				"uid_teacher" => $this->user->uid
+			],
+			returnType: PDO::FETCH_COLUMN
+		);
+	}
+
+	/**
+	 * Set tutor's sudent(s)
+	 *
+	 * @param array $tutoredStudents
+	 *
+	 * @return void
+	 */
+	public function setTutoredStudent($tutoredStudents) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::TUTORING . " WHERE uid_teacher = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		foreach ($tutoredStudents as $tutoredStudent) {
+			ApplicationData::request(
+				query: "INSERT INTO " . Database::TUTORING . " (uid_student, uid_teacher) VALUES (:uid_student, :uid_teacher)",
+				data: [
+					"uid_teacher" => $this->user->uid,
+					"uid_student" => $tutoredStudent
+				]
+			);
+		}
+	}
+
+	/**
 	 * Get user's role(s)
 	 *
 	 * @param string $uid User's UID
@@ -88,6 +216,67 @@ class UserRepository {
 				"uid" => $uid
 			],
 			returnType: PDO::FETCH_COLUMN
+		);
+	}
+
+	/**
+	 * Set user's role(s)
+	 *
+	 * @param array $roles
+	 *
+	 * @return void
+	 */
+	public function setRoles(array $roles) : void {
+		ApplicationData::request(
+			query: "DELETE FROM " . Database::USER_ROLE . " WHERE uid_user = :uid",
+			data: [
+				"uid" => $this->user->uid
+			]
+		);
+
+		foreach ($roles as $role) {
+			ApplicationData::request(
+				query: "INSERT INTO " . Database::USER_ROLE . " (uid_user, id_role) VALUES (:uid_user, :id_role)",
+				data: [
+					"uid_user" => $this->user->uid,
+					"id_role" => $role
+				]
+			);
+		}
+	}
+
+	/**
+	 * Get user's group
+	 *
+	 * @param string $uid User's UID
+	 *
+	 * @return string | null
+	 */
+	public static function getGroup($uid) : string | null {
+		return ApplicationData::request(
+			query: "SELECT uid_group FROM " . Database::USER_GROUP . " WHERE uid_user = :uid",
+			data: [
+				"uid" => $uid
+			],
+			returnType: PDO::FETCH_COLUMN,
+			singleValue: true
+		);
+	}
+
+	/**
+	 * Get teacher disponibilities
+	 *
+	 * @param string $uid
+	 *
+	 * @return array
+	 */
+	public static function getTeacherDisponibilities(string $uid) : array {
+		return ApplicationData::request(
+			query: "SELECT * FROM " . Database::DISPONIBILITIES . " WHERE uid_user = :uid",
+			data: [
+				"uid" => $uid,
+			],
+			returnType: PDO::FETCH_ASSOC
 		);
 	}
 }
