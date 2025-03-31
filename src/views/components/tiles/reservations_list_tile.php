@@ -19,9 +19,8 @@
 	<p><?= Lang::translate(key: "INDEX_RESERVATION_CONTENT") ?></p>
 
 	<div>
-		<?php
-			foreach ($reservations as $element) {
-				$reservationInfo = ReservationRepository::getInformation(uid: $element);
+		<?php for ($i = 0; $i < 10; $i++) {
+				$reservationInfo = ReservationRepository::getInformation(uid: $reservations[$i]);
 				$dateRepoReservations = new DateRepository(date: new Date(timestamp: strtotime(datetime: $reservationInfo["date_start"])));
 		?>
 			<div class="line"></div>
